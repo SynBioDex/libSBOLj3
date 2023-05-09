@@ -10,3 +10,7 @@ bin
 .settings/
 *.project
 *.classpath
+*/.classpath
+*/.project
+.DS_Store
+*/.DS_Store
