@@ -14,6 +14,9 @@ import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.DataModel;
 import org.sbolstandard.core3.vocabulary.Encoding;
 
+/**
+ * This class represents an encoded sequence.
+ */
 public class Sequence extends TopLevel {
 	/*private String elements;
 	private Encoding encoding;*/
@@ -27,7 +30,10 @@ public class Sequence extends TopLevel {
 	{
 		super(resource);
 	}
-
+	
+	/**
+	 * Gets a list validation messages corresponding to errors and best practices.
+	 */
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
@@ -117,14 +123,28 @@ public class Sequence extends TopLevel {
 		return validationMessages;
 	}
 
+	/**
+	 * Get the elements associated with the sequence. 
+	 * @return An object containing the relevant elements.
+	 * @throws SBOLGraphException
+	 */
 	public String getElements() throws SBOLGraphException{
 		return IdentifiedValidator.getValidator().getPropertyAsString(this.resource, DataModel.Sequence.elements);
 	}
 	
+	/**
+	 * Set the elements of the corresponding sequence.
+	 * @param elements The elements to be applied.
+	 */
 	public void setElements(String elements) {
 		RDFUtil.setProperty(this.resource, DataModel.Sequence.elements, elements);
 	}
 	
+	/**
+	 * Get the encoding type for the sequence.
+	 * @return An object with the corresponding encoding type.
+	 * @throws SBOLGraphException
+	 */
 	public URI getEncoding() throws SBOLGraphException {
 		//Encoding encoding=null;
 		URI encodingValue=IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Sequence.encoding);
@@ -134,6 +154,10 @@ public class Sequence extends TopLevel {
 		return encodingValue;
 	}
 	
+	/**
+	 * Set the encoding type for the sequence.
+	 * @param encoding The encoding type to be applied.
+	 */
 	public void setEncoding(Encoding encoding) {
 		URI encodingURI=null;
 		if (encoding!=null)
@@ -143,10 +167,17 @@ public class Sequence extends TopLevel {
 		RDFUtil.setProperty(this.resource, DataModel.Sequence.encoding, encodingURI);
 	}
 	
+	/**
+	 * Set the encoding type for the sequence.
+	 * @param encoding The encoding type to be applied.
+	 */
 	public void setEncoding(URI encoding) {
 		RDFUtil.setProperty(this.resource, DataModel.Sequence.encoding, encoding);
 	}
-
+	
+	/**
+	 * Gets the resource type for the sequence.
+	 */
 	public URI getResourceType()
 	{
 		return DataModel.Sequence.uri;
