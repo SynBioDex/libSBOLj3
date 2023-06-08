@@ -177,6 +177,7 @@ public class Sequence extends TopLevel {
 	
 	/**
 	 * Gets the resource type for the sequence.
+	 * @return A URI object representing the corresponding resource.
 	 */
 	public URI getResourceType()
 	{
