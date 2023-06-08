@@ -202,8 +202,8 @@ public class SubComponent extends FeatureWithLocation{
 	}*/
 	
 	/**
-	 * 
-	 * @return
+	 * Gets the locations for this subcomponent. 
+	 * @return A list of locations for the sources.
 	 * @throws SBOLGraphException
 	 */
 	@Valid
@@ -212,8 +212,8 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Gets the cuts for this subcomponent.
+	 * @return A list of cuts for this subcomponent.
 	 * @throws SBOLGraphException
 	 */
 	public List<Cut> getSourceCuts() throws SBOLGraphException {
@@ -221,8 +221,8 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Gets the ranges for this subcomponent.
+	 * @return A list of ranges for this subcomponent.
 	 * @throws SBOLGraphException
 	 */
 	public List<Range> getSourceRanges() throws SBOLGraphException {
@@ -230,8 +230,8 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Gets the full sequences pertaining to the subcomponent.
+	 * @return A list of EntireSequences for this subcomponent.
 	 * @throws SBOLGraphException
 	 */
 	public List<EntireSequence> getSourceEntireSequences() throws SBOLGraphException {
@@ -239,11 +239,11 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param uri
-	 * @param at
-	 * @param sequence
-	 * @return
+	 * Create a cut for the source of this subcomponent.
+	 * @param uri The resource of the cut.
+	 * @param at The location of the cut.
+	 * @param sequence The sequence the cut is to be applied to.
+	 * @return An object with the corresponding cut.
 	 * @throws SBOLGraphException
 	 */
 	public Cut createSourceCut(URI uri,  int at, Sequence sequence) throws SBOLGraphException {
@@ -251,11 +251,11 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param displayId
-	 * @param at
-	 * @param sequence
-	 * @return
+	 * Create a cut for the source of this subcomponent.
+	 * @param displayId The identifier for the cut.
+	 * @param at The location of the cut.
+	 * @param sequence The sequence the cut is to be applied to.
+	 * @return An object with the corresponding cut.
 	 * @throws SBOLGraphException
 	 */
 	public Cut createSourceCut(String displayId, int at, Sequence sequence) throws SBOLGraphException {
@@ -263,10 +263,10 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param at
-	 * @param sequence
-	 * @return
+	 * Create a cut for the source of this subcomponent.
+	 * @param at The location of the cut.
+	 * @param sequence The sequence the cut is to be applied to.
+	 * @return An object with the corresponding cut.
 	 * @throws SBOLGraphException
 	 */
 	public Cut createSourceCut(int at, Sequence sequence) throws SBOLGraphException {
@@ -274,12 +274,12 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param uri
-	 * @param start
-	 * @param end
-	 * @param sequence
-	 * @return
+	 * Create a range for the source of this subcomponent.
+	 * @param uri The resource of the range.
+	 * @param start The start position of the range.
+	 * @param end The end position of the range.
+	 * @param sequence The sequence the range relates to.
+	 * @return An object containing the corresponding range.
 	 * @throws SBOLGraphException
 	 */
 	public Range createSourceRange(URI uri, int start, int end, Sequence sequence) throws SBOLGraphException {
@@ -287,12 +287,12 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param displayId
-	 * @param start
-	 * @param end
-	 * @param sequence
-	 * @return
+	 * Create a range for the source of this subcomponent.
+	 * @param displayId The identifier for the range.
+	 * @param start The start position of the range.
+	 * @param end The end position of the range.
+	 * @param sequence The sequence the range relates to.
+	 * @return An object containing the corresponding range.
 	 * @throws SBOLGraphException
 	 */
 	public Range createSourceRange(String displayId, int start, int end, Sequence sequence) throws SBOLGraphException {
@@ -300,11 +300,11 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param start
-	 * @param end
-	 * @param sequence
-	 * @return
+	 * Create a range for the source of this subcomponent.
+	 * @param start The start position of the range.
+	 * @param endThe end position of the range.
+	 * @param sequence The sequence the range relates to.
+	 * @return An object containing the corresponding range.
 	 * @throws SBOLGraphException
 	 */
 	public Range createSourceRange(int start, int end, Sequence sequence) throws SBOLGraphException {
@@ -312,10 +312,10 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param uri
-	 * @param sequence
-	 * @return
+	 * Create a sequence for the source of this subcomponent.
+	 * @param uri The resource of the sequence.
+	 * @param sequence The sequence to be applied to this subcomponent.
+	 * @return An object containing the corresponding sequence.
 	 * @throws SBOLGraphException
 	 */
 	public EntireSequence createSourceEntireSequence(URI uri, Sequence sequence) throws SBOLGraphException {
@@ -323,10 +323,10 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param displayId
-	 * @param sequence
-	 * @return
+	 * Create a sequence for the source of this subcomponent.
+	 * @param displayId The identifier of the sequence.
+	 * @param sequence The sequence to be applied to this subcomponent.
+	 * @return An object containing the corresponding sequence.
 	 * @throws SBOLGraphException
 	 */
 	public EntireSequence createSourceEntireSequence(String displayId,Sequence sequence) throws SBOLGraphException {
@@ -334,30 +334,42 @@ public class SubComponent extends FeatureWithLocation{
 	}
 	
 	/**
-	 * 
-	 * @param sequence
-	 * @return
+	 * Create a sequence for the source of this subcomponent.
+	 * @param sequence The sequence to be applied to the subcomponent.
+	 * @return An object containing the corresponding sequence.
 	 * @throws SBOLGraphException
 	 */
 	public EntireSequence createSourceEntireSequence(Sequence sequence) throws SBOLGraphException {
 		return createEntireSequence(sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public URI getResourceType() {
 		return DataModel.SubComponent.uri;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public URI getDefaultLocationProperty() {
 		return DataModel.SubComponent.location;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public List<URI> getAdditionalLocationProperties() {
 		return new ArrayList<URI>(Arrays.asList(DataModel.SubComponent.sourceLocation));
 	}
 	
+	/**
+	 * @return
+	 */
 	@Override
 	public List<Identified> getChildren() throws SBOLGraphException {
 		List<Identified> identifieds=super.getChildren();
