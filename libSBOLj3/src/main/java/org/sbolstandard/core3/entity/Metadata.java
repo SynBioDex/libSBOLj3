@@ -6,6 +6,9 @@ import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.vocabulary.DataModel;
 
+/**
+ * This class represents the metadata for a given entity.
+ */
 public class Metadata extends Identified{
 	
 	
@@ -43,7 +46,11 @@ public class Metadata extends Identified{
 			RDFUtil.addType(resource, DataModel.Identified.uri);
 		}
 	}*/
-
+	
+	/**
+	 * Gets the resource type for the metadata.
+	 * @return A URI object representing the corresponding resource.
+	 */
 	@Override
 	public URI getResourceType() {
 		return DataModel.Identified.uri;
