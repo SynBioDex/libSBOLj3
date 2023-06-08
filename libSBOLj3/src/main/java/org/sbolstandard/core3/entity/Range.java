@@ -36,7 +36,7 @@ public class Range extends Location {
 		super(displayId);
 	}*/
 	
-	/*
+	/**
 	 * Gets the starting position of the range.
 	 * @return An object containing the starting position of the range.
 	 */
@@ -45,7 +45,7 @@ public class Range extends Location {
 		return IdentifiedValidator.getValidator().getPropertyAsOptionalInteger(this.resource, DataModel.Range.start);
 	}
 	
-	/*
+	/**
 	 * Sets the starting position of the range.
 	 */
 	public void setStart(@NotNull(message = "{RANGE_START_NOT_NULL}") Optional<@NotNull(message = "{RANGE_START_NOT_NULL}") @Positive(message="{RANGE_START_POSITIVE_OR_ZERO}") Integer> start) throws SBOLGraphException {
@@ -53,7 +53,7 @@ public class Range extends Location {
 		IdentifiedValidator.getValidator().setPropertyAsOptional(this.resource, DataModel.Range.start, start);
 	}
 	
-	/*
+	/**
 	 * Gets the ending position of the range.
 	 */
 	@NotNull(message = "{RANGE_END_NOT_NULL}")
@@ -61,7 +61,7 @@ public class Range extends Location {
 		return IdentifiedValidator.getValidator().getPropertyAsOptionalInteger(this.resource, DataModel.Range.end);
 	}
 	
-	/*
+	/**
 	 * Sets the ending position of the range.
 	 * @param end The ending position of the sequence.
 	 */
