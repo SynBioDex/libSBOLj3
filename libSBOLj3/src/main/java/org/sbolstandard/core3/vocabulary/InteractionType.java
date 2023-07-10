@@ -9,6 +9,11 @@ import java.util.Set;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents interaction types in the SBOL data model.
+ *
+ */
 public enum InteractionType implements HasURI{
 	
 		Inhibition(URINameSpace.SBO.local("0000169")),

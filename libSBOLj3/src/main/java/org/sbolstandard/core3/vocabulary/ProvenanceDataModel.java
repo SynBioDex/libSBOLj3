@@ -4,6 +4,11 @@ import java.net.URI;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents the provenance data model in the SBOL data model.
+ *
+ */
 public class ProvenanceDataModel {
 	
 	public static final class Agent

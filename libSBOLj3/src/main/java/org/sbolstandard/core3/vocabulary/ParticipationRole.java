@@ -7,6 +7,11 @@ import java.util.Set;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents participation roles in the SBOL data model.
+ *
+ */
 public enum ParticipationRole implements HasURI {
 	Inhibitor(URINameSpace.SBO.local("0000020")),
 	Inhibited(URINameSpace.SBO.local("0000642")),

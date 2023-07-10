@@ -4,6 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.sbolstandard.core3.util.URINameSpace;
+
+/**
+ * 
+ * Represents the encoding types in the SBOL data model.
+ *
+ */
 public enum Encoding
 {
 	 	NucleicAcid(URINameSpace.EDAM.local("format_1207")), 

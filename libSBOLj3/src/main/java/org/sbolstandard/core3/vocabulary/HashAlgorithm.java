@@ -3,6 +3,11 @@ package org.sbolstandard.core3.vocabulary;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * 
+ *  Represents the encoding algorithms used in the SBOL data model.
+ *
+ */
 public enum HashAlgorithm {
 	sha_256("sha-256"), 
 	sha_256_128("sha-256-128"),

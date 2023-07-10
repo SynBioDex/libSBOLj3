@@ -6,6 +6,11 @@ import java.util.Map;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents variable feature cardinalities in the SBOL data model.
+ *
+ */
 public enum VariableFeatureCardinality {
 	
 	ZeroOrOne(URINameSpace.SBOL.local("zeroOrOne")), 

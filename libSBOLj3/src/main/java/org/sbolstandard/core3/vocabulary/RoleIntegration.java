@@ -5,6 +5,11 @@ import java.util.HashMap;
 import java.util.Map;
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents role integrations in the SBOL data model.
+ *
+ */
 public enum RoleIntegration {
 	overrideRoles(URINameSpace.SBOL.local("overrideRoles")), 
 	mergeRoles(URINameSpace.SBOL.local("mergeRoles"));

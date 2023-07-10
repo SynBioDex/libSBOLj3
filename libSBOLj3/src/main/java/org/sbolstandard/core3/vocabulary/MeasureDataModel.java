@@ -4,6 +4,11 @@ import java.net.URI;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Representing units of measurement in the SBOL data model.
+ *
+ */
 public class MeasureDataModel {
 	
 	public static final class Prefix

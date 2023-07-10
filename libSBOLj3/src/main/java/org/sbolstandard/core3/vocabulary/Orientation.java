@@ -6,6 +6,11 @@ import java.util.Map;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents orientations in the SBOL data model.
+ *
+ */
 public enum Orientation {
 	inline(URINameSpace.SO.local("0001030")), 
 	reverseComplement(URINameSpace.SO.local("0001031"));

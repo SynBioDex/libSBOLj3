@@ -4,6 +4,11 @@ import java.net.URI;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents the data model structure and terminologies in the SBOL data model
+ *
+ */
 public class DataModel {
 	
 		public static URI type=URINameSpace.SBOL.local("type");

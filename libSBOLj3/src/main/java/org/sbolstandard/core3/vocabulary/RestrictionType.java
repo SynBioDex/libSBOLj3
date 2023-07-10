@@ -9,6 +9,11 @@ import java.util.Set;
 import org.apache.commons.lang3.tuple.Pair;
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents constraint restrictions in the SBOL data model.
+ *
+ */
 public class RestrictionType {
 	
 	public interface ConstraintRestriction extends HasURI
