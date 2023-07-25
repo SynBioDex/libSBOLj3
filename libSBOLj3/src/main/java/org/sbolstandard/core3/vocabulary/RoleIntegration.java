@@ -19,7 +19,11 @@ public enum RoleIntegration {
 	RoleIntegration(URI uri) {
 		this.uri = uri;
 	}
-
+	
+	/**
+	 * Gets the URI associated with the RoleIntegration object.
+	 * @return The relevant URI.
+	 */
 	public URI getUri() {
 		return uri;
 	}
@@ -33,7 +37,12 @@ public enum RoleIntegration {
             lookup.put(value.getUri(), value);
         }
     }
-  
+    
+    /**
+     * Gets a role integration from a supplied URI.
+     * @param uri The URI to be accessed.
+     * @return The RoleIntegration object associated with the URI.
+     */
     public static RoleIntegration get(URI uri) 
     {
         return lookup.get(uri);

@@ -5,7 +5,7 @@ import java.util.Map;
 
 /**
  * 
- *  Represents the encoding algorithms used in the SBOL data model.
+ *  Represents the hashing algorithms used in the SBOL data model.
  *
  */
 public enum HashAlgorithm {
@@ -32,7 +32,11 @@ public enum HashAlgorithm {
 	HashAlgorithm(String value) {
 		this.value = value;
 	}
-
+	
+	/**
+	 * Gets the value associated with the hash algorithm.
+	 * @return The corresponding value in the HashAlgorithm object.
+	 */
 	public String getValue() {
 		return value;
 	}
@@ -46,7 +50,12 @@ public enum HashAlgorithm {
             lookup.put(alg.getValue(), alg);
         }        
     }
-  
+    
+    /**
+     * Gets the hashing algorithm identified by the supplied value.
+     * @param value The value to be searched for.
+     * @return The corresponding HashAlgorithm object.
+     */
     public static HashAlgorithm get(String value) 
     {
         return lookup.get(value);

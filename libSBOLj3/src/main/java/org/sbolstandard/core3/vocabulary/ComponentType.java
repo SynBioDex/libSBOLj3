@@ -17,6 +17,11 @@ interface HasURI{
     }*/
 }
 
+/**
+ * 
+ * Represents a component type in the SBOL data model.
+ *
+ */
 public enum ComponentType implements HasURI{
 	DNA(URINameSpace.SBO.local("0000251")), 
 	RNA(URINameSpace.SBO.local("0000250")), 
@@ -30,7 +35,10 @@ public enum ComponentType implements HasURI{
 	ComponentType(URI uri) {
 		this.uri = uri;
 	}
-
+	
+	/**
+	 * Returns the URI for the associated ComponentType object.
+	 */
 	public URI getUri() {
 		return uri;
 	}
@@ -42,12 +50,22 @@ public enum ComponentType implements HasURI{
 			lookup.put(value.getUri(), value);
 		}
 	}
-
+	
+	/**
+	 * Returns a ComponentType object for the supplied URL
+	 * @param url The URL identifying the component type.
+	 * @return A ComponentType object for the specified URL.
+	 */
 	public static ComponentType get(URI url) {
 		return lookup.get(url);
 	}
 
 	// hardcoded list of matches from table 2 to table 1
+	/**
+	 * Checks the component type and retrieves it's associated encoding.
+	 * @param type The type to be matched.
+	 * @return A list object containing the encoding data for the associated ComponentType object.
+	 */
 	public static List<Encoding> checkComponentTypeMatch(ComponentType type) {
 		switch (type) {
 		case DNA:
@@ -63,6 +81,11 @@ public enum ComponentType implements HasURI{
 		}
 	}
 	
+	/**
+	 * 
+	 * Represents an optional component type in the SBOL data model.
+	 *
+	 */
 	public enum OptionalComponentType implements HasURI {
 		Cell(URINameSpace.GO.local("0005623"));
 
@@ -72,11 +95,19 @@ public enum ComponentType implements HasURI{
 			this.uri = uri;
 		}
 		
+		/**
+		 * Returns the URI for the associated OptionalComponentType object.
+		 */
 		public URI getUri() {
 			return uri;
 		}
 	}
 	
+	/**
+	 * 
+	 * Represents an optional component type in the SBOL data model.
+	 *
+	 */
 	public enum TopologyType implements HasURI {
 		Circular(URINameSpace.SO.local("0000988")),
 		Linear(URINameSpace.SO.local("0000987"));
@@ -87,6 +118,9 @@ public enum ComponentType implements HasURI{
 			this.uri = uri;
 		}
 		
+		/**
+		 * Returns the URI for the associated TopologyType object.
+		 */
 		public URI getUri() {
 			return uri;
 		}
@@ -98,12 +132,22 @@ public enum ComponentType implements HasURI{
 				lookup.put(value.getUri(), value);
 			}
 		}
-
+		
+		/**
+		 * Returns the topology type from supplied URI
+		 * @param uri The URI of the topology type.
+		 * @return The associated TopologyType object.
+		 */
 		public static TopologyType get(URI uri) {
 			return lookup.get(uri);
 		}
 	}
 	
+	/**
+	 * 
+	 * Represents a strand type in the SBOL data model.
+	 *
+	 */
 	public enum StrandType implements HasURI {
 		Single(URINameSpace.SO.local("0000984")),
 		Double(URINameSpace.SO.local("0000985"));
@@ -114,6 +158,9 @@ public enum ComponentType implements HasURI{
 			this.uri = uri;
 		}
 		
+		/**
+		 * Returns the URI for the associated StrandType object.
+		 */
 		public URI getUri() {
 			return uri;
 		}
@@ -125,7 +172,12 @@ public enum ComponentType implements HasURI{
 				lookup.put(value.getUri(), value);
 			}
 		}
-
+		
+		/**
+		 * Returns a StrandType 
+		 * @param uri The URI of the strand type.
+		 * @return The associated StrandType object.
+		 */
 		public static StrandType get(URI uri) {
 			return lookup.get(uri);
 		}

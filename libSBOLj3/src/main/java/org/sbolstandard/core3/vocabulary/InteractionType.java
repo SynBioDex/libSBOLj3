@@ -29,11 +29,18 @@ public enum InteractionType implements HasURI{
 		InteractionType(URI uri) {
 			this.uri = uri;
 		}
-
+		
+		/**
+		 * Returns the URI for the associated InteractionType object.
+		 */
 		public URI getUri() {
 			return uri;
 		}
 		
+		/**
+		 * Returns the URIs associated with interaction types.
+		 * @return A set object containing all URIs associated with interaction types.
+		 */
 		public static Set<URI> getUris() {
 			return lookup.keySet();
 		}
@@ -45,11 +52,21 @@ public enum InteractionType implements HasURI{
 				lookup.put(value.getUri(), value);
 			}
 		}
-
+		
+		/**
+		 * Returns an interaction type from the supplied URL.
+		 * @param url The URL identifying the interaction type.
+		 * @return An InteractionType object associated with the supplied URL.
+		 */
 		public static InteractionType get(URI url) {
 			return lookup.get(url);
 		}
-
+		
+		/**
+		 * Maps participation roles associated with an interaction type to a list.
+		 * @param type The interaction type object to be inspected.
+		 * @return A list object containing the participation roles associated with the interaction type.
+		 */
 		public static List<ParticipationRole> mapParticipationRoles(InteractionType type) {
 			switch (type) {
 			case Inhibition:

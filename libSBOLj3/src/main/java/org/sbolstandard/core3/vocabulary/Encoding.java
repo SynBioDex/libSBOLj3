@@ -22,7 +22,11 @@ public enum Encoding
 	    Encoding(URI uri) {
 	        this.uri = uri;
 	    }
-	 
+	    
+	    /**
+	     * Gets the URI associated with the Encoding object.
+	     * @return The relevant URI.
+	     */
 	    public URI getUri() {
 	        return uri;
 	    }
@@ -36,7 +40,12 @@ public enum Encoding
 	            lookup.put(encoding.getUri(), encoding);
 	        }
 	    }
-
+	    
+	    /**
+	     * Gets the encoding identified by the supplied URI.
+	     * @param uri The URI to be accessed.
+	     * @return The corresponding Encoding object.
+	     */
 	    public static Encoding get(URI uri) 
 	    {
 	        return lookup.get(uri);

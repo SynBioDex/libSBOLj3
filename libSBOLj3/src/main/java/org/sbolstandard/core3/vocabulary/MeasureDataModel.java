@@ -11,23 +11,42 @@ import org.sbolstandard.core3.util.URINameSpace;
  */
 public class MeasureDataModel {
 	
+	/**
+	 * 
+	 * Defines a prefix in the data model.
+	 *
+	 */
 	public static final class Prefix
 	{
 		public static URI uri=URINameSpace.OM.local("Prefix");
 		public static URI factor=URINameSpace.OM.local("hasFactor");
 	}
 	
+	/**
+	 * 
+	 * Defines a prefix as an SI unit in the data model.
+	 *
+	 */
 	public static final class SIPrefix
 	{
 		public static URI uri=URINameSpace.OM.local("SIPrefix");
 	}
 	
+	/**
+	 * 
+	 * Defines a binary prefix in the data model.
+	 *
+	 */
 	public static final class BinaryPrefix
 	{
 		public static URI uri=URINameSpace.OM.local("BinaryPrefix");
 	}
 	
-	
+	/**
+	 * 
+	 * Defines the structure of a unit in the data model.
+	 *
+	 */
 	public static final class Unit
 	{
 		public static URI uri=URINameSpace.OM.local("Unit");
@@ -39,6 +58,11 @@ public class MeasureDataModel {
 		public static URI longComment=URINameSpace.OM.local("longcomment");
 	}
 	
+	/**
+	 * 
+	 * Defines a singular unit in the data model.
+	 *
+	 */
 	public static final class SingularUnit
 	{
 		public static URI uri=URINameSpace.OM.local("SingularUnit");
@@ -46,12 +70,21 @@ public class MeasureDataModel {
 		public static URI unit=PrefixedUnit.unit;
 	}
 	
-	
+	/**
+	 * 
+	 * Defines a compound unit in the data model.
+	 *
+	 */
 	public static final class CompoundUnit
 	{
 		public static URI uri=URINameSpace.OM.local("CompoundUnit");
 	}
 	
+	/**
+	 * 
+	 * Defines a prefixed unit in the data model.
+	 *
+	 */
 	public static final class PrefixedUnit
 	{
 		public static URI uri=URINameSpace.OM.local("PrefixedUnit");
@@ -59,7 +92,11 @@ public class MeasureDataModel {
 		public static URI unit=URINameSpace.OM.local("hasUnit");	
 	}
 	
-	
+	/**
+	 * 
+	 * Defines the multiplication of two units in the data model.
+	 *
+	 */
 	public static final class UnitMultiplication
 	{
 		public static URI uri=URINameSpace.OM.local("UnitMultiplication");
@@ -67,6 +104,11 @@ public class MeasureDataModel {
 		public static URI term2=URINameSpace.OM.local("hasTerm2");	
 	}
 	
+	/**
+	 * 
+	 * Defines the division of two units in the data model.
+	 *
+	 */
 	public static final class UnitDivision
 	{
 		public static URI uri=URINameSpace.OM.local("UnitDivision");
@@ -74,7 +116,11 @@ public class MeasureDataModel {
 		public static URI denominator=URINameSpace.OM.local("hasDenominator");	
 	}
 	
-	
+	/**
+	 * 
+	 * Defines the application of an exponent to a unit in the data model.
+	 *
+	 */
 	public static final class UnitExponentiation
 	{
 		public static URI uri=URINameSpace.OM.local("UnitExponentiation");
@@ -82,6 +128,11 @@ public class MeasureDataModel {
 		public static URI exponent=URINameSpace.OM.local("hasExponent");	
 	}
 	
+	/**
+	 * 
+	 * Defines a measure in the data model.
+	 *
+	 */
 	public static final class Measure
 	{
 		public static URI uri=URINameSpace.OM.local("Measure");

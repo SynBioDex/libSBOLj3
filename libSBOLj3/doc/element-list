@@ -1,0 +1,8 @@
+org.sbolstandard.core3.api
+org.sbolstandard.core3.entity
+org.sbolstandard.core3.entity.measure
+org.sbolstandard.core3.entity.provenance
+org.sbolstandard.core3.io
+org.sbolstandard.core3.util
+org.sbolstandard.core3.validation
+org.sbolstandard.core3.vocabulary

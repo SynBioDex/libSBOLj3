@@ -15,6 +15,11 @@ public class DataModel {
 		public static URI role=URINameSpace.SBOL.local("role");
 		public static URI orientation=URINameSpace.SBOL.local("orientation");
 		
+		/**
+		 * 
+		 * Represents an identified type in the data model.
+		 *
+		 */
 		public static final class Identified
 		{
 			public static URI uri=URINameSpace.SBOL.local("Identified");	
@@ -26,6 +31,11 @@ public class DataModel {
 			public static URI measure=URINameSpace.SBOL.local("hasMeasure");		
 		}
 		
+		/**
+		 * 
+		 * Represents a top level component in the data model.
+		 *
+		 */
 		public static final class TopLevel
 		{
 			public static URI uri=URINameSpace.SBOL.local("TopLevel");
@@ -34,11 +44,21 @@ public class DataModel {
 			
 		}
 		
+		/**
+		 * 
+		 * Represents a feature in the data model.
+		 *
+		 */
 		public static final class Feature
 		{
 			public static URI uri=URINameSpace.SBOL.local("Feature");
 		}
 		
+		/**
+		 * 
+		 * Represents a generic component in the data model.
+		 *
+		 */
 		public static final class Component
 		{
 			public static URI uri=URINameSpace.SBOL.local("Component");
@@ -51,6 +71,11 @@ public class DataModel {
 			
 		}
 		
+		/**
+		 * 
+		 * Represents a sequence in the data model.
+		 *
+		 */
 		public static final class Sequence
 		{
 			public static URI uri=URINameSpace.SBOL.local("Sequence");
@@ -59,6 +84,11 @@ public class DataModel {
 
 		}
 		
+		/**
+		 * 
+		 * Represents a sub-component in the data model.
+		 *
+		 */
 		public static final class SubComponent
 		{
 			public static URI uri=URINameSpace.SBOL.local("SubComponent");
@@ -68,6 +98,12 @@ public class DataModel {
 			public static URI roleIntegration=URINameSpace.SBOL.local("roleIntegration");
 			
 		}
+		
+		/**
+		 * 
+		 * Represents a component reference in the data model.
+		 *
+		 */
 		public static final class ComponentReference
 		{
 			public static URI uri=URINameSpace.SBOL.local("ComponentReference");
@@ -75,12 +111,22 @@ public class DataModel {
 			public static URI refersTo=URINameSpace.SBOL.local("refersTo");	
 		}
 		
+		/**
+		 * 
+		 * Represents a local sub-component in the data model.
+		 *
+		 */
 		public static final class LocalSubComponent
 		{
 			public static URI uri=URINameSpace.SBOL.local("LocalSubComponent");
 			public static URI location=FeatureWithLocation.location;
 		}
 		
+		/**
+		 * 
+		 * Represents an externally defined component in the data model.
+		 *
+		 */
 		public static final class ExternalyDefined
 		{
 			public static URI uri=URINameSpace.SBOL.local("ExternallyDefined");
@@ -88,23 +134,44 @@ public class DataModel {
 		}
 		
 		//abstract
+		/**
+		 * 
+		 * Represents a feature with a location in the data model.
+		 *
+		 */
 		public static final class FeatureWithLocation
 		{
 			public static URI uri =URINameSpace.SBOL.local("FeatureWithLocation");
 			public static URI location=URINameSpace.SBOL.local("hasLocation");	
 		}
+		
+		/**
+		 * 
+		 * Represents a sequence feature in the data model.
+		 *
+		 */
 		public static final class SequenceFeature
 		{
 			public static URI uri =URINameSpace.SBOL.local("SequenceFeature");
 			public static URI location=FeatureWithLocation.location;	
 		}
 		
+		/**
+		 * 
+		 * Represents an interaction in the data model.
+		 *
+		 */
 		public static final class Interaction
 		{
 			public static URI uri=URINameSpace.SBOL.local("Interaction");
 			public static URI participation=URINameSpace.SBOL.local("hasParticipation");
 		}
 		
+		/**
+		 * 
+		 * Represents a participation in the data model.
+		 *
+		 */
 		public static final class Participation
 		{
 			public static URI uri=URINameSpace.SBOL.local("Participation");
@@ -112,6 +179,11 @@ public class DataModel {
 			public static URI higherOrderParticipant=URINameSpace.SBOL.local("higherOrderParticipant");
 		}
 		
+		/**
+		 * 
+		 * Represents a location in the data model.
+		 *
+		 */
 		public static final class Location
 		{
 			public static URI uri=URINameSpace.SBOL.local("Location");
@@ -119,22 +191,45 @@ public class DataModel {
 			public static URI sequence=URINameSpace.SBOL.local("hasSequence");
 			
 		}
+		
+		/**
+		 * 
+		 * Represents a cut in the data model.
+		 *
+		 */
 		public static final class Cut
 		{
 			public static URI uri=URINameSpace.SBOL.local("Cut");
 			public static URI at=URINameSpace.SBOL.local("at");
 		}
+		
+		/**
+		 * 
+		 * Represents a range in the data model.
+		 *
+		 */
 		public static final class Range
 		{
 			public static URI uri=URINameSpace.SBOL.local("Range");
 			public static URI start=URINameSpace.SBOL.local("start");
 			public static URI end=URINameSpace.SBOL.local("end");
 		}
+		
+		/**
+		 * 
+		 * Represents the location of an entire sequence in the data model.
+		 *
+		 */
 		public static final class EntireSequenceLocation
 		{
 			public static URI uri=URINameSpace.SBOL.local("EntireSequence");
 		}
 		
+		/**
+		 * 
+		 * Represents a constraint in the data model.
+		 *
+		 */
 		public static final class Constraint
 		{
 			public static URI uri=URINameSpace.SBOL.local("Constraint");
@@ -143,6 +238,11 @@ public class DataModel {
 			public static URI object=URINameSpace.SBOL.local("object");	
 		}
 		
+		/**
+		 * 
+		 * Represents an interface in the data model.
+		 *
+		 */
 		public static final class Interface
 		{
 			public static URI uri=URINameSpace.SBOL.local("Interface");
@@ -152,6 +252,11 @@ public class DataModel {
 			
 		}
 		
+		/**
+		 * 
+		 * Represents a combinational derivation in the data model.
+		 *
+		 */
 		public static final class CombinatorialDerivation
 		{
 			public static URI uri=URINameSpace.SBOL.local("CombinatorialDerivation");
@@ -160,6 +265,11 @@ public class DataModel {
 			public static URI strategy=URINameSpace.SBOL.local("strategy");	
 		}
 		
+		/**
+		 * 
+		 * Represents a variable feature in the data model.
+		 *
+		 */
 		public static final class VariableFeature
 		{
 			public static URI uri=URINameSpace.SBOL.local("VariableFeature");
@@ -171,18 +281,32 @@ public class DataModel {
 			public static URI variantMeasure=URINameSpace.SBOL.local("variantMeasure");	
 		}
 		
-		
+		/**
+		 * 
+		 * Represents an implementation in the data model.
+		 *
+		 */
 		public static final class Implementation
 		{
 			public static URI uri=URINameSpace.SBOL.local("Implementation");
 			public static URI built=URINameSpace.SBOL.local("built");	
 		}
 		
+		/**
+		 * 
+		 * Represents the use of experimental data in the data model.
+		 *
+		 */
 		public static final class ExperimentalData
 		{
 			public static URI uri=URINameSpace.SBOL.local("ExperimentalData");
 		}
 		
+		/**
+		 * 
+		 * Represents a model within the data model.
+		 *
+		 */
 		public static final class Model
 		{
 			public static URI uri=URINameSpace.SBOL.local("Model");
@@ -191,17 +315,32 @@ public class DataModel {
 			public static URI framework=URINameSpace.SBOL.local("framework");	
 		}
 		
+		/**
+		 * 
+		 * Represents a collection in the data model.
+		 *
+		 */
 		public static final class Collection
 		{
 			public static URI uri=URINameSpace.SBOL.local("Collection");
 			public static URI member=URINameSpace.SBOL.local("member");
 		}
 		
+		/**
+		 * 
+		 * Represents an experiment in the data model.
+		 *
+		 */
 		public static final class Experiment
 		{
 			public static URI uri=URINameSpace.SBOL.local("Experiment");
 		}
 		
+		/**
+		 * 
+		 * Represents an attachment in the data model.
+		 *
+		 */
 		public static final class Attachment
 		{
 			public static URI uri=URINameSpace.SBOL.local("Attachment");
