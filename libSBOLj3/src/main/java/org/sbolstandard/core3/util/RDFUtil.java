@@ -732,11 +732,11 @@ public class RDFUtil {
 		}
 	  
 	    /**
-	     * Performs a SPARSQL select query on a supplied RDF model.
+	     * Performs a SPARQL select query on a supplied RDF model.
 	     * @param model The model to be inspected.
-	     * @param query The SPARSQL query to be executed.
+	     * @param query The SPARQL query to be executed.
 	     * @param syntax The syntax of the query being processed.
-	     * @return
+	     * @return The result of the SPARQL query.
 	     */
 	    public static ResultSet executeSPARQLSelectQuery(Model model, String query, Syntax syntax)
 	    {
