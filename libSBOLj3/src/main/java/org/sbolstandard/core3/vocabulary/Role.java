@@ -4,6 +4,11 @@ import java.net.URI;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents roles in the SBOL data model.
+ *
+ */
 public class Role {
 	
 		public static URI Promoter = URINameSpace.SO.local("0000167");

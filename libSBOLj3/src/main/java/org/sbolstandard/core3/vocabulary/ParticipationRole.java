@@ -7,6 +7,11 @@ import java.util.Set;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents participation roles in the SBOL data model.
+ *
+ */
 public enum ParticipationRole implements HasURI {
 	Inhibitor(URINameSpace.SBO.local("0000020")),
 	Inhibited(URINameSpace.SBO.local("0000642")),
@@ -24,11 +29,19 @@ public enum ParticipationRole implements HasURI {
 	ParticipationRole(URI uri) {
 		this.uri = uri;
 	}
-
+	
+	/**
+	 * Gets the URI for the associated participation role.
+	 * @return URI The URI identifying the ParticipationRole object.
+	 */
 	public URI getUri() {
 		return uri;
 	}
 	
+	/**
+	 * Gets a set of all URIs associated with participation roles.
+	 * @return A set object containing all associated URIs.
+	 */
 	public static Set<URI> getUris() {
 		return lookup.keySet();
 	}
@@ -40,7 +53,12 @@ public enum ParticipationRole implements HasURI {
 			lookup.put(value.getUri(), value);
 		}
 	}
-
+	
+	/**
+	 * Gets the participation role associated with a supplied URL.
+	 * @param url The URL associated with the participation role.
+	 * @return A ParticiationRole object identified by the supplied URI.
+	 */
 	public static ParticipationRole get(URI url) {
 		return lookup.get(url);
 	}

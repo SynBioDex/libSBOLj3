@@ -6,6 +6,11 @@ import java.util.Map;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents orientations in the SBOL data model.
+ *
+ */
 public enum Orientation {
 	inline(URINameSpace.SO.local("0001030")), 
 	reverseComplement(URINameSpace.SO.local("0001031"));
@@ -15,7 +20,11 @@ public enum Orientation {
 	Orientation(URI uri) {
 		this.uri = uri;
 	}
-
+	
+	/**
+	 * Gets the URI for the associated Orientation object.
+	 * @return A URI object identifying the orientation.
+	 */
 	public URI getUri() {
 		return uri;
 	}
@@ -32,7 +41,12 @@ public enum Orientation {
         lookup.put(URINameSpace.SBOL.local("reverseComplement"), reverseComplement);
         
     }
-  
+    
+    /**
+     * Gets the orientation from the supplied URI
+     * @param uri The URI to be inspected.
+     * @return An Orientation object associated with the URI.
+     */
     public static Orientation get(URI uri) 
     {
         return lookup.get(uri);

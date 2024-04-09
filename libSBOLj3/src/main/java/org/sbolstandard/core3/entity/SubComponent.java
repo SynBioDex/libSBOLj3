@@ -20,6 +20,11 @@ import org.sbolstandard.core3.vocabulary.RoleIntegration;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * This class represents the structural hierarchy of Features within a given Component.
+ * 
+ *
+ */
 public class SubComponent extends FeatureWithLocation{
 	/*private URI roleIntegration=null;
 	private URI isInstanceOf=null;
@@ -36,7 +41,7 @@ public class SubComponent extends FeatureWithLocation{
 	{
 		super(resource);
 	}
-
+	
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
@@ -119,6 +124,12 @@ public class SubComponent extends FeatureWithLocation{
 		}
 		return length;
 	}
+	
+	/**
+	 * Gets the role integration associated with the SubComponent.
+	 * @return A RoleIntegration object with the corresponding values.
+	 * @throws SBOLGraphException
+	 */
 	public RoleIntegration getRoleIntegration() throws SBOLGraphException {		
 		RoleIntegration roleIntegration=null;
 		URI value=IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.SubComponent.roleIntegration);
@@ -130,12 +141,21 @@ public class SubComponent extends FeatureWithLocation{
 		return roleIntegration;
 	}
 	
+	/**
+	 * 
+	 * @param uri
+	 * @return
+	 */
 	@NotNull(message = "{SUBCOMPONENT_ROLEINTEGRATION_VALID_IF_NOT_NULL}")   
 	public RoleIntegration toRoleIntegration(URI uri)
 	{
 		return RoleIntegration.get(uri); 
 	}
 	
+	/**
+	 * 
+	 * @param roleIntegration
+	 */
 	public void setRoleIntegration(RoleIntegration roleIntegration) {
 		URI roleIntegrationURI=null;
 		if (roleIntegration!=null)
@@ -145,13 +165,22 @@ public class SubComponent extends FeatureWithLocation{
 		RDFUtil.setProperty(this.resource, DataModel.SubComponent.roleIntegration, roleIntegrationURI);
 	}
 	
-
+	/**
+	 * 
+	 * @return
+	 * @throws SBOLGraphException
+	 */
 	@NotNull(message = "{SUBCOMPONENT_ISINSTANCEOF_NOT_NULL}")
 	public Component getInstanceOf() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.SubComponent.instanceOf);
 		return contsructIdentified(DataModel.SubComponent.instanceOf, Component.class, DataModel.Component.uri);
 	}
-
+	
+	/**
+	 * 
+	 * @param isInstanceOf
+	 * @throws SBOLGraphException
+	 */
 	public void setInstanceOf(@NotNull(message = "{SUBCOMPONENT_ISINSTANCEOF_NOT_NULL}") Component isInstanceOf) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setInstanceOf", new Object[] {isInstanceOf}, Component.class);
 		RDFUtil.setProperty(this.resource, DataModel.SubComponent.instanceOf, SBOLUtil.toURI(isInstanceOf));	
@@ -171,75 +200,176 @@ public class SubComponent extends FeatureWithLocation{
 		}
 		return allLocations;
 	}*/
-		
+	
+	/**
+	 * Gets the locations for this subcomponent. 
+	 * @return A list of locations for the sources.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	public List<Location> getSourceLocations() throws SBOLGraphException {
 		return getLocations(DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Gets the cuts for this subcomponent.
+	 * @return A list of cuts for this subcomponent.
+	 * @throws SBOLGraphException
+	 */
 	public List<Cut> getSourceCuts() throws SBOLGraphException {
 		return getCuts(DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Gets the ranges for this subcomponent.
+	 * @return A list of ranges for this subcomponent.
+	 * @throws SBOLGraphException
+	 */
 	public List<Range> getSourceRanges() throws SBOLGraphException {
 		return getRanges(DataModel.SubComponent.sourceLocation);
 	}
-
+	
+	/**
+	 * Gets the full sequences pertaining to the subcomponent.
+	 * @return A list of EntireSequences for this subcomponent.
+	 * @throws SBOLGraphException
+	 */
 	public List<EntireSequence> getSourceEntireSequences() throws SBOLGraphException {
 		return getEntireSequences(DataModel.SubComponent.sourceLocation);
 	}
-
+	
+	/**
+	 * Create a cut for the source of this subcomponent.
+	 * @param uri The resource of the cut.
+	 * @param at The location of the cut.
+	 * @param sequence The sequence the cut is to be applied to.
+	 * @return An object with the corresponding cut.
+	 * @throws SBOLGraphException
+	 */
 	public Cut createSourceCut(URI uri,  int at, Sequence sequence) throws SBOLGraphException {
 		return createCut(uri, at, sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Create a cut for the source of this subcomponent.
+	 * @param displayId The identifier for the cut.
+	 * @param at The location of the cut.
+	 * @param sequence The sequence the cut is to be applied to.
+	 * @return An object with the corresponding cut.
+	 * @throws SBOLGraphException
+	 */
 	public Cut createSourceCut(String displayId, int at, Sequence sequence) throws SBOLGraphException {
 		return createCut(displayId, at, sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Create a cut for the source of this subcomponent.
+	 * @param at The location of the cut.
+	 * @param sequence The sequence the cut is to be applied to.
+	 * @return An object with the corresponding cut.
+	 * @throws SBOLGraphException
+	 */
 	public Cut createSourceCut(int at, Sequence sequence) throws SBOLGraphException {
 		return createCut(at, sequence,  DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Create a range for the source of this subcomponent.
+	 * @param uri The resource of the range.
+	 * @param start The start position of the range.
+	 * @param end The end position of the range.
+	 * @param sequence The sequence the range relates to.
+	 * @return An object containing the corresponding range.
+	 * @throws SBOLGraphException
+	 */
 	public Range createSourceRange(URI uri, int start, int end, Sequence sequence) throws SBOLGraphException {
 		return createRange(uri, start, end, sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Create a range for the source of this subcomponent.
+	 * @param displayId The identifier for the range.
+	 * @param start The start position of the range.
+	 * @param end The end position of the range.
+	 * @param sequence The sequence the range relates to.
+	 * @return An object containing the corresponding range.
+	 * @throws SBOLGraphException
+	 */
 	public Range createSourceRange(String displayId, int start, int end, Sequence sequence) throws SBOLGraphException {
 		return createRange(displayId, start, end, sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Create a range for the source of this subcomponent.
+	 * @param start The start position of the range.
+	 * @param endThe end position of the range.
+	 * @param sequence The sequence the range relates to.
+	 * @return An object containing the corresponding range.
+	 * @throws SBOLGraphException
+	 */
 	public Range createSourceRange(int start, int end, Sequence sequence) throws SBOLGraphException {
 		return createRange(start, end, sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Create a sequence for the source of this subcomponent.
+	 * @param uri The resource of the sequence.
+	 * @param sequence The sequence to be applied to this subcomponent.
+	 * @return An object containing the corresponding sequence.
+	 * @throws SBOLGraphException
+	 */
 	public EntireSequence createSourceEntireSequence(URI uri, Sequence sequence) throws SBOLGraphException {
 		return createEntireSequence(uri, sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * Create a sequence for the source of this subcomponent.
+	 * @param displayId The identifier of the sequence.
+	 * @param sequence The sequence to be applied to this subcomponent.
+	 * @return An object containing the corresponding sequence.
+	 * @throws SBOLGraphException
+	 */
 	public EntireSequence createSourceEntireSequence(String displayId,Sequence sequence) throws SBOLGraphException {
 		return createEntireSequence(displayId, sequence, DataModel.SubComponent.sourceLocation);	
 	}
 	
+	/**
+	 * Create a sequence for the source of this subcomponent.
+	 * @param sequence The sequence to be applied to the subcomponent.
+	 * @return An object containing the corresponding sequence.
+	 * @throws SBOLGraphException
+	 */
 	public EntireSequence createSourceEntireSequence(Sequence sequence) throws SBOLGraphException {
 		return createEntireSequence(sequence, DataModel.SubComponent.sourceLocation);
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public URI getResourceType() {
 		return DataModel.SubComponent.uri;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public URI getDefaultLocationProperty() {
 		return DataModel.SubComponent.location;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public List<URI> getAdditionalLocationProperties() {
 		return new ArrayList<URI>(Arrays.asList(DataModel.SubComponent.sourceLocation));
 	}
 	
+	/**
+	 * @return
+	 */
 	@Override
 	public List<Identified> getChildren() throws SBOLGraphException {
 		List<Identified> identifieds=super.getChildren();

@@ -6,6 +6,11 @@ import java.util.Map;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents variable feature cardinalities in the SBOL data model.
+ *
+ */
 public enum VariableFeatureCardinality {
 	
 	ZeroOrOne(URINameSpace.SBOL.local("zeroOrOne")), 
@@ -18,7 +23,11 @@ public enum VariableFeatureCardinality {
 	VariableFeatureCardinality(URI envUrl) {
 		this.uri = envUrl;
 	}
-
+	
+	/**
+	 * Gets the URI associated with the VariableFeatureCardinality object.
+	 * @return The relevant URI.
+	 */
 	public URI getUri() {
 		return uri;
 	}
@@ -32,7 +41,12 @@ public enum VariableFeatureCardinality {
 	        lookup.put(encoding.getUri(), encoding);
 	    }
 	}
-
+	
+	/**
+	 * Gets the variable feature cardinality from a supplied URI.
+	 * @param uri The URI to be accessed.
+	 * @return A VariableFeatureCardinality object associated with the URI.
+	 */
 	public static VariableFeatureCardinality get(URI uri) 
 	{
 	    return lookup.get(uri);

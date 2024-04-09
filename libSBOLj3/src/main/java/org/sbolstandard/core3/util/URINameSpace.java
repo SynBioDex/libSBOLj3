@@ -2,6 +2,11 @@ package org.sbolstandard.core3.util;
 
 import java.net.URI;
 
+/**
+ * 
+ * Represents the URI namespace in the SBOL data model.
+ *
+ */
 public class URINameSpace {
 
 	protected  URI uri;
@@ -17,10 +22,18 @@ public class URINameSpace {
 	protected static final String OM_Namespace="http://www.ontology-of-units-of-measure.org/resource/om-2/";
 	protected static final String RDFS_Namespace="http://www.w3.org/2000/01/rdf-schema#";
 	
+	/**
+	 * Gets the URI associated with the namespace.
+	 * @return The corresponding URI.
+	 */
 	public URI getUri() {
 		return uri;
 	}
 	
+	/**
+	 * Gets the prefix associated with the namespace.
+	 * @return The corresponding prefix.
+	 */
 	public String getPrefix() {
 		return prefix;
 	}
@@ -32,6 +45,11 @@ public class URINameSpace {
 		this.prefix=prefixParam;	
 	}
 	
+	/**
+	 * Creates a local reference for the URI.
+	 * @param name The name to be converted.
+	 * @return A URI consisting of the internal URI with the name appended.
+	 */
 	public  URI local(String name)
 	{
 		return URI.create(uri.toString() + name);
@@ -53,6 +71,9 @@ public class URINameSpace {
 	
 	//protected abstract NameSpace getInstance();
 	
+	/**
+	 * Defines the SO namespace.
+	 */
 	public static class SONameSpace extends URINameSpace
 	{
 		private static SONameSpace instance=null;

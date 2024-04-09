@@ -25,6 +25,9 @@ import org.sbolstandard.core3.vocabulary.RestrictionType.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 
+/**
+ * This class represents the structural and functional entities of a biological design.
+ */
 public class Component extends TopLevel {
 	
 	/*private List<URI> roles=null;
@@ -53,6 +56,20 @@ public class Component extends TopLevel {
 		super(resource);
 	}
 	
+	/**
+	 * Gets a list validation messages corresponding to errors and best practices.
+	 * A Validation message is of the following format:
+	 * <p>
+	 * {@code
+	 * String message;
+	 * URI property;
+	 * Object invalidValue;
+	 * Identified childEntity;
+	 * ValidationMessage childMessage;
+	 * }
+	 * ADD THE ABOVE TO THE VALIDATIONMESSAGE CLASS, do similar for all other class definitions.
+	 * @return A list of validation messages. 
+	 */
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
@@ -348,7 +365,6 @@ public class Component extends TopLevel {
 		return validationMessages;
 	}
 			
-
 	private List<Sequence> getEntireSequences(List<Feature> features) throws SBOLGraphException {
 		List<Sequence> entireSequences = null;
 		if (features != null) {
@@ -505,31 +521,54 @@ public class Component extends TopLevel {
 		return referredTo;
 	}
 	
+	/**
+	 * Gets the property values for the current component.
+	 * @return List of URI objects with the corresponding values.
+	 */
 	@Valid
 	@NotEmpty(message = "{COMPONENT_TYPES_NOT_EMPTY}")
 	public List<URI> getTypes() {
 		return RDFUtil.getPropertiesAsURIs(this.resource,DataModel.type);
 	}
 	
+	/**
+	 * Sets the types for the current component.
+	 * @param types URI objects of the types to set.
+	 * @throws SBOLGraphException
+	 */
 	public void setTypes(@NotEmpty(message = "{COMPONENT_TYPES_NOT_EMPTY}")List<URI> types) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setTypes", new Object[] {types}, List.class);
 		RDFUtil.setProperty(resource, DataModel.type, types);
 	}
 	
+	/**
+	 * Adds an additional type to the component's existing list.
+	 * @param type URI of the type to be added.
+	 */
 	public void addType(URI type) {
 		RDFUtil.addProperty(resource, DataModel.type, type);
 	}
 	
-	
+	/**
+	 * Gets the roles of the current component.
+	 * @return List of URI objects with the corresponding values.
+	 */
 	public List<URI> getRoles() {
 		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.role);
 	}
 	
+	/**
+	 * Sets the roles for the current component.
+	 * @param roles URI objects of the roles to set.
+	 */
 	public void setRoles(List<URI> roles) {
 		RDFUtil.setProperty(resource, DataModel.role, roles);
 	}
 	
-
+	/**
+	 * Adds an additional role to the component's existing list.
+	 * @param role URI object of the role to add.
+	 */
 	public void addRole(URI role) {
 		RDFUtil.addProperty(resource, DataModel.role, role);
 	}
@@ -540,14 +579,29 @@ public class Component extends TopLevel {
 	}
 	*/
 	
+	/**
+	 * Gets the sequences associated with the current component.
+	 * @return List of URI objects with the corresponding values.
+	 * @throws SBOLGraphException
+	 */
 	public List<Sequence> getSequences() throws SBOLGraphException {
 		return addToList(DataModel.Component.sequence, Sequence.class, DataModel.Sequence.uri);
 	}
 	
+	/**
+	 * Sets the sequences for the current component.
+	 * @param sequences URI objects of the sequences to set.
+	 */
 	public void setSequences(List<Sequence> sequences) {
 		RDFUtil.setProperty(resource, DataModel.Component.sequence, SBOLUtil.getURIs(sequences));
 	}
 	
+	/**
+	 * Gets the sequences associated with the current component for a given encoding type.
+	 * @param encoding The type of encoding to select for.
+	 * @return List of Sequence objects with the corresponding values.
+	 * @throws SBOLGraphException
+	 */
 	public List<Sequence> getSequences(Encoding encoding) throws SBOLGraphException
 	{
 		ArrayList<Sequence> result=null;
@@ -600,6 +654,12 @@ public class Component extends TopLevel {
 		}
 	}
 	
+	
+	/**
+	 * Gets the features associated with the current component.
+	 * @return List of Feature objects of the corresponding values.
+	 * @throws SBOLGraphException
+	 */
 	public List<Feature> getFeatures() throws SBOLGraphException{
 		List<Feature> features=new ArrayList<Feature>();
 		addToFeatureList(features, getSubComponents());
@@ -610,6 +670,11 @@ public class Component extends TopLevel {
 		return features;
 	}
 	
+	/**
+	 * Gets the SubComponents associated with the current object.
+	 * @return List of SubComponent objects of the corresponding values.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	public List<SubComponent> getSubComponents() throws SBOLGraphException {
 		return addToList(DataModel.Component.feature, SubComponent.class, DataModel.SubComponent.uri);
@@ -626,6 +691,13 @@ public class Component extends TopLevel {
 		return subComponents;*/
 	}
 	
+	/**
+	 * Creates a SubComponent object with its associated URI and <a href="#{@org.sbolstandard.core3.entity.Component}">Component</a>.
+	 * @param uri URI object of the SubComponent.
+	 * @param isInstanceOf Component to associate the SubComponent with.
+	 * @return A SubComponent object 
+	 * @throws SBOLGraphException
+	 */
 	public SubComponent createSubComponent(URI uri, Component isInstanceOf) throws SBOLGraphException
 	{
 		SubComponent feature = new SubComponent(this.resource.getModel(), uri);
@@ -639,6 +711,12 @@ public class Component extends TopLevel {
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
 	
+	/**
+	 * Creates a SubComponent object with its associated Component.
+	 * @param isInstanceOf Component to associate the SubComponent with.
+	 * @return A SubComponent object associated with this Component.
+	 * @throws SBOLGraphException
+	 */
 	public SubComponent createSubComponent(Component isInstanceOf) throws SBOLGraphException
 	{
 		String displayId=SBOLAPI.createLocalName(DataModel.SubComponent.uri, getSubComponents());
@@ -650,6 +728,14 @@ public class Component extends TopLevel {
 		return addToList(DataModel.Component.feature, ComponentReference.class, DataModel.ComponentReference.uri);
 	}
 	
+	/**
+	 * Creates a ComponentReference object with its associated component.
+	 * @param uri URI object identifying the component.
+	 * @param feature Feature object that the component refers to.
+	 * @param inChildOf SubComponent object where the component will be the parent.
+	 * @return A ComponentRefence object of the component.
+	 * @throws SBOLGraphException
+	 */
 	public ComponentReference createComponentReference(URI uri, Feature feature, SubComponent inChildOf) throws SBOLGraphException {
 		ComponentReference componentReference= new ComponentReference(this.resource.getModel(), uri);
 		componentReference.setRefersTo(feature);
@@ -662,17 +748,36 @@ public class Component extends TopLevel {
 		return createComponentReference(SBOLAPI.append(this.getUri(), displayId), feature, inChildOf);	
 	}
 	
+	/**
+	 * Creates a ComponentReference object with its associated component.
+	 * @param feature Feature object that the component refers to.
+	 * @param inChildOf SubComponent object where the component will be the parent.
+	 * @return A ComponentRefence object associated with the parent Component.
+	 * @throws SBOLGraphException
+	 */
 	public ComponentReference createComponentReference(Feature feature, SubComponent inChildOf) throws SBOLGraphException {
 		String displayId=SBOLAPI.createLocalName(DataModel.ComponentReference.uri, getComponentReferences());
 		return createComponentReference(displayId, feature, inChildOf);	
 	}
 
 	//Local sub components
+	/**
+	 * Gets the SubComponents local to associated component.
+	 * @return A list object containing the relevant feature, and class and URI identifiers for the various SubComponent objects.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	public List<LocalSubComponent> getLocalSubComponents() throws SBOLGraphException {
 		return addToList(DataModel.Component.feature, LocalSubComponent.class, DataModel.LocalSubComponent.uri);
 	}
 	
+	/**
+	 * Creates a LocalSubComponent object for the associated component using the supplied parameters.
+	 * @param uri URI object identifying the LocalSubComponent.
+	 * @param types A list of URI objects to be associated with the LocalSubComponent.
+	 * @return A LocalSubComponent object associated with the parent Component.
+	 * @throws SBOLGraphException
+	 */
 	public LocalSubComponent createLocalSubComponent(URI uri, List<URI> types) throws SBOLGraphException
 	{
 		LocalSubComponent localSubComponent= new LocalSubComponent(this.resource.getModel(), uri);
@@ -686,6 +791,12 @@ public class Component extends TopLevel {
 		return createLocalSubComponent(SBOLAPI.append(this.getUri(), displayId), types);
 	}
 	
+	/**
+	 * Creates a LocalSubComponent object for the associated component using the supplied parameters.
+	 * @param types A list of URI objects to be associated with the LocalSubComponent.
+	 * @return A LocalSubComponent object associated with the parent Component.
+	 * @throws SBOLGraphException
+	 */
 	public LocalSubComponent createLocalSubComponent(List<URI> types) throws SBOLGraphException
 	{
 		String displayId=SBOLAPI.createLocalName(DataModel.LocalSubComponent.uri, getLocalSubComponents());
@@ -698,6 +809,14 @@ public class Component extends TopLevel {
 		return addToList(DataModel.Component.feature, ExternallyDefined.class, DataModel.ExternalyDefined.uri);
 	}
 	
+	/**
+	 * Create a feature, defined externally defined by a supplied URI.
+	 * @param uri URI object identifying the feature.
+	 * @param types A list of URI objects to be associated with the feature.
+	 * @param definition URI object which locates the definition for the feature.
+	 * @return An ExternallyDefined object associated with the parent component.
+	 * @throws SBOLGraphException
+	 */
 	public ExternallyDefined createExternallyDefined(URI uri, List<URI> types, URI definition) throws SBOLGraphException
 	{
 		ExternallyDefined externallyDefined= new ExternallyDefined(this.resource.getModel(), uri);
@@ -712,6 +831,13 @@ public class Component extends TopLevel {
 		return createExternallyDefined(SBOLAPI.append(this.getUri(), displayId), types, definition);
 	}
 	
+	/**
+	 * Create a feature, defined externally defined by a supplied URI.
+	 * @param types A list of URI objects to be associated with the feature.
+	 * @param definition URI object which locates the definition for the feature.
+	 * @return An ExternallyDefined object associated with the parent component.
+	 * @throws SBOLGraphException
+	 */
 	public ExternallyDefined createExternallyDefined(List<URI> types, URI definition) throws SBOLGraphException
 	{
 		String displayId=SBOLAPI.createLocalName(DataModel.ExternalyDefined.uri, getExternallyDefineds());	
@@ -719,6 +845,11 @@ public class Component extends TopLevel {
 	}
 	
 	//Sequence features
+	/**
+	 * Gets a list of the sequence features associated with the parent Component.
+	 * @return A list object containing references to the feature, SequenceFeature class and its identifying URI.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	public List<SequenceFeature> getSequenceFeatures() throws SBOLGraphException {
 		return addToList(DataModel.Component.feature, SequenceFeature.class, DataModel.SequenceFeature.uri);
@@ -748,18 +879,39 @@ public class Component extends TopLevel {
 	}
 	*/
 	
+	/**
+	 * Create a feature object containing a sequence, associated with the parent Component.
+	 * @param sequence The sequence object to be associated.
+	 * @return The completed feature object.
+	 * @throws SBOLGraphException
+	 */
 	public SequenceFeature createSequenceFeature(Sequence sequence) throws SBOLGraphException {
 		SequenceFeature feature=createSequenceFeature();
 		feature.createEntireSequence(sequence);
 		return feature;
 	}
 	
+	/**
+	 * 
+	 * @param at Starting position of the sequence, index starting at 1.
+	 * @param sequence Sequence object to be associated.
+	 * @return The completed feature object.
+	 * @throws SBOLGraphException
+	 */
 	public SequenceFeature createSequenceFeature(int at, Sequence sequence) throws SBOLGraphException {
 		SequenceFeature feature=createSequenceFeature();
 		feature.createCut(at, sequence);
 		return feature;
 	}
 	
+	/**
+	 * 
+	 * @param start Starting position of the sequence, index starting at 1.
+	 * @param end Ending position of the sequence, index starting at 1.
+	 * @param sequence Sequence object to be associated.
+	 * @return The completed feature object.
+	 * @throws SBOLGraphException
+	 */
 	public SequenceFeature createSequenceFeature(int start, int end, Sequence sequence) throws SBOLGraphException {
 		SequenceFeature feature=createSequenceFeature();
 		feature.createRange(start, end, sequence);
@@ -803,6 +955,13 @@ public class Component extends TopLevel {
 	*/
 	
 	//Interaction
+	/**
+	 * Creates an Interaction object associated with the parent Component.
+	 * @param uri URI object identifying the Interaction.
+	 * @param types A list of URI objects to be associated with the feature.
+	 * @return The completed interaction object.
+	 * @throws SBOLGraphException
+	 */
 	public Interaction createInteraction(URI uri, List<URI> types) throws SBOLGraphException {
 		Interaction interaction= new Interaction(this.resource.getModel(), uri);
 		interaction.setTypes(types);
@@ -814,17 +973,37 @@ public class Component extends TopLevel {
 		return createInteraction(SBOLAPI.append(this.getUri(), displayId), types);
 	}
 	
+	/**
+	 * Creates an Interaction object associated with the parent Component.
+	 * @param types A list of URI objects to be associated with the feature.
+	 * @return The completed interaction object.
+	 * @throws SBOLGraphException
+	 */
 	public Interaction createInteraction(List<URI> types) throws SBOLGraphException {
 		String displayId=SBOLAPI.createLocalName(DataModel.Interaction.uri, getInteractions());	
 		return createInteraction(displayId, types);
 	}
 	
+	/**
+	 * Get a list of all interaction objects associated with the parent Component.
+	 * @return A list of all interaction objects associated with the parent Component.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	public List<Interaction> getInteractions() throws SBOLGraphException {
 		return addToList(DataModel.Component.interaction, Interaction.class, DataModel.Interaction.uri);
 	}
 	
 	//Constraint
+	/**
+	 * Creates an constraint object associated with the parent Component.
+	 * @param uri URI object identifying the Interaction.
+	 * @param restriction An object that describes the constraint properties.
+	 * @param subject The feature that is the subject of this constraint.
+	 * @param object The feature that is the object of this constraint.
+	 * @return The completed constraint object.
+	 * @throws SBOLGraphException
+	 */
 	public Constraint createConstraint(URI uri, URI restriction, Feature subject, Feature object) throws SBOLGraphException {
 		Constraint constraint= new Constraint(this.resource.getModel(), uri);
 		constraint.setRestriction(restriction);
@@ -838,21 +1017,48 @@ public class Component extends TopLevel {
 		return createConstraint(SBOLAPI.append(this.getUri(), displayId), restriction, subject, object);
 	}
 	
+	/**
+	 * Creates an constraint object associated with the parent Component.
+	 * @param restriction An object that describes the constraint properties.
+	 * @param subject The feature that is the subject of this constraint.
+	 * @param object The feature that is the object of this constraint.
+	 * @return The completed constraint object.
+	 * @throws SBOLGraphException
+	 */
 	public Constraint createConstraint(URI restriction, Feature subject, Feature object) throws SBOLGraphException {
 		String displayId=SBOLAPI.createLocalName(DataModel.Constraint.uri, getConstraints());	
 		return createConstraint(displayId, restriction, subject, object);
 	}
 	
+	/**
+	 * Creates an constraint object associated with the parent Component.
+	 * @param restriction An object that describes the constraint properties.
+	 * @param subject The feature that is the subject of this constraint.
+	 * @param object The feature that is the object of this constraint.
+	 * @return The completed constraint object.
+	 * @throws SBOLGraphException
+	 */
 	public Constraint createConstraint(ConstraintRestriction restriction, Feature subject, Feature object) throws SBOLGraphException {
 		return createConstraint(restriction.getUri(), subject, object);
 	}
 	
+	/**
+	 * Get a list object containing the constraints associated with the parent Component.
+	 * @return A list object containing the constraints associated with the parent Component.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	public List<Constraint> getConstraints() throws SBOLGraphException {
 		return addToList(DataModel.Component.constraint, Constraint.class, DataModel.Constraint.uri);
 	}
 	
 	//Interface
+	/**
+	 * Create an interface object associated with the parent Component.
+	 * @param uri URI object identifying the interface.
+	 * @return The completed componentInterface object.
+	 * @throws SBOLGraphException
+	 */
 	public Interface createInterface(URI uri) throws SBOLGraphException {
 		Interface componentInterface =getInterface();
 		if (componentInterface==null)
@@ -863,10 +1069,20 @@ public class Component extends TopLevel {
 		return componentInterface;
 	}
 	
+	/**
+	 * Create an interface object associated with the parent Component.
+	 * @return The completed componentInterface object.
+	 * @throws SBOLGraphException
+	 */
 	public Interface createInterface() throws SBOLGraphException {
 		return createInterface(SBOLAPI.append(this.getUri(), "Interface1"));
 	}
 	
+	/**
+	 * Get the interface object associated with the parent component.
+	 * @return The interface object for the current object.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	public Interface getInterface() throws SBOLGraphException {
 		return contsructIdentified(DataModel.Component.hasInterface, Interface.class, DataModel.Interface.uri);
@@ -879,21 +1095,36 @@ public class Component extends TopLevel {
 	public void setModels(List<URI> models) {
 		RDFUtil.setProperty(resource, DataModel.Component.model, models);
 	}*/
-
+	
+	/**
+	 * 
+	 * @return
+	 * @throws SBOLGraphException
+	 */
 	public List<Model> getModels() throws SBOLGraphException {
 		return addToList(DataModel.Component.model, Model.class, DataModel.Model.uri);
 	}
 	
+	/**
+	 * 
+	 * @param models
+	 */
 	public void setModels(List<Model> models) {
 		RDFUtil.setProperty(resource, DataModel.Component.model, SBOLUtil.getURIs(models));
 	}
 	
-	
+	/**
+	 * Gets the URI associated with the Component object.
+	 * @return URI object of the associated Component.
+	 */
 	public URI getResourceType()
 	{
 		return DataModel.Component.uri;
 	}
 	
+	/**
+	 * 
+	 */
 	@Override
 	public List<Identified> getChildren() throws SBOLGraphException {
 		List<Identified> identifieds=super.getChildren();
@@ -903,6 +1134,15 @@ public class Component extends TopLevel {
 		return identifieds;
 	}
 	
+	/**
+	 * 
+	 * @param messages
+	 * @param currentComponent
+	 * @param rootURI
+	 * @param visitedSubComponents
+	 * @return
+	 * @throws SBOLGraphException
+	 */
 	public List<ValidationMessage> checkSubComponentMatchToRoot(List<ValidationMessage> messages, Component currentComponent, URI rootURI, ArrayList<URI> visitedSubComponents) throws SBOLGraphException {
 		List<SubComponent> subComponents=currentComponent.getSubComponents();
 		if(subComponents!=null) {
