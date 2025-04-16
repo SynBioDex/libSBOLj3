@@ -65,7 +65,8 @@ public class CutTest extends TestCase {
     	
     	//Location.sequence can't be null
     	TestUtil.validateProperty(cut, "setSequence", new Object[] {null}, Sequence.class);
-    	cut.setSequence(null);
+    	URI nullValue=null;
+    	cut.setSequence(nullValue);
     	TestUtil.validateIdentified(cut,doc,2,3);
     	
     	 //SBOL_VALID_ENTITY_TYPES - Component.interface

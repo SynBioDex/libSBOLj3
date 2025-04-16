@@ -145,6 +145,16 @@ public abstract class  Location extends Identified {
 		RDFUtil.setProperty(this.resource, DataModel.Location.sequence, SBOLUtil.toURI(sequence));	
 	}
 	
+	/**
+	 * Set the sequence that this location refers to.
+	 * @param sequenceURI The sequence to be applied.
+	 * @throws SBOLGraphException
+	 */
+	public void setSequence(@NotNull(message = "{LOCATION_SEQUENCE_NOT_NULL}") URI sequenceURI) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setSequence", new Object[] {sequenceURI}, URI.class);
+		RDFUtil.setProperty(this.resource, DataModel.Location.sequence, sequenceURI);	
+	}
+	
 
 	/**
 	 * Gets the resource type for the sequence.

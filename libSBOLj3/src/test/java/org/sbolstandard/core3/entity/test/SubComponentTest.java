@@ -31,7 +31,7 @@ public class SubComponentTest extends TestCase {
 		SBOLAPI.addSequence(doc, device, Encoding.NucleicAcid, "");
 		
 		Component term=SBOLAPI.createDnaComponent(doc, "B0015", "terminator", "B0015 double terminator", Role.Terminator,term_na);
-		SubComponent termSubComponent=device.createSubComponent(term);
+		SubComponent termSubComponent=device.createSubComponent(term.getUri());
 		termSubComponent.setOrientation(Orientation.inline);
 		
 		termSubComponent.getRoleIntegration();

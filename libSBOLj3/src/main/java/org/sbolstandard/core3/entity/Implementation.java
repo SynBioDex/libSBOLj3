@@ -32,7 +32,11 @@ public class Implementation extends TopLevel{
 
 	public void setComponent(Component component) {
 		RDFUtil.setProperty(resource, DataModel.Implementation.built, SBOLUtil.toURI(component));
-	}	
+	}
+	
+	public void setComponent(URI componentURI) {
+		RDFUtil.setProperty(resource, DataModel.Implementation.built, componentURI);
+	}
 
 	@Override
 	public URI getResourceType() {
