@@ -57,7 +57,8 @@ public class SubComponentTest extends TestCase {
 	    TestUtil.validateIdentified(termSubComponent,doc,0);
 	    
 	    TestUtil.validateProperty(termSubComponent, "setInstanceOf", new Object[] {null}, Component.class);
-	    termSubComponent.setInstanceOf(null);	    
+	    URI nullURI=null;
+	    termSubComponent.setInstanceOf(nullURI);	    
 	    range.setEnd(Optional.empty());
 	    range2.setEnd(Optional.empty());
 	    TestUtil.validateIdentified(termSubComponent,doc,3);
