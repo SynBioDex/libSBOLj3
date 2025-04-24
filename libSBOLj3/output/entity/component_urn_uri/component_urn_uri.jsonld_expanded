@@ -1,10 +1,10 @@
 [ {
-  "@id" : "urn:uuid:624bcc85-bc65-4f6a-8658-08d617d7ec11",
+  "@id" : "urn:uuid:e51f06e0-6598-4bae-a3c8-299e3e06883d",
   "http://sbols.org/v3#name" : [ {
     "@value" : "TetR"
   } ],
   "http://sbols.org/v3#hasNamespace" : [ {
-    "@id" : "urn:uuid:af844b3f-e557-486d-ae5c-69156a01d848"
+    "@id" : "urn:uuid:d6f861d3-cd42-4133-9544-7a0530c47f53"
   } ],
   "http://sbols.org/v3#type" : [ {
     "@id" : "https://identifiers.org/SBO:0000252"

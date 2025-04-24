@@ -192,7 +192,7 @@ public class SubComponent extends FeatureWithLocation{
 	 * @throws SBOLGraphException
 	 */
 	public void setInstanceOf(@NotNull(message = "{SUBCOMPONENT_ISINSTANCEOF_NOT_NULL}") URI isInstanceOf) throws SBOLGraphException {
-		PropertyValidator.getValidator().validate(this, "setInstanceOf", new Object[] {isInstanceOf}, Component.class);
+		PropertyValidator.getValidator().validate(this, "setInstanceOf", new Object[] {isInstanceOf}, URI.class);
 		RDFUtil.setProperty(this.resource, DataModel.SubComponent.instanceOf, isInstanceOf);	
 	}
 	

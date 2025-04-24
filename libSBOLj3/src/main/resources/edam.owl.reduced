@@ -5719,7 +5719,7 @@ oboInOwl:ObsoleteClass
 
 :operation_0496  rdfs:subClassOf  :operation_0292 .
 
-:operation_0502  rdfs:subClassOf  :operation_2439 , :operation_3429 ;
+:operation_0502  rdfs:subClassOf  :operation_3429 , :operation_2439 ;
         rdfs:subClassOf  []  ;
         rdfs:subClassOf  []  .
 
