@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.compress.harmony.unpack200.bytecode.forms.ThisFieldRefForm;
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.datatypes.xsd.impl.XSDFloat;
 import org.apache.jena.query.ARQ;
@@ -92,7 +93,13 @@ public class RDFUtil {
 		}
 		else
 		{
-			throw new SBOLGraphException(String.format("Resource with the URI already exists! URI: %s", resourceUriString));
+			resource=model.getResource(resourceUriString);
+			StmtIterator iterator=resource.listProperties();
+			if (iterator.hasNext())
+			{			
+				throw new SBOLGraphException(String.format("A resource with this URI already exists and includes properties! URI: %s", resourceUriString));
+			}
+			addType(resource, type);			
 		}
 		return resource;
 	}
@@ -543,7 +550,7 @@ public class RDFUtil {
 		{
 			boolean result=false;
 			Resource typeResource=rdfModel.createResource(type.toString());	
-			result=resource.hasProperty (RDF.type, typeResource);
+			result=resource.hasProperty (RDF.type, typeResource);			
 		    return result;
 		}
 	    

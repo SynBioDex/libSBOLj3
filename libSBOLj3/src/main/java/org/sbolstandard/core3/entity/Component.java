@@ -971,7 +971,6 @@ public class Component extends TopLevel {
 	
 	/*
 	private SequenceFeature createSequenceFeature2(String displayId, List<Location> locations) throws SBOLGraphException {
-		return createSequenceFeature2(SBOLAPI.append(this.getUri(), displayId), locations);
 	}
 	private SequenceFeature createSequenceFeature2(URI uri, List<Location> locations) throws SBOLGraphException {
 		SequenceFeature sequenceFeature= new SequenceFeature(this.resource.getModel(), uri);
