@@ -2081,3 +2081,6 @@
 
 <https://identifiers.org/SBO:0000023>
         rdfs:subClassOf  <https://identifiers.org/SBO:0000153> , <https://identifiers.org/SBO:0000017> .
+        
+<https://identifiers.org/SBO:0000598>
+        rdfs:subClassOf  <https://identifiers.org/SBO:0000003> .
