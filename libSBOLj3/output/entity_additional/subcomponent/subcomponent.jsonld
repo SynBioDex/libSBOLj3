@@ -1,44 +1,6 @@
 {
     "@graph": [
         {
-            "@id": "https://synbiohub.org/public/igem/B0015_Sequence1",
-            "sbol:encoding": {
-                "@id": "EDAM:format_1207"
-            },
-            "sbol:elements": "ccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctctc",
-            "sbol:description": "B0015 sequence",
-            "sbol:name": "Sequence1",
-            "sbol:hasNamespace": {
-                "@id": "https://synbiohub.org/public/igem"
-            },
-            "sbol:displayId": "B0015_Sequence1",
-            "@type": "sbol:Sequence"
-        },
-        {
-            "@id": "https://synbiohub.org/public/igem/i13504_Sequence1",
-            "sbol:elements": "ccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctctc",
-            "sbol:encoding": {
-                "@id": "EDAM:format_1207"
-            },
-            "sbol:description": "i13504 sequence",
-            "sbol:name": "Sequence1",
-            "sbol:hasNamespace": {
-                "@id": "https://synbiohub.org/public/igem"
-            },
-            "sbol:displayId": "i13504_Sequence1",
-            "@type": "sbol:Sequence"
-        },
-        {
-            "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1/Range2",
-            "sbol:end": "80",
-            "sbol:start": "1",
-            "sbol:hasSequence": {
-                "@id": "https://synbiohub.org/public/igem/i13504_Sequence1"
-            },
-            "sbol:displayId": "Range2",
-            "@type": "sbol:Range"
-        },
-        {
             "@id": "https://synbiohub.org/public/igem/i13504",
             "sbol:hasFeature": {
                 "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1"
@@ -76,6 +38,57 @@
             "@type": "sbol:SubComponent"
         },
         {
+            "@id": "https://synbiohub.org/public/igem/i13504_Sequence1",
+            "sbol:elements": "ccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctctc",
+            "sbol:encoding": {
+                "@id": "EDAM:format_1207"
+            },
+            "sbol:description": "i13504 sequence",
+            "sbol:name": "Sequence1",
+            "sbol:hasNamespace": {
+                "@id": "https://synbiohub.org/public/igem"
+            },
+            "sbol:displayId": "i13504_Sequence1",
+            "@type": "sbol:Sequence"
+        },
+        {
+            "@id": "https://synbiohub.org/public/igem/B0015_Sequence1",
+            "sbol:encoding": {
+                "@id": "EDAM:format_1207"
+            },
+            "sbol:elements": "ccaggcatcaaataaaacgaaaggctcagtcgaaagactgggcctttcgttttatctgttgtttgtcggtgaacgctctc",
+            "sbol:description": "B0015 sequence",
+            "sbol:name": "Sequence1",
+            "sbol:hasNamespace": {
+                "@id": "https://synbiohub.org/public/igem"
+            },
+            "sbol:displayId": "B0015_Sequence1",
+            "@type": "sbol:Sequence"
+        },
+        {
+            "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1/Range1",
+            "sbol:orientation": {
+                "@id": "SO:0001030"
+            },
+            "sbol:end": "80",
+            "sbol:start": "1",
+            "sbol:hasSequence": {
+                "@id": "https://synbiohub.org/public/igem/i13504_Sequence1"
+            },
+            "sbol:displayId": "Range1",
+            "@type": "sbol:Range"
+        },
+        {
+            "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1/Range2",
+            "sbol:end": "80",
+            "sbol:start": "1",
+            "sbol:hasSequence": {
+                "@id": "https://synbiohub.org/public/igem/i13504_Sequence1"
+            },
+            "sbol:displayId": "Range2",
+            "@type": "sbol:Range"
+        },
+        {
             "@id": "https://synbiohub.org/public/igem/B0015",
             "sbol:hasSequence": {
                 "@id": "https://synbiohub.org/public/igem/B0015_Sequence1"
@@ -93,19 +106,6 @@
             },
             "sbol:displayId": "B0015",
             "@type": "sbol:Component"
-        },
-        {
-            "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1/Range1",
-            "sbol:orientation": {
-                "@id": "SO:0001030"
-            },
-            "sbol:end": "80",
-            "sbol:start": "1",
-            "sbol:hasSequence": {
-                "@id": "https://synbiohub.org/public/igem/i13504_Sequence1"
-            },
-            "sbol:displayId": "Range1",
-            "@type": "sbol:Range"
         }
     ],
     "@context": {

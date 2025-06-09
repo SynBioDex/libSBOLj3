@@ -1,13 +1,1 @@
-[ {
-  "@id" : "urn:uuid:08666c0b-4559-4fc4-bfcf-dab0c1f54a6c",
-  "http://sbols.org/v3#name" : [ {
-    "@value" : "TetR"
-  } ],
-  "http://sbols.org/v3#hasNamespace" : [ {
-    "@id" : "urn:uuid:4c53ca9c-d1ee-4c60-ae0d-05c729d0da06"
-  } ],
-  "http://sbols.org/v3#type" : [ {
-    "@id" : "https://identifiers.org/SBO:0000252"
-  } ],
-  "@type" : [ "http://sbols.org/v3#Component" ]
-} ]
+{"@graph":[{"@id":"urn:uuid:50bf755f-d25b-4786-bc42-fc0925c873fd","http://sbols.org/v3#name":[{"@value":"TetR"}],"http://sbols.org/v3#hasNamespace":[{"@id":"urn:uuid:098b00f8-795f-4dfa-a096-6105ef427e37"}],"http://sbols.org/v3#type":[{"@id":"https://identifiers.org/SBO:0000252"}],"@type":["http://sbols.org/v3#Component"]}]}

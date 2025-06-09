@@ -12,6 +12,17 @@
             "@type": "sbol:Attachment"
         },
         {
+            "@id": "https://sbolstandard.org/examples/attachment2",
+            "sbol:source": {
+                "@id": "https://sbolstandard.org/attachment2"
+            },
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples"
+            },
+            "sbol:displayId": "attachment2",
+            "@type": "sbol:Attachment"
+        },
+        {
             "@id": "https://sbolstandard.org/examples/exp1",
             "sbol:member": [
                 {
@@ -26,17 +37,6 @@
             },
             "sbol:displayId": "exp1",
             "@type": "sbol:Experiment"
-        },
-        {
-            "@id": "https://sbolstandard.org/examples/attachment2",
-            "sbol:source": {
-                "@id": "https://sbolstandard.org/attachment2"
-            },
-            "sbol:hasNamespace": {
-                "@id": "https://sbolstandard.org/examples"
-            },
-            "sbol:displayId": "attachment2",
-            "@type": "sbol:Attachment"
         }
     ],
     "@context": {

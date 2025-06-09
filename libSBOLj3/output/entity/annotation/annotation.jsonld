@@ -1,21 +1,16 @@
 {
     "@graph": [
         {
-            "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1",
-            "sbol:displayId": "usage1",
-            "igem:registryStar": "1",
-            "sbol:name": "BBa_J23119_usage",
-            "igem:uses": "442",
-            "igem:twinURLs": {
-                "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts"
+            "@id": "https://sbolstandard.org/examples/SynBioHubRepository",
+            "sbol:name": "SynBioHub",
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples"
             },
-            "sbol:description": "BBa_J23119 usage statistics",
             "@type": [
-                "sbol:Identified",
-                "igem:IGEMUsage"
+                "igem:Repository",
+                "sbol:TopLevel"
             ],
-            "igem:twins": "7",
-            "igem:inStock": "true"
+            "sbol:displayId": "SynBioHubRepository"
         },
         {
             "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts",
@@ -38,54 +33,38 @@
             "sbol:displayId": "twinParts"
         },
         {
-            "@id": "https://sbolstandard.org/examples/iGEMRepository",
-            "igem:website": {
-                "@id": "igem:Main_Page"
-            },
-            "sbol:description": "Registry of Standard Biological Parts",
-            "sbol:name": "iGEM Registry",
-            "sbol:hasNamespace": {
-                "@id": "https://sbolstandard.org/examples"
-            },
-            "@type": [
-                "igem:Repository",
-                "sbol:TopLevel"
-            ],
-            "sbol:displayId": "iGEMRepository"
-        },
-        {
             "@id": "https://sbolstandard.org/examples/BBa_J23119",
+            "sbol:displayId": "BBa_J23119",
+            "igem:group": "iGEM2006_Berkeley",
             "igem:belongsTo": [
                 {
-                    "@id": "https://sbolstandard.org/examples/iGEMRepository"
+                    "@id": "https://sbolstandard.org/examples/SynBioHubRepository"
                 },
                 {
-                    "@id": "https://sbolstandard.org/examples/SynBioHubRepository"
+                    "@id": "https://sbolstandard.org/examples/iGEMRepository"
                 }
             ],
-            "sbol:role": {
-                "@id": "SO:0000167"
-            },
             "sbol:description": "Parts J23100 through J23119 are a family of constitutive promoter parts isolated from a small combinatorial library.",
-            "igem:hasInformation": {
-                "@id": "https://sbolstandard.org/examples/BBa_J23119/information1"
-            },
-            "sbol:name": "BBa_J23119 part",
             "sbol:type": {
                 "@id": "SBO:0000251"
+            },
+            "@type": "sbol:Component",
+            "igem:hasInformation": {
+                "@id": "https://sbolstandard.org/examples/BBa_J23119/information1"
             },
             "igem:hasUsage": {
                 "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1"
             },
-            "sbol:hasNamespace": {
-                "@id": "https://sbolstandard.org/examples"
+            "sbol:role": {
+                "@id": "SO:0000167"
             },
-            "@type": "sbol:Component",
+            "sbol:name": "BBa_J23119 part",
             "igem:experienceURL": {
                 "@id": "igem:Part:BBa_J23119:Experience"
             },
-            "sbol:displayId": "BBa_J23119",
-            "igem:group": "iGEM2006_Berkeley"
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples"
+            }
         },
         {
             "@id": "https://sbolstandard.org/examples/BBa_J23119/information1",
@@ -103,8 +82,12 @@
             "sbol:displayId": "information1"
         },
         {
-            "@id": "https://sbolstandard.org/examples/SynBioHubRepository",
-            "sbol:name": "SynBioHub",
+            "@id": "https://sbolstandard.org/examples/iGEMRepository",
+            "igem:website": {
+                "@id": "igem:Main_Page"
+            },
+            "sbol:description": "Registry of Standard Biological Parts",
+            "sbol:name": "iGEM Registry",
             "sbol:hasNamespace": {
                 "@id": "https://sbolstandard.org/examples"
             },
@@ -112,7 +95,24 @@
                 "igem:Repository",
                 "sbol:TopLevel"
             ],
-            "sbol:displayId": "SynBioHubRepository"
+            "sbol:displayId": "iGEMRepository"
+        },
+        {
+            "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1",
+            "@type": [
+                "sbol:Identified",
+                "igem:IGEMUsage"
+            ],
+            "sbol:description": "BBa_J23119 usage statistics",
+            "sbol:name": "BBa_J23119_usage",
+            "sbol:displayId": "usage1",
+            "igem:registryStar": "1",
+            "igem:twins": "7",
+            "igem:uses": "442",
+            "igem:twinURLs": {
+                "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts"
+            },
+            "igem:inStock": "true"
         }
     ],
     "@context": {

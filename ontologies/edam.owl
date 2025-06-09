@@ -36596,7 +36596,7 @@
         <created_in>1.25</created_in>
         <documentation rdf:resource="https://vega.github.io/vega/docs/"/>
         <documentation rdf:resource="https://vega.github.io/vega/docs/#specification"/>
-        <documentation rdf:resource="https:doi.org/10.1145/2642918.2647360"/>
+        <documentation rdf:resource="https://doi.org/10.1145/2642918.2647360"/>
         <example rdf:resource="https://vega.github.io/vega/examples/"/>
         <file_extension>json</file_extension>
         <media_type>application/json</media_type>

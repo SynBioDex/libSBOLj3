@@ -37,9 +37,6 @@ import org.sbolstandard.core3.entity.Identified;
 import org.sbolstandard.core3.entity.SBOLDocument;
 import org.sbolstandard.core3.vocabulary.ComponentType;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators.StringIdGenerator;
-
-import jakarta.validation.constraints.NotNull;
 
 public class SBOLUtil {
 
