@@ -1002,7 +1002,7 @@ public class Component extends TopLevel {
 		return interaction;
 	}
 	
-	private Interaction createInteraction(String displayId, List<URI> types) throws SBOLGraphException {
+	public Interaction createInteraction(String displayId, List<URI> types) throws SBOLGraphException {
 		return createInteraction(SBOLAPI.append(this.getUri(), displayId), types);
 	}
 	
