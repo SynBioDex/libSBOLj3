@@ -1,6 +1,46 @@
 {
     "@graph": [
         {
+            "@id": "https://synbiohub.org/public/igem/interlab16device1/SubComponent1",
+            "sbol:instanceOf": {
+                "@id": "https://synbiohub.org/public/igem/i13504_system"
+            },
+            "sbol:displayId": "SubComponent1",
+            "@type": "sbol:SubComponent"
+        },
+        {
+            "@id": "https://synbiohub.org/public/igem/i13504_system",
+            "sbol:hasFeature": {
+                "@id": "https://synbiohub.org/public/igem/i13504_system/SubComponent1"
+            },
+            "sbol:role": {
+                "@id": "SBO:0000289"
+            },
+            "sbol:name": "i13504 system",
+            "sbol:hasNamespace": {
+                "@id": "https://synbiohub.org/public/igem"
+            },
+            "sbol:type": {
+                "@id": "SBO:0000241"
+            },
+            "sbol:displayId": "i13504_system",
+            "@type": "sbol:Component"
+        },
+        {
+            "@id": "https://synbiohub.org/public/igem/j23101",
+            "sbol:role": {
+                "@id": "SO:0000704"
+            },
+            "sbol:hasNamespace": {
+                "@id": "https://synbiohub.org/public/igem"
+            },
+            "sbol:type": {
+                "@id": "SBO:0000251"
+            },
+            "sbol:displayId": "j23101",
+            "@type": "sbol:Component"
+        },
+        {
             "@id": "https://synbiohub.org/public/igem/interlab16device1/Constraint1",
             "sbol:object": {
                 "@id": "https://synbiohub.org/public/igem/interlab16device1/ComponentReference1"
@@ -78,52 +118,12 @@
             "@type": "sbol:Component"
         },
         {
-            "@id": "https://synbiohub.org/public/igem/interlab16device1/SubComponent1",
-            "sbol:instanceOf": {
-                "@id": "https://synbiohub.org/public/igem/i13504_system"
-            },
-            "sbol:displayId": "SubComponent1",
-            "@type": "sbol:SubComponent"
-        },
-        {
             "@id": "https://synbiohub.org/public/igem/i13504_system/SubComponent1",
             "sbol:instanceOf": {
                 "@id": "https://synbiohub.org/public/igem/i13504"
             },
             "sbol:displayId": "SubComponent1",
             "@type": "sbol:SubComponent"
-        },
-        {
-            "@id": "https://synbiohub.org/public/igem/i13504_system",
-            "sbol:hasFeature": {
-                "@id": "https://synbiohub.org/public/igem/i13504_system/SubComponent1"
-            },
-            "sbol:role": {
-                "@id": "SBO:0000289"
-            },
-            "sbol:name": "i13504 system",
-            "sbol:hasNamespace": {
-                "@id": "https://synbiohub.org/public/igem"
-            },
-            "sbol:type": {
-                "@id": "SBO:0000241"
-            },
-            "sbol:displayId": "i13504_system",
-            "@type": "sbol:Component"
-        },
-        {
-            "@id": "https://synbiohub.org/public/igem/j23101",
-            "sbol:role": {
-                "@id": "SO:0000704"
-            },
-            "sbol:hasNamespace": {
-                "@id": "https://synbiohub.org/public/igem"
-            },
-            "sbol:type": {
-                "@id": "SBO:0000251"
-            },
-            "sbol:displayId": "j23101",
-            "@type": "sbol:Component"
         }
     ],
     "@context": {

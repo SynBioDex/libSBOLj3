@@ -158,6 +158,11 @@ public class CombinatorialDerivation extends TopLevel{
 		RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, uri);
 	}
 	
+	public void setTemplate(@NotNull(message = "{COMBINATORIALDERIVATION_TEMPLATE_NOT_NULL}") URI template) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setTemplate", new Object[] {template}, URI.class);		
+		RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, template);
+	}
+	
 	public CombinatorialDerivationStrategy getStrategy() throws SBOLGraphException {
 		CombinatorialDerivationStrategy strategy=null;
 		

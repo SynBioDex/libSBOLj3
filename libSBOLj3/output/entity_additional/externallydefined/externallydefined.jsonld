@@ -1,6 +1,25 @@
 {
     "@graph": [
         {
+            "@id": "https://sbolstandard.org/examples/interlab16device1",
+            "sbol:hasFeature": [
+                {
+                    "@id": "https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2"
+                },
+                {
+                    "@id": "https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1"
+                }
+            ],
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples"
+            },
+            "sbol:type": {
+                "@id": "SBO:0000241"
+            },
+            "sbol:displayId": "interlab16device1",
+            "@type": "sbol:Component"
+        },
+        {
             "@id": "https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2",
             "sbol:definition": {
                 "@id": "http://uniprot.org/rfp"
@@ -21,25 +40,6 @@
             },
             "sbol:displayId": "ExternallyDefined1",
             "@type": "sbol:ExternallyDefined"
-        },
-        {
-            "@id": "https://sbolstandard.org/examples/interlab16device1",
-            "sbol:hasFeature": [
-                {
-                    "@id": "https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2"
-                },
-                {
-                    "@id": "https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1"
-                }
-            ],
-            "sbol:hasNamespace": {
-                "@id": "https://sbolstandard.org/examples"
-            },
-            "sbol:type": {
-                "@id": "SBO:0000241"
-            },
-            "sbol:displayId": "interlab16device1",
-            "@type": "sbol:Component"
         }
     ],
     "@context": {

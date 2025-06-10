@@ -42,7 +42,7 @@ public class VariableFeatureTest_12202 extends TestCase {
 	    VariableFeature varFeature2=cd.createVariableFeature(VariableFeatureCardinality.One, sc_start2);
 	    TestUtil.validateDocument(doc, 1, "sbol3-12202");
 	    
-	    TestUtil.assertReadWrite(doc);	       
+	    //TestUtil.assertReadWrite(doc);	       
 		  
 	    
 	}

@@ -30,7 +30,8 @@ public class CollectionTest extends TestCase {
         //Collections can be empty
         TestUtil.validateIdentified(col,doc,0);
                 
-        col.setMembers(Arrays.asList(TetR_protein.getUri(), LacI_protein.getUri()));
+        col.addUriMembers(Arrays.asList(TetR_protein.getUri()));
+        col.addMember(LacI_protein);
         //Collections can have members
         TestUtil.validateIdentified(col,doc,0); 
         

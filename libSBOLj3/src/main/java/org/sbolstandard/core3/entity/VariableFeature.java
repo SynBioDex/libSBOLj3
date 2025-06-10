@@ -95,6 +95,10 @@ public class VariableFeature extends Identified{
 		RDFUtil.setProperty(resource, DataModel.VariableFeature.variant, SBOLUtil.getURIs(variants));
 	}
 	
+	public void setVariantURIs(List<URI> variantURIs) {
+		RDFUtil.setProperty(resource, DataModel.VariableFeature.variant, variantURIs);
+	}
+	
 	public List<Collection> getVariantCollections() throws SBOLGraphException {
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variantCollection);
 		return addToList(DataModel.VariableFeature.variantCollection, Collection.class, DataModel.Collection.uri);
@@ -102,6 +106,10 @@ public class VariableFeature extends Identified{
 	
 	public void setVariantCollections(List<Collection> variantCollections) {
 		RDFUtil.setProperty(resource, DataModel.VariableFeature.variantCollection, SBOLUtil.getURIs(variantCollections));
+	}
+	
+	public void setVariantCollectionURIs(List<URI> variantCollectionURIs) {
+		RDFUtil.setProperty(resource, DataModel.VariableFeature.variantCollection, variantCollectionURIs);
 	}
 	
 	public List<CombinatorialDerivation> getVariantDerivations() throws SBOLGraphException {
@@ -113,6 +121,10 @@ public class VariableFeature extends Identified{
 		RDFUtil.setProperty(resource, DataModel.VariableFeature.variantDerivation, SBOLUtil.getURIs(variantDerivations));
 	}
 	
+	public void setVariantDerivationURIs(List<URI> variantDerivationURIs) {
+		RDFUtil.setProperty(resource, DataModel.VariableFeature.variantDerivation, variantDerivationURIs);
+	}
+	
 	public List<Measure> getVariantMeasures() throws SBOLGraphException {
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variantMeasure);
 		return addToList(DataModel.VariableFeature.variantMeasure, Measure.class, MeasureDataModel.Measure.uri);
@@ -120,6 +132,10 @@ public class VariableFeature extends Identified{
 	
 	public void setVariantMeasures(List<Measure> variantMeasures) {
 		RDFUtil.setProperty(resource, DataModel.VariableFeature.variantMeasure, SBOLUtil.getURIs(variantMeasures));
+	}
+	
+	public void setVariantMeasureURIs(List<URI> variantMeasureURIs) {
+		RDFUtil.setProperty(resource, DataModel.VariableFeature.variantMeasure, variantMeasureURIs);
 	}
 	
 	@Override

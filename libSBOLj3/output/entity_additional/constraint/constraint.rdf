@@ -10,20 +10,11 @@
     xmlns="https://synbiohub.org/public/igem/"
     xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/"
    xml:base="https://synbiohub.org/public/igem/">
-   <sbol:Component rdf:about="i13504_system">
-      <sbol:hasFeature>
-         <sbol:SubComponent rdf:about="i13504_system/SubComponent1">
-            <sbol:instanceOf>
-               <sbol:Component rdf:about="i13504"/>
-            </sbol:instanceOf>
-            <sbol:displayId>SubComponent1</sbol:displayId>
-         </sbol:SubComponent>
-      </sbol:hasFeature>
-      <sbol:role rdf:resource="https://identifiers.org/SBO:0000289"/>
-      <sbol:name>i13504 system</sbol:name>
+   <sbol:Component rdf:about="j23101">
+      <sbol:role rdf:resource="https://identifiers.org/SO:0000704"/>
       <sbol:hasNamespace rdf:resource="../igem"/>
-      <sbol:type rdf:resource="https://identifiers.org/SBO:0000241"/>
-      <sbol:displayId>i13504_system</sbol:displayId>
+      <sbol:type rdf:resource="https://identifiers.org/SBO:0000251"/>
+      <sbol:displayId>j23101</sbol:displayId>
    </sbol:Component>
    <sbol:Component rdf:about="i13504">
       <sbol:role rdf:resource="https://identifiers.org/SO:0000704"/>
@@ -40,19 +31,24 @@
                <sbol:ComponentReference rdf:about="interlab16device1/ComponentReference1">
                   <sbol:inChildOf>
                      <sbol:SubComponent rdf:about="interlab16device1/SubComponent1">
-                        <sbol:instanceOf rdf:resource="i13504_system"/>
+                        <sbol:instanceOf>
+                           <sbol:Component rdf:about="i13504_system"/>
+                        </sbol:instanceOf>
                         <sbol:displayId>SubComponent1</sbol:displayId>
                      </sbol:SubComponent>
                   </sbol:inChildOf>
-                  <sbol:refersTo rdf:resource="i13504_system/SubComponent1"/>
+                  <sbol:refersTo>
+                     <sbol:SubComponent rdf:about="i13504_system/SubComponent1">
+                        <sbol:instanceOf rdf:resource="i13504"/>
+                        <sbol:displayId>SubComponent1</sbol:displayId>
+                     </sbol:SubComponent>
+                  </sbol:refersTo>
                   <sbol:displayId>ComponentReference1</sbol:displayId>
                </sbol:ComponentReference>
             </sbol:object>
             <sbol:subject>
                <sbol:SubComponent rdf:about="interlab16device1/SubComponent2">
-                  <sbol:instanceOf>
-                     <sbol:Component rdf:about="j23101"/>
-                  </sbol:instanceOf>
+                  <sbol:instanceOf rdf:resource="j23101"/>
                   <sbol:displayId>SubComponent2</sbol:displayId>
                </sbol:SubComponent>
             </sbol:subject>
@@ -68,10 +64,12 @@
       <sbol:type rdf:resource="https://identifiers.org/SBO:0000251"/>
       <sbol:displayId>interlab16device1</sbol:displayId>
    </sbol:Component>
-   <sbol:Component rdf:about="j23101">
-      <sbol:role rdf:resource="https://identifiers.org/SO:0000704"/>
+   <sbol:Component rdf:about="i13504_system">
+      <sbol:hasFeature rdf:resource="i13504_system/SubComponent1"/>
+      <sbol:role rdf:resource="https://identifiers.org/SBO:0000289"/>
+      <sbol:name>i13504 system</sbol:name>
       <sbol:hasNamespace rdf:resource="../igem"/>
-      <sbol:type rdf:resource="https://identifiers.org/SBO:0000251"/>
-      <sbol:displayId>j23101</sbol:displayId>
+      <sbol:type rdf:resource="https://identifiers.org/SBO:0000241"/>
+      <sbol:displayId>i13504_system</sbol:displayId>
    </sbol:Component>
 </rdf:RDF>

@@ -44,7 +44,7 @@ public class ImplementationTest extends TestCase {
 		//SBOL_VALID_ENTITY_TYPES - Implementation.built
 		RDFUtil.setProperty(resource, DataModel.Implementation.built, attachment.getUri());
 		TestUtil.validateIdentified(impl,doc,1);
-		impl.setComponent(TetR_protein);
+		impl.setComponent(TetR_protein.getUri());
         TestUtil.validateIdentified(impl,doc,0);
 	
 	

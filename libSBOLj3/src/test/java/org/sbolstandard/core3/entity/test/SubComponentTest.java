@@ -31,7 +31,7 @@ public class SubComponentTest extends TestCase {
 		SBOLAPI.addSequence(doc, device, Encoding.NucleicAcid, "");
 		
 		Component term=SBOLAPI.createDnaComponent(doc, "B0015", "terminator", "B0015 double terminator", Role.Terminator,term_na);
-		SubComponent termSubComponent=device.createSubComponent(term);
+		SubComponent termSubComponent=device.createSubComponent(term.getUri());
 		termSubComponent.setOrientation(Orientation.inline);
 		
 		termSubComponent.getRoleIntegration();
@@ -57,7 +57,8 @@ public class SubComponentTest extends TestCase {
 	    TestUtil.validateIdentified(termSubComponent,doc,0);
 	    
 	    TestUtil.validateProperty(termSubComponent, "setInstanceOf", new Object[] {null}, Component.class);
-	    termSubComponent.setInstanceOf(null);	    
+	    URI nullURI=null;
+	    termSubComponent.setInstanceOf(nullURI);	    
 	    range.setEnd(Optional.empty());
 	    range2.setEnd(Optional.empty());
 	    TestUtil.validateIdentified(termSubComponent,doc,3);

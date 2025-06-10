@@ -706,10 +706,31 @@ public class Component extends TopLevel {
 		return feature;	
 	}
 	
+	/**
+	 * Creates a SubComponent object with its associated URI for a child Component</a>.
+	 * @param uri URI object of the SubComponent.
+	 * @param isInstanceOf Component to associate the SubComponent with.
+	 * @return A SubComponent object 
+	 * @throws SBOLGraphException
+	 */
+	public SubComponent createSubComponent(URI uri, URI isInstanceOf) throws SBOLGraphException
+	{
+		SubComponent feature = new SubComponent(this.resource.getModel(), uri);
+		feature.setInstanceOf(isInstanceOf);
+		addToList(feature, DataModel.Component.feature);
+		return feature;	
+	}
+	
 	private SubComponent createSubComponent(String displayId, Component isInstanceOf) throws SBOLGraphException
 	{
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
+	
+	private SubComponent createSubComponent(String displayId, URI isInstanceOf) throws SBOLGraphException
+	{
+		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
+	}
+	
 	
 	/**
 	 * Creates a SubComponent object with its associated Component.
@@ -722,6 +743,19 @@ public class Component extends TopLevel {
 		String displayId=SBOLAPI.createLocalName(DataModel.SubComponent.uri, getSubComponents());
 		return createSubComponent(displayId, isInstanceOf);
 	}
+	
+	/**
+	 * Creates a SubComponent object with its associated URI for a child Component.
+	 * @param isInstanceOf URI of a child Component.
+	 * @return A SubComponent object associated with this Component.
+	 * @throws SBOLGraphException
+	 */
+	public SubComponent createSubComponent(URI isInstanceOf) throws SBOLGraphException
+	{
+		String displayId=SBOLAPI.createLocalName(DataModel.SubComponent.uri, getSubComponents());
+		return createSubComponent(displayId, isInstanceOf);
+	}
+	
 	
 	@Valid
 	public List<ComponentReference> getComponentReferences() throws SBOLGraphException {
@@ -937,7 +971,6 @@ public class Component extends TopLevel {
 	
 	/*
 	private SequenceFeature createSequenceFeature2(String displayId, List<Location> locations) throws SBOLGraphException {
-		return createSequenceFeature2(SBOLAPI.append(this.getUri(), displayId), locations);
 	}
 	private SequenceFeature createSequenceFeature2(URI uri, List<Location> locations) throws SBOLGraphException {
 		SequenceFeature sequenceFeature= new SequenceFeature(this.resource.getModel(), uri);
@@ -969,7 +1002,7 @@ public class Component extends TopLevel {
 		return interaction;
 	}
 	
-	private Interaction createInteraction(String displayId, List<URI> types) throws SBOLGraphException {
+	public Interaction createInteraction(String displayId, List<URI> types) throws SBOLGraphException {
 		return createInteraction(SBOLAPI.append(this.getUri(), displayId), types);
 	}
 	

@@ -1,5 +1,7 @@
 package org.sbolstandard.core3.validation;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.List;
 import org.sbolstandard.core3.entity.Identified;
 import org.sbolstandard.core3.util.SBOLGraphException;
@@ -115,13 +117,26 @@ public class SBOLEntityAnnotationValidator implements ConstraintValidator<ValidS
     		{
     			valid=false;
     			context.disableDefaultConstraintViolation();
-    			context.buildConstraintViolationWithTemplate(e.getMessage() + " Exception: " + e.toString())
-                .addPropertyNode("error").addConstraintViolation();
+    			context.buildConstraintViolationWithTemplate(e.getMessage() + " Exception: " + getStackTraceAsString(e))
+                .addPropertyNode("Validation Error:").addConstraintViolation();
+    			e.printStackTrace();
+    			System.out.println(getStackTraceAsString(e));
     		}
     		
         }
     	return valid;
     }
+    
+    public String getStackTraceAsString(Throwable throwable) {
+        if (throwable == null) {
+            return "No exception provided.";
+        }
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        throwable.printStackTrace(pw);
+        return sw.toString();
+    }
+    
     
     private boolean addViolationPath(ConstraintViolationBuilder violationBuilder, ValidationMessage message)
     {

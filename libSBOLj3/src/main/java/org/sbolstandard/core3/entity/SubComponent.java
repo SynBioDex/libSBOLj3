@@ -186,6 +186,16 @@ public class SubComponent extends FeatureWithLocation{
 		RDFUtil.setProperty(this.resource, DataModel.SubComponent.instanceOf, SBOLUtil.toURI(isInstanceOf));	
 	}
 	
+	/**
+	 * 
+	 * @param isInstanceOf
+	 * @throws SBOLGraphException
+	 */
+	public void setInstanceOf(@NotNull(message = "{SUBCOMPONENT_ISINSTANCEOF_NOT_NULL}") URI isInstanceOf) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setInstanceOf", new Object[] {isInstanceOf}, URI.class);
+		RDFUtil.setProperty(this.resource, DataModel.SubComponent.instanceOf, isInstanceOf);	
+	}
+	
 	
 	/*private <T extends Location> List<T> merge2(List<T> list1, List<T> list2) throws SBOLGraphException
 	{

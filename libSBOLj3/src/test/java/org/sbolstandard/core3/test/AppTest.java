@@ -12,7 +12,9 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.riot.RDFFormat;
+import org.apache.jena.vocabulary.RDFS;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.Component;
 import org.sbolstandard.core3.entity.SBOLDocument;
@@ -193,8 +195,16 @@ public class AppTest
     {
     	reduce("../ontologies/edam.owl", "src/main/resources/edam.owl.reduced", "http://edamontology.org/", URINameSpace.EDAM.getUri().toString());	
     	reduce("../ontologies/so-simple.owl", "src/main/resources/so-simple.owl.reduced", "http://purl.obolibrary.org/obo/SO_", URINameSpace.SO.getUri().toString());	
-    	reduce("../ontologies/sbo.owl", "src/main/resources/sbo.owl.reduced", "http://biomodels.net/SBO/SBO_", URINameSpace.SBO.getUri().toString());	
+    	reduce("../ontologies/sbo.owl", "src/main/resources/sbo.owl.reduced", "http://biomodels.net/SBO/SBO_", URINameSpace.SBO.getUri().toString());	    
+    	addSubClass("src/main/resources/sbo.owl.reduced", ParticipationRole.Promoter.getUri(), URINameSpace.SBO.local("0000003"));
     }
+    
+	private void addSubClass(String file, URI subClassURI, URI superClassURI) throws IOException {
+		Model model = RDFUtil.read(new File(file),RDFFormat.TURTLE);
+		Resource child=model.getResource(subClassURI.toString());
+		RDFUtil.addProperty(child, URI.create(RDFS.subClassOf.getURI()), superClassURI);
+		RDFUtil.write(model, new File(file), RDFFormat.TURTLE);
+	}
     //http://purl.obolibrary.org/obo/SO_
     private void reduce(String sourceFile, String destinationFile, String search, String replaceWith) throws IOException
     {

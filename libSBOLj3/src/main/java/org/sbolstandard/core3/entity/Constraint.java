@@ -379,6 +379,11 @@ public class Constraint extends Identified{
 		PropertyValidator.getValidator().validate(this, "setSubject", new Object[] {subject}, Feature.class);
 		RDFUtil.setProperty(resource, DataModel.Constraint.subject, SBOLUtil.toURI(subject));
 	}
+	
+	public void setSubjectURI(@NotNull(message = "{CONSTRAINT_SUBJECT_NOT_NULL}") URI subjectURI) throws SBOLGraphException{
+		PropertyValidator.getValidator().validate(this, "setSubject", new Object[] {subjectURI}, URI.class);
+		RDFUtil.setProperty(resource, DataModel.Constraint.subject, subjectURI);
+	}
 
 	@NotNull(message = "{CONSTRAINT_OBJECT_NOT_NULL}")
 	public Feature getObject() throws SBOLGraphException {
@@ -389,6 +394,11 @@ public class Constraint extends Identified{
 	public void setObject(@NotNull(message = "{CONSTRAINT_OBJECT_NOT_NULL}") Feature object) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setObject", new Object[] {object}, Feature.class);
 		RDFUtil.setProperty(resource, DataModel.Constraint.object, SBOLUtil.toURI(object));
+	}
+	
+	public void setObjectURI(@NotNull(message = "{CONSTRAINT_OBJECT_NOT_NULL}") URI objectURI) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setObject", new Object[] {objectURI}, URI.class);
+		RDFUtil.setProperty(resource, DataModel.Constraint.object, objectURI);
 	}
 
 	@Override
