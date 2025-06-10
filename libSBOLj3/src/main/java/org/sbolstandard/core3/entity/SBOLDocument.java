@@ -791,19 +791,26 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 			{
 				constructor.setAccessible(true);
 			}
-			Identified entity= (Identified)constructor.newInstance(new Object[]{res});
 			
-			URI type=entity.getResourceType();
-			boolean hasType=RDFUtil.hasType(model, res, type);
-			
-			if (hasType)
-			{
-				return (T)entity;
+			if (res.getProperty(RDF.type)!=null) {			
+				Identified entity= (Identified)constructor.newInstance(new Object[]{res});
+				
+				URI type=entity.getResourceType();
+				boolean hasType=RDFUtil.hasType(model, res, type);
+				
+				if (hasType)
+				{
+					return (T)entity;
+				}
+				else
+				{
+					return null;
+				}	
 			}
 			else
 			{
 				return null;
-			}	
+			}
 		}
 		catch (Exception ex)
 		{
@@ -824,15 +831,17 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 				{
 					constructor.setAccessible(true);
 				}
-				Identified entity= (Identified)constructor.newInstance(new Object[]{res});
-				
-				URI type=entity.getResourceType();
-				boolean hasType=RDFUtil.hasType(model, res, type);
-				
-				if (hasType)
-				{
-					return (T)entity;
-				}					
+				if (res.getProperty(RDF.type)!=null) {	
+					Identified entity= (Identified)constructor.newInstance(new Object[]{res});
+					
+					URI type=entity.getResourceType();
+					boolean hasType=RDFUtil.hasType(model, res, type);
+					
+					if (hasType)
+					{
+						return (T)entity;
+					}	
+				}
 			}
 		}
 		catch (Exception ex)
