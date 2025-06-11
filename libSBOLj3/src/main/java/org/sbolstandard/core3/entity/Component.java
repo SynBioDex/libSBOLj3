@@ -952,18 +952,19 @@ public class Component extends TopLevel {
 		return feature;
 	}
 	
+	
 	private SequenceFeature createSequenceFeature() throws SBOLGraphException {
 		String displayId=SBOLAPI.createLocalName(DataModel.SequenceFeature.uri, getSequenceFeatures());	
 		SequenceFeature seqFeature=createSequenceFeature(displayId);
 		return seqFeature;
 	}
-	
-	private SequenceFeature createSequenceFeature(String displayId) throws SBOLGraphException {
+		
+	public SequenceFeature createSequenceFeature(String displayId) throws SBOLGraphException {
 		SequenceFeature seqFeature=createSequenceFeature(SBOLAPI.append(this.getUri(), displayId));
 		return seqFeature;
 	}
 	
-	private SequenceFeature createSequenceFeature(URI uri) throws SBOLGraphException {
+	public SequenceFeature createSequenceFeature(URI uri) throws SBOLGraphException {
 		SequenceFeature sequenceFeature= new SequenceFeature(this.resource.getModel(), uri);
 		RDFUtil.addProperty(resource, DataModel.Component.feature, sequenceFeature.getUri());
 		return sequenceFeature;	
