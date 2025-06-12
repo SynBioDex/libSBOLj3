@@ -721,7 +721,7 @@ public class Component extends TopLevel {
 		return feature;	
 	}
 	
-	private SubComponent createSubComponent(String displayId, Component isInstanceOf) throws SBOLGraphException
+	public SubComponent createSubComponent(String displayId, Component isInstanceOf) throws SBOLGraphException
 	{
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
