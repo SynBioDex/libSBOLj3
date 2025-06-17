@@ -726,7 +726,7 @@ public class Component extends TopLevel {
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
 	
-	private SubComponent createSubComponent(String displayId, URI isInstanceOf) throws SBOLGraphException
+	public SubComponent createSubComponent(String displayId, URI isInstanceOf) throws SBOLGraphException
 	{
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
@@ -953,7 +953,7 @@ public class Component extends TopLevel {
 	}
 	
 	
-	private SequenceFeature createSequenceFeature() throws SBOLGraphException {
+	public SequenceFeature createSequenceFeature() throws SBOLGraphException {
 		String displayId=SBOLAPI.createLocalName(DataModel.SequenceFeature.uri, getSequenceFeatures());	
 		SequenceFeature seqFeature=createSequenceFeature(displayId);
 		return seqFeature;
@@ -1047,7 +1047,7 @@ public class Component extends TopLevel {
 		return constraint;
 	}
 	
-	private Constraint createConstraint(String displayId, URI restriction, Feature subject, Feature object) throws SBOLGraphException {
+	public Constraint createConstraint(String displayId, URI restriction, Feature subject, Feature object) throws SBOLGraphException {
 		return createConstraint(SBOLAPI.append(this.getUri(), displayId), restriction, subject, object);
 	}
 	
