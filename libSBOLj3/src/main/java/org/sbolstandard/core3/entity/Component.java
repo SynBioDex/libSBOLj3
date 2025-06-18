@@ -726,6 +726,7 @@ public class Component extends TopLevel {
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
 	
+	
 	public SubComponent createSubComponent(String displayId, URI isInstanceOf) throws SBOLGraphException
 	{
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
