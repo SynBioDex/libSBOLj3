@@ -15,9 +15,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-
-import org.apache.commons.compress.harmony.unpack200.bytecode.forms.ThisFieldRefForm;
 import org.apache.commons.io.IOUtils;
+import org.apache.jena.datatypes.RDFDatatype;
+import org.apache.jena.datatypes.xsd.XSDDatatype;
 import org.apache.jena.datatypes.xsd.impl.XSDFloat;
 import org.apache.jena.query.ARQ;
 import org.apache.jena.query.Query;
@@ -44,6 +44,7 @@ import org.apache.jena.riot.RDFWriterBuilder;
 import org.apache.jena.riot.SysRIOT;
 import org.apache.jena.sparql.util.Context;
 import org.apache.jena.vocabulary.RDF;
+import org.sbolstandard.core3.vocabulary.DataModel;
 
 //IO: https://jena.apache.org/documentation/io/rdf-input.html
 //https://jena.apache.org/tutorials/rdf_api.html#ch-Writing-RDF
@@ -269,6 +270,64 @@ public class RDFUtil {
 		if (value!=null){
 			Property p=resource.getModel().createProperty(property.toString());
 			resource.addProperty(p, value);	
+		}
+	}
+	
+	/**
+	 * Adds an integer property to the the RDF resource.
+	 * @param resource The resource to be updated.
+	 * @param property The property to be added.
+	 * @param value The value of the property to be applied as a string.
+	 */
+	public static void addProperty(Resource resource, URI property, Integer value)
+	{
+		if (value!=null){
+			Property p=resource.getModel().createProperty(property.toString());
+			resource.addProperty(p, String.valueOf(value.intValue()), XSDDatatype.XSDint) ;	
+			
+		}
+	}
+	
+	/**
+	 * Adds a long property to the the RDF resource.
+	 * @param resource The resource to be updated.
+	 * @param property The property to be added.
+	 * @param value The value of the property to be applied as a string.
+	 */
+	public static void addProperty(Resource resource, URI property, Long value)
+	{
+		if (value!=null){
+			Property p=resource.getModel().createProperty(property.toString());
+			resource.addProperty(p, String.valueOf(value.longValue()), XSDDatatype.XSDlong) ;	
+			
+		}
+	}
+	
+	/**
+	 * Adds a boolean property to the the RDF resource.
+	 * @param resource The resource to be updated.
+	 * @param property The property to be added.
+	 * @param value The value of the property to be applied as a string.
+	 */
+	public static void addProperty(Resource resource, URI property, Boolean value)
+	{
+		if (value!=null){
+			Property p=resource.getModel().createProperty(property.toString());
+			resource.addProperty(p, String.valueOf(value.booleanValue()), XSDDatatype.XSDboolean);				
+		}
+	}
+	
+	/**
+	 * Adds a double property to the the RDF resource.
+	 * @param resource The resource to be updated.
+	 * @param property The property to be added.
+	 * @param value The value of the property to be applied as a string.
+	 */
+	public static void addProperty(Resource resource, URI property, Double value)
+	{
+		if (value!=null){
+			Property p=resource.getModel().createProperty(property.toString());
+			resource.addProperty(p, String.valueOf(value.doubleValue()), XSDDatatype.XSDdouble);				
 		}
 	}
 	
@@ -593,6 +652,31 @@ public class RDFUtil {
 				}
 			}
 			return validRDFTypes;
+		}
+	    
+	    /**
+	     * Gets all valid RDF types from a resource except the given one.
+	     * @param resource
+	     * @param exceptURI
+	     * @return
+	     * @throws SBOLGraphException
+	     */
+	    public static List<URI> getRDFTypesExcept(Resource resource, URI exceptURI) throws SBOLGraphException
+		{
+	    	List<URI> types=RDFUtil.getPropertiesAsURIs(resource, URI.create(RDF.type.getURI()));
+	    	List<URI> validRDFTypes=null;
+
+	    	if (types!=null){
+	    		for (URI typeURI: types){
+	    			if (!typeURI.toString().toLowerCase().equals(exceptURI.toString().toLowerCase())){
+	    				if (validRDFTypes==null){
+	    					validRDFTypes=new ArrayList<URI>();
+	    				}
+	    				validRDFTypes.add(typeURI);
+	    			}
+	    		}
+	    	}		
+	    	return validRDFTypes;
 		}
 	    
 	   
@@ -1091,7 +1175,7 @@ public class RDFUtil {
 	    	}	    		
 	    	return messages;
 	    }
-	    
+	    	
 }
 
 /*

@@ -44,6 +44,12 @@
       "value" : "http://parts.igem.org/IGEMUsage"
     }
      ] ,
+    "http://parts.igem.org/uses2" : [ { 
+      "type" : "literal" ,
+      "value" : "442" ,
+      "datatype" : "http://www.w3.org/2001/XMLSchema#int"
+    }
+     ] ,
     "http://parts.igem.org/uses" : [ { 
       "type" : "literal" ,
       "value" : "442"

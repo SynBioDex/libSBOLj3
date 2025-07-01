@@ -10,9 +10,9 @@
     xmlns="https://sbolstandard.org/examples/"
     xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/"
    xml:base="https://sbolstandard.org/examples/">
-   <sbol:Component rdf:about="urn:uuid:c568e817-23fe-4cfb-9c8e-5a6e3f35b7e7">
+   <sbol:Component rdf:about="urn:uuid:b8d1c40a-4396-4962-aec1-da115bb4ded9">
       <sbol:name>TetR</sbol:name>
-      <sbol:hasNamespace rdf:resource="urn:uuid:53b80f82-8f3b-42ae-b81d-d36cec3e368a"/>
+      <sbol:hasNamespace rdf:resource="urn:uuid:9802d413-b95c-4c35-89cb-1320c0c80624"/>
       <sbol:type rdf:resource="https://identifiers.org/SBO:0000252"/>
    </sbol:Component>
 </rdf:RDF>

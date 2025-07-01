@@ -5,17 +5,20 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.regex.Matcher;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Property;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.vocabulary.RDF;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.measure.Measure;
 import org.sbolstandard.core3.entity.measure.Unit;
@@ -611,6 +614,21 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		RDFUtil.addProperty(resource, property, value);
 	}
 	
+	public void addAnnotion(URI property, Integer value)
+	{
+		RDFUtil.addProperty(resource, property, value);
+	}
+	
+	public void addAnnotion(URI property, Boolean value)
+	{
+		RDFUtil.addProperty(resource, property, value);
+	}
+	
+	public void addAnnotion(URI property, Double value)
+	{
+		RDFUtil.addProperty(resource, property, value);
+	}
+	
 	public void addAnnotion(URI property, URI value)
 	{
 		RDFUtil.addProperty(resource, property, value);
@@ -631,6 +649,12 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		RDFUtil.addType(resource, typeURI);
 	}
 	
+	/**
+	 * Returns a TopLevel or a MetaData entity, if such an entity exist. Other URI and Literal values matching the property are also returned.
+	 * @param propertyURI
+	 * @return
+	 * @throws SBOLGraphException
+	 */
 	public List<Object> getAnnotion(URI propertyURI) throws SBOLGraphException
 	{
 		ArrayList<Object> values=null;
@@ -673,7 +697,112 @@ public abstract class Identified implements ValidatableSBOLEntity {
         return values;		
 	}
 	
-		 	 
+	private boolean isAnnotationProperty(String property)
+	{
+		boolean value=true;
+		if (property.toLowerCase().startsWith(URINameSpace.SBOL.getUri().toString().toLowerCase())){
+			value= false;
+		}
+		else if (property.toLowerCase().startsWith(URINameSpace.PROV.getUri().toString().toLowerCase())){
+			value=false;
+		}
+		else if (property.toLowerCase().equals(RDF.type.getURI().toLowerCase())){
+			value=false;
+		}				
+		return value;
+	}
+	
+	/**
+	 * Extracts property-value pairs. Values can be URIs, literal values, Metadata entities or TopLevelMetadata entities.
+	 * @return
+	 * @throws SBOLGraphException
+	 */
+	public List<Pair<URI, Object>> getAnnotations() throws SBOLGraphException
+	{
+		List<Pair<URI, Object>> values=null;
+		for (StmtIterator iterator=resource.listProperties();iterator.hasNext();){        	
+        	Statement stmt=iterator.next();
+        	RDFNode object=stmt.getObject();
+        	String property=stmt.getPredicate().getURI();  
+        	//Extract non-SBOL properties
+        	if (isAnnotationProperty(property)){
+        		URI propertyURI=URI.create(property);
+            	
+	        	if (values==null){
+	        		values=new ArrayList<Pair<URI, Object>>();
+	        	}
+	        	if (object.isResource()) {
+	        		if (object.asResource().listProperties().hasNext()==false){
+	        			values.add(Pair.of(propertyURI, object.asResource().getURI()));
+	        		}
+	        		else{
+	        			Resource metadataResource=object.asResource();
+	        			if (RDFUtil.hasType(metadataResource.getModel(), metadataResource, DataModel.TopLevel.uri)){
+	        				values.add(Pair.of(propertyURI,  new TopLevelMetadata(metadataResource)));
+	        			}
+	        			else if (RDFUtil.hasType(metadataResource.getModel(), metadataResource, DataModel.Identified.uri)){
+	        				values.add(Pair.of(propertyURI,  new Metadata(metadataResource)));	    	        			        				
+	        			}	  
+	        			else { //Value is an SBOL entity, add as a URI
+	        				values.add(Pair.of(propertyURI, object.asResource().getURI()));
+	        			}
+	        		}
+	        	}
+	        	else{
+	        		values.add(Pair.of(propertyURI, object.asLiteral().getValue()));
+	        	}
+        	}        	        		
+        }
+        return values;		
+	}
+	
+	public List<Metadata> getMetadataEntites() throws SBOLGraphException
+	{
+		ArrayList<Metadata> values=null;
+        for (StmtIterator iterator=resource.listProperties();iterator.hasNext();){        	
+        	Statement stmt=iterator.next();
+        	RDFNode object=stmt.getObject();
+        	
+        	if (object.isResource()) {
+        		Resource metadataResource=object.asResource();
+        		Metadata metadata=null;
+        		if (RDFUtil.hasType(metadataResource.getModel(), metadataResource, DataModel.Identified.uri)){        				
+        			metadata=new Metadata(metadataResource);
+        			if (values==null){
+                    	values=new ArrayList<Metadata>();
+                    }
+            		values.add(metadata); 
+        		}        			        		       		
+        	}        	
+        }
+        return values;		
+	}
+	
+	
+	/*
+	public List<Metadata> getAnnotations() throws SBOLGraphException {
+		return addToList(resource,null, DataModel.Identified.uri,Metadata.class);
+	}
+	
+	private <T extends Identified>  List<T> addToList(Resource resource, List<T> items, URI entityType, Class<T> identifiedClass) throws SBOLGraphException
+	{
+		if (items==null)
+		{
+			List<Resource> resources= RDFUtil.getResourcesWithProperty(resource, URI.create(RDF.type.getURI()), entityType);
+			//List<Resource> resources=RDFUtil.getResourcesOfType(resource, entityType);
+			if (resources!=null && resources.size()>0)
+			{
+				items=new ArrayList<T>();
+				for (Resource res:resources)
+				{
+					Identified identified=createIdentified(res, identifiedClass) ;
+					items.add((T)identified);
+				}
+			}
+		}
+		return items;
+	}*/
+	
 	 
 	/*private boolean hasSBOLType (List<URI> types){
 		boolean result=false;
@@ -690,7 +819,7 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		}
 		return result;
 	}*/
-	
+	/*Commented on 24 June 2025
 	private void inferDisplayId(URI uri) throws SBOLGraphException {
 		String displayId = getDisplayId();
 		if (StringUtils.isEmpty(displayId)) {
@@ -718,8 +847,18 @@ public abstract class Identified implements ValidatableSBOLEntity {
 			}	
 		}
 	}
+	*/
+	private void inferDisplayId(URI uri) throws SBOLGraphException {
+		String displayId = getDisplayId();
+		if (StringUtils.isEmpty(displayId)) {
+			String result = SBOLAPI.inferDisplayId(uri);
+			if (!StringUtils.isEmpty(result)){
+				setDisplayId(result);
+			}			
+		}
+	}
 	
-	
+		
 	public List<URI> filterIdentifieds(List<URI> identifieds, URI property, String value)
 	{
 		return RDFUtil.filterItems(this.resource.getModel(), identifieds, property, value);
