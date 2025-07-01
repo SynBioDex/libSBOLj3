@@ -779,7 +779,7 @@ public class Component extends TopLevel {
 		return componentReference;	
 	}
 	
-	private ComponentReference createComponentReference(String displayId, Feature feature, SubComponent inChildOf) throws SBOLGraphException {
+	public ComponentReference createComponentReference(String displayId, Feature feature, SubComponent inChildOf) throws SBOLGraphException {
 		return createComponentReference(SBOLAPI.append(this.getUri(), displayId), feature, inChildOf);	
 	}
 	

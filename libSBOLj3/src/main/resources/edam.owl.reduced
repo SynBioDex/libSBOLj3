@@ -7043,7 +7043,7 @@ oboInOwl:ObsoleteClass
 
 :topic_3053  rdfs:subClassOf  :topic_3070 .
 
-:data_1066  rdfs:subClassOf  :data_0976 , :data_2091;
+:data_1066  rdfs:subClassOf  :data_2091 , :data_0976;
         rdfs:subClassOf  []  .
 
 :format_3880  rdfs:subClassOf  :format_2033 , :format_2330 , :format_3879 .
