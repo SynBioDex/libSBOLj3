@@ -86,7 +86,7 @@ public class Sequence extends TopLevel {
 		Encoding enc = Encoding.get(this.getEncoding());
 		if (elements!=null && !elements.isEmpty() && enc != null) {
 			if (enc.equals(Encoding.AminoAcid)) {
-				Pattern patternAA = Pattern.compile("^[ARNDCQEGHILKMFPSTWYVX]+$", Pattern.CASE_INSENSITIVE); // compiled from list of characters at https://iupac.qmul.ac.uk/AminoAcid/AA1n2.html
+				Pattern patternAA = Pattern.compile("^[ARNDCQEGHILKMFPSTWYVX-]+$", Pattern.CASE_INSENSITIVE); // compiled from list of characters at https://iupac.qmul.ac.uk/AminoAcid/AA1n2.html
 				Matcher matcherAA = patternAA.matcher(elements);
 				if (!matcherAA.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(

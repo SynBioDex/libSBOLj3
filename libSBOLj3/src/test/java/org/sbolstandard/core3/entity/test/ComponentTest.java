@@ -257,6 +257,12 @@ public class ComponentTest extends TestCase {
         TestUtil.validateIdentified(seqAA, 1);
         seqAA.setElements("ATgd");
         TestUtil.validateIdentified(seqAA, 0);
+        seqAA.setElements("AT.");
+        TestUtil.validateIdentified(seqAA, 1);
+        seqAA.setElements("AT-");
+        TestUtil.validateIdentified(seqAA, 0);
+        
+        
 
         Sequence seqNA = doc.createSequence("seqNA");
         seqNA.setEncoding(Encoding.NucleicAcid);

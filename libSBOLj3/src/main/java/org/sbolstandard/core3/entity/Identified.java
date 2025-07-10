@@ -733,7 +733,7 @@ public abstract class Identified implements ValidatableSBOLEntity {
 	        	}
 	        	if (object.isResource()) {
 	        		if (object.asResource().listProperties().hasNext()==false){
-	        			values.add(Pair.of(propertyURI, object.asResource().getURI()));
+	        			values.add(Pair.of(propertyURI, URI.create(object.asResource().getURI())));
 	        		}
 	        		else{
 	        			Resource metadataResource=object.asResource();
@@ -744,7 +744,7 @@ public abstract class Identified implements ValidatableSBOLEntity {
 	        				values.add(Pair.of(propertyURI,  new Metadata(metadataResource)));	    	        			        				
 	        			}	  
 	        			else { //Value is an SBOL entity, add as a URI
-	        				values.add(Pair.of(propertyURI, object.asResource().getURI()));
+	        				values.add(Pair.of(propertyURI, URI.create(object.asResource().getURI())));
 	        			}
 	        		}
 	        	}
