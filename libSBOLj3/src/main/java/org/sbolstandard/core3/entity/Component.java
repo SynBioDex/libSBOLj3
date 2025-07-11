@@ -328,7 +328,11 @@ public class Component extends TopLevel {
 				if (feature instanceof SubComponent){
 					SubComponent subComponent=(SubComponent) feature;
 					List<Location> locations = subComponent.getSourceLocations();
-					validationMessages= validateComponentLocation(validationMessages, locations, subComponent, sequences, entireSequences, DataModel.SubComponent.sourceLocation, "{LOCATION_SOURCE_SEQUENCE_VALID}");		
+					if (locations!=null && !locations.isEmpty()){
+						List<Sequence> subComponentSequences = subComponent.getInstanceOf().getSequences();
+						List<Sequence> entireSequencesOfSubComponent = getEntireSequences(subComponent.getInstanceOf().getFeatures());					
+						validationMessages= validateComponentLocation(validationMessages, locations, subComponent, subComponentSequences, entireSequencesOfSubComponent, DataModel.SubComponent.sourceLocation, "{LOCATION_SOURCE_SEQUENCE_VALID}");		
+					}
 				}
 			}
 		}
@@ -350,7 +354,8 @@ public class Component extends TopLevel {
 					if (locSequence != null) {
 						if (sequences != null && SBOLUtil.contains(sequences, locSequence)) {
 							valid = true;
-						} else if (entireSequences != null && SBOLUtil.contains(entireSequences, locSequence)) {
+						} 
+						else if (entireSequences != null && SBOLUtil.contains(entireSequences, locSequence)) {
 							valid = true;
 						}
 					}
@@ -364,6 +369,7 @@ public class Component extends TopLevel {
 		}
 		return validationMessages;
 	}
+			
 			
 	private List<Sequence> getEntireSequences(List<Feature> features) throws SBOLGraphException {
 		List<Sequence> entireSequences = null;

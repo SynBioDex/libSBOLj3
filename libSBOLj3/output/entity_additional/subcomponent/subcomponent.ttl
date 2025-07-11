@@ -34,12 +34,11 @@ PREFIX sbol:  <http://sbols.org/v3#>
         sbol:start        "1" .
 
 <i13504/SubComponent1>
-        a                    sbol:SubComponent;
-        sbol:displayId       "SubComponent1";
-        sbol:hasLocation     <i13504/SubComponent1/Range1>;
-        sbol:instanceOf      :B0015;
-        sbol:orientation     SO:0001030;
-        sbol:sourceLocation  <i13504/SubComponent1/Range2> .
+        a                 sbol:SubComponent;
+        sbol:displayId    "SubComponent1";
+        sbol:hasLocation  <i13504/SubComponent1/Range1>;
+        sbol:instanceOf   :B0015;
+        sbol:orientation  SO:0001030 .
 
 :B0015  a                  sbol:Component;
         sbol:description   "B0015 double terminator";
@@ -57,10 +56,3 @@ PREFIX sbol:  <http://sbols.org/v3#>
         sbol:encoding      EDAM:format_1207;
         sbol:hasNamespace  <../igem>;
         sbol:name          "Sequence1" .
-
-<i13504/SubComponent1/Range2>
-        a                 sbol:Range;
-        sbol:displayId    "Range2";
-        sbol:end          "80";
-        sbol:hasSequence  :i13504_Sequence1;
-        sbol:start        "1" .

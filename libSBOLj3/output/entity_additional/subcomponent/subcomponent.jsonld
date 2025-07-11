@@ -22,9 +22,6 @@
         },
         {
             "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1",
-            "sbol:sourceLocation": {
-                "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1/Range2"
-            },
             "sbol:hasLocation": {
                 "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1/Range1"
             },
@@ -76,16 +73,6 @@
                 "@id": "https://synbiohub.org/public/igem/i13504_Sequence1"
             },
             "sbol:displayId": "Range1",
-            "@type": "sbol:Range"
-        },
-        {
-            "@id": "https://synbiohub.org/public/igem/i13504/SubComponent1/Range2",
-            "sbol:end": "80",
-            "sbol:start": "1",
-            "sbol:hasSequence": {
-                "@id": "https://synbiohub.org/public/igem/i13504_Sequence1"
-            },
-            "sbol:displayId": "Range2",
             "@type": "sbol:Range"
         },
         {

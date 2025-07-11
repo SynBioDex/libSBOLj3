@@ -65,8 +65,7 @@ public class SubComponent extends FeatureWithLocation{
 				
 				int sourceLength= getLocationLength(sourceLocations);
 				int locationLength= getLocationLength(locations);
-				if (sourceLength!=locationLength)
-				{
+				if (sourceLength!=locationLength){
 					String message=String.format("%s ADDITIONAL INFORMATION: Calculated source location length:%s, Calculated location length:%s", 
 							"{SUBCOMPONENT_LOCATIONS_AND_SOURCE_LOCATION_LENGTHS_MATCH}", sourceLength, locationLength);
 					
@@ -77,19 +76,18 @@ public class SubComponent extends FeatureWithLocation{
 			{//SUBCOMPONENT_LOCATIONS_AND_NO_SOURCE_LOCATION_LENGTHS_MATCH = 
 			//sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence.
 				Component instanceOfComponent = this.getInstanceOf();
-				List<Sequence> seqsOfInstanceOfComponent= instanceOfComponent.getSequences();
-				if (seqsOfInstanceOfComponent!=null && seqsOfInstanceOfComponent.size()==1)
-				{
-					String elements=seqsOfInstanceOfComponent.get(0).getElements();
-					if (elements!=null)
-					{
-						int locationLength= getLocationLength(locations);
-						int elementsLength=elements.length();
-						if (elementsLength!=locationLength)
-						{
-							String message=String.format("%s ADDITIONAL INFORMATION: Sequence length:%s, Calculated location length:%s, Sequence: %s", 
-									"{SUBCOMPONENT_LOCATIONS_AND_NO_SOURCE_LOCATION_LENGTHS_MATCH}", elementsLength, locationLength, seqsOfInstanceOfComponent.get(0).getUri());
-							validationMessages= addToValidations(validationMessages,new ValidationMessage(message, DataModel.SubComponent.location, SBOLUtil.getURIs(locations)));      		
+				if (instanceOfComponent!=null){
+					List<Sequence> seqsOfInstanceOfComponent= instanceOfComponent.getSequences();
+					if (seqsOfInstanceOfComponent!=null && seqsOfInstanceOfComponent.size()==1){
+						String elements=seqsOfInstanceOfComponent.get(0).getElements();
+						if (elements!=null){
+							int locationLength= getLocationLength(locations);
+							int elementsLength=elements.length();
+							if (elementsLength!=locationLength){
+								String message=String.format("%s ADDITIONAL INFORMATION: Sequence length:%s, Calculated location length:%s, Sequence: %s", 
+										"{SUBCOMPONENT_LOCATIONS_AND_NO_SOURCE_LOCATION_LENGTHS_MATCH}", elementsLength, locationLength, seqsOfInstanceOfComponent.get(0).getUri());
+								validationMessages= addToValidations(validationMessages,new ValidationMessage(message, DataModel.SubComponent.location, SBOLUtil.getURIs(locations)));      		
+							}
 						}
 					}
 				}
