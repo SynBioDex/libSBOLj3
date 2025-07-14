@@ -572,7 +572,7 @@ public class Component extends TopLevel {
 	}
 	
 	/**
-	 * Adds an additional role to the component's existing list.
+	 * Adds an additional role to the component's existing lists
 	 * @param role URI object of the role to add.
 	 */
 	public void addRole(URI role) {
@@ -1152,6 +1152,23 @@ public class Component extends TopLevel {
 	 */
 	public void setModels(List<Model> models) {
 		RDFUtil.setProperty(resource, DataModel.Component.model, SBOLUtil.getURIs(models));
+	}
+	
+	/**
+	 * Adds a model using its URI.
+	 * @param Model URI to add.
+	 */
+	public void addModel(URI uri) {
+		RDFUtil.addProperty(resource, DataModel.Component.model, uri);
+	}
+	
+	
+	/**
+	* Adds a model.
+	* @param Model to add.
+	*/
+	public void addModel(Model model) {
+		addModel(model.getUri());
 	}
 	
 	/**

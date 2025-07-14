@@ -254,13 +254,13 @@ public class ComponentTest extends TestCase {
         Sequence seqAA = doc.createSequence("seqAA");
         seqAA.setEncoding(Encoding.AminoAcid);
         seqAA.setElements("ATgz");
-        TestUtil.validateIdentified(seqAA, 1);
+        TestUtil.validateIdentified(seqAA, 0);
         seqAA.setElements("ATgd");
         TestUtil.validateIdentified(seqAA, 0);
         seqAA.setElements("AT.");
         TestUtil.validateIdentified(seqAA, 1);
         seqAA.setElements("AT-");
-        TestUtil.validateIdentified(seqAA, 0);
+        TestUtil.validateIdentified(seqAA, 1);
         
         
 
