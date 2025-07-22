@@ -188,14 +188,17 @@ public class Component extends TopLevel {
 		if (sequences != null && types != null) {
 			for (URI componentTypeURI : types) {
 				boolean foundTypeMatch = false;
-
+				//boolean atLeastOneEncodingExists=false;
 				ComponentType componentType = ComponentType.get(componentTypeURI);
 				if(componentType != null) {
 					List<Encoding> typeMatches = ComponentType.checkComponentTypeMatch(componentType);
 					outerloop:
 					for (Sequence sequence : sequences) {
+						if (sequence.getElements() != null && sequence.getElements().length() > 0) {
+						}
 						Encoding encoding = Encoding.get(sequence.getEncoding());
 						if (encoding != null) {
+							//atLeastOneEncodingExists = true;
 							for (Encoding typeURI: typeMatches) {
 								if(typeURI.getUri().equals(encoding.getUri())) {
 									foundTypeMatch = true;
@@ -205,10 +208,11 @@ public class Component extends TopLevel {
 						}
 					}
 					
-					if (!foundTypeMatch) {
-						validationMessages = addToValidations(validationMessages,
-								new ValidationMessage("{COMPONENT_TYPE_SEQUENCE_TYPE_MATCH_COMPONENT_TYPE}",
-										DataModel.type, componentType));
+					if (!foundTypeMatch){
+						//if (atLeastOneEncodingExists && Configuration.getInstance().isCompleteDocument()) {
+							validationMessages = addToValidations(validationMessages,
+								new ValidationMessage("{COMPONENT_TYPE_SEQUENCE_TYPE_MATCH_COMPONENT_TYPE}", DataModel.type, componentType));
+						//}
 					}
 				
 				}
@@ -596,10 +600,34 @@ public class Component extends TopLevel {
 	
 	/**
 	 * Sets the sequences for the current component.
-	 * @param sequences URI objects of the sequences to set.
+	 * @param sequences Sequence entities.
 	 */
 	public void setSequences(List<Sequence> sequences) {
-		RDFUtil.setProperty(resource, DataModel.Component.sequence, SBOLUtil.getURIs(sequences));
+		setSequenceURIs(SBOLUtil.getURIs(sequences));
+	}
+	
+	/**
+	 * Sets the sequences for the current component.
+	 * @param sequences URIs of the sequence entities.
+	 */
+	public void setSequenceURIs(List<URI> sequenceURIs) {
+		RDFUtil.setProperty(resource, DataModel.Component.sequence, sequenceURIs);
+	}
+	
+	public void setSequences(URI... sequences) {
+		setSequenceURIs(Arrays.asList(sequences));
+	}
+	
+	public void setSequences(Sequence... sequences) {
+		setSequences(Arrays.asList(sequences));
+	}
+	
+	public void addSequence(Sequence sequence) {
+		addSequence(sequence.getUri());
+	}
+	
+	public void addSequence(URI sequenceURI) {
+		RDFUtil.addProperty(resource, DataModel.Component.sequence, sequenceURI);
 	}
 	
 	/**

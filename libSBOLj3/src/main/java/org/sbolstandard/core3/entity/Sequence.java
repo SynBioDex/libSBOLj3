@@ -91,7 +91,7 @@ public class Sequence extends TopLevel {
 				Matcher matcherAA = patternAA.matcher(elements);
 				if (!matcherAA.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			} else if (enc.equals(Encoding.INCHI)) {
 				Pattern patternINCHI = Pattern.compile("^((InChI=)?[^J][0-9a-z+\\-\\(\\)\\\\\\/,]+)$",
@@ -100,7 +100,7 @@ public class Sequence extends TopLevel {
 				Matcher matcherINCHI = patternINCHI.matcher(elements);
 				if (!matcherINCHI.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			} else if (enc.equals(Encoding.NucleicAcid)) {
 				//Pattern patternNA = Pattern.compile("^[ATGCIUXQRYN]+$", Pattern.CASE_INSENSITIVE); // compiled from list at https://iupac.qmul.ac.uk/misc/naabb.html#p3
@@ -108,7 +108,7 @@ public class Sequence extends TopLevel {
 				Matcher matcherNA = patternNA.matcher(elements);
 				if (!matcherNA.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			} else if (enc.equals(Encoding.SMILES)) {
 				Pattern patternSMILES = Pattern.compile("^([^J][A-Za-z0-9@+\\-\\[\\]\\(\\)\\\\\\/%=#$]+)$",
@@ -116,7 +116,7 @@ public class Sequence extends TopLevel {
 				Matcher matcherSMILES = patternSMILES.matcher(elements);
 				if (!matcherSMILES.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			}
 

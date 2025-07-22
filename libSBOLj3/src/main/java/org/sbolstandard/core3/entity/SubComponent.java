@@ -113,12 +113,19 @@ public class SubComponent extends FeatureWithLocation{
 				Optional<Integer> start=range.getStart();
 				Optional<Integer> end=range.getEnd();
 				
-				if (!SBOLUtil.isNullOrEmpty(start) && !SBOLUtil.isNullOrEmpty(end))
-				{
+				if (!SBOLUtil.isNullOrEmpty(start) && !SBOLUtil.isNullOrEmpty(end)){
 					int rangeLength=Math.abs(end.get() - start.get()) + 1;
 					length= length + rangeLength;
 				}
 			}
+		if (location instanceof EntireSequence) {
+				EntireSequence entireSequence = (EntireSequence) location;
+				Sequence sequence = entireSequence.getSequence();
+				if (sequence != null && sequence.getElements()!=null && !sequence.getElements().isEmpty()) {
+					length = length + sequence.getElements().length();
+				}				
+			}		
+			
 		}
 		return length;
 	}

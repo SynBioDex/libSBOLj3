@@ -259,7 +259,7 @@ public class IdentifiedValidator {
 	}
 	
 	/**
-	 * Assets validation messages for a valid child of the supplied component.
+	 * Asserts validation messages for a valid child of the supplied component.
 	 * @param <T>
 	 * @param parent The parent component to be checked.
 	 * @param propertyURI The property URI to be asserted.

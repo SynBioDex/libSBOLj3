@@ -76,13 +76,26 @@ public class ComponentTest extends TestCase {
 		Configuration.getInstance().setValidateRecommendedRules(true);
 		pTetR.setSequences(tempSequences); //use previously saved vales above
 		
+		List<Sequence> nullSequences= null;
 		
 		// COMPONENT_TYPE_SEQUENCE_TYPE_MATCH_COMPONENT_TYPE
 		pTetR.getSequences().get(0).setEncoding(Encoding.INCHI);
-		TestUtil.validateIdentified(pTetR,doc,1);
+		TestUtil.validateIdentified(pTetR, doc, 1, "sbol3-10616");				
 		pTetR.getSequences().get(0).setEncoding(Encoding.NucleicAcid);
 		TestUtil.validateIdentified(pTetR,doc,0);
 		pTetR.setSequences(tempSequences);
+		
+		/*
+		//If the sequence is empty then there is no need to validate the encoding
+		pTetR.getSequences().get(0).setElements(null);
+		TestUtil.validateIdentified(pTetR,doc,0);		
+		Configuration.getInstance().setCompleteDocument(true);
+		TestUtil.validateIdentified(pTetR,doc,1, "sbol3-10616");		
+		Configuration.getInstance().setCompleteDocument(false);		
+		pTetR.setSequences(tempSequences);
+		TestUtil.validateIdentified(pTetR,doc,0);
+		*/
+		
 		
 		//COMPONENT_TYPE_AT_MOST_ONE_TOPOLOGY_TYPE
 		pTetR.setTypes(Arrays.asList(ComponentType.DNA.getUri()));
@@ -93,7 +106,8 @@ public class ComponentTest extends TestCase {
 		TestUtil.validateIdentified(pTetR,doc,1);
 		pTetR.setTypes(Arrays.asList(ComponentType.Protein.getUri(), ComponentType.TopologyType.Circular.getUri(), ComponentType.TopologyType.Linear.getUri()));
 		tempSequences=pTetR.getSequences();
-		pTetR.setSequences(null);
+		
+		pTetR.setSequences(nullSequences);
 		pTetR.setTypes(Arrays.asList(ComponentType.DNA.getUri()));
 		TestUtil.validateIdentified(pTetR,doc,0);
 		pTetR.setTypes(Arrays.asList(ComponentType.DNA.getUri()));
@@ -285,11 +299,17 @@ public class ComponentTest extends TestCase {
         Sequence seqINCHI = doc.createSequence("seqINCHI");
         seqINCHI.setEncoding(Encoding.INCHI);
         seqINCHI.setElements("InChI=JS/C2H6O/c1-2-3/h3H,2H2,1H3"); //ethanol but starting with a J
-        TestUtil.validateIdentified(seqINCHI, 1);
+        TestUtil.validateIdentified(seqINCHI, 1, "sbol3-10503");
         seqINCHI.setElements("InChI=1S/C2H6O/c1-2-3/h3H,2H2,1H3"); //ethanol
         TestUtil.validateIdentified(seqINCHI, 0);
         seqINCHI.setElements("InChI=1S/C6H8O6/c7-1-2(8)5-3(9)4(10)6(11)12-5/h2,5,7-10H,1H2/t2-,5+/m0/s1"); //L-ascorbic acid with InChI
-        TestUtil.validateIdentified(seqINCHI, 0);        
+        TestUtil.validateIdentified(seqINCHI, 0); 
+        String elements = seqINCHI.getElements();
+        
+        seqINCHI.setElements(null);
+        TestUtil.validateIdentified(seqINCHI, 0);
+        
+        
 	    
         /*ComponentType[] values=ComponentType.values();
         System.out.println(values.length);

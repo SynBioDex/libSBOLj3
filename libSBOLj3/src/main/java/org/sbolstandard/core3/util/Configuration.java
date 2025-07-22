@@ -17,6 +17,7 @@ public class Configuration {
 	private boolean validateBeforeSaving=true;
 	private boolean validateAfterReadingSBOLDocuments=true;
 	private boolean validateRecommendedRules=true;
+	private boolean isCompleteDocument=false;
 	private static final String displayIdRegex = "^[\\p{L}_]+[\\p{L}0-9_]*$";
 	
 	
@@ -144,6 +145,14 @@ public class Configuration {
 	
 	public Set<String> getSboParticipantRoles(){
 		return this.SboParticipantRoles;   
+	}
+
+	public boolean isCompleteDocument() {
+		return isCompleteDocument;
+	}
+
+	public void setCompleteDocument(boolean isCompleteDocument) {
+		this.isCompleteDocument = isCompleteDocument;
 	}
 	
 	
