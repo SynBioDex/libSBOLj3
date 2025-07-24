@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.sbolstandard.core3.entity.Component;
 import org.sbolstandard.core3.entity.ComponentReference;
 import org.sbolstandard.core3.entity.Constraint;
@@ -750,5 +751,31 @@ public class SBOLAPI {
 				}
 			}
 			return rootNodes;
-		}	    
+		}	   
+	    
+	    public static String inferDisplayId(URI uri) throws SBOLGraphException {
+				String result = null;
+				String uriString = uri.toString();
+
+				if (SBOLUtil.isURL(uriString))// .contains("://"))
+				{
+					//String path=uriString;// uri.getPath();
+					String path= uri.getPath();
+					
+					int index = path.lastIndexOf("/");
+					if (path.length() > index + 1) {
+						result = path.substring(index + 1);
+					} else {
+						result = null;
+					}
+					if (result != null && uriString.endsWith(result)) {
+						return result;
+					}
+					else
+					{
+						throw new SBOLGraphException("An SBOL URI MUST include the display id fragment. URI:" + uri);
+					}
+				}	
+				return null;			
+		}
 }

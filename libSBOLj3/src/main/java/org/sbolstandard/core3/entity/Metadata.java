@@ -1,11 +1,18 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.vocabulary.RDF;
+import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.vocabulary.DataModel;
 
+/**
+ * This class represents the metadata for a given entity.
+ */
 public class Metadata extends Identified{
 	
 	
@@ -43,7 +50,15 @@ public class Metadata extends Identified{
 			RDFUtil.addType(resource, DataModel.Identified.uri);
 		}
 	}*/
-
+	
+	 public List<URI> getType() throws SBOLGraphException{
+		return RDFUtil.getRDFTypesExcept(this.resource, DataModel.Identified.uri);			
+	}
+	
+	/**
+	 * Gets the resource type for the metadata.
+	 * @return A URI object representing the corresponding resource.
+	 */
 	@Override
 	public URI getResourceType() {
 		return DataModel.Identified.uri;

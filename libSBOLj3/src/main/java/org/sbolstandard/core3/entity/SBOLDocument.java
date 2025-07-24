@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -734,7 +735,11 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	}
 
 	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType) throws SBOLGraphException {
-		return addToList(model, this.metadataList, metaDataType,TopLevelMetadata.class);
+		return addToList(model, null, metaDataType,TopLevelMetadata.class);
+	}
+	
+	public List<TopLevelMetadata> getTopLevelMetadataList() throws SBOLGraphException {
+		return addToList(model, this.metadataList, DataModel.TopLevel.uri, TopLevelMetadata.class);
 	}
 	
 	/*public Measure createMeasure(URI uri, float value, URI unit) throws SBOLGraphException {
@@ -790,25 +795,65 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 			{
 				constructor.setAccessible(true);
 			}
-			Identified entity= (Identified)constructor.newInstance(new Object[]{res});
 			
-			URI type=entity.getResourceType();
-			boolean hasType=RDFUtil.hasType(model, res, type);
-			
-			if (hasType)
-			{
-				return (T)entity;
+			if (res.getProperty(RDF.type)!=null) {			
+				Identified entity= (Identified)constructor.newInstance(new Object[]{res});
+				
+				URI type=entity.getResourceType();
+				boolean hasType=RDFUtil.hasType(model, res, type);
+				
+				if (hasType)
+				{
+					return (T)entity;
+				}
+				else
+				{
+					return null;
+				}	
 			}
 			else
 			{
 				return null;
-			}	
+			}
 		}
 		catch (Exception ex)
 		{
 			throw new SBOLGraphException(ex.getMessage());
 		}
-
+	}
+	
+	public <T extends Identified>  T getIdentified(URI uri, HashMap<URI, Class<T>> identifiedClassOptions) throws SBOLGraphException
+	{
+		Resource res=this.model.getResource(uri.toString());
+		try
+		{
+			for (Entry<URI, Class<T>> entry: identifiedClassOptions.entrySet()){
+				
+				Class<T> identified=entry.getValue();
+				Constructor<T> constructor = identified.getDeclaredConstructor( new Class[] {Resource.class});
+				if (!constructor.isAccessible())
+				{
+					constructor.setAccessible(true);
+				}
+				if (res.getProperty(RDF.type)!=null) {	
+					Identified entity= (Identified)constructor.newInstance(new Object[]{res});
+					
+					URI type=entity.getResourceType();
+					boolean hasType=RDFUtil.hasType(model, res, type);
+					
+					if (hasType)
+					{
+						return (T)entity;
+					}	
+				}
+			}
+		}
+		catch (Exception ex)
+		{
+			throw new SBOLGraphException(ex.getMessage());
+		}
+						
+		return null;
 	}
 	
 	

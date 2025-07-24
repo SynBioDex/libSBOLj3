@@ -119,7 +119,8 @@ public class MeasureTest extends TestCase {
         
         TestUtil.validateProperty(measure, "setUnit", new Object[] {null}, Unit.class);
         Unit tempUnit=measure.getUnit();
-        measure.setUnit(null);
+        Unit tempUnit2=null;
+        measure.setUnit(tempUnit2);
         TestUtil.validateIdentified(measure, doc, 1);
         measure.setUnit(tempUnit);
         

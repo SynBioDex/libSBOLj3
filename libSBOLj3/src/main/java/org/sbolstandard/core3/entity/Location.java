@@ -9,6 +9,7 @@ import java.util.OptionalInt;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.util.SBOLUtil;
@@ -21,6 +22,11 @@ import org.sbolstandard.core3.vocabulary.Orientation;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * 
+ * This abstract class defines a location within a sequence.
+ *
+ */
 public abstract class  Location extends Identified {
 	/*private Orientation orientation;
 	private int order=Integer.MIN_VALUE;
@@ -40,7 +46,10 @@ public abstract class  Location extends Identified {
 	{
 		super(displayId);
 	}*/
-
+	
+	/**
+	 * Gets a list validation messages corresponding to errors and best practices.
+	 */
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
@@ -49,6 +58,11 @@ public abstract class  Location extends Identified {
 		return validationMessages;
 	}
 	
+	/**
+	 * Gets the orientation of the location.
+	 * @return The orientation of the position.
+	 * @throws SBOLGraphException
+	 */
 	public Orientation getOrientation() throws SBOLGraphException{
 		Orientation orientation=null;
 		URI value=IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.orientation);
@@ -59,12 +73,21 @@ public abstract class  Location extends Identified {
 		return orientation;
 	}
 	
+	/**
+	 * Retrieves the orientation, defined by the supplied resource.
+	 * @param uri The URI representing the position.
+	 * @return An object representing the orientation.
+	 */
 	@NotNull(message = "{LOCATION_ORIENTATION_VALID_IF_NOT_NULL}")   
 	public Orientation toOrientation (URI uri)
 	{
 		return Orientation.get(uri); 
 	}
 	
+	/**
+	 * Set the orientation for the location.
+	 * @param orientation The orientation to be applied.
+	 */
 	public void setOrientation(Orientation orientation) {
 		URI orientationURI=null;
 		if (orientation!=null)
@@ -74,7 +97,11 @@ public abstract class  Location extends Identified {
 		RDFUtil.setProperty(this.resource, DataModel.orientation, orientationURI);
 	}
 	
-	
+	/**
+	 * Gets the order of the location.
+	 * @return The order of the location.
+	 * @throws SBOLGraphException
+	 */
 	public OptionalInt getOrder() throws SBOLGraphException {
 		OptionalInt order=OptionalInt.empty();
 		String value=IdentifiedValidator.getValidator().getPropertyAsString(this.resource, DataModel.Location.order);
@@ -84,6 +111,10 @@ public abstract class  Location extends Identified {
 		return order;
 	}
 	
+	/**
+	 * Sets the order of the location.
+	 * @param order The order to be applied.
+	 */
 	public void setOrder(OptionalInt order) {
 		String stringValue=null;
 		if (order.isPresent())
@@ -93,6 +124,11 @@ public abstract class  Location extends Identified {
 		RDFUtil.setProperty(this.resource, DataModel.Location.order, stringValue);
 	}
 	
+	/**
+	 * Gets an object containing the relevant sequence to the location object.
+	 * @return An object of the corresponding sequence.
+	 * @throws SBOLGraphException
+	 */
 	@Valid
 	@NotNull(message = "{LOCATION_SEQUENCE_NOT_NULL}")
 	public Sequence getSequence() throws SBOLGraphException {
@@ -100,16 +136,41 @@ public abstract class  Location extends Identified {
 		return contsructIdentified(DataModel.Location.sequence, Sequence.class, DataModel.Sequence.uri);
 	}
 
+	/**
+	 * Set the sequence that this location refers to.
+	 * @param sequence The sequence to be applied.
+	 * @throws SBOLGraphException
+	 */
 	public void setSequence(@NotNull(message = "{LOCATION_SEQUENCE_NOT_NULL}") Sequence sequence) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setSequence", new Object[] {sequence}, Sequence.class);
 		RDFUtil.setProperty(this.resource, DataModel.Location.sequence, SBOLUtil.toURI(sequence));	
 	}
 	
+	/**
+	 * Set the sequence that this location refers to.
+	 * @param sequenceURI The sequence to be applied.
+	 * @throws SBOLGraphException
+	 */
+	public void setSequence(@NotNull(message = "{LOCATION_SEQUENCE_NOT_NULL}") URI sequenceURI) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setSequence", new Object[] {sequenceURI}, URI.class);
+		RDFUtil.setProperty(this.resource, DataModel.Location.sequence, sequenceURI);	
+	}
+	
+
+	/**
+	 * Gets the resource type for the sequence.
+	 * @return A URI object representing the corresponding resource.
+	 */
 	public URI getResourceType()
 	{
 		return DataModel.Location.uri;
 	}
 	
+	/**
+	 * Gets the relevant types for subclasses of this location.
+	 * @param <T> The entity to be inspected.
+	 * @return A hashmap containing the subclasses and corresponding resource identifiers.
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Identified> HashMap<URI, Class<T>> getSubClassTypes()
 	{
@@ -131,7 +192,9 @@ public abstract class  Location extends Identified {
 				}
 			}
 			else{
-				valid=false;
+				if (Configuration.getInstance().isCompleteDocument()) {
+					valid=false;
+				}
 			}
 			
 			if (!valid){
@@ -143,7 +206,12 @@ public abstract class  Location extends Identified {
 		return validationMessages;
 	}
 	
-	
+	/**
+	 * Gets the start and end locations.
+	 * @param locations A list of locations to be inspected.
+	 * @return A tuple with the corresponding start and end locations.
+	 * @throws SBOLGraphException
+	 */
 	public static Pair<Integer,Integer> getStartEnd(List<Location> locations) throws SBOLGraphException
 	{
 		int start=-1,end=-1; //Something less than 1 (min number in SBOL)
@@ -176,6 +244,12 @@ public abstract class  Location extends Identified {
 		return Pair.of(start, end);
 	}
 	
+	/**
+	 * Gets the start and end locations.
+	 * @param location The location to be inspected.
+	 * @return A tuple with the corresponding start and end locations.
+	 * @throws SBOLGraphException
+	 */
 	public static Pair<Integer,Integer> getStartEnd(Location location) throws SBOLGraphException
 	{
 		int locStart=-1, locEnd=-1;

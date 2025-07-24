@@ -27,18 +27,35 @@ public abstract class Feature extends Identified{
 		super(resource);
 	}
 
+	/**
+	 * Get the roles for the feature.
+	 * @return A list of roles for the corresponding feature.
+	 */
 	public List<URI> getRoles() {
 		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.role);
 	}
 	
+	/**
+	 * Set the roles for this feature.
+	 * @param roles A list of resources identifying the roles to be applied.
+	 */
 	public void setRoles(List<URI> roles) {
 		RDFUtil.setProperty(resource, DataModel.role, roles);
 	}
 	
+	/**
+	 * Appends a role to this feature.
+	 * @param role The role to be appended.
+	 */
 	public void addRole(URI role) {
 		RDFUtil.addProperty(resource, DataModel.role, role);
 	}
 	
+	/**
+	 * Gets the orientation of the feature.
+	 * @return An object representing the orientation of the feature.
+	 * @throws SBOLGraphException
+	 */
 	public Orientation getOrientation() throws SBOLGraphException {
 		Orientation orientation=null;
 		
@@ -51,12 +68,21 @@ public abstract class Feature extends Identified{
 		return orientation;
 	}
 	
+	/**
+	 * Extrapolates the orientation from a resource identifier.
+	 * @param uri The resource identifier to be processed.
+	 * @return An object with the orientation values.
+	 */
 	@NotNull(message = "{FEATURE_ORIENTATION_VALID_IF_NOT_NULL}")   
 	public Orientation toOrientation (URI uri)
 	{
 		return Orientation.get(uri); 
 	}
 	
+	/**
+	 * Apply an orientation to the feature.
+	 * @param orientation The orientation to be applied.
+	 */
 	public void setOrientation(Orientation orientation) {
 		URI orientationURI=null;
 		if (orientation!=null)
@@ -66,6 +92,11 @@ public abstract class Feature extends Identified{
 		RDFUtil.setProperty(this.resource, DataModel.orientation, orientationURI);
 	}
 	
+	/**
+	 * Gets the types for the corresponding subclasses of the feature.
+	 * @param <T> A list containing the resources and class references for the subclasses.
+	 * @return A hashmap containing the identifiers and class references for the subclasses.
+	 */
 	@SuppressWarnings("unchecked")
 	public static <T extends Identified> HashMap<URI, Class<T>> getSubClassTypes()
 	{

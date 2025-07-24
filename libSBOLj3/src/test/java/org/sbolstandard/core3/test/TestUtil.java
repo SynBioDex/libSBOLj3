@@ -790,6 +790,14 @@ public class TestUtil {
 	    return output;
 	}
 	
+	public static String validateIdentified(Identified identified,int numberOfExpectedErrors, String errorCodes) throws SBOLGraphException
+	{
+		String output=validateIdentified(identified, numberOfExpectedErrors);
+		assertErrorCodes(errorCodes, output);		
+		return output;
+
+	}
+	
 	public static String validateDocument(SBOLDocument document ,int numberOfExpectedErrors, String errorCodes) throws SBOLGraphException
 	{	 
 		String output=validateDocument(document, numberOfExpectedErrors);		

@@ -1,6 +1,16 @@
 {
     "@graph": [
         {
+            "@id": "https://sbolstandard.org/examples/E0040/SequenceFeature1/Range1",
+            "sbol:end": "3",
+            "sbol:start": "1",
+            "sbol:hasSequence": {
+                "@id": "https://sbolstandard.org/examples/E0040_Sequence1"
+            },
+            "sbol:displayId": "Range1",
+            "@type": "sbol:Range"
+        },
+        {
             "@id": "https://sbolstandard.org/examples/E0040_Sequence1",
             "sbol:encoding": {
                 "@id": "EDAM:format_1207"
@@ -21,16 +31,6 @@
             },
             "sbol:displayId": "SequenceFeature1",
             "@type": "sbol:SequenceFeature"
-        },
-        {
-            "@id": "https://sbolstandard.org/examples/E0040/SequenceFeature1/Range1",
-            "sbol:end": "3",
-            "sbol:start": "1",
-            "sbol:hasSequence": {
-                "@id": "https://sbolstandard.org/examples/E0040_Sequence1"
-            },
-            "sbol:displayId": "Range1",
-            "@type": "sbol:Range"
         },
         {
             "@id": "https://sbolstandard.org/examples/E0040",

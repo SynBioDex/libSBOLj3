@@ -1,13 +1,13 @@
 { 
-  "urn:uuid:fb46f02f-d1c5-4529-a971-64b63b938cdd" : { 
-    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
-      "type" : "uri" ,
-      "value" : "http://sbols.org/v3#Component"
-    }
-     ] ,
+  "urn:uuid:aea59ee0-5c37-4cc2-a907-c8d441cf248f" : { 
     "http://sbols.org/v3#hasNamespace" : [ { 
       "type" : "uri" ,
-      "value" : "urn:uuid:bbc5139e-9b65-418d-b5bf-25da4e066063"
+      "value" : "urn:uuid:867be44e-e4cb-4679-be0a-fc03cbf20d6e"
+    }
+     ] ,
+    "http://sbols.org/v3#type" : [ { 
+      "type" : "uri" ,
+      "value" : "https://identifiers.org/SBO:0000252"
     }
      ] ,
     "http://sbols.org/v3#name" : [ { 
@@ -15,9 +15,9 @@
       "value" : "TetR"
     }
      ] ,
-    "http://sbols.org/v3#type" : [ { 
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
       "type" : "uri" ,
-      "value" : "https://identifiers.org/SBO:0000252"
+      "value" : "http://sbols.org/v3#Component"
     }
      ]
   }

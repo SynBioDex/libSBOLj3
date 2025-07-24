@@ -7,6 +7,11 @@ import java.util.Set;
 
 import org.sbolstandard.core3.util.URINameSpace;
 
+/**
+ * 
+ * Represents an activity type in the SBOL data model.
+ *
+ */
 public enum ActivityType {
 	Design(URINameSpace.SBOL.local("design")), 
 	Build(URINameSpace.SBOL.local("build")), 
@@ -18,7 +23,11 @@ public enum ActivityType {
 	ActivityType(URI envUrl) {
 		this.url = envUrl;
 	}
-
+	
+	/**
+	 * Gets the URI associated with this activity type.
+	 * @return A URI object associated with this activity type.
+	 */
 	public URI getUri() {
 		return url;
 	}
@@ -40,14 +49,28 @@ public enum ActivityType {
 
 	}
 
+	/**
+	 * Gets the activity type from a URI.
+	 * @param uri The URI associated with this activity type.
+	 * @return The activity type associated with the supplied URI.
+	 */
 	public static ActivityType get(URI uri) {
 		return lookup.get(uri);
 	}
-
+	
+	/**
+	 * Gets the preceding activity to this activity type.
+	 * @param activity The activity to to be inspected.
+	 * @return An activity type object representing the preceding activity.
+	 */
 	public static ActivityType getPreceding(ActivityType activity) {
 		return lookupPreceding.get(activity);
 	}
 	
+	/**
+	 * Gets the URIs associated with this activity type.
+	 * @return A set object containing the URIs associated with this activity type.
+	 */
 	public static Set<URI> getURIs() {
 		return lookup.keySet();
 	}

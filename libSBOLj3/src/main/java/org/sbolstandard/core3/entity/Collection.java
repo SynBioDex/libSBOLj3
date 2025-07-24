@@ -40,6 +40,15 @@ public class Collection extends TopLevel{
 		RDFUtil.addProperty(resource, DataModel.Collection.member, SBOLUtil.getURIs(members));
 	}
 	
+	public void addMember(URI member) {
+		RDFUtil.addProperty(resource, DataModel.Collection.member, member);
+	}
+	
+	
+	public void addUriMembers(List<URI> members) {
+		RDFUtil.addProperty(resource, DataModel.Collection.member, members);
+	}
+	
 	
 	/*
 	public List<TopLevel> getMembers() throws SBOLGraphException {

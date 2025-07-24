@@ -13,6 +13,9 @@ import org.sbolstandard.core3.vocabulary.DataModel;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
+/**
+ * This class represents the range of a given sequence.
+ */
 public class Range extends Location {
 
 	/*private int start=Integer.MIN_VALUE;
@@ -33,31 +36,52 @@ public class Range extends Location {
 		super(displayId);
 	}*/
 	
+	/**
+	 * Gets the starting position of the range.
+	 * @return An object containing the starting position of the range.
+	 */
 	@NotNull(message = "{RANGE_START_NOT_NULL}")
 	public Optional<@NotNull(message = "{RANGE_START_NOT_NULL}") @Positive(message="{RANGE_START_POSITIVE_OR_ZERO}") Integer> getStart() throws SBOLGraphException{
 		return IdentifiedValidator.getValidator().getPropertyAsOptionalInteger(this.resource, DataModel.Range.start);
 	}
 	
+	/**
+	 * Sets the starting position of the range.
+	 */
 	public void setStart(@NotNull(message = "{RANGE_START_NOT_NULL}") Optional<@NotNull(message = "{RANGE_START_NOT_NULL}") @Positive(message="{RANGE_START_POSITIVE_OR_ZERO}") Integer> start) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setStart", new Object[] {start}, Optional.class);
 		IdentifiedValidator.getValidator().setPropertyAsOptional(this.resource, DataModel.Range.start, start);
 	}
 	
+	/**
+	 * Gets the ending position of the range.
+	 */
 	@NotNull(message = "{RANGE_END_NOT_NULL}")
 	public Optional<@NotNull(message = "{RANGE_END_NOT_NULL}") @Positive(message="{RANGE_END_POSITIVE_OR_ZERO}")Integer> getEnd() throws SBOLGraphException {
 		return IdentifiedValidator.getValidator().getPropertyAsOptionalInteger(this.resource, DataModel.Range.end);
 	}
 	
+	/**
+	 * Sets the ending position of the range.
+	 * @param end The ending position of the sequence.
+	 */
 	public void setEnd(@NotNull(message = "{RANGE_END_NOT_NULL}") Optional< @NotNull(message = "{RANGE_END_NOT_NULL}") @Positive(message="{RANGE_START_POSITIVE_OR_ZERO}") Integer> end) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setEnd", new Object[] {end}, Optional.class);
 		IdentifiedValidator.getValidator().setPropertyAsOptional(this.resource, DataModel.Range.end, end);
 	}	
 	
+	/**
+	 * Gets the resource type for the sequence.
+	 * @return A URI object representing the corresponding resource.
+	 */
 	public URI getResourceType()
 	{
 		return DataModel.Range.uri;
 	}
 	
+	/**
+	 * Gets a list validation messages corresponding to errors and best practices.
+	 */
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{

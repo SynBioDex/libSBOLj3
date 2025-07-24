@@ -17,6 +17,11 @@ import org.sbolstandard.core3.vocabulary.DataModel;
 import org.sbolstandard.core3.vocabulary.MeasureDataModel;
 import jakarta.validation.constraints.NotNull;
 
+/**
+ * 
+ * Represents a measure in the SBOL data model.
+ *
+ */
 public class Measure extends ControlledIdentified{
 	
 	/*private float value=Float.NaN;
@@ -33,6 +38,11 @@ public class Measure extends ControlledIdentified{
 		super(resource);
 	}
 	
+	/**
+	 * Sets the value of the measure.
+	 * @param value The value to be attributed.
+	 * @throws SBOLGraphException
+	 */
 	//The first NotNull: value is not null, the second NotNull: Not empty.
 	public void setValue(@NotNull (message = "{MEASURE_VALUE_NOT_NULL}") Optional<@NotNull (message = "{MEASURE_VALUE_NOT_NULL}") Float> value) throws SBOLGraphException{
 		//String valueString=String.valueOf(value);
@@ -76,6 +86,11 @@ public class Measure extends ControlledIdentified{
 		return value;
 	}*/
 	
+	/**
+	 * Gets the value of the corresponding measure.
+	 * @return The value of the measure.
+	 * @throws SBOLGraphException
+	 */
 	//@Valid
 	//@NotNull(message = "Measure.value cannot be null")	
 	@NotNull (message = "{MEASURE_VALUE_NOT_NULL}")
@@ -96,30 +111,73 @@ public class Measure extends ControlledIdentified{
 		this.test=value;
 	}
 	*/
+	
+	/**
+	 * Gets the unit associated with the measure.
+	 * @return The corresponding unit.
+	 * @throws SBOLGraphException
+	 */
 	@NotNull(message = "{MEASURE_UNIT_NOT_NULL}")	
 	public Unit getUnit() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.Measure.unit);	
 		return contsructIdentified(MeasureDataModel.Measure.unit, Unit.getSubClassTypes());
 	}
-
+	
+	/*@NotNull(message = "{MEASURE_UNIT_NOT_NULL}")	
+	public URI getUnit() throws SBOLGraphException {
+		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.Measure.unit);	
+		return contsructIdentified(MeasureDataModel.Measure.unit, Unit.getSubClassTypes());
+	}*/
+	
+	/**
+	 * Sets the unit of this measure.
+	 * @param unit The unit to be applied.
+	 * @throws SBOLGraphException
+	 */
 	public void setUnit(@NotNull(message = "{MEASURE_UNIT_NOT_NULL}") Unit unit) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setUnit", new Object[] {unit}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.Measure.unit, SBOLUtil.toURI(unit));
 	}
-
+	
+	/**
+	 * Sets the unit's URI of this measure.
+	 * @param unit URI
+	 * @throws SBOLGraphException
+	 */
+	public void setUnit(@NotNull(message = "{MEASURE_UNIT_NOT_NULL}") URI unit) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setUnit", new Object[] {unit}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.Measure.unit, unit);
+	}
+	
+	/**
+	 * Get the properties of this measure as list of URIs.
+	 * @return A list object containing the relevant URIs.
+	 */
 	public List<URI> getTypes() {
 		return RDFUtil.getPropertiesAsURIs(this.resource,DataModel.type);
 	}
 	
+	/**
+	 * Sets the types associated with the measure.
+	 * @param types The types to be applied.
+	 */
 	public void setTypes(List<URI> types) {
 		RDFUtil.setProperty(resource, DataModel.type, types);
 	}
 	
+	/**
+	 * Gets the URI corresponding to the measure's type.
+	 * @return The matching URI.
+	 */
 	@Override
 	public URI getResourceType() {
 		return MeasureDataModel.Measure.uri;
 	}
 	
+	/**
+	 * Gets the validation messages associated with the measure.
+	 * @return A list containing the relevant validation messages.
+	 */
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
@@ -129,6 +187,12 @@ public class Measure extends ControlledIdentified{
 		return validationMessages;
 	}
 	
+	/**
+	 * Asserts a validation message if valid SBO types exist in the measure.
+	 * @param validationMessages The list of validation messages to be appended to.
+	 * @return The updated ValidationMessages object.
+	 * @throws SBOLGraphException
+	 */
 	public List<ValidationMessage> assertSBOTypesIncluded(List<ValidationMessage> validationMessages) throws SBOLGraphException
 	{
 		if (Configuration.getInstance().isValidateRecommendedRules()) {

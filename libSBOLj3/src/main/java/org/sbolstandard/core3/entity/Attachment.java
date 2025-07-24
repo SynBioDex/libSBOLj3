@@ -15,6 +15,11 @@ import org.sbolstandard.core3.vocabulary.HashAlgorithm;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
+/**
+ * 
+ * @author gokselmisirli
+ *
+ */
 public class Attachment extends TopLevel{
 	/*private URI source=null;
 	private URI format=null;
@@ -32,7 +37,9 @@ public class Attachment extends TopLevel{
 	{
 		super(resource);
 	}
-
+	/**
+	 * 
+	 */
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
@@ -88,6 +95,11 @@ public class Attachment extends TopLevel{
 		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Model.source);
 	}
 
+	/**
+	 * 
+	 * @param source
+	 * @throws SBOLGraphException
+	 */
 	public void setSource(@NotNull (message="{ATTACHMENT_SOURCE_NOT_NULL}") URI source) throws SBOLGraphException {
 		//this.source = source;
 		/*try {

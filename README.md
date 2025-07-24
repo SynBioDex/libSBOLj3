@@ -9,7 +9,29 @@ SBOL represents data using RDF graphs, which can be serialised in different form
 
 ## How to use libSBOLj3
 
-### As a Maven dependency in a Maven project
+### To use the latest version from the source as a Maven dependency in a Maven project
+First, download the project and install it using Maven.
+```
+git clone https://github.com/SynBioDex/libSBOLj3.git
+cd libSBOLj3
+mvn install -DskipTests=true
+```
+
+Then include it as a Maven dependency in your project's POM file.
+``` 
+</dependencies>
+	...
+   <dependency>
+      <groupId>org.sbolstandard</groupId>
+      <artifactId>libSBOLj3</artifactId>
+      <version>1.0.2-SNAPSHOT</version>
+   </dependency>
+   ...
+</dependencies>
+
+```
+
+### To use the released version as a Maven dependency in a Maven project
 Use this option if you are developing a Java application using [Maven](https://maven.apache.org/). Add the following libSBOLj3 dependency to your Maven applications's POM file (pom.xml). Please also make sure that you include the Nexus' Snapshots repository URL in the POM file. 
 ``` 
 </dependencies>
@@ -97,17 +119,17 @@ for (SubComponent subComp: device.getSubComponents()){
  The libSBOLj3 library provides methods to store SBOL documents in memory variables and to read documents from these variables.
  ```java
  //Write using the RDF Turtle format
- String output=SBOLIO.write(doc, "Turtle");
+ String output=SBOLIO.write(doc, SBOLFormat.TURTLE);
  //Read using the RDF Turtle format
- SBOLDocument doc2=SBOLIO.read(output, "Turtle"); 
+ SBOLDocument doc2=SBOLIO.read(output, SBOLFormat.TURTLE); 
 ```
  The libSBOLj3 library alsoprovides methods to store SBOL documents in files and to read documents from these files.
 
 ```java
 //Write
- SBOLIO.write(doc, new File("sbol.ttl"), "Turtle");
+ SBOLIO.write(doc, new File("sbol.ttl"), SBOLFormat.TURTLE);
  //Read
- SBOLIO.read(doc, new File("sbol.ttl"), "Turtle");
+ SBOLIO.read(doc, new File("sbol.ttl"), SBOLFormat.TURTLE);
 ``` 
 
 The following constants can be used to set the RDF serialisation type:

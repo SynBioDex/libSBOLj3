@@ -25,6 +25,11 @@ import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
 
+/**
+ * 
+ * Represents the validation processes of identified components in the SBOL data model.
+ *
+ */
 public class IdentifiedValidator {
 	//private static IdentifiedValidator idendityValidator = null;
 	protected Validator validator;
@@ -57,6 +62,12 @@ public class IdentifiedValidator {
 	
 	//https://itzone.com.vn/en/article/bill-pugh-singleton-in-java-incredibly-simple/
 	//https://www.geeksforgeeks.org/java-singleton-design-pattern-practices-examples/?ref=lbp
+	
+	/**
+	 * Gets the validator object required.
+	 * @return An instance of the validator class.
+	 * @throws SBOLGraphException
+	 */
 	public static IdentifiedValidator getValidator() throws SBOLGraphException {
 		return SingletonHelper.INSTANCE;
 	}
@@ -72,6 +83,11 @@ public class IdentifiedValidator {
         }
     }
 	
+	/**
+	 * Validates the identified component.
+	 * @param identified The component to validate.
+	 * @return An updated ValidationMessages list.
+	 */
 	public List<String> validate(Identified identified) {
 		Set<ConstraintViolation<Identified>> violations = validator.validate(identified);
 		List<String> messages = PropertyValidator.getViolotionMessages(violations);
@@ -94,7 +110,18 @@ public class IdentifiedValidator {
 		 */
 		return messages;
 	}
-
+	
+	/**
+	 * Asserts validation message if the supplied URI exists within a list of identified components.
+	 * @param <T>
+	 * @param identified The identified component to be asserted to.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param uri The URI to be checked.
+	 * @param identifieds A list of identified components to compare against.
+	 * @param errorMessage The error message to assert.
+	 * @param property The property to be asserted.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertExists(Identified identified, List<ValidationMessage> messages, URI uri, List<T> identifieds, String errorMessage, URI property) {
 		if (uri != null) {
 			if (!SBOLUtil.exists(uri, identifieds)) {
@@ -103,7 +130,17 @@ public class IdentifiedValidator {
 		}
 		return messages;
 	}
-
+	
+	/**
+	 * Asserts a validation message if a valid component matches the supplied URI.
+	 * @param <T>
+	 * @param identified The identified component to be asserted to.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param uri The URI to be checked.
+	 * @param identifieds The list of identified components to be compared against.
+	 * @param message The message to be appended.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertExists(Identified identified, List<ValidationMessage> messages, URI uri, List<T> identifieds, ValidationMessage message) {
 		if (uri != null) {
 			if (!SBOLUtil.exists(uri, identifieds)) {
@@ -113,6 +150,16 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
+	/**
+	 * Asserts a validation message for a component that matches a supplied target.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param target The target to compare against.
+	 * @param identifieds The list of identified components to be asserted.
+	 * @param message The message to be appended.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertExists(Identified identified, List<ValidationMessage> messages, Identified target, List<T> identifieds, ValidationMessage message) {
 		if (target != null) {
 			messages=assertExists(identified, messages, target.getUri(), identifieds, message);
@@ -120,7 +167,16 @@ public class IdentifiedValidator {
 		return messages;
 	}
 
-	
+	/**
+	 * Asserts validation message for a valid component that exists in the supplied identified list.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param targets The list of targets to compare against.
+	 * @param identifieds The list of identified components to be asserted.
+	 * @param message The message to be asserted.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertExistsIdentifieds(Identified identified, List<ValidationMessage> messages, List<T> targets, List<T> identifieds, ValidationMessage message) {
 		if (targets != null) {
 			messages = assertExists(identified, messages, SBOLUtil.getURIs(targets), identifieds,message);
@@ -128,6 +184,17 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
+	/**
+	 * Asserts validation messages for every valid component that exists in the supplied URI list.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param uriListA list of URIs to compare against.
+	 * @param identifieds A list of identified components to be asserted.
+	 * @param errorMessage The error message to be asserted.
+	 * @param property The property to be asserted.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertExists(Identified identified, List<ValidationMessage> messages, List<URI> uriList, List<T> identifieds, String errorMessage, URI property) {
 		if (uriList != null) {
 			for (URI uri : uriList) {
@@ -136,7 +203,17 @@ public class IdentifiedValidator {
 		}
 		return messages;
 	}
-
+	
+	/**
+	 * Asserts validation messages for every valid component that exists in the supplied URI list.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param uriList A list of URIs to compare against.
+	 * @param identifieds A list of identified components to be asserted.
+	 * @param message The message to be appended.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertExists(Identified identified, List<ValidationMessage> messages, List<URI> uriList, List<T> identifieds, ValidationMessage message) {
 		if (uriList != null) {
 			for (URI uri : uriList) {
@@ -146,7 +223,17 @@ public class IdentifiedValidator {
 		}
 		return messages;
 	}
-
+	
+	/**
+	 * Asserts validation messages for every valid component that exists in the supplied resource.
+	 * @param <T>
+	 * @param parent Unused.
+	 * @param propertyURI The URI to be asserted.
+	 * @param resource The resource to be checked against.
+	 * @param identifieds A list of identified components to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertExists(Identified parent, URI propertyURI, Resource resource, List<T> identifieds, List<ValidationMessage> messages) {
 		List<URI> uris = RDFUtil.getPropertiesAsURIs(resource, propertyURI);
 		if (uris != null && uris.size()>0) {
@@ -171,6 +258,16 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
+	/**
+	 * Asserts validation messages for a valid child of the supplied component.
+	 * @param <T>
+	 * @param parent The parent component to be checked.
+	 * @param propertyURI The property URI to be asserted.
+	 * @param resource The resource containing the URIs to be checked.
+	 * @param child The child component to be checked.
+	 * @param messages A list of validation messages to be appended to.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertEquals(Identified parent, URI propertyURI, Resource resource, Identified child, List<ValidationMessage> messages) {
 		List<URI> uris = RDFUtil.getPropertiesAsURIs(resource, propertyURI);
 		if (uris != null && uris.size()>0) {
@@ -183,7 +280,15 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
-	
+	/**
+	 * Asserts a validation message for every time a URI from a list is a prefix for the component's URI.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param identifieds A list of identified components to be asserted.
+	 * @return An updated ValidationMessages object.
+	 * @throws SBOLGraphException
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertURIStartsWith(Identified identified, List<ValidationMessage> messages, List<T> identifieds) throws SBOLGraphException {
 		if (identifieds != null) {
 			String targetURI = identified.getUri().toString() + "/";
@@ -197,7 +302,18 @@ public class IdentifiedValidator {
 		}
 		return messages;
 	}
-
+	
+	/**
+	 * Asserts a validation message if both supplied targets do not match.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param target1 The first target to be compared.
+	 * @param target2 The second URI to be compared.
+	 * @param errorMessage The error message to be asserted.
+	 * @param property The property to be asserted.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertNotEqual(Identified identified, List<ValidationMessage> messages, Identified target1, Identified target2, String errorMessage, URI property) {
 		if (target1 != null && target2!=null) {
 			messages = assertNotEqual(identified, messages, target1.getUri(), target2.getUri(), errorMessage, property);
@@ -205,6 +321,17 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
+	/**
+	 * Asserts a validation message if both supplied URIs match.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param uri1 The first URI to be compared.
+	 * @param uri2 The second URI to be compared.
+	 * @param errorMessage The error message to be asserted.
+	 * @param property The property to be asserted.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertNotEqual(Identified identified, List<ValidationMessage> messages, URI uri1, URI uri2, String errorMessage, URI property) {
 		if (uri1 != null && uri2 != null && uri1.equals(uri2)) {
 			messages = identified.addToValidations(messages, new ValidationMessage(errorMessage, property));
@@ -213,6 +340,16 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
+	/**
+	 * Asserts a validation message if both supplied URIs do not match.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param uri1 The first URI to be compared.
+	 * @param uri2 The second URI to be compared.
+	 * @param message The message to be appended.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertNotEqual(Identified identified, List<ValidationMessage> messages, URI uri1, URI uri2, ValidationMessage message) {
 		if (uri1 != null && uri2 != null && uri1.equals(uri2)) {
 			messages = identified.addToValidations(messages, message);
@@ -220,7 +357,17 @@ public class IdentifiedValidator {
 
 		return messages;
 	}
-
+	
+	/**
+	 * Asserts a validation message if two compared values are not equal.
+	 * @param <T>
+	 * @param identified The identified component to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @param identified1 The first identified component to be compared.
+	 * @param identified2 The second identified component to be compared.
+	 * @param message The message to be appended.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static <T extends Identified> List<ValidationMessage> assertNotEqual(Identified identified, List<ValidationMessage> messages, Identified identified1, Identified identified2, ValidationMessage message) {
 		if (identified1 != null && identified2 != null) {
 			return assertNotEqual(identified, messages, identified1.getUri(), identified2.getUri(), message);
@@ -228,7 +375,13 @@ public class IdentifiedValidator {
 		return messages;
 	}
 
-	
+	/**
+ 	 * Asserts a validation message once if at least two topologies exist in the list of types supplied.
+ 	 * @param types The types to be checked against.
+ 	 * @param validationMessages A list of validation messages to be appended to.
+ 	 * @param message The message to be appended.
+ 	 * @return An updated ValidationMessages object.
+	 */
 	 public static List<ValidationMessage> assertAtMostOneTopologyType(List<URI> types, List<ValidationMessage> validationMessages, String message)
 	    {
 	    	int counter=0;
@@ -246,7 +399,14 @@ public class IdentifiedValidator {
 			}
 			return validationMessages;
 	    }
-	 
+	 	
+	 	/**
+	 	 * Asserts a validation message if DNA or RNA components include either a strand or a topology.
+	 	 * @param types The types to be checked against.
+	 	 * @param validationMessages A list of validation messages to be appended to.
+	 	 * @param message The message to be appended.
+	 	 * @return An updated ValidationMessages object.
+	 	 */
 		public static List<ValidationMessage> assertOnlyDNAOrRNAComponentsIncludeStrandOrTopology(List<URI> types, List<ValidationMessage> validationMessages, String message) {
 			boolean checkDNAOrRNA = false;
 			if (types!=null)
@@ -293,6 +453,18 @@ public class IdentifiedValidator {
 			return Pair.of(validationMessages, validity);
 		}*/
 		
+		/**
+		 * Asserts a validation message if the type is DNA or RNA and has contains a sequence feature role.
+		 * @param types A list of types to be searched against.
+		 * @param sequenceFeatures A list of sequence features.
+		 * @param roles A list of roles to be searched.
+		 * @param validationMessages The list of validation messages to append to.
+		 * @param message The message to be appended.
+		 * @param entityType The type of the entity to be inspected.
+		 * @param entity The entity to be inspected.
+		 * @return An updated ValidationMessages object.
+		 * @throws SBOLGraphException
+		 */
 		public static List<ValidationMessage> assertOnlyDNAOrRNAIdentifiedsIncludeSOFeatureRole(List<URI> types, Set<String> sequenceFeatures, List<URI> roles, List<ValidationMessage> validationMessages, String message, URI entityType, Identified entity) throws SBOLGraphException {
 			if (types!=null && roles!=null && !types.contains(ComponentType.DNA.getUri()) && !types.contains(ComponentType.RNA.getUri())) {
 				validationMessages= assertDoesNotExists(sequenceFeatures, roles, validationMessages, message, entityType, entity, DataModel.role);
@@ -300,6 +472,18 @@ public class IdentifiedValidator {
 			return validationMessages;
 		}
 		
+		/**
+		 * 
+		 * @param items The list of items to check against.
+		 * @param searchItems The items that are to be searched.
+		 * @param validationMessages The list of validation messages to append to.
+		 * @param message The message to be appended.
+		 * @param entityType The type of the entity to be inspected.
+		 * @param entity The entity to be inspected.
+		 * @param property The property to be asserted.
+		 * @return An updated ValidationMessages object.
+		 * @throws SBOLGraphException
+		 */
 		public static List<ValidationMessage> assertDoesNotExists(Set<String> items, List<URI> searchItems, List<ValidationMessage> validationMessages, String message, URI entityType, Identified entity, URI property) throws SBOLGraphException {
 			if (searchItems!=null){
 			for (URI uri: searchItems)
@@ -316,6 +500,17 @@ public class IdentifiedValidator {
 			return validationMessages;
 		}
 		
+		/**
+		 * Asserts a validation message if a match against two lists returns any result other than a single match.
+		 * @param items The list of items to check against.
+		 * @param searchURIs The URIs that are to be searched.
+		 * @param validationMessages The list of validation messages to append to.
+		 * @param message The message to be appended.
+		 * @param entity The entity to be inspected.
+		 * @param property The property to be asserted.
+		 * @return An updated ValidationMessages object.
+		 * @throws SBOLGraphException
+		 */
 		public static List<ValidationMessage> assertOneExists(Set<String> items, List<URI> searchURIs, List<ValidationMessage> validationMessages, String message, Identified entity, URI property) throws SBOLGraphException
 		{
 			int count=0;
@@ -337,6 +532,13 @@ public class IdentifiedValidator {
 			return validationMessages;
 		}
 		
+		/**
+		 * Gets all matching URIs from two collections.
+		 * @param items The list of items to check against.
+		 * @param toSearchURIs The URIs that are to be searched.
+		 * @return A set object containing all URIs that exist in both supplied collections.
+		 * @throws SBOLGraphException
+		 */
 		public static Set<URI> getMatchingSearchURIs(Collection<URI> items, Collection<URI> toSearchURIs) throws SBOLGraphException
 		{
 			Set<URI> result=null;
@@ -355,6 +557,17 @@ public class IdentifiedValidator {
 			return result;
 		}
 		
+		/**
+		 * Asserts the entity supplied if no more than one already exists.
+		 * @param items The list of items to check against.
+		 * @param searchURIs The list of URIs to check against.
+		 * @param validationMessages The list of validation messages to append to.
+		 * @param message The message to be appended.
+		 * @param entity The entity to be inspected.
+		 * @param property The property to be asserted.
+		 * @return An updated ValidationMessages object.
+		 * @throws SBOLGraphException
+		 */
 		public static List<ValidationMessage> assertAtMostOneExists(Set<String> items, List<URI> searchURIs, List<ValidationMessage> validationMessages, String message, Identified entity, URI property) throws SBOLGraphException
 		{
 			int count=0;
@@ -376,6 +589,16 @@ public class IdentifiedValidator {
 			return validationMessages;
 		}
 		
+		/**
+		 * Asserts an entity if it is either DNA or RNA, and appends the relevant role to the entity.
+		 * @param types The relevant types to the entity.
+		 * @param roles The relevant roles to the sequence.
+		 * @param validationMessages The list of validation messages to append to.
+		 * @param message The message to append to the list.
+		 * @param entity The entity to be inspected.
+		 * @return An updated ValidationMessages object.
+		 * @throws SBOLGraphException
+		 */
 		public static List<ValidationMessage> assertIfDNAOrRNAThenIdentifiedShouldIncludeOneSOFeatureRole(List<URI> types, List<URI> roles, List<ValidationMessage> validationMessages, String message, Identified entity) throws SBOLGraphException {
 			if (types!=null && (types.contains(ComponentType.DNA.getUri()) || types.contains(ComponentType.RNA.getUri()))) 
 			{
@@ -444,6 +667,14 @@ public class IdentifiedValidator {
 	 * messages; }
 	 */
 
+	/**
+	 * Asserts a valid single SBOL entity to the validation messages list.
+	 * @param identified The entity to be asserted.
+	 * @param resource The corresponding resource.
+	 * @param messages The list of validation messages to append to.
+	 * @return An updated ValidationMessages object.
+	 * @throws SBOLGraphException
+	 */
 	public List<ValidationMessage> assertOneSBOLEntityType(Identified identified, Resource resource, List<ValidationMessage> messages) throws SBOLGraphException {
 		List<URI> uris = RDFUtil.getRDFTypes(resource, URINameSpace.SBOL.getUri());
 		if (uris != null && uris.size() > 1) {
@@ -453,6 +684,17 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
+	/**
+	 * Asserts a validation message if two properties have identical values.
+	 * @param validationMessages The list of validation messages to append to.
+	 * @param message The message to assert if the condition is met.
+	 * @param first The first value to compare.
+	 * @param second The second value to compare.
+	 * @param firstPropertyURI The URI identifying the first property.
+	 * @param secondPropertyURI The URI identifying the second property.
+	 * @return An updated ValidationMessages object.
+	 * @throws SBOLGraphException
+	 */
 	public static List<ValidationMessage> assertTwoPropertyValueIdenticalEqual(List<ValidationMessage> validationMessages, String message, String first, String second, URI firstPropertyURI, URI secondPropertyURI) throws SBOLGraphException
 	{
 		if (first!=null && !first.isEmpty() && second!=null && !second.isEmpty()) {
@@ -464,7 +706,14 @@ public class IdentifiedValidator {
 		}
 		return validationMessages;
 	}
-
+	
+	/**
+	 * Returns the value of a given property as a URI.
+	 * @param resource The resource to be inspected.
+	 * @param property The property to be inspected.
+	 * @return An optional URI object with the value of the property, if it exists and can be cast.
+	 * @throws SBOLGraphException
+	 */
 	public URI getPropertyAsURI(Resource resource, URI property) throws SBOLGraphException {
 		URI result = null;
 		if (Configuration.getInstance().enforceOneToOneRelationships()) {
@@ -482,7 +731,14 @@ public class IdentifiedValidator {
 		}
 		return result;
 	}
-
+	
+	/**
+	 * Returns the value of a given property as a string.
+	 * @param resource The resource to be inspected.
+	 * @param property The property to be inspected.
+	 * @return An optional string object with the value of the property, if it exists and can be cast.
+	 * @throws SBOLGraphException
+	 */
 	public String getPropertyAsString(Resource resource, URI property) throws SBOLGraphException {
 		String result = null;
 		if (Configuration.getInstance().enforceOneToOneRelationships()) {
@@ -508,7 +764,14 @@ public class IdentifiedValidator {
 	 * property); if (value!=null){ result=OptionalInt.of(Integer.valueOf(value)); }
 	 * return result; }
 	 */
-
+	
+	/**
+	 * Returns the value of a given property as a integer.
+	 * @param resource The resource to be inspected.
+	 * @param property The property to be inspected.
+	 * @return An optional integer object with the value of the property, if it exists and can be cast.
+	 * @throws SBOLGraphException
+	 */
 	public Optional<Integer> getPropertyAsOptionalInteger(Resource resource, URI property) throws SBOLGraphException {
 		Optional<Integer> result = Optional.empty();
 		String value = IdentifiedValidator.getValidator().getPropertyAsString(resource, property);
@@ -524,7 +787,14 @@ public class IdentifiedValidator {
 	 * value.isPresent()) { stringValue= String.valueOf(value.getAsInt()); }
 	 * RDFUtil.setProperty(resource, property, stringValue); }
 	 */
-
+	
+	/**
+	 * Returns the value of a given property as a float.
+	 * @param resource The resource to be inspected.
+	 * @param property The property to be inspected.
+	 * @return An optional float object with the value of the property, if it exists and can be cast.
+	 * @throws SBOLGraphException
+	 */
 	public Optional<Float> getPropertyAsOptionalFloat(Resource resource, URI property) throws SBOLGraphException {
 		Optional<Float> result = Optional.empty();
 		String value = IdentifiedValidator.getValidator().getPropertyAsString(resource, property);
@@ -544,7 +814,13 @@ public class IdentifiedValidator {
 	 * value.isPresent()) { stringValue= String.valueOf(value.get()); }
 	 * RDFUtil.setProperty(resource, property, stringValue); }
 	 */
-
+	
+	/**
+	 * Sets the value of a property of a resource.
+	 * @param resource The resource to be modified.
+	 * @param property The property to be modified.
+	 * @param value The new value of the property, optional.
+	 */
 	public void setPropertyAsOptional(Resource resource, URI property, Optional<?> value) {
 		String stringValue = null;
 		if (value != null && value.isPresent()) {
@@ -552,7 +828,13 @@ public class IdentifiedValidator {
 		}
 		RDFUtil.setProperty(resource, property, stringValue);
 	}
-
+	
+	/**
+	 * Adds the supplied validation messages to an existing list.
+	 * @param messages A list object containing many validation messages.
+	 * @param message A single validation message.
+	 * @return An updated ValidationMessages object.
+	 */
 	public static List<ValidationMessage> addToValidations(List<ValidationMessage> messages, ValidationMessage message) {
 		if (messages == null) {
 			messages = new ArrayList<ValidationMessage>();

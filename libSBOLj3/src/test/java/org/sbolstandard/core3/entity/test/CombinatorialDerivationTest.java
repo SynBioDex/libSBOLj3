@@ -44,7 +44,11 @@ public class CombinatorialDerivationTest extends TestCase {
         //template is required.
         Component tmpURI=cd.getTemplate();
         TestUtil.validateProperty(cd, "setTemplate", new Object[] {null}, Component.class);
-        cd.setTemplate(null);
+        Component nullValue=null;
+        cd.setTemplate(nullValue);
+        TestUtil.validateIdentified(cd, doc, 1);
+        URI nullURI=null;
+        cd.setTemplate(nullURI);
         TestUtil.validateIdentified(cd, doc, 1);
         cd.setTemplate(tmpURI);
         TestUtil.validateIdentified(cd,doc,0);

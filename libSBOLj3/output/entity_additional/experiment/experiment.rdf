@@ -10,15 +10,15 @@
     xmlns="https://sbolstandard.org/examples/"
     xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/"
    xml:base="https://sbolstandard.org/examples/">
-   <sbol:Attachment rdf:about="attachment2">
-      <sbol:source rdf:resource="/attachment2"/>
-      <sbol:hasNamespace rdf:resource="/examples"/>
-      <sbol:displayId>attachment2</sbol:displayId>
-   </sbol:Attachment>
    <sbol:Attachment rdf:about="attachment1">
       <sbol:source rdf:resource="/attachment1"/>
       <sbol:hasNamespace rdf:resource="/examples"/>
       <sbol:displayId>attachment1</sbol:displayId>
+   </sbol:Attachment>
+   <sbol:Attachment rdf:about="attachment2">
+      <sbol:source rdf:resource="/attachment2"/>
+      <sbol:hasNamespace rdf:resource="/examples"/>
+      <sbol:displayId>attachment2</sbol:displayId>
    </sbol:Attachment>
    <sbol:Experiment rdf:about="exp1">
       <sbol:member rdf:resource="attachment2"/>

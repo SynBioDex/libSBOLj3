@@ -13,6 +13,9 @@ import org.sbolstandard.core3.vocabulary.DataModel;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 
+/**
+ * This class represents a cut of a sequence.
+ */
 public class Cut extends Location {
 	//private int at=Integer.MIN_VALUE;
 
@@ -25,16 +28,28 @@ public class Cut extends Location {
 		super(resource);
 	}
 	
+	/**
+	 * Gets the location of the cut.
+	 * @return An object containing the position of the cut.
+	 */
 	@NotNull(message = "{CUT_AT_NOT_NULL}")
 	public Optional<@NotNull(message = "{CUT_AT_NOT_NULL}") @PositiveOrZero(message="{CUT_AT_POSITIVE_OR_ZERO}") Integer> getAt() throws SBOLGraphException {
 		return IdentifiedValidator.getValidator().getPropertyAsOptionalInteger(this.resource, DataModel.Cut.at);
 	}
 	
+	/**
+	 * Sets the location of the cut.
+	 * @param at The location of the cut.
+	 */
 	public void setAt(Optional<@NotNull(message = "{CUT_AT_NOT_NULL}")  @PositiveOrZero(message="{CUT_AT_POSITIVE_OR_ZERO}")Integer> at) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setAt", new Object[] {at}, Optional.class);
 		IdentifiedValidator.getValidator().setPropertyAsOptional(this.resource, DataModel.Cut.at, at);
 	}
 	
+	/**
+	 * Gets the resource type for the sequence cut.
+	 * @return A URI object representing the corresponding resource.
+	 */
 	public URI getResourceType()
 	{
 		return DataModel.Cut.uri;

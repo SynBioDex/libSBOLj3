@@ -117,11 +117,15 @@ public abstract class FeatureWithLocation extends Feature{
 		return cut;
 	}
 	
+	public Cut createCut(URI uri,  int at, Sequence sequence) throws SBOLGraphException {
+		return createCut(uri, at, sequence, getDefaultLocationProperty());
+	}
+	
 	protected Cut createCut(String displayId, int at, Sequence sequence, URI property) throws SBOLGraphException {
 		return createCut(SBOLAPI.append(this.getUri(), displayId), at, sequence, property);
 	}
 
-	protected Cut createCut(String displayId, int at, Sequence sequence) throws SBOLGraphException {
+	public Cut createCut(String displayId, int at, Sequence sequence) throws SBOLGraphException {
 		return createCut(displayId, at, sequence, getDefaultLocationProperty());
 	}
 
@@ -143,7 +147,7 @@ public abstract class FeatureWithLocation extends Feature{
 		return range;
 	}
 	
-	protected Range createRange(URI uri, int start, int end, Sequence sequence) throws SBOLGraphException {
+	public Range createRange(URI uri, int start, int end, Sequence sequence) throws SBOLGraphException {
 		return createRange(uri, start, end, sequence, getDefaultLocationProperty());
 	}
 	
@@ -151,7 +155,7 @@ public abstract class FeatureWithLocation extends Feature{
 		return createRange(SBOLAPI.append(this.getUri(), displayId), start, end,  sequence, property);
 	}
 	
-	protected Range createRange(String displayId, int start, int end, Sequence sequence) throws SBOLGraphException {
+	public Range createRange(String displayId, int start, int end, Sequence sequence) throws SBOLGraphException {
 		return createRange(displayId, start, end, sequence, getDefaultLocationProperty());
 	}
 	
@@ -172,7 +176,7 @@ public abstract class FeatureWithLocation extends Feature{
 		return entireSequence;
 	}
 	
-	protected EntireSequence createEntireSequence(URI uri, int start, int end, Sequence sequence) throws SBOLGraphException {
+	public EntireSequence createEntireSequence(URI uri, Sequence sequence) throws SBOLGraphException {
 		return createEntireSequence(uri, sequence, getDefaultLocationProperty());
 	}
 	
@@ -180,7 +184,7 @@ public abstract class FeatureWithLocation extends Feature{
 		return createEntireSequence(SBOLAPI.append(this.getUri(), displayId), sequence, property);
 	}
 	
-	protected EntireSequence createEntireSequence(String displayId, Sequence sequence) throws SBOLGraphException {
+	public EntireSequence createEntireSequence(String displayId, Sequence sequence) throws SBOLGraphException {
 		return createEntireSequence(displayId, sequence, getDefaultLocationProperty());
 	}
 	
