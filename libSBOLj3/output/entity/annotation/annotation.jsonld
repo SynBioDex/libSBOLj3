@@ -108,6 +108,10 @@
             "sbol:displayId": "usage1",
             "igem:registryStar": "1",
             "igem:twins": "7",
+            "igem:uses2": {
+                "@value": "442",
+                "@type": "http://www.w3.org/2001/XMLSchema#int"
+            },
             "igem:uses": "442",
             "igem:twinURLs": {
                 "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts"

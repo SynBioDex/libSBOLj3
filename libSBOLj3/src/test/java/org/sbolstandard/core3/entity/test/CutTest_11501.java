@@ -10,6 +10,7 @@ import org.sbolstandard.core3.entity.SBOLDocument;
 import org.sbolstandard.core3.entity.Sequence;
 import org.sbolstandard.core3.entity.SequenceFeature;
 import org.sbolstandard.core3.test.TestUtil;
+import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.vocabulary.Role;
 import junit.framework.TestCase;
@@ -20,8 +21,8 @@ public class CutTest_11501 extends TestCase {
     {
 		URI base=URI.create("https://synbiohub.org/public/igem/");
 		SBOLDocument doc=new SBOLDocument(base);
-		
-		Component pTetR=SBOLAPI.createDnaComponent(doc, "BBa_R0040", "pTetR", "TetR repressible promoter", Role.Promoter, "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
+		String na="tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac";
+		Component pTetR=SBOLAPI.createDnaComponent(doc, "BBa_R0040", "pTetR", "TetR repressible promoter", Role.Promoter, na);
 	    Sequence sequence=doc.getSequences().get(0);
 		
 		SequenceFeature feature=pTetR.createSequenceFeature(5, sequence);
@@ -37,6 +38,13 @@ public class CutTest_11501 extends TestCase {
     	cut.setAt(Optional.of(elements.length()+1));
     	TestUtil.validateIdentified(cut,doc,1);
     	
+    	sequence.setElements(null);
+    	TestUtil.validateIdentified(cut,0);
+    	Configuration.getInstance().setCompleteDocument(true);
+    	TestUtil.validateIdentified(cut,1, "sbol3-11501");
+    	
+    	
+    	sequence.setElements(na);
     	cut.setAt(Optional.of(elements.length()-1));
     	TestUtil.validateIdentified(cut,doc,0);
     	

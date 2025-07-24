@@ -46,7 +46,7 @@ public class SubComponentTest extends TestCase {
 		Range range=(Range)termSubComponent.createRange(start, end,i13504Sequence);
 		range.setOrientation(Orientation.inline);
 		
-		Range range2=(Range)termSubComponent.createSourceRange(start, end,i13504Sequence);
+		//Range range2=(Range)termSubComponent.createRange(start, end,i13504Sequence);
 		
 		TestUtil.serialise(doc, "entity_additional/subcomponent", "subcomponent");
 	    System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
@@ -60,17 +60,17 @@ public class SubComponentTest extends TestCase {
 	    URI nullURI=null;
 	    termSubComponent.setInstanceOf(nullURI);	    
 	    range.setEnd(Optional.empty());
-	    range2.setEnd(Optional.empty());
-	    TestUtil.validateIdentified(termSubComponent,doc,3);
+	    //range2.setEnd(Optional.empty());
+	    TestUtil.validateIdentified(termSubComponent,doc,2);
 	    termSubComponent.setRoleIntegration(null);
-	    TestUtil.validateIdentified(termSubComponent,doc,3);
+	    TestUtil.validateIdentified(termSubComponent,doc,2);
 	    termSubComponent.setRoleIntegration(RoleIntegration.mergeRoles);
-	    TestUtil.validateIdentified(termSubComponent,doc,3);
+	    TestUtil.validateIdentified(termSubComponent,doc,2);
 	    
 	    //Roles must be provided if roleIntegration is not nulls
 	    termSubComponent.setRoleIntegration(null);
 	    termSubComponent.setRoles(Arrays.asList(URI.create("http://testrole.org")));
-	    TestUtil.validateIdentified(termSubComponent,doc,4);
+	    TestUtil.validateIdentified(termSubComponent,doc,3);
 	    
 	    termSubComponent.setInstanceOf(term);
 	    TestUtil.validateIdentified(device, 3);   
@@ -81,7 +81,7 @@ public class SubComponentTest extends TestCase {
 	    termSubComponent.setInstanceOf(term);
 	    TestUtil.validateIdentified(device, 3);
 	    range.setEnd(Optional.of(end));
-	    range2.setEnd(Optional.of(end));
+	    //range2.setEnd(Optional.of(end));
 	    termSubComponent.setRoleIntegration(RoleIntegration.mergeRoles);
 	    TestUtil.validateIdentified(device, 0);
 	    
@@ -95,12 +95,12 @@ public class SubComponentTest extends TestCase {
 	  	termSubComponent.setInstanceOf(term);
 	  	TestUtil.validateIdentified(termSubComponent,doc,0);	
 	  	
-	  	Cut cutSource=termSubComponent.createSourceCut(1, i13504Sequence);
+	  	/*Cut cutSource=termSubComponent.createSourceCut(1, i13504Sequence);
 	  	RDFUtil.setProperty(resource, DataModel.SubComponent.sourceLocation, Arrays.asList(cutSource.getUri(), i13504Sequence.getUri()));
 	  	TestUtil.validateIdentified(termSubComponent,doc,2);
-	  	RDFUtil.setProperty(resource, DataModel.SubComponent.sourceLocation, Arrays.asList(range2.getUri()));
+	  	//RDFUtil.setProperty(resource, DataModel.SubComponent.sourceLocation, Arrays.asList(range2.getUri()));
 	  	TestUtil.validateIdentified(termSubComponent,doc,0);	
-	  	
+	  	*/
 	  	TestUtil.assertReadWrite(doc);	  		  
     }
 }

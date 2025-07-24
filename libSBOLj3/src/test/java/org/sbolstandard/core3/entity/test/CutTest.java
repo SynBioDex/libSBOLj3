@@ -67,7 +67,13 @@ public class CutTest extends TestCase {
     	TestUtil.validateProperty(cut, "setSequence", new Object[] {null}, Sequence.class);
     	URI nullValue=null;
     	cut.setSequence(nullValue);
-    	TestUtil.validateIdentified(cut,doc,2,3);
+    	TestUtil.validateIdentified(cut,doc,1,2);
+    	Configuration.getInstance().setCompleteDocument(true);
+    	//TestUtil.validateIdentified(cut,doc,2,3);
+    	TestUtil.validateIdentified(cut,2,"sbol3-11501");
+    	TestUtil.validateDocument(doc,3,"sbol3-11501,sbol3-11302 ");
+    	
+    	
     	
     	 //SBOL_VALID_ENTITY_TYPES - Component.interface
 	    Resource resource= TestUtil.getResource(cut);

@@ -188,14 +188,17 @@ public class Component extends TopLevel {
 		if (sequences != null && types != null) {
 			for (URI componentTypeURI : types) {
 				boolean foundTypeMatch = false;
-
+				//boolean atLeastOneEncodingExists=false;
 				ComponentType componentType = ComponentType.get(componentTypeURI);
 				if(componentType != null) {
 					List<Encoding> typeMatches = ComponentType.checkComponentTypeMatch(componentType);
 					outerloop:
 					for (Sequence sequence : sequences) {
+						if (sequence.getElements() != null && sequence.getElements().length() > 0) {
+						}
 						Encoding encoding = Encoding.get(sequence.getEncoding());
 						if (encoding != null) {
+							//atLeastOneEncodingExists = true;
 							for (Encoding typeURI: typeMatches) {
 								if(typeURI.getUri().equals(encoding.getUri())) {
 									foundTypeMatch = true;
@@ -205,10 +208,11 @@ public class Component extends TopLevel {
 						}
 					}
 					
-					if (!foundTypeMatch) {
-						validationMessages = addToValidations(validationMessages,
-								new ValidationMessage("{COMPONENT_TYPE_SEQUENCE_TYPE_MATCH_COMPONENT_TYPE}",
-										DataModel.type, componentType));
+					if (!foundTypeMatch){
+						//if (atLeastOneEncodingExists && Configuration.getInstance().isCompleteDocument()) {
+							validationMessages = addToValidations(validationMessages,
+								new ValidationMessage("{COMPONENT_TYPE_SEQUENCE_TYPE_MATCH_COMPONENT_TYPE}", DataModel.type, componentType));
+						//}
 					}
 				
 				}
@@ -328,7 +332,11 @@ public class Component extends TopLevel {
 				if (feature instanceof SubComponent){
 					SubComponent subComponent=(SubComponent) feature;
 					List<Location> locations = subComponent.getSourceLocations();
-					validationMessages= validateComponentLocation(validationMessages, locations, subComponent, sequences, entireSequences, DataModel.SubComponent.sourceLocation, "{LOCATION_SOURCE_SEQUENCE_VALID}");		
+					if (locations!=null && !locations.isEmpty()){
+						List<Sequence> subComponentSequences = subComponent.getInstanceOf().getSequences();
+						List<Sequence> entireSequencesOfSubComponent = getEntireSequences(subComponent.getInstanceOf().getFeatures());					
+						validationMessages= validateComponentLocation(validationMessages, locations, subComponent, subComponentSequences, entireSequencesOfSubComponent, DataModel.SubComponent.sourceLocation, "{LOCATION_SOURCE_SEQUENCE_VALID}");		
+					}
 				}
 			}
 		}
@@ -350,7 +358,8 @@ public class Component extends TopLevel {
 					if (locSequence != null) {
 						if (sequences != null && SBOLUtil.contains(sequences, locSequence)) {
 							valid = true;
-						} else if (entireSequences != null && SBOLUtil.contains(entireSequences, locSequence)) {
+						} 
+						else if (entireSequences != null && SBOLUtil.contains(entireSequences, locSequence)) {
 							valid = true;
 						}
 					}
@@ -364,6 +373,7 @@ public class Component extends TopLevel {
 		}
 		return validationMessages;
 	}
+			
 			
 	private List<Sequence> getEntireSequences(List<Feature> features) throws SBOLGraphException {
 		List<Sequence> entireSequences = null;
@@ -566,7 +576,7 @@ public class Component extends TopLevel {
 	}
 	
 	/**
-	 * Adds an additional role to the component's existing list.
+	 * Adds an additional role to the component's existing lists
 	 * @param role URI object of the role to add.
 	 */
 	public void addRole(URI role) {
@@ -590,10 +600,34 @@ public class Component extends TopLevel {
 	
 	/**
 	 * Sets the sequences for the current component.
-	 * @param sequences URI objects of the sequences to set.
+	 * @param sequences Sequence entities.
 	 */
 	public void setSequences(List<Sequence> sequences) {
-		RDFUtil.setProperty(resource, DataModel.Component.sequence, SBOLUtil.getURIs(sequences));
+		setSequenceURIs(SBOLUtil.getURIs(sequences));
+	}
+	
+	/**
+	 * Sets the sequences for the current component.
+	 * @param sequences URIs of the sequence entities.
+	 */
+	public void setSequenceURIs(List<URI> sequenceURIs) {
+		RDFUtil.setProperty(resource, DataModel.Component.sequence, sequenceURIs);
+	}
+	
+	public void setSequences(URI... sequences) {
+		setSequenceURIs(Arrays.asList(sequences));
+	}
+	
+	public void setSequences(Sequence... sequences) {
+		setSequences(Arrays.asList(sequences));
+	}
+	
+	public void addSequence(Sequence sequence) {
+		addSequence(sequence.getUri());
+	}
+	
+	public void addSequence(URI sequenceURI) {
+		RDFUtil.addProperty(resource, DataModel.Component.sequence, sequenceURI);
 	}
 	
 	/**
@@ -721,12 +755,13 @@ public class Component extends TopLevel {
 		return feature;	
 	}
 	
-	private SubComponent createSubComponent(String displayId, Component isInstanceOf) throws SBOLGraphException
+	public SubComponent createSubComponent(String displayId, Component isInstanceOf) throws SBOLGraphException
 	{
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
 	
-	private SubComponent createSubComponent(String displayId, URI isInstanceOf) throws SBOLGraphException
+	
+	public SubComponent createSubComponent(String displayId, URI isInstanceOf) throws SBOLGraphException
 	{
 		return createSubComponent(SBOLAPI.append(this.getUri(), displayId), isInstanceOf);
 	}
@@ -778,7 +813,7 @@ public class Component extends TopLevel {
 		return componentReference;	
 	}
 	
-	private ComponentReference createComponentReference(String displayId, Feature feature, SubComponent inChildOf) throws SBOLGraphException {
+	public ComponentReference createComponentReference(String displayId, Feature feature, SubComponent inChildOf) throws SBOLGraphException {
 		return createComponentReference(SBOLAPI.append(this.getUri(), displayId), feature, inChildOf);	
 	}
 	
@@ -952,18 +987,19 @@ public class Component extends TopLevel {
 		return feature;
 	}
 	
-	private SequenceFeature createSequenceFeature() throws SBOLGraphException {
+	
+	public SequenceFeature createSequenceFeature() throws SBOLGraphException {
 		String displayId=SBOLAPI.createLocalName(DataModel.SequenceFeature.uri, getSequenceFeatures());	
 		SequenceFeature seqFeature=createSequenceFeature(displayId);
 		return seqFeature;
 	}
-	
-	private SequenceFeature createSequenceFeature(String displayId) throws SBOLGraphException {
+		
+	public SequenceFeature createSequenceFeature(String displayId) throws SBOLGraphException {
 		SequenceFeature seqFeature=createSequenceFeature(SBOLAPI.append(this.getUri(), displayId));
 		return seqFeature;
 	}
 	
-	private SequenceFeature createSequenceFeature(URI uri) throws SBOLGraphException {
+	public SequenceFeature createSequenceFeature(URI uri) throws SBOLGraphException {
 		SequenceFeature sequenceFeature= new SequenceFeature(this.resource.getModel(), uri);
 		RDFUtil.addProperty(resource, DataModel.Component.feature, sequenceFeature.getUri());
 		return sequenceFeature;	
@@ -1046,7 +1082,7 @@ public class Component extends TopLevel {
 		return constraint;
 	}
 	
-	private Constraint createConstraint(String displayId, URI restriction, Feature subject, Feature object) throws SBOLGraphException {
+	public Constraint createConstraint(String displayId, URI restriction, Feature subject, Feature object) throws SBOLGraphException {
 		return createConstraint(SBOLAPI.append(this.getUri(), displayId), restriction, subject, object);
 	}
 	
@@ -1144,6 +1180,23 @@ public class Component extends TopLevel {
 	 */
 	public void setModels(List<Model> models) {
 		RDFUtil.setProperty(resource, DataModel.Component.model, SBOLUtil.getURIs(models));
+	}
+	
+	/**
+	 * Adds a model using its URI.
+	 * @param Model URI to add.
+	 */
+	public void addModel(URI uri) {
+		RDFUtil.addProperty(resource, DataModel.Component.model, uri);
+	}
+	
+	
+	/**
+	* Adds a model.
+	* @param Model to add.
+	*/
+	public void addModel(Model model) {
+		addModel(model.getUri());
 	}
 	
 	/**

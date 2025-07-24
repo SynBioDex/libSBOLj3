@@ -30,6 +30,7 @@
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/IGEMUsage> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/registryStar> "1" .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/twins> "7" .
+<https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/uses2> "442"^^<http://www.w3.org/2001/XMLSchema#int> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/uses> "442" .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/twinURLs> <https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/inStock> "true" .

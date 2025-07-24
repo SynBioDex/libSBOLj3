@@ -86,11 +86,12 @@ public class Sequence extends TopLevel {
 		Encoding enc = Encoding.get(this.getEncoding());
 		if (elements!=null && !elements.isEmpty() && enc != null) {
 			if (enc.equals(Encoding.AminoAcid)) {
-				Pattern patternAA = Pattern.compile("^[ARNDCQEGHILKMFPSTWYVX]+$", Pattern.CASE_INSENSITIVE); // compiled from list of characters at https://iupac.qmul.ac.uk/AminoAcid/AA1n2.html
+				//Pattern patternAA = Pattern.compile("^[ARNDCQEGHILKMFPSTWYVX-]+$", Pattern.CASE_INSENSITIVE); // compiled from list of characters at https://iupac.qmul.ac.uk/AminoAcid/AA1n2.html
+				  Pattern patternAA = Pattern.compile("^[ABCDEFGHIJKLMNOPQRSTUVWXYZ]+$", Pattern.CASE_INSENSITIVE); // compiled from list of characters at https://iupac.qmul.ac.uk/AminoAcid/AA1n2.html
 				Matcher matcherAA = patternAA.matcher(elements);
 				if (!matcherAA.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			} else if (enc.equals(Encoding.INCHI)) {
 				Pattern patternINCHI = Pattern.compile("^((InChI=)?[^J][0-9a-z+\\-\\(\\)\\\\\\/,]+)$",
@@ -99,14 +100,15 @@ public class Sequence extends TopLevel {
 				Matcher matcherINCHI = patternINCHI.matcher(elements);
 				if (!matcherINCHI.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			} else if (enc.equals(Encoding.NucleicAcid)) {
-				Pattern patternNA = Pattern.compile("^[ATGCIUXQRYN]+$", Pattern.CASE_INSENSITIVE); // compiled from list at https://iupac.qmul.ac.uk/misc/naabb.html#p3
+				//Pattern patternNA = Pattern.compile("^[ATGCIUXQRYN]+$", Pattern.CASE_INSENSITIVE); // compiled from list at https://iupac.qmul.ac.uk/misc/naabb.html#p3
+				Pattern patternNA = Pattern.compile("^[ACGTURYSWKMBDHVN]+$", Pattern.CASE_INSENSITIVE); // compiled from list at https://iupac.qmul.ac.uk/misc/naabb.html#p3
 				Matcher matcherNA = patternNA.matcher(elements);
 				if (!matcherNA.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			} else if (enc.equals(Encoding.SMILES)) {
 				Pattern patternSMILES = Pattern.compile("^([^J][A-Za-z0-9@+\\-\\[\\]\\(\\)\\\\\\/%=#$]+)$",
@@ -114,7 +116,7 @@ public class Sequence extends TopLevel {
 				Matcher matcherSMILES = patternSMILES.matcher(elements);
 				if (!matcherSMILES.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(
-							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements));
+							"{SEQUENCE_ELEMENTS_CONSISTENT_WITH_ENCODING}", DataModel.Sequence.elements, elements));
 				}
 			}
 

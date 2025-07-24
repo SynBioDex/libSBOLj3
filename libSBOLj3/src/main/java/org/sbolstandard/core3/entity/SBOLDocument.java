@@ -735,7 +735,11 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	}
 
 	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType) throws SBOLGraphException {
-		return addToList(model, this.metadataList, metaDataType,TopLevelMetadata.class);
+		return addToList(model, null, metaDataType,TopLevelMetadata.class);
+	}
+	
+	public List<TopLevelMetadata> getTopLevelMetadataList() throws SBOLGraphException {
+		return addToList(model, this.metadataList, DataModel.TopLevel.uri, TopLevelMetadata.class);
 	}
 	
 	/*public Measure createMeasure(URI uri, float value, URI unit) throws SBOLGraphException {

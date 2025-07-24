@@ -40,6 +40,7 @@ PREFIX sbol:  <http://sbols.org/v3#>
         igem:twinURLs      <BBa_J23119/usage1/twinParts>;
         igem:twins         "7";
         igem:uses          "442";
+        igem:uses2         "442"^^<http://www.w3.org/2001/XMLSchema#int>;
         sbol:description   "BBa_J23119 usage statistics";
         sbol:displayId     "usage1";
         sbol:name          "BBa_J23119_usage" .

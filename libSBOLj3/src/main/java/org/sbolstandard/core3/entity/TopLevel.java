@@ -86,13 +86,20 @@ public abstract class TopLevel extends Identified {
 		
 	}
 	
+	public void setAttachmentsByURIs(List<URI> attachments) {
+		RDFUtil.setProperty(resource, DataModel.TopLevel.attachment, attachments);
+	}
+	
 	public void setAttachments(List<Attachment> attachments) {
-		//RDFUtil.setProperty(resource, DataModel.TopLevel.attachment, attachments);
-		RDFUtil.setProperty(resource, DataModel.TopLevel.attachment, SBOLUtil.getURIs(attachments));
+		setAttachmentsByURIs(SBOLUtil.getURIs(attachments));
 	}
 	
 	public void setAttachments(Attachment... attachments) {
 		setAttachments(Arrays.asList(attachments));
+	}
+	
+	public void setAttachments(URI... attachments) {
+		setAttachmentsByURIs(Arrays.asList(attachments));
 	}
 	
 	@NotNull(message = "{TOPLEVEL_NAMESPACE_NOT_NULL}")

@@ -181,7 +181,7 @@ public class Constraint extends Identified{
 		}
 		if (!validLocation) {
 			String calculatedLocations = String.format(", Calculated Subject Location: [%s, %s], Calculated Object Location:[%s, %s]", sbjCoord.getLeft(), sbjCoord.getRight(), objCoord.getLeft(), objCoord.getRight());
-			validationMessages = createLocationMessage(validationMessages, constraint, calculatedLocations, DataModel.Constraint.subject, subject, SBOLUtil.getURIs(subjectLocations));			
+			validationMessages = createLocationMessage(validationMessages, constraint, calculatedLocations, DataModel.Constraint.subject, subject, SBOLUtil.getURIs(subjectLocations), subjectLocations, objectLocations);			
 		}
 		return validationMessages;
 	}
@@ -209,7 +209,7 @@ public class Constraint extends Identified{
 		//The overlaps relation holds for the two sets if it holds for any pair of locations between the two sets.
 		if (!found)
 		{
-			validationMessages = createLocationMessage(validationMessages, constraint, "", DataModel.Constraint.subject, subject, SBOLUtil.getURIs(subjectLocations));
+			validationMessages = createLocationMessage(validationMessages, constraint, "", DataModel.Constraint.subject, subject, SBOLUtil.getURIs(subjectLocations),subjectLocations, objectLocations);
 		}
 		return validationMessages;
 	}
@@ -237,35 +237,54 @@ public class Constraint extends Identified{
 				}
 				else{
 					String calculatedLocations = String.format(", Subject location: [%s, %s]", sbjLocCoord.getLeft(), sbjLocCoord.getRight());
-					validationMessages=createLocationMessage(validationMessages, constraint, calculatedLocations, DataModel.Constraint.subject, subject, sbjLoc);
+					validationMessages=createLocationMessage(validationMessages, constraint, calculatedLocations, DataModel.Constraint.subject, subject, sbjLoc, subjectLocations, objectLocations);
 				}
 			}
 		}
 		else
 		{
 			String customMessage= String.format(", Number of subject location: %s, Number of object location: %s", subjectLocations.size(), objectLocations.size());
-			validationMessages =createLocationMessage(validationMessages, constraint, customMessage, DataModel.Constraint.subject, subject, SBOLUtil.getURIs(subjectLocations));
+			validationMessages =createLocationMessage(validationMessages, constraint, customMessage, DataModel.Constraint.subject, subject, SBOLUtil.getURIs(subjectLocations), subjectLocations, objectLocations);
 		}
 		return validationMessages;
 	}
 	
-	private List<ValidationMessage> createLocationMessage(List<ValidationMessage> validationMessages, Constraint constraint, String customMessage, URI constProperty, Feature feature,Location featureLoc) throws SBOLGraphException
+	private List<ValidationMessage> createLocationMessage(List<ValidationMessage> validationMessages, Constraint constraint, String customMessage, URI constProperty, Feature feature,Location featureLoc, List<Location> subjectLocations, List<Location> objectLocations) throws SBOLGraphException
 	{
 		String message = String.format("%s %s Restriction:%s%s", "{CONSTRAINT_RESTRICTION_SEQUENCES_COMPATIBLE}", ValidationMessage.INFORMATION_SEPARATOR, constraint.getRestriction(),customMessage);
 		ValidationMessage validationMessage = new ValidationMessage(message, constProperty, feature, featureLoc);
 		validationMessage.childPath(DataModel.FeatureWithLocation.location);
-		validationMessages = IdentifiedValidator.addToValidations(validationMessages, validationMessage);
+		boolean addValidation= true;
+		if (!Configuration.getInstance().isCompleteDocument()){
+			if (SBOLUtil.hasEmptyEntireSequence(subjectLocations) || SBOLUtil.hasEmptyEntireSequence(objectLocations) ){
+				addValidation=false;
+			}
+		}
+		if (addValidation)
+		{
+			validationMessages = IdentifiedValidator.addToValidations(validationMessages, validationMessage);
+		}
 		return validationMessages;
 	}
 	
-	private List<ValidationMessage> createLocationMessage(List<ValidationMessage> validationMessages, Constraint constraint, String customMessage, URI constProperty, Feature feature,List<URI> locations) throws SBOLGraphException
+	private List<ValidationMessage> createLocationMessage(List<ValidationMessage> validationMessages, Constraint constraint, String customMessage, URI constProperty, Feature feature,List<URI> locations, List<Location> subjectLocations, List<Location> objectLocations) throws SBOLGraphException
 	{
 		String message = String.format("%s %s Restriction:%s%s", "{CONSTRAINT_RESTRICTION_SEQUENCES_COMPATIBLE}", ValidationMessage.INFORMATION_SEPARATOR, constraint.getRestriction(),customMessage);
 		ValidationMessage validationMessage = new ValidationMessage(message, constProperty, feature, locations);
 		validationMessage.childPath(DataModel.FeatureWithLocation.location);
-		validationMessages = IdentifiedValidator.addToValidations(validationMessages, validationMessage);
+		boolean addValidation= true;
+		if (!Configuration.getInstance().isCompleteDocument()){
+			if (SBOLUtil.hasEmptyEntireSequence(subjectLocations) || SBOLUtil.hasEmptyEntireSequence(objectLocations) ){
+				addValidation=false;
+			}
+		}
+		if (addValidation)
+		{
+			validationMessages = IdentifiedValidator.addToValidations(validationMessages, validationMessage);
+		}
 		return validationMessages;
 	}
+		
 	
 	public List<ValidationMessage> assertForEveryObjectLocation(List<ValidationMessage> validationMessages,Constraint constraint,List<Location> subjectLocations, List<Location> objectLocations, Feature object) throws SBOLGraphException
 	{
@@ -298,7 +317,7 @@ public class Constraint extends Identified{
 				}
 				else{
 					String customMessage = String.format(", Object not found with location: [%s, %s]", objLocCoord.getLeft(), objLocCoord.getRight());
-					validationMessages=createLocationMessage(validationMessages, constraint, customMessage, DataModel.Constraint.object, object, objLoc);					
+					validationMessages=createLocationMessage(validationMessages, constraint, customMessage, DataModel.Constraint.object, object, objLoc, subjectLocations, objectLocations);					
 				}
 		}
 		return validationMessages;

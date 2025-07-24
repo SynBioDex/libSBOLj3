@@ -66,7 +66,7 @@ public class Interaction extends Identified{
 		return participation;
 	}
 	
-	private Participation createParticipation(String displayId, List<URI> roles, Feature feature) throws SBOLGraphException
+	public Participation createParticipation(String displayId, List<URI> roles, Feature feature) throws SBOLGraphException
 	{
 		return createParticipation(SBOLAPI.append(this.getUri(), displayId), roles, feature);	
 	}
@@ -77,7 +77,7 @@ public class Interaction extends Identified{
 		return createParticipation(displayId, roles, feature);	
 	}
 
-	private Participation createHigherOrderParticipation(String displayId, List<URI> roles, URI interaction) throws SBOLGraphException
+	public Participation createHigherOrderParticipation(String displayId, List<URI> roles, URI interaction) throws SBOLGraphException
 	{
 		return createHigherOrderParticipation(SBOLAPI.append(this.getUri(), displayId), roles, interaction);	
 	}

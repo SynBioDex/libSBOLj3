@@ -123,6 +123,12 @@ public class Measure extends ControlledIdentified{
 		return contsructIdentified(MeasureDataModel.Measure.unit, Unit.getSubClassTypes());
 	}
 	
+	/*@NotNull(message = "{MEASURE_UNIT_NOT_NULL}")	
+	public URI getUnit() throws SBOLGraphException {
+		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.Measure.unit);	
+		return contsructIdentified(MeasureDataModel.Measure.unit, Unit.getSubClassTypes());
+	}*/
+	
 	/**
 	 * Sets the unit of this measure.
 	 * @param unit The unit to be applied.
@@ -131,6 +137,16 @@ public class Measure extends ControlledIdentified{
 	public void setUnit(@NotNull(message = "{MEASURE_UNIT_NOT_NULL}") Unit unit) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setUnit", new Object[] {unit}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.Measure.unit, SBOLUtil.toURI(unit));
+	}
+	
+	/**
+	 * Sets the unit's URI of this measure.
+	 * @param unit URI
+	 * @throws SBOLGraphException
+	 */
+	public void setUnit(@NotNull(message = "{MEASURE_UNIT_NOT_NULL}") URI unit) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setUnit", new Object[] {unit}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.Measure.unit, unit);
 	}
 	
 	/**
