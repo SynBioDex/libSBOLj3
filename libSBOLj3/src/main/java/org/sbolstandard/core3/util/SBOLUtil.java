@@ -33,7 +33,9 @@ import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 import org.sbolstandard.core3.api.SBOLAPI;
+import org.sbolstandard.core3.entity.EntireSequence;
 import org.sbolstandard.core3.entity.Identified;
+import org.sbolstandard.core3.entity.Location;
 import org.sbolstandard.core3.entity.SBOLDocument;
 import org.sbolstandard.core3.vocabulary.ComponentType;
 
@@ -296,4 +298,23 @@ public class SBOLUtil {
 	    	}
 	    	return dateTimeString;
 	    }
+		
+		public static boolean hasEmptyEntireSequence(List<Location> locations) throws SBOLGraphException
+		{
+			boolean result= false;
+			if (locations!=null){
+				for (Location location: locations){
+					if (location instanceof EntireSequence){
+						EntireSequence entireSeqLoc=(EntireSequence) location;
+						String elements= entireSeqLoc.getSequence().getElements();
+						if (elements==null || elements.isEmpty()){
+							result= true;
+							break;
+						}
+						
+					}
+				}
+			}
+			return result;		
+		}
 }

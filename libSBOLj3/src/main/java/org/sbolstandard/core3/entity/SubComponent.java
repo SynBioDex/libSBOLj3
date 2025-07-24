@@ -9,6 +9,7 @@ import java.util.Optional;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.util.SBOLUtil;
@@ -84,9 +85,16 @@ public class SubComponent extends FeatureWithLocation{
 							int locationLength= getLocationLength(locations);
 							int elementsLength=elements.length();
 							if (elementsLength!=locationLength){
-								String message=String.format("%s ADDITIONAL INFORMATION: Sequence length:%s, Calculated location length:%s, Sequence: %s", 
+								boolean addValidation=true;
+								if (!Configuration.getInstance().isCompleteDocument() && SBOLUtil.hasEmptyEntireSequence(locations)) {
+									addValidation=false;
+								}
+								if (addValidation)
+								{
+									String message=String.format("%s ADDITIONAL INFORMATION: Sequence length:%s, Calculated location length:%s, Sequence: %s", 
 										"{SUBCOMPONENT_LOCATIONS_AND_NO_SOURCE_LOCATION_LENGTHS_MATCH}", elementsLength, locationLength, seqsOfInstanceOfComponent.get(0).getUri());
-								validationMessages= addToValidations(validationMessages,new ValidationMessage(message, DataModel.SubComponent.location, SBOLUtil.getURIs(locations)));      		
+									validationMessages= addToValidations(validationMessages,new ValidationMessage(message, DataModel.SubComponent.location, SBOLUtil.getURIs(locations)));      		
+								}
 							}
 						}
 					}
