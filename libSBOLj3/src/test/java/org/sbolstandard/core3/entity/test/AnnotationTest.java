@@ -11,6 +11,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Assert;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.*;
+import org.sbolstandard.core3.entity.provenance.Plan;
 import org.sbolstandard.core3.io.SBOLFormat;
 import org.sbolstandard.core3.io.SBOLIO;
 import org.sbolstandard.core3.test.TestUtil;
@@ -84,6 +85,13 @@ public class AnnotationTest extends TestCase {
         List<TopLevelMetadata> allTopLevelAnnotations=doc.getTopLevelMetadataList();
         assertEquals(allTopLevelAnnotations.size(), 2);
         
+		Plan plan=doc.createPlan("myPlan");
+		plan.setName("myPlanName");
+		plan.setDescription("myPlanDescription");
+		
+		allTopLevelAnnotations=doc.getTopLevelMetadataList();
+        assertEquals(allTopLevelAnnotations.size(), 2);
+       
         
         List<Pair<URI,Object>> annotations=part.getAnnotations();
         if (annotations!=null)

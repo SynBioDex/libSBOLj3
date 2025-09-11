@@ -678,6 +678,35 @@ public class RDFUtil {
 	    	}		
 	    	return validRDFTypes;
 		}
+
+		 /**
+	     * Gets all valid RDF types from a resource except the given one.
+	     * @param resource
+	     * @param prefixURIs List of namespaces to be excluded
+	     * @return
+	     * @throws SBOLGraphException
+	     */
+	    public static List<URI> getRDFTypeswithPrefixOnly(Resource resource, List<URI> prefixURIs) throws SBOLGraphException
+		{
+	    	List<URI> types=RDFUtil.getPropertiesAsURIs(resource, URI.create(RDF.type.getURI()));
+	    	List<URI> validRDFTypes=null;
+	    	if (types!=null){
+	    		for (URI typeURI: types){
+	    			if (prefixURIs!=null){
+						for (URI exceptURI: prefixURIs){						
+							if (typeURI.toString().toLowerCase().startsWith(exceptURI.toString().toLowerCase())){
+								if (validRDFTypes==null){
+									validRDFTypes=new ArrayList<URI>();
+								}
+								validRDFTypes.add(typeURI);
+							}
+						}
+					}
+	    		}
+	    	}		
+	    	return validRDFTypes;
+		}
+
 	    
 	   
 	   /* private static void writeToStreamORG(Model model, OutputStream stream, String format, Resource[] topLevelResources, URI baseUri)
