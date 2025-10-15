@@ -186,8 +186,22 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		addToList(measure, DataModel.Identified.measure);
 		return measure;	
 	}
+
+	public Measure createMeasure(URI uri, float value, URI unit) throws SBOLGraphException
+	{
+		Measure measure = new Measure(this.resource.getModel(), uri) {};
+		measure.setValue(Optional.of(value));
+		measure.setUnit(unit);		
+		addToList(measure, DataModel.Identified.measure);
+		return measure;	
+	}
 	
 	public Measure createMeasure(String displayId, float value, Unit unit) throws SBOLGraphException
+	{
+		return createMeasure(SBOLAPI.append(this.getUri(), displayId), value, unit);
+	}
+
+	public Measure createMeasure(String displayId, float value, URI unit) throws SBOLGraphException
 	{
 		return createMeasure(SBOLAPI.append(this.getUri(), displayId), value, unit);
 	}

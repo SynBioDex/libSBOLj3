@@ -117,10 +117,20 @@ public class Measure extends ControlledIdentified{
 	 * @return The corresponding unit.
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{MEASURE_UNIT_NOT_NULL}")	
+	//@NotNull(message = "{MEASURE_UNIT_NOT_NULL}")	
 	public Unit getUnit() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.Measure.unit);	
 		return contsructIdentified(MeasureDataModel.Measure.unit, Unit.getSubClassTypes());
+	}
+
+	/**
+	 * Gets the unit associated with the measure.
+	 * @return The corresponding unit.
+	 * @throws SBOLGraphException
+	 */
+	@NotNull(message = "{MEASURE_UNIT_NOT_NULL}")	
+	public URI getUnitURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.Measure.unit);
 	}
 	
 	/*@NotNull(message = "{MEASURE_UNIT_NOT_NULL}")	
@@ -136,7 +146,11 @@ public class Measure extends ControlledIdentified{
 	 */
 	public void setUnit(@NotNull(message = "{MEASURE_UNIT_NOT_NULL}") Unit unit) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setUnit", new Object[] {unit}, Unit.class);
-		RDFUtil.setProperty(resource, MeasureDataModel.Measure.unit, SBOLUtil.toURI(unit));
+		URI unitURI=null;
+		if (unit!=null) {
+			unitURI=SBOLUtil.toURI(unit);
+		}
+		RDFUtil.setProperty(resource, MeasureDataModel.Measure.unit, unitURI);
 	}
 	
 	/**
@@ -183,7 +197,9 @@ public class Measure extends ControlledIdentified{
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
 		validationMessages=assertSBOTypesIncluded(validationMessages);
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.Measure.unit, this.resource, getUnit(), validationMessages);
+		//GMGMGM
+		//validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.Measure.unit, this.resource, getUnit(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.Measure.unit, this.resource, getUnit(), validationMessages, getUnitURI());
 		return validationMessages;
 	}
 	

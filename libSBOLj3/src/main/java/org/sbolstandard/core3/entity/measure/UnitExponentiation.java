@@ -52,24 +52,45 @@ public class UnitExponentiation extends CompoundUnit{
 	}
 	
 	/**
-	 * Gets the base associated with this operation.
-	 * @return A unit representing the base of the exponentiation operation.
+	 * Gets the associated base.
+	 * @return A unit object representing the base.
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{UNITEXPONENTIATION_BASE_NOT_NULL}")	
+	//@NotNull(message = "{UNITEXPONENTIATION_BASE_NOT_NULL}")	
 	public Unit getBase() throws SBOLGraphException{
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitExponentiation.base);
 		return contsructIdentified(MeasureDataModel.UnitExponentiation.base, Unit.getSubClassTypes());	
 	}
 	
 	/**
-	 * Sets the base of this operation.
+	 * Gets the associated base.
+	 * @return A URI representing the base.
+	 * @throws SBOLGraphException
+	 */
+	@NotNull(message = "{UNITEXPONENTIATION_BASE_NOT_NULL}")	
+	public URI getBaseURI() throws SBOLGraphException{
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitExponentiation.base);
+		//return contsructIdentified(MeasureDataModel.UnitExponentiation.base, Unit.getSubClassTypes());	
+	}
+
+	/**
+	 * Sets the base unit.
 	 * @param base The unit value to be applied.
 	 * @throws SBOLGraphException
 	 */
 	public void setBase(@NotNull(message = "{UNITEXPONENTIATION_BASE_NOT_NULL}") Unit base) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setBase", new Object[] {base}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.UnitExponentiation.base, SBOLUtil.toURI(base));
+	}
+
+	/**
+	 * Sets the base URI.
+	 * @param base The URI value to be applied.
+	 * @throws SBOLGraphException
+	 */
+	public void setBase(@NotNull(message = "{UNITEXPONENTIATION_BASE_NOT_NULL}") URI base) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setBase", new Object[] {base}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.UnitExponentiation.base, base);
 	}
 	
 	/**

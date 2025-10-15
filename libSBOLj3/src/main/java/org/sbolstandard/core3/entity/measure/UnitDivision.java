@@ -51,13 +51,24 @@ public class UnitDivision extends CompoundUnit{
 	
 	/**
 	 * Gets the numerator associated with this unit division operation.
-	 * @return A Unit object with the newly applied numerator.
+	 * @return A Unit numerator.
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{UNITDIVISION_NUMERATOR_NOT_NULL}")	
+	//@NotNull(message = "{UNITDIVISION_NUMERATOR_NOT_NULL}")	
 	public Unit getNumerator() throws SBOLGraphException{
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitDivision.numerator);	
 		return contsructIdentified(MeasureDataModel.UnitDivision.numerator, Unit.getSubClassTypes());	
+	}
+
+	/**
+	 * Gets the numerator associated with this unit division.
+	 * @return A Unit numerator.
+	 * @throws SBOLGraphException
+	 */
+	@NotNull(message = "{UNITDIVISION_NUMERATOR_NOT_NULL}")	
+	public URI getNumeratorURI() throws SBOLGraphException{
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitDivision.numerator);	
+		//return contsructIdentified(MeasureDataModel.UnitDivision.numerator, Unit.getSubClassTypes());	
 	}
 	
 	/**
@@ -69,26 +80,58 @@ public class UnitDivision extends CompoundUnit{
 		PropertyValidator.getValidator().validate(this, "setNumerator", new Object[] {numerator}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.UnitDivision.numerator, SBOLUtil.toURI(numerator));
 	}
+
+	/**
+	 * Sets the numerator for this unit division operation.
+	 * @param numerator The numerator to be applied.
+	 * @throws SBOLGraphException
+	 */
+	public void setNumerator(@NotNull(message = "{UNITDIVISION_NUMERATOR_NOT_NULL}") URI numerator) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setNumerator", new Object[] {numerator}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.UnitDivision.numerator, numerator);
+	}
+
 	
 	/**
 	 * Gets the denominator associated with this unit division operation.
 	 * @return The updated operation with the denominator applied.
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{UNITDIVISION_DENOMINATOR__NOT_NULL}")	
+	//@NotNull(message = "{UNITDIVISION_DENOMINATOR__NOT_NULL}")	
 	public Unit getDenominator() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitDivision.denominator);	
 		return contsructIdentified(MeasureDataModel.UnitDivision.denominator, Unit.getSubClassTypes());	
 	}
+
+
+	/**
+	 * Gets the denominator URI.
+	 * @return The denominator URI.
+	 * @throws SBOLGraphException
+	 */
+	@NotNull(message = "{UNITDIVISION_DENOMINATOR__NOT_NULL}")	
+	public URI getDenominatorURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitDivision.denominator);	
+	}
 	
 	/**
-	 * Sets the denominator of the unit division operation.
+	 * Sets the denominator of the unit.
 	 * @param denominator The denominator to be used in this operation.
 	 * @throws SBOLGraphException
 	 */
 	public void setDenominator(@NotNull(message = "{UNITDIVISION_DENOMINATOR__NOT_NULL}") Unit denominator) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setDenominator", new Object[] {denominator}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.UnitDivision.denominator, SBOLUtil.toURI(denominator));
+	}
+
+	/**
+	 * Sets the denominator of the unit.
+	 * @param denominator The denominator to be used in this operation.
+	 * @throws SBOLGraphException
+	 */
+	public void setDenominator(@NotNull(message = "{UNITDIVISION_DENOMINATOR__NOT_NULL}") URI denominator) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setDenominator", new Object[] {denominator}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.UnitDivision.denominator, denominator);
 	}
 	
 	/**
