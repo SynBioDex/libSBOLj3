@@ -266,7 +266,7 @@ public abstract class Identified implements ValidatableSBOLEntity {
     	}
     	
     	validationMessages=IdentifiedValidator.getValidator().assertOneSBOLEntityType(this, this.resource, validationMessages);
-    	validationMessages= IdentifiedValidator.assertExists(this, DataModel.Identified.wasGeneratedBy, this.resource, this.getWasGeneratedBy(), validationMessages);
+    	validationMessages= IdentifiedValidator.assertExistsTopLevels(this, DataModel.Identified.wasGeneratedBy, this.resource, this.getWasGeneratedBy(), validationMessages);
     	validationMessages= IdentifiedValidator.assertExists(this, DataModel.Identified.measure, this.resource, this.getMeasures(), validationMessages);
         
     	if (Configuration.getInstance().isValidateRecommendedRules())

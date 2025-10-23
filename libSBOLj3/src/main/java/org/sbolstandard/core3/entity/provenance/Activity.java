@@ -360,7 +360,7 @@ public class Activity extends ControlledTopLevel{
 		validationMessages = assertCorrectDBTLTypesForActivityAssociations(validationMessages);
 		
 		validationMessages= IdentifiedValidator.assertExists(this, ProvenanceDataModel.Activity.qualifiedUsage, this.resource, getUsages(), validationMessages);
-		validationMessages= IdentifiedValidator.assertExists(this, ProvenanceDataModel.Activity.wasInformedBy, this.resource, getWasInformedBys(), validationMessages);
+		validationMessages= IdentifiedValidator.assertExistsTopLevels(this, ProvenanceDataModel.Activity.wasInformedBy, this.resource, getWasInformedBys(), validationMessages);
 		validationMessages= IdentifiedValidator.assertExists(this, ProvenanceDataModel.Activity.qualifiedAssociation, this.resource, getAssociations(), validationMessages);
 		return validationMessages;
 	}

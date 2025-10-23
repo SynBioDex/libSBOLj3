@@ -340,11 +340,11 @@ public class Component extends TopLevel {
 				}
 			}
 		}
-		validationMessages= IdentifiedValidator.assertExists(this, DataModel.Component.sequence, this.resource, getSequences(), validationMessages);
+		validationMessages= IdentifiedValidator.assertExistsTopLevels(this, DataModel.Component.sequence, this.resource, getSequences(), validationMessages);
 		validationMessages= IdentifiedValidator.assertExists(this, DataModel.Component.feature, this.resource, getFeatures(), validationMessages);
 		validationMessages= IdentifiedValidator.assertExists(this, DataModel.Component.interaction, this.resource, getInteractions(), validationMessages);
 		validationMessages= IdentifiedValidator.assertExists(this, DataModel.Component.constraint, this.resource, getConstraints(), validationMessages);
-		validationMessages= IdentifiedValidator.assertExists(this, DataModel.Component.model, this.resource, getModels(), validationMessages);
+		validationMessages= IdentifiedValidator.assertExistsTopLevels(this, DataModel.Component.model, this.resource, getModels(), validationMessages);
 		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.Component.hasInterface, this.resource, getInterface(), validationMessages);
 		return validationMessages;
 	}
