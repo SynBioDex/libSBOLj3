@@ -150,8 +150,8 @@ public class UnitMultiplication extends CompoundUnit{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term1, this.resource, getTerm1(), validationMessages);
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term2, this.resource, getTerm2(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term1, this.resource, getTerm1(), validationMessages, this.getTerm1URI());
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term2, this.resource, getTerm2(), validationMessages, this.getTerm2URI());
 		return validationMessages;
 	}
 			

@@ -231,5 +231,22 @@ public class Measure extends ControlledIdentified{
 	}
 	
 
-	
+	@Override
+    protected boolean isAnnotationProperty(String property) {
+        boolean result=false;		 
+		//Not an annotation is an SBOL entity property
+		if (MeasureDataModel.Measure.value.toString().equalsIgnoreCase(property)) {
+			result = false;
+		}
+		//Not an annotation is an SBOL entity property
+		else if (MeasureDataModel.Measure.unit.toString().equalsIgnoreCase(property)) {
+			result = false;
+		}
+		else if (super.isAnnotationProperty(property)) {
+			result = true;
+		}
+		
+		return result;
+    }
+    
 }

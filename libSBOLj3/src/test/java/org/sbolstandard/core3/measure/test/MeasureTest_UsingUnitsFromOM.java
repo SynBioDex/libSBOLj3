@@ -3,7 +3,9 @@ package org.sbolstandard.core3.measure.test;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
+import java.util.List;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.*;
 import org.sbolstandard.core3.entity.measure.Measure;
@@ -44,7 +46,9 @@ public class MeasureTest_UsingUnitsFromOM extends TestCase {
         
         UnitDivision milliMolePerLiter=doc.createUnitDivision(URINameSpace.OM.local("millimolePerLitre"), SBOLUtil.toNameSpace(URINameSpace.OM.getUri()), "mmol/l", "millimolar", millimole, liter);
         
-        CaCl2.createMeasure(SBOLAPI.append(CaCl2.getUri(), "measure1"), 0.1f, milliMolePerLiter);
+        Measure measure1 = CaCl2.createMeasure(SBOLAPI.append(CaCl2.getUri(), "measure1"), 0.1f, milliMolePerLiter);
+        List<Pair<URI,Object>> annotations=measure1.getAnnotations();
+        assertEquals(null, annotations);
         
         TestUtil.serialise(doc, "measurement_entity/measurement_using_units_From_OM", "measurement_using_units_From_OM");
       
@@ -54,6 +58,7 @@ public class MeasureTest_UsingUnitsFromOM extends TestCase {
 
         Measure measure2=CaCl2.createMeasure(SBOLAPI.append(CaCl2.getUri(), "measure2"), 0.2f, URI.create("https://sbolstandard.org/unitexample1"));
         TestUtil.validateIdentified(measure2,doc,0,0);
+        
 
         //Test for a complete document. http://...unitexample1 is just an URI and is not valid now!
         boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();

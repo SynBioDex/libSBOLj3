@@ -54,7 +54,7 @@ public abstract class  Location extends Identified {
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.Location.sequence, this.resource, getSequence(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.Location.sequence, this.resource, getSequence(), validationMessages, getSequenceURI());
 		return validationMessages;
 	}
 	
@@ -129,11 +129,18 @@ public abstract class  Location extends Identified {
 	 * @return An object of the corresponding sequence.
 	 * @throws SBOLGraphException
 	 */
-	@Valid
-	@NotNull(message = "{LOCATION_SEQUENCE_NOT_NULL}")
+	//@Valid
+	//@NotNull(message = "{LOCATION_SEQUENCE_NOT_NULL}")
 	public Sequence getSequence() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Location.sequence);
 		return contsructIdentified(DataModel.Location.sequence, Sequence.class, DataModel.Sequence.uri);
+	}
+	
+	//@Valid
+	@NotNull(message = "{LOCATION_SEQUENCE_NOT_NULL}")
+	public URI getSequenceURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Location.sequence);
+		//return contsructIdentified(DataModel.Location.sequence, Sequence.class, DataModel.Sequence.uri);
 	}
 
 	/**

@@ -267,6 +267,22 @@ public class Activity extends ControlledTopLevel{
 	 */
 	public Association createAssociation(URI uri, Agent agent) throws SBOLGraphException
 	{
+		/*Association association= new Association(this.resource.getModel(), uri);
+		association.setAgent(agent);
+		addToList (association, ProvenanceDataModel.Activity.qualifiedAssociation);
+		return association;	*/
+		return createAssociation(uri, agent.getUri());
+	}
+
+	/**
+	 * Adds an association relating to this activity.
+	 * @param uri The URI referring to the association.
+	 * @param agent An object representing the agent associated with this activity.
+	 * @return The association relating to this activity.
+	 * @throws SBOLGraphException
+	 */
+	public Association createAssociation(URI uri, URI agent) throws SBOLGraphException
+	{
 		Association association= new Association(this.resource.getModel(), uri);
 		association.setAgent(agent);
 		addToList (association, ProvenanceDataModel.Activity.qualifiedAssociation);
@@ -281,6 +297,19 @@ public class Activity extends ControlledTopLevel{
 	 * @throws SBOLGraphException
 	 */
 	public Association createAssociation(String displayId, Agent agent) throws SBOLGraphException
+	{
+		return createAssociation(SBOLAPI.append(this.getUri(), displayId), agent);
+	}
+
+
+	/**
+	 * Adds an association relating to this activity.
+	 * @param displayId The ID of the new association entity.
+	 * @param agent A URI representing the agent associated with this activity.
+	 * @return The association relating to this activity.
+	 * @throws SBOLGraphException
+	 */
+	public Association createAssociation(String displayId, URI agent) throws SBOLGraphException
 	{
 		return createAssociation(SBOLAPI.append(this.getUri(), displayId), agent);
 	}

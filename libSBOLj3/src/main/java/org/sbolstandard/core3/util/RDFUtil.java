@@ -150,6 +150,16 @@ public class RDFUtil {
 				resource.getModel().remove(stmt);
 			}
 		}
+		
+		/*stmtIt =resource.listProperties(p);
+		if (stmtIt!=null){
+			List<Statement> stmts=new ArrayList<Statement>();
+			while(stmtIt.hasNext()){
+				Statement stmt=stmtIt.next();
+				System.out.println(stmt.getObject().toString());
+			}
+			
+		}*/		
 	}
 	
 	/**

@@ -147,8 +147,8 @@ public class UnitDivision extends CompoundUnit{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitDivision.denominator, this.resource, getDenominator(), validationMessages);
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitDivision.numerator, this.resource, getNumerator(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitDivision.denominator, this.resource, getDenominator(), validationMessages, this.getDenominatorURI());
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitDivision.numerator, this.resource, getNumerator(), validationMessages, this.getNumeratorURI());
 		return validationMessages;
 	}
 }

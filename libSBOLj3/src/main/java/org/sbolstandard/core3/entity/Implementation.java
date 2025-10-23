@@ -12,6 +12,8 @@ import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.DataModel;
 
+import jakarta.validation.Valid;
+
 public class Implementation extends TopLevel{
 	//private URI component=null;
 	
@@ -28,6 +30,12 @@ public class Implementation extends TopLevel{
 	public Component getComponent() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Implementation.built);
 		return contsructIdentified(DataModel.Implementation.built, Component.class, DataModel.Component.uri);
+	}
+	
+	@Valid
+	public URI getComponentURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Implementation.built);
+		//return contsructIdentified(DataModel.Implementation.built, Component.class, DataModel.Component.uri);
 	}
 
 	public void setComponent(Component component) {
@@ -47,7 +55,7 @@ public class Implementation extends TopLevel{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.Implementation.built, this.resource, this.getComponent(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.Implementation.built, this.resource, this.getComponent(), validationMessages, this.getComponentURI());
 		return validationMessages;
 	}
 

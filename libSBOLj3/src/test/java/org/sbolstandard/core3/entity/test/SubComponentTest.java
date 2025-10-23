@@ -90,7 +90,7 @@ public class SubComponentTest extends TestCase {
 		
 	    //SBOL_VALID_ENTITY_TYPES - SubComponent.instanceOf
 	    Component instanceOf=termSubComponent.getInstanceOf();
-	  	RDFUtil.setProperty(resource, DataModel.SubComponent.instanceOf, Arrays.asList(instanceOf.getUri(), range.getUri()));
+	  	RDFUtil.setProperty(resource, DataModel.SubComponent.instanceOf, Arrays.asList(range.getUri()));
 	  	TestUtil.validateIdentified(termSubComponent,doc,1);
 	  	termSubComponent.setInstanceOf(term);
 	  	TestUtil.validateIdentified(termSubComponent,doc,0);	

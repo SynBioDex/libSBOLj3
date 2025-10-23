@@ -130,7 +130,7 @@ public class UnitExponentiation extends CompoundUnit{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitExponentiation.base, this.resource, getBase(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitExponentiation.base, this.resource, getBase(), validationMessages, this.getBaseURI());
 		return validationMessages;
 	}
 	

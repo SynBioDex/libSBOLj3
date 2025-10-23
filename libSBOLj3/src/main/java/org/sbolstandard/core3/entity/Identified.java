@@ -711,7 +711,7 @@ public abstract class Identified implements ValidatableSBOLEntity {
         return values;		
 	}
 	
-	private boolean isAnnotationProperty(String property)
+	protected boolean isAnnotationProperty(String property)
 	{
 		boolean value=true;
 		if (property.toLowerCase().startsWith(URINameSpace.SBOL.getUri().toString().toLowerCase())){

@@ -82,14 +82,14 @@ public class CutTest extends TestCase {
     	Configuration.getInstance().setCompleteDocument(true);
     	//TestUtil.validateIdentified(cut,doc,2,3);
     	TestUtil.validateIdentified(cut,2,"sbol3-11501");
-    	TestUtil.validateDocument(doc,3,"sbol3-11501,sbol3-11302 ");
+    	TestUtil.validateDocument(doc,3,"sbol3-11501,sbol3-11302");
     	
     	
     	
     	 //SBOL_VALID_ENTITY_TYPES - Component.interface
 	    Resource resource= TestUtil.getResource(cut);
-	    RDFUtil.setProperty(resource, DataModel.Location.sequence, Arrays.asList(sequence.getUri(), pTetR.getUri()));
-	  	TestUtil.validateIdentified(cut,doc,1);
+	    RDFUtil.setProperty(resource, DataModel.Location.sequence, Arrays.asList(pTetR.getUri()));
+	  	TestUtil.validateIdentified(cut,2,"sbol3-11501,sbol3-10111");
 	  	cut.setSequence(sequence);
 		TestUtil.validateIdentified(cut,doc,0);
 		Configuration.getInstance().setCompleteDocument(isCompleteOriginal);
