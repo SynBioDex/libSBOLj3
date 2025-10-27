@@ -68,6 +68,9 @@
         },
         {
             "@id": "https://sbolstandard.org/examples/BBa_J23119/information1",
+            "igem:source": {
+                "@id": "https://sbolstandard.org/examples/BBa_J23119"
+            },
             "igem:regulation": [
                 "//regulation/second_regulation",
                 "//regulation/constitutive"

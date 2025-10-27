@@ -737,11 +737,11 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType) throws SBOLGraphException {
 		return addToList(model, null, metaDataType,TopLevelMetadata.class);
 	}
-
+//GMGM
 	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType, List<URI> excludeNamespaces) throws SBOLGraphException {
 		return addToList (model, null, metaDataType,excludeNamespaces, TopLevelMetadata.class);		
 	}
-	
+//GMGM	
 	public List<TopLevelMetadata> getTopLevelMetadataList() throws SBOLGraphException {
 		List<URI> excludeNamespaces=new ArrayList<URI>();
 		excludeNamespaces.add(URINameSpace.PROV.getUri());
@@ -973,7 +973,7 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 		}
 		return items;
 	}
-
+//GMGM
 	private <T extends Identified>  List<T> addToList(Model model, List<T> items, URI entityType, List<URI> excludePrefixList, Class<T> identifiedClass) throws SBOLGraphException
 	{
 		if (items==null){

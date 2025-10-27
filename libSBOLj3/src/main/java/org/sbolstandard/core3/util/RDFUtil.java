@@ -688,7 +688,7 @@ public class RDFUtil {
 	    	}		
 	    	return validRDFTypes;
 		}
-
+//GMGM
 		 /**
 	     * Gets all valid RDF types from a resource except the given one.
 	     * @param resource
