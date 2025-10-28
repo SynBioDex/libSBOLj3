@@ -584,10 +584,10 @@ public class Component extends TopLevel {
 	}
 	
 	
-	/*public List<URI> getSequences() {
+	public List<URI> getSequenceURIs() {
 		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.Component.sequence);
 	}
-	*/
+	
 	
 	/**
 	 * Gets the sequences associated with the current component.
