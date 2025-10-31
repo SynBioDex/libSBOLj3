@@ -20,7 +20,7 @@ public class ComponentWithSequenceURITest extends TestCase {
 	
 	public void testComponent() throws SBOLGraphException, IOException, Exception
     {
-		/*URI base=URI.create("https://synbiohub.org/public/igem/");
+		URI base=URI.create("https://synbiohub.org/public/igem/");
 		SBOLDocument doc=new SBOLDocument(base);
 		
 		Component popsReceiver=SBOLAPI.createDnaComponent(doc, "BBa_F2620", "BBa_F2620", "PoPS Receiver", Role.EngineeredGene, null); 
@@ -28,7 +28,7 @@ public class ComponentWithSequenceURITest extends TestCase {
 	    
 		
         TestUtil.validateIdentified(popsReceiver, 0);
-        */
+        /*
         
         SBOLDocument doc=SBOLIO.read(new File("/Users/goksel/Downloads/PoPSReceiver.ttl"), SBOLFormat.TURTLE);
         List<String> messages=SBOLValidator.getValidator().validate(doc);
@@ -38,7 +38,7 @@ public class ComponentWithSequenceURITest extends TestCase {
         	System.out.print(messages.get(0));
         }
         TestUtil.validateDocument(doc,0);
-		
+		*/
         /*ComponentType[] values=ComponentType.values();
         System.out.println(values.length);
         OptionalComponentType[] optionalValues2=ComponentType.OptionalComponentType.values();
