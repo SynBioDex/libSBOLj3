@@ -1058,7 +1058,6 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 		addToList(topLevels, this.getBinaryPrefixes());
 		addToList(topLevels, this.getCollections());
 		addToList(topLevels, this.getCombinatorialDerivations());
-		addToList(topLevels, this.getComponents());
 		addToList(topLevels, this.getExperimentalData());
 		addToList(topLevels, this.getExperiments());
 		addToList(topLevels, this.getImplementations());
