@@ -104,7 +104,7 @@ public class Sequence extends TopLevel {
 				}
 			} else if (enc.equals(Encoding.NucleicAcid)) {
 				//Pattern patternNA = Pattern.compile("^[ATGCIUXQRYN]+$", Pattern.CASE_INSENSITIVE); // compiled from list at https://iupac.qmul.ac.uk/misc/naabb.html#p3
-				Pattern patternNA = Pattern.compile("^[ACGTURYSWKMBDHVN]+$", Pattern.CASE_INSENSITIVE); // compiled from list at https://iupac.qmul.ac.uk/misc/naabb.html#p3
+				Pattern patternNA = Pattern.compile("^[ACGTURYSWKMBDHVN.-]+$", Pattern.CASE_INSENSITIVE); // compiled from list at https://iupac.qmul.ac.uk/misc/naabb.html#p3
 				Matcher matcherNA = patternNA.matcher(elements);
 				if (!matcherNA.find()) {
 					validationMessages = addToValidations(validationMessages, new ValidationMessage(

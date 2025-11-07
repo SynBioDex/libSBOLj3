@@ -49,6 +49,7 @@ PREFIX sbol:  <http://sbols.org/v3#>
         a                 igem:Information , sbol:Identified;
         igem:regulation   "//regulation/second_regulation" , "//regulation/constitutive";
         igem:sigmaFactor  "//rnap/prokaryote/ecoli/sigma70";
+        igem:source       :BBa_J23119;
         sbol:description  "The experience page captures users' experience using the BBa_J23119 part";
         sbol:displayId    "information1";
         sbol:name         "BBa_J23119_experience" .

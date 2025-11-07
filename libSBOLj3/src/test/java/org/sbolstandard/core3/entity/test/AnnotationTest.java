@@ -11,6 +11,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.junit.Assert;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.*;
+import org.sbolstandard.core3.entity.provenance.Plan;
 import org.sbolstandard.core3.io.SBOLFormat;
 import org.sbolstandard.core3.io.SBOLIO;
 import org.sbolstandard.core3.test.TestUtil;
@@ -29,48 +30,53 @@ public class AnnotationTest extends TestCase {
         doc.addNameSpacePrefixes(igem);
         
         Component part=SBOLAPI.createComponent(doc, "BBa_J23119", ComponentType.DNA.getUri(), "BBa_J23119 part", "Parts J23100 through J23119 are a family of constitutive promoter parts isolated from a small combinatorial library.", Role.Promoter);
-        part.addAnnotion(igem.local("group"), "iGEM2006_Berkeley");
-        part.addAnnotion(igem.local("experienceURL"), URI.create("http://parts.igem.org/Part:BBa_J23119:Experience"));
+        part.addAnnotation(igem.local("group"), "iGEM2006_Berkeley");
+        part.addAnnotation(igem.local("experienceURL"), URI.create("http://parts.igem.org/Part:BBa_J23119:Experience"));
         
         //Internal metadata
         Metadata igemInf=part.createMetadata("information1", igem.local("Information"), igem.local("hasInformation"));
         igemInf.setName("BBa_J23119_experience");
         igemInf.setDescription("The experience page captures users' experience using the BBa_J23119 part");
-        igemInf.addAnnotion(igem.local("sigmaFactor"), "//rnap/prokaryote/ecoli/sigma70");
-        igemInf.addAnnotion(igem.local("regulation"), "//regulation/constitutive");
-        igemInf.addAnnotion(igem.local("regulation"), "//regulation/second_regulation");
-        
+        igemInf.addAnnotation(igem.local("sigmaFactor"), "//rnap/prokaryote/ecoli/sigma70");
+        igemInf.addAnnotation(igem.local("regulation"), "//regulation/constitutive");
+        igemInf.addAnnotation(igem.local("regulation"), "//regulation/second_regulation");
         Assert.assertTrue(igemInf.getType().contains( igem.local("Information")));
+        
+        igemInf.addAnnotation(igem.local("source"), part.getUri());
+        List<Object> uris= igemInf.getAnnotation(igem.local("source"));
+        Assert.assertTrue(uris!=null && uris.size()>0 && ((URI)uris.get(0)).equals(part.getUri()));
+        		
+        
         
         
         Identified igemInf2=part.createMetadata("usage1", igem.local("IGEMUsage"), igem.local("hasUsage"));
         igemInf2.setName("BBa_J23119_usage");
         igemInf2.setDescription("BBa_J23119 usage statistics");
-        igemInf2.addAnnotion(igem.local("inStock"), "true");
-        igemInf2.addAnnotion(igem.local("registryStar"), "1");
-        igemInf2.addAnnotion(igem.local("uses"), "442");
-        igemInf2.addAnnotion(igem.local("uses2"), 442);
-        igemInf2.addAnnotion(igem.local("twins"), "7");
+        igemInf2.addAnnotation(igem.local("inStock"), "true");
+        igemInf2.addAnnotation(igem.local("registryStar"), "1");
+        igemInf2.addAnnotation(igem.local("uses"), "442");
+        igemInf2.addAnnotation(igem.local("uses2"), 442);
+        igemInf2.addAnnotation(igem.local("twins"), "7");
      
         //Metadata within metadata
         Identified igemInfInternal=igemInf2.createMetadata("twinParts", igem.local("TwinPartUsage"), igem.local("twinURLs"));
         igemInfInternal.setName("twin parts");
-        igemInfInternal.addAnnotion(igem.local("twinURL"), URI.create("http://parts.igem.org/wiki/index.php?title=Part:BBa_J72073"));
-        igemInfInternal.addAnnotion(igem.local("twinURL"), URI.create("http://parts.igem.org/wiki/index.php?title=Part:BBa_M1638"));
-        igemInfInternal.addAnnotion(igem.local("twinURL"), URI.create("http://parts.igem.org/wiki/index.php?title=Part:BBa_M36800"));
+        igemInfInternal.addAnnotation(igem.local("twinURL"), URI.create("http://parts.igem.org/wiki/index.php?title=Part:BBa_J72073"));
+        igemInfInternal.addAnnotation(igem.local("twinURL"), URI.create("http://parts.igem.org/wiki/index.php?title=Part:BBa_M1638"));
+        igemInfInternal.addAnnotation(igem.local("twinURL"), URI.create("http://parts.igem.org/wiki/index.php?title=Part:BBa_M36800"));
 
         //TopLevel metadata
         TopLevel igemInf4=doc.createMetadata("iGEMRepository", igem.local("Repository"));
         igemInf4.setName("iGEM Registry");
         igemInf4.setDescription("Registry of Standard Biological Parts");
-        igemInf4.addAnnotion(igem.local("website"), URI.create("http://parts.igem.org/Main_Page"));
+        igemInf4.addAnnotation(igem.local("website"), URI.create("http://parts.igem.org/Main_Page"));
         
         TopLevel igemInf5=doc.createMetadata("SynBioHubRepository", igem.local("Repository"));
         igemInf5.setName("SynBioHub");
        
         
-        part.addAnnotion(igem.local("belongsTo"), igemInf5);
-        part.addAnnotion(igem.local("belongsTo"), igemInf4);
+        part.addAnnotation(igem.local("belongsTo"), igemInf5);
+        part.addAnnotation(igem.local("belongsTo"), igemInf4);
         
         TestUtil.serialise(doc, "entity/annotation", "annotation");
    
@@ -84,6 +90,13 @@ public class AnnotationTest extends TestCase {
         List<TopLevelMetadata> allTopLevelAnnotations=doc.getTopLevelMetadataList();
         assertEquals(allTopLevelAnnotations.size(), 2);
         
+		Plan plan=doc.createPlan("myPlan");
+		plan.setName("myPlanName");
+		plan.setDescription("myPlanDescription");
+		
+		allTopLevelAnnotations=doc.getTopLevelMetadataList();
+        assertEquals(allTopLevelAnnotations.size(), 2);
+       
         
         List<Pair<URI,Object>> annotations=part.getAnnotations();
         if (annotations!=null)
@@ -121,39 +134,43 @@ public class AnnotationTest extends TestCase {
         printMetadata(doc2.getComponents().get(0));
         
         TestUtil.assertReadWrite(doc);
+        
+        List<TopLevelMetadata> list=doc.getTopLevelMetadataList();
+        
+        
     }
 	
 	public void printMetadata(Identified identified) throws SBOLGraphException
 	{
 		 URINameSpace igem=new URINameSpace(URI.create("http://parts.igem.org/"), "igem");  
-		 System.out.println("group:" + identified.getAnnotion(igem.local("group")));
-		 System.out.println("experienceURL:" + identified.getAnnotion(igem.local("experienceURL")));
-		 List<Object> informationMetadata=identified.getAnnotion(igem.local("hasInformation"));
+		 System.out.println("group:" + identified.getAnnotation(igem.local("group")));
+		 System.out.println("experienceURL:" + identified.getAnnotation(igem.local("experienceURL")));
+		 List<Object> informationMetadata=identified.getAnnotation(igem.local("hasInformation"));
 		 if (informationMetadata!=null)
 		 {
 			 Metadata metadata=(Metadata) informationMetadata.get(0);
 			 System.out.println("hasInformation");
 			 printMetadata(metadata,3);
-			 System.out.println("   SigmaFactor:" + metadata.getAnnotion(igem.local("sigmaFactor")));
-			 System.out.println("   Regulation:" + metadata.getAnnotion(igem.local("regulation")));
+			 System.out.println("   SigmaFactor:" + metadata.getAnnotation(igem.local("sigmaFactor")));
+			 System.out.println("   Regulation:" + metadata.getAnnotation(igem.local("regulation")));
 		 }
-		 List<Object> usage=identified.getAnnotion(igem.local("hasUsage"));
+		 List<Object> usage=identified.getAnnotation(igem.local("hasUsage"));
 		 if (usage!=null)
 		 {
 			 Metadata metadata=(Metadata) usage.get(0);
 			 System.out.println("hasUsage");
 			 printMetadata(metadata,3);
-			 System.out.println("   Uses:" + metadata.getAnnotion(igem.local("uses")));
-			 System.out.println("   Uses:" + metadata.getAnnotion(igem.local("uses2")));			 
-			 System.out.println("   Twins:" + metadata.getAnnotion(igem.local("twins")));
-			 List<Object> twinsURLs=metadata.getAnnotion(igem.local("twinURLs"));
+			 System.out.println("   Uses:" + metadata.getAnnotation(igem.local("uses")));
+			 System.out.println("   Uses:" + metadata.getAnnotation(igem.local("uses2")));			 
+			 System.out.println("   Twins:" + metadata.getAnnotation(igem.local("twins")));
+			 List<Object> twinsURLs=metadata.getAnnotation(igem.local("twinURLs"));
 			 Metadata twinPartUsageMetadata=(Metadata) twinsURLs.get(0);
 			 System.out.println("   TwinPartUsage:");
 			 printMetadata(metadata,6);
-			 System.out.println("      twinURL:" + twinPartUsageMetadata.getAnnotion(igem.local("twinURL")));
+			 System.out.println("      twinURL:" + twinPartUsageMetadata.getAnnotation(igem.local("twinURL")));
 		 }
 		 
-		 List<Object> repositoryMetadataList=identified.getAnnotion(igem.local("belongsTo"));
+		 List<Object> repositoryMetadataList=identified.getAnnotation(igem.local("belongsTo"));
 		 System.out.println("belongsTo:");
 		 if (repositoryMetadataList!=null)
 		 {

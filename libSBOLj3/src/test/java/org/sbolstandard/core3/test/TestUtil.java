@@ -778,15 +778,17 @@ public class TestUtil {
 		
 	}
 	public static String validateIdentified(Identified identified,int numberOfExpectedErrors) throws SBOLGraphException
-	{	 
-		boolean isValidateAfterSettingPropertiesInitial=Configuration.getInstance().isValidateAfterSettingProperties();
+	{	 				
+		boolean isValidateAfterReading=Configuration.getInstance().validateAfterReadingSBOLDocuments();		
 		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);
+		//Configuration.getInstance().setValidateAfterSettingProperties(true);
 		List<String> messages=IdentifiedValidator.getValidator().validate(identified);
 		System.out.println("Identified:" + identified.getUri());
 		String output=printMessages(messages, "Identified");
 		int size= (messages==null)? 0 : messages.size();
 		assertEquals(numberOfExpectedErrors, size);
-	    Configuration.getInstance().setValidateAfterReadingSBOLDocuments(isValidateAfterSettingPropertiesInitial); 
+	    Configuration.getInstance().setValidateAfterReadingSBOLDocuments(isValidateAfterReading); 
+		
 	    return output;
 	}
 	
@@ -819,14 +821,13 @@ public class TestUtil {
 	
 	public static String validateDocument(SBOLDocument document ,int numberOfExpectedErrors) throws SBOLGraphException
 	{	 
-		boolean isValidateAfterSettingPropertiesInitial=Configuration.getInstance().isValidateAfterSettingProperties();
-		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);
-		
+		boolean validateAfterSettingPropertiesInitial=Configuration.getInstance().validateAfterReadingSBOLDocuments();
+		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);		
 		List<String> messages=SBOLValidator.getValidator().validate(document);
 		int size= (messages==null)? 0 : messages.size();
 		String output=printMessages(messages, "Document");
 		assertEquals(numberOfExpectedErrors, size);
-	    Configuration.getInstance().setValidateAfterReadingSBOLDocuments(isValidateAfterSettingPropertiesInitial);
+	    Configuration.getInstance().setValidateAfterReadingSBOLDocuments(validateAfterSettingPropertiesInitial);
 	    return output;
 	}
 	
@@ -947,11 +948,15 @@ public class TestUtil {
 	
 	public static <T extends Identified> void testValidEntity(SBOLDocument doc, Identified identified, Identified validChildIdentified, List<T> invalidChildIdentifieds, URI property) throws SBOLGraphException, Exception
 	{
+		//boolean isValidateAfterSettingPropertiesInitial=Configuration.getInstance().isValidateAfterSettingProperties();
+		//Configuration.getInstance().setValidateAfterSettingProperties(true);
 		Resource resource= TestUtil.getResource(identified);    
 		URI tempURI=validChildIdentified.getUri();
+		
 		RDFUtil.setProperty(resource, property, SBOLUtil.getURIs(invalidChildIdentifieds));
 		TestUtil.validateIdentified(identified,doc,1);
 		RDFUtil.setProperty(resource, property, tempURI);
 		TestUtil.validateIdentified(identified,doc,0);
+		//Configuration.getInstance().setValidateAfterSettingProperties(isValidateAfterSettingPropertiesInitial);
 	}
 }

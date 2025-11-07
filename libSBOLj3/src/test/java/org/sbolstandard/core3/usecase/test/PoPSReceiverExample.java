@@ -77,7 +77,26 @@ public class PoPSReceiverExample extends TestCase {
         SBOLComparator.assertEqualEntity(pTetR, comp);
         
     	TestUtil.assertReadWrite(doc);	 
-	  
+
+		System.out.println("**************");
+
+		
+    	List<TopLevel> tls=doc.getTopLevels();
+    	if (tls!=null)
+    	{
+			for (TopLevel tl : tls) {
+				System.out.println("TopLevel: " + tl.getDisplayId() + " " + tl.getClass().getSimpleName());
+			}
+    	}
+    	
+    	List<Component> cs=doc.getComponents();
+    	if (cs!=null)
+    	{
+			for (Component tl : cs) {
+				System.out.println("Component: " + tl.getDisplayId() + " " + tl.getClass().getSimpleName());
+			}
+    	}
+    	
         System.out.println("done");   
     }
     

@@ -48,18 +48,30 @@ public class UnitMultiplication extends CompoundUnit{
 	}
 	
 	/**
-	 * Gets the first term associated with the operation.
+	 * Gets the first unit term.
 	 * @return The unit expressing the first term.
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{UNITMULTIPLICATION_TERM1_NOT_NULL}")	
+	//@NotNull(message = "{UNITMULTIPLICATION_TERM1_NOT_NULL}")	
 	public Unit getTerm1() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitMultiplication.term1);	
 		return contsructIdentified(MeasureDataModel.UnitMultiplication.term1, Unit.getSubClassTypes());	
 	}
+
+	/**
+	 * Gets the URI of the first term.
+	 * @return The URI expressing the first term.
+	 * @throws SBOLGraphException
+	 */
+	@NotNull(message = "{UNITMULTIPLICATION_TERM1_NOT_NULL}")	
+	public URI getTerm1URI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitMultiplication.term1);	
+		//return contsructIdentified(MeasureDataModel.UnitMultiplication.term1, Unit.getSubClassTypes());	
+	}
+
 	
 	/**
-	 * Sets the first term in the multiplication.
+	 * Sets the first term.
 	 * @param term1 The unit expressing the first term.
 	 * @throws SBOLGraphException
 	 */
@@ -67,16 +79,38 @@ public class UnitMultiplication extends CompoundUnit{
 		PropertyValidator.getValidator().validate(this, "setTerm1", new Object[] {term1}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.UnitMultiplication.term1, SBOLUtil.toURI(term1));
 	}
+
+	/**
+	 * Sets the first term.
+	 * @param term1 The URI expressing the first term.
+	 * @throws SBOLGraphException
+	 */
+	public void setTerm1(@NotNull(message = "UNITMULTIPLICATION_TERM1_NOT_NULL}") URI term1) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setTerm1", new Object[] {term1}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.UnitMultiplication.term1, term1);
+	}
+
 	
 	/**
-	 * Gets the second term associated with the operation.
+	 * Gets the unit of the second term.
+	 * @return The unit expressing the second term.
+	 * @throws SBOLGraphException
+	 */
+	//@NotNull(message = "UNITMULTIPLICATION_TERM2_NOT_NULL}")	
+	public Unit getTerm2() throws SBOLGraphException {
+		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitMultiplication.term2);
+		return contsructIdentified(MeasureDataModel.UnitMultiplication.term2, Unit.getSubClassTypes());	
+	}
+
+	/**
+	 * Gets the unit of the second term.
 	 * @return The unit expressing the second term.
 	 * @throws SBOLGraphException
 	 */
 	@NotNull(message = "UNITMULTIPLICATION_TERM2_NOT_NULL}")	
-	public Unit getTerm2() throws SBOLGraphException {
-		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitMultiplication.term2);
-		return contsructIdentified(MeasureDataModel.UnitMultiplication.term2, Unit.getSubClassTypes());	
+	public URI getTerm2URI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.UnitMultiplication.term2);
+		//return contsructIdentified(MeasureDataModel.UnitMultiplication.term2, Unit.getSubClassTypes());	
 	}
 	
 	/**
@@ -87,6 +121,16 @@ public class UnitMultiplication extends CompoundUnit{
 	public void setTerm2(@NotNull(message = "UNITMULTIPLICATION_TERM2_NOT_NULL}") Unit term2) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setTerm2", new Object[] {term2}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.UnitMultiplication.term2, SBOLUtil.toURI(term2));
+	}
+
+	/**
+	 * Sets the URI of the second term.
+	 * @param term2 The URI of the second term.
+	 * @throws SBOLGraphException
+	 */
+	public void setTerm2(@NotNull(message = "UNITMULTIPLICATION_TERM2_NOT_NULL}") URI term2) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setTerm2", new Object[] {term2}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.UnitMultiplication.term2, term2);
 	}
 	
 	/**
@@ -106,8 +150,8 @@ public class UnitMultiplication extends CompoundUnit{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term1, this.resource, getTerm1(), validationMessages);
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term2, this.resource, getTerm2(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term1, this.resource, getTerm1(), validationMessages, this.getTerm1URI());
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.UnitMultiplication.term2, this.resource, getTerm2(), validationMessages, this.getTerm2URI());
 		return validationMessages;
 	}
 			

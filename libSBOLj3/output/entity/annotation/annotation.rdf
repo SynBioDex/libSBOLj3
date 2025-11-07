@@ -26,6 +26,7 @@
       <sbol:type rdf:resource="https://identifiers.org/SBO:0000251"/>
       <igem:hasInformation>
          <igem:Information rdf:about="BBa_J23119/information1">
+            <igem:source rdf:resource="BBa_J23119"/>
             <igem:regulation>//regulation/second_regulation</igem:regulation>
             <igem:regulation>//regulation/constitutive</igem:regulation>
             <igem:sigmaFactor>//rnap/prokaryote/ecoli/sigma70</igem:sigmaFactor>

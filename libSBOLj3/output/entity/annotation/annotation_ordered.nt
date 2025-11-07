@@ -1,6 +1,7 @@
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/regulation> "//regulation/constitutive" .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/regulation> "//regulation/second_regulation" .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/sigmaFactor> "//rnap/prokaryote/ecoli/sigma70" .
+<https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/source> <https://sbolstandard.org/examples/BBa_J23119> .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://sbols.org/v3#description> "The experience page captures users' experience using the BBa_J23119 part" .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://sbols.org/v3#displayId> "information1" .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://sbols.org/v3#name> "BBa_J23119_experience" .

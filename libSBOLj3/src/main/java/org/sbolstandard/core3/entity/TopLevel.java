@@ -75,7 +75,7 @@ public abstract class TopLevel extends Identified {
     			}
     		}	
     	}
-    	validationMessages= IdentifiedValidator.assertExists(this, DataModel.TopLevel.attachment, this.resource, getAttachments(), validationMessages);
+    	validationMessages= IdentifiedValidator.assertExistsTopLevels(this, DataModel.TopLevel.attachment, this.resource, getAttachments(), validationMessages);
     	return validationMessages;
 	}
 	
@@ -130,6 +130,12 @@ public abstract class TopLevel extends Identified {
 		RDFUtil.setProperty(resource, DataModel.TopLevel.namespace, namespace);
 	}
 	
+	/*@Override
+	public List<Identified> getReferencedEntities() throws SBOLGraphException{
+		List<Identified> identifieds=super.getChildren();
+		identifieds=addToList(identifieds, this.getAttachments());		
+		return identifieds;
+	}*/
 	
 	 
 	@Override

@@ -99,7 +99,8 @@ public class ValidationReadWriteTest extends TestCase {
         TestUtil.validateIdentified(CaCl2, 0);  
          
         millimole.setPrefix(null);
-        millimole.setUnit(null);
+		Unit nullUnit=null;
+        millimole.setUnit(nullUnit);
         millimole.setSymbol(null);
         millimole.setLabel(null);
         TestUtil.validateIdentified(millimole,doc, 4);  
@@ -109,17 +110,16 @@ public class ValidationReadWriteTest extends TestCase {
         milli.setFactor(Optional.empty());
         TestUtil.validateIdentified(milli,1);  
         TestUtil.validateDocument(doc,5);  
-        
-        milliMolePerLiter.setDenominator(null);
-        milliMolePerLiter.setNumerator(null);
+        milliMolePerLiter.setDenominator(nullUnit);
+        milliMolePerLiter.setNumerator(nullUnit);
         TestUtil.validateIdentified(milliMolePerLiter,doc,2,7);  
         
         m3.setExponent(Optional.empty());
-        m3.setBase(null);
+        m3.setBase(nullUnit);
         TestUtil.validateIdentified(m3,doc,2,9);  
         
-        um.setTerm1(null);
-        um.setTerm2(null);
+        um.setTerm1(nullUnit);
+        um.setTerm2(nullUnit);
         TestUtil.validateIdentified(um,doc,2,11);  
         
         

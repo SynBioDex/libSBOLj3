@@ -234,6 +234,19 @@ public class Activity extends ControlledTopLevel{
 		URI childUri=SBOLAPI.createLocalUri(this, ProvenanceDataModel.Usage.uri, this.getUsages());
 		return createUsage(childUri, entity);
 	}
+
+
+	/**
+	 * Adds an entity that uses this activity.
+	 * @param displayId The ID of the new usage entity.
+	 * @param entity The URI of the entity object being added.
+	 * @return The entity object being added.
+	 * @throws SBOLGraphException
+	 */
+	public Usage createUsage(String displayId, URI entity) throws SBOLGraphException
+	{		
+		return createUsage(SBOLAPI.append(this.getUri(), displayId), entity);
+	}
 	
 	/**
 	 * Gets the associations relating to this activity.
@@ -254,10 +267,51 @@ public class Activity extends ControlledTopLevel{
 	 */
 	public Association createAssociation(URI uri, Agent agent) throws SBOLGraphException
 	{
+		/*Association association= new Association(this.resource.getModel(), uri);
+		association.setAgent(agent);
+		addToList (association, ProvenanceDataModel.Activity.qualifiedAssociation);
+		return association;	*/
+		return createAssociation(uri, agent.getUri());
+	}
+
+	/**
+	 * Adds an association relating to this activity.
+	 * @param uri The URI referring to the association.
+	 * @param agent An object representing the agent associated with this activity.
+	 * @return The association relating to this activity.
+	 * @throws SBOLGraphException
+	 */
+	public Association createAssociation(URI uri, URI agent) throws SBOLGraphException
+	{
 		Association association= new Association(this.resource.getModel(), uri);
 		association.setAgent(agent);
 		addToList (association, ProvenanceDataModel.Activity.qualifiedAssociation);
 		return association;	
+	}
+
+	/**
+	 * Adds an association relating to this activity.
+	 * @param displayId The ID of the new association entity.
+	 * @param agent An object representing the agent associated with this activity.
+	 * @return The association relating to this activity.
+	 * @throws SBOLGraphException
+	 */
+	public Association createAssociation(String displayId, Agent agent) throws SBOLGraphException
+	{
+		return createAssociation(SBOLAPI.append(this.getUri(), displayId), agent);
+	}
+
+
+	/**
+	 * Adds an association relating to this activity.
+	 * @param displayId The ID of the new association entity.
+	 * @param agent A URI representing the agent associated with this activity.
+	 * @return The association relating to this activity.
+	 * @throws SBOLGraphException
+	 */
+	public Association createAssociation(String displayId, URI agent) throws SBOLGraphException
+	{
+		return createAssociation(SBOLAPI.append(this.getUri(), displayId), agent);
 	}
 	
 	/**
@@ -306,7 +360,7 @@ public class Activity extends ControlledTopLevel{
 		validationMessages = assertCorrectDBTLTypesForActivityAssociations(validationMessages);
 		
 		validationMessages= IdentifiedValidator.assertExists(this, ProvenanceDataModel.Activity.qualifiedUsage, this.resource, getUsages(), validationMessages);
-		validationMessages= IdentifiedValidator.assertExists(this, ProvenanceDataModel.Activity.wasInformedBy, this.resource, getWasInformedBys(), validationMessages);
+		validationMessages= IdentifiedValidator.assertExistsTopLevels(this, ProvenanceDataModel.Activity.wasInformedBy, this.resource, getWasInformedBys(), validationMessages);
 		validationMessages= IdentifiedValidator.assertExists(this, ProvenanceDataModel.Activity.qualifiedAssociation, this.resource, getAssociations(), validationMessages);
 		return validationMessages;
 	}

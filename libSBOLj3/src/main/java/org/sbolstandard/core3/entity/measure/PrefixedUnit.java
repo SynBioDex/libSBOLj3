@@ -11,6 +11,7 @@ import org.sbolstandard.core3.util.SBOLUtil;
 import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.PropertyValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
+import org.sbolstandard.core3.vocabulary.DataModel;
 import org.sbolstandard.core3.vocabulary.MeasureDataModel;
 import jakarta.validation.constraints.NotNull;
 
@@ -74,10 +75,20 @@ public class PrefixedUnit extends Unit{
 	 * @return The corresponding unit.
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{PREFIXEDUNIT_UNIT_NOT_NULL}")	
+	//@NotNull(message = "{PREFIXEDUNIT_UNIT_NOT_NULL}")	
 	public Unit getUnit() throws SBOLGraphException{
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.PrefixedUnit.unit);
 		return contsructIdentified(MeasureDataModel.PrefixedUnit.unit, Unit.getSubClassTypes());	
+	}
+
+	/**
+	 * Get the encoding type for the sequence.
+	 * @return An object with the corresponding encoding type.
+	 * @throws SBOLGraphException
+	 */
+	@NotNull(message = "{PREFIXEDUNIT_UNIT_NOT_NULL}")	
+	public URI getUnitURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.PrefixedUnit.unit);		
 	}
 	
 	/**
@@ -88,6 +99,16 @@ public class PrefixedUnit extends Unit{
 	public void setUnit(@NotNull(message = "{PREFIXEDUNIT_UNIT_NOT_NULL}") Unit unit) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setUnit", new Object[] {unit}, Unit.class);
 		RDFUtil.setProperty(resource, MeasureDataModel.PrefixedUnit.unit, SBOLUtil.toURI(unit));
+	}
+
+	/**
+	 * Sets the unit of the prefixed unit.
+	 * @param unit The unit to be applied.
+	 * @throws SBOLGraphException
+	 */
+	public void setUnitURI(@NotNull(message = "{PREFIXEDUNIT_UNIT_NOT_NULL}") URI unit) throws SBOLGraphException {
+		PropertyValidator.getValidator().validate(this, "setUnit", new Object[] {unit}, URI.class);
+		RDFUtil.setProperty(resource, MeasureDataModel.PrefixedUnit.unit, unit);
 	}
 	
 	/**
@@ -107,7 +128,8 @@ public class PrefixedUnit extends Unit{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.PrefixedUnit.unit, this.resource, getUnit(), validationMessages);
+		//GMGMGM
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.PrefixedUnit.unit, this.resource, getUnit(), validationMessages, this.getUnitURI());
 		return validationMessages;
 	}
 }
