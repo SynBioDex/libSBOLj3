@@ -24,7 +24,7 @@ Then include it as a Maven dependency in your project's POM file.
    <dependency>
       <groupId>org.sbolstandard</groupId>
       <artifactId>libSBOLj3</artifactId>
-      <version>1.0.2-SNAPSHOT</version>
+      <version>1.0.5</version>
    </dependency>
    ...
 </dependencies>
@@ -32,29 +32,56 @@ Then include it as a Maven dependency in your project's POM file.
 ```
 
 ### To use the released version as a Maven dependency in a Maven project
-Use this option if you are developing a Java application using [Maven](https://maven.apache.org/). Add the following libSBOLj3 dependency to your Maven applications's POM file (pom.xml). Please also make sure that you include the Nexus' Snapshots repository URL in the POM file. 
+Use this option if you are developing a Java application using [Maven](https://maven.apache.org/). 
+
+* Step 1: Add the following libSBOLj3 dependency to your Maven applications's POM file (pom.xml). 
+
+
 ``` 
 </dependencies>
 	...
    <dependency>
-      <groupId>org.sbolstandard</groupId>
-      <artifactId>libSBOLj3</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+    		<groupId>org.sbolstandard</groupId>
+   		<artifactId>libsbolj3</artifactId>
+    		<version>1.0.5</version>
    </dependency>
    ...
 </dependencies>
+```
 
+* Step 2: Make sure that you include the GitHub repository entry in your project's POM file. 
+```
 <repositories>
-   <repository>
-      <id>oss-sonatype</id>
-      <name>oss-sonatype</name>
-      <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
-      <snapshots>
-         <enabled>true</enabled>
-      </snapshots>
+	<repository>
+      <id>github</id>
+      <name>GitHub Packages (Releases)</name>
+		<url>https://maven.pkg.github.com/SynBioDex/libSBOLj3</url>
    </repository>
 </repositories>
 ```
+
+* Step 3: This step is required only once to download Maven artefacts for any project. Create a GitHub token using your GitHub account if you haven't done this before. Go to https://github.com/settings/tokens and generate a new classic token for general use.
+Cick on the ```Generate new token``` button and choose the ```Generate new token (classics) For general use``` option.
+
+Finally link this GitHub token with your Maven by updating Maven's settings.xml file (```~/.m2/settings.xml```). Add the server information as shown below. If settings.xml does not exist, create it with the conrent below and update it with your details. 
+
+```
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+
+ <servers>
+    <server>
+      <id>github</id>
+      <username>[YOUR_GITHUB_USER]</username>
+      <password>[YOUR_GITHUB_TOKEN]</password>
+    </server>
+  </servers>
+</settings>
+```
+
 
 ### As a Java dependency in a non-Maven project
 The libSBOLj3 library is available as a JAR file. Please download the file from the [releases page](https://github.com/SynBioDex/libSBOLj3/tags). A single JAR file (with the "withDepencencies" suffix), which includes all the required libSBOLj3 related dependencies, is also available.
