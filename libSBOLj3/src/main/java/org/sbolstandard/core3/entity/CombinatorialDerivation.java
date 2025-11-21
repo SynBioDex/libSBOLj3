@@ -83,7 +83,7 @@ public class CombinatorialDerivation extends TopLevel{
 			validationMessages= assertTemplateHasAtLeastOneFeature(validationMessages);
 		}
 		validationMessages= IdentifiedValidator.assertExists(this, DataModel.CombinatorialDerivation.variableFeature, this.resource, getVariableFeatures(), validationMessages);
-		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.CombinatorialDerivation.template, this.resource, getTemplate(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.CombinatorialDerivation.template, this.resource, getTemplate(), validationMessages, getTemplateURI());
 			
 		return validationMessages;
 	}
@@ -138,11 +138,18 @@ public class CombinatorialDerivation extends TopLevel{
 		RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, template);
 	}*/
 	
-	@NotNull(message = "{COMBINATORIALDERIVATION_TEMPLATE_NOT_NULL}")
+	//@NotNull(message = "{COMBINATORIALDERIVATION_TEMPLATE_NOT_NULL}")
 	public Component getTemplate() throws SBOLGraphException {
 		return contsructIdentified(DataModel.CombinatorialDerivation.template, Component.class, DataModel.Component.uri);
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.CombinatorialDerivation.template);
 	}
+
+	@NotNull(message = "{COMBINATORIALDERIVATION_TEMPLATE_NOT_NULL}")
+	public URI getTemplateURI() throws SBOLGraphException {
+		//return contsructIdentified(DataModel.CombinatorialDerivation.template, Component.class, DataModel.Component.uri);
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.CombinatorialDerivation.template);
+	}
+
 	
 	/*public URI getTemplateURI() throws SBOLGraphException {
 		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.CombinatorialDerivation.template);

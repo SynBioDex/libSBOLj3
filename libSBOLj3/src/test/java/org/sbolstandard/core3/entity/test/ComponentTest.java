@@ -69,6 +69,7 @@ public class ComponentTest extends TestCase {
 		SBOLAPI.addSequence(doc, pTetR, Encoding.NucleicAcid, "tttttttttttttttttttttttttttttttttttttttttttttttttttttt");
 		TestUtil.validateIdentified(pTetR,doc,0);
 		pTetR.getSequences().get(0).setElements("aaa");
+		pTetR.getSequenceURIs().get(0);
 		TestUtil.validateIdentified(pTetR,doc,1);
 		Configuration.getInstance().setValidateRecommendedRules(false);
 		TestUtil.validateIdentified(pTetR,doc,0);

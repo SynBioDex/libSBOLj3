@@ -104,7 +104,7 @@ public class SubComponent extends FeatureWithLocation{
 		
 		
 		
-		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.SubComponent.instanceOf, this.resource, this.getInstanceOf(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, DataModel.SubComponent.instanceOf, this.resource, this.getInstanceOf(), validationMessages, this.getInstanceOfURI());
 		validationMessages= IdentifiedValidator.assertExists(this, DataModel.SubComponent.sourceLocation, this.resource, sourceLocations, validationMessages);
 
 		return validationMessages;
@@ -183,10 +183,17 @@ public class SubComponent extends FeatureWithLocation{
 	 * @return
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{SUBCOMPONENT_ISINSTANCEOF_NOT_NULL}")
+	//@NotNull(message = "{SUBCOMPONENT_ISINSTANCEOF_NOT_NULL}")
+	//@Valid
 	public Component getInstanceOf() throws SBOLGraphException {
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.SubComponent.instanceOf);
 		return contsructIdentified(DataModel.SubComponent.instanceOf, Component.class, DataModel.Component.uri);
+	}
+	
+	@NotNull(message = "{SUBCOMPONENT_ISINSTANCEOF_NOT_NULL}")
+	public URI getInstanceOfURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.SubComponent.instanceOf);
+		//return contsructIdentified(DataModel.SubComponent.instanceOf, Component.class, DataModel.Component.uri);
 	}
 	
 	/**

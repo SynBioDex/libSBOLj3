@@ -40,6 +40,8 @@ public class CutTest_11501 extends TestCase {
     	
     	sequence.setElements(null);
     	TestUtil.validateIdentified(cut,0);
+		
+		boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();		
     	Configuration.getInstance().setCompleteDocument(true);
     	TestUtil.validateIdentified(cut,1, "sbol3-11501");
     	
@@ -47,6 +49,7 @@ public class CutTest_11501 extends TestCase {
     	sequence.setElements(na);
     	cut.setAt(Optional.of(elements.length()-1));
     	TestUtil.validateIdentified(cut,doc,0);
+		Configuration.getInstance().setCompleteDocument(isCompleteOriginal);
     	
     	
     	

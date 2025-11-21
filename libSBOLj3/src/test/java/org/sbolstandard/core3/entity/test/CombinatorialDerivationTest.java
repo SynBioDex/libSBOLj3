@@ -56,7 +56,7 @@ public class CombinatorialDerivationTest extends TestCase {
         
         //SBOL_VALID_ENTITY_TYPES CombinatorialDerivation.template
         Resource resource = TestUtil.getResource(cd);
-        RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, Arrays.asList(pTetR.getUri(), cd.getUri()));
+        RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, Arrays.asList(cd.getUri()));
 		TestUtil.validateIdentified(cd,doc,1);
 		RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, pTetR.getUri());
 		TestUtil.validateIdentified(cd,doc,0);

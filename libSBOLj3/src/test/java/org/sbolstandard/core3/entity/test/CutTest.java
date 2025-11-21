@@ -67,20 +67,32 @@ public class CutTest extends TestCase {
     	TestUtil.validateProperty(cut, "setSequence", new Object[] {null}, Sequence.class);
     	URI nullValue=null;
     	cut.setSequence(nullValue);
+
+		System.out.println("*************GMGMGM*************");	
+		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n");	
+			
+		System.out.println("isValidateAfterSettingProperties:" + Configuration.getInstance().isValidateAfterSettingProperties());
+		System.out.println("isValidateBeforeSaving:" + Configuration.getInstance().isValidateBeforeSaving());
+		System.out.println("isValidateRecommendedRules:" + Configuration.getInstance().isValidateRecommendedRules());
+		System.out.println("validateAfterReadingSBOLDocuments:" + Configuration.getInstance().validateAfterReadingSBOLDocuments());
+		System.out.println("isCompleteDocument:" + Configuration.getInstance().isCompleteDocument());
+
     	TestUtil.validateIdentified(cut,doc,1,2);
+		boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();
     	Configuration.getInstance().setCompleteDocument(true);
     	//TestUtil.validateIdentified(cut,doc,2,3);
     	TestUtil.validateIdentified(cut,2,"sbol3-11501");
-    	TestUtil.validateDocument(doc,3,"sbol3-11501,sbol3-11302 ");
+    	TestUtil.validateDocument(doc,3,"sbol3-11501,sbol3-11302");
     	
     	
     	
     	 //SBOL_VALID_ENTITY_TYPES - Component.interface
 	    Resource resource= TestUtil.getResource(cut);
-	    RDFUtil.setProperty(resource, DataModel.Location.sequence, Arrays.asList(sequence.getUri(), pTetR.getUri()));
-	  	TestUtil.validateIdentified(cut,doc,1);
+	    RDFUtil.setProperty(resource, DataModel.Location.sequence, Arrays.asList(pTetR.getUri()));
+	  	TestUtil.validateIdentified(cut,2,"sbol3-11501,sbol3-10111");
 	  	cut.setSequence(sequence);
 		TestUtil.validateIdentified(cut,doc,0);
+		Configuration.getInstance().setCompleteDocument(isCompleteOriginal);
 
     }
 }

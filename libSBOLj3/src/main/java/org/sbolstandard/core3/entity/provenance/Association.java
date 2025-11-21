@@ -12,6 +12,8 @@ import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.PropertyValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.ProvenanceDataModel;
+
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 
 /**
@@ -67,6 +69,17 @@ public class Association extends ControlledIdentified{
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, ProvenanceDataModel.Association.plan);
 		return contsructIdentified(ProvenanceDataModel.Association.plan, Plan.class, ProvenanceDataModel.Plan.uri);
 	}
+
+	/**
+	 * Gets the plan associated with the association.
+	 * @return The URI of the plan associated with the association.
+	 * @throws SBOLGraphException
+	 */
+	@Valid
+	public URI getPlanURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, ProvenanceDataModel.Association.plan);
+		//return contsructIdentified(ProvenanceDataModel.Association.plan, Plan.class, ProvenanceDataModel.Plan.uri);
+	}
 	
 	/**
 	 * Sets the plan associated with the association.
@@ -75,17 +88,40 @@ public class Association extends ControlledIdentified{
 	public void setPlan(Plan plan) {
 		RDFUtil.setProperty(resource, ProvenanceDataModel.Association.plan, SBOLUtil.toURI(plan));
 	}
+
+	/**
+	 * Sets the plan associated with the association.
+	 * @param plan The plan associated with the association.
+	 */
+	public void setPlan(URI plan) {
+		URI planURI=null;
+		if (plan!=null){
+			planURI=plan;
+		}
+		RDFUtil.setProperty(resource, ProvenanceDataModel.Association.plan, planURI);
+	}
 	
 	/**
 	 * Gets the agent associated with this association.
 	 * @return The agent object associated with the association.
 	 * @throws SBOLGraphException
 	 */
-	@NotNull(message = "{ASSOCIATION_AGENT_NOT_NULL}")
+	//@NotNull(message = "{ASSOCIATION_AGENT_NOT_NULL}")
 	public Agent getAgent() throws SBOLGraphException{
 		//return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, ProvenanceDataModel.Association.agent);
 		return contsructIdentified(ProvenanceDataModel.Association.agent, Agent.class, ProvenanceDataModel.Agent.uri);
 
+	}
+
+	/**
+	 * Gets the agent associated with this association.
+	 * @return The agent object associated with the association.
+	 * @throws SBOLGraphException
+	 */
+	@NotNull(message = "{ASSOCIATION_AGENT_NOT_NULL}")
+	public URI getAgentURI() throws SBOLGraphException{
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, ProvenanceDataModel.Association.agent);
+		//return contsructIdentified(ProvenanceDataModel.Association.agent, Agent.class, ProvenanceDataModel.Agent.uri);
 	}
 	
 	/**
@@ -95,7 +131,21 @@ public class Association extends ControlledIdentified{
 	 */
 	public void setAgent(@NotNull(message = "{ASSOCIATION_AGENT_NOT_NULL}") Agent agent) throws SBOLGraphException{
 		PropertyValidator.getValidator().validate(this, "setAgent", new Object[] {agent}, Agent.class);
-		RDFUtil.setProperty(resource, ProvenanceDataModel.Association.agent, SBOLUtil.toURI(agent));
+		URI agentURI=null;
+		if (agent!=null){
+			agentURI=agent.getUri();
+		}
+		RDFUtil.setProperty(resource, ProvenanceDataModel.Association.agent, agentURI);
+	}
+
+	/**
+	 * Sets the agent associated with this association.
+	 * @param agent The agent URI associated with the association.
+	 * @throws SBOLGraphException
+	 */
+	public void setAgent(@NotNull(message = "{ASSOCIATION_AGENT_NOT_NULL}") URI agent) throws SBOLGraphException{
+		PropertyValidator.getValidator().validate(this, "setAgent", new Object[] {agent}, URI.class);
+		RDFUtil.setProperty(resource, ProvenanceDataModel.Association.agent, agent);
 	}
 	
 	/**
@@ -116,8 +166,17 @@ public class Association extends ControlledIdentified{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, ProvenanceDataModel.Association.agent, this.resource, getAgent(), validationMessages);
-		validationMessages= IdentifiedValidator.assertEquals(this, ProvenanceDataModel.Association.plan, this.resource, getPlan(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, ProvenanceDataModel.Association.agent, this.resource, getAgent(), validationMessages, this.getAgentURI());
+		validationMessages= IdentifiedValidator.assertEquals(this, ProvenanceDataModel.Association.plan, this.resource, getPlan(), validationMessages, this.getPlanURI());
+		/*
+		Agent agent=getAgent();
+		if (agent!=null){
+			validationMessages= IdentifiedValidator.assertEquals(this, ProvenanceDataModel.Association.agent, this.resource, agent, validationMessages);
+		}
+		Plan plan=getPlan();
+		if (plan!=null){
+			validationMessages= IdentifiedValidator.assertEquals(this, ProvenanceDataModel.Association.plan, this.resource, plan, validationMessages);
+		}*/
 		return validationMessages;
 	}
 }

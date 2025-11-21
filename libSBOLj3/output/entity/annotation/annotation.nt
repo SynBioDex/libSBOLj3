@@ -34,6 +34,7 @@
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/uses> "442" .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/twinURLs> <https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/inStock> "true" .
+<https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/source> <https://sbolstandard.org/examples/BBa_J23119> .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/regulation> "//regulation/second_regulation" .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/regulation> "//regulation/constitutive" .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://parts.igem.org/sigmaFactor> "//rnap/prokaryote/ecoli/sigma70" .

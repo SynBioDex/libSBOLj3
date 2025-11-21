@@ -49,7 +49,7 @@ public class CombinatorialDerivationTest_12109 extends TestCase {
 	    varFeature.setVariants(Arrays.asList(start2));
 	    TestUtil.validateDocument(doc, 0);
 	    
-	    sc_end.addAnnotion(URI.create("http://sbolstandard.org/testproperty"), "testvalue");
+	    sc_end.addAnnotation(URI.create("http://sbolstandard.org/testproperty"), "testvalue");
 	    sc_end.addRole(URI.create("http://sbolstandard.org/testrole"));
 	    sc_end.setRoleIntegration(RoleIntegration.mergeRoles);	   
 	    TestUtil.validateDocument(doc, 4,"sbol3-12109, sbol3-12114");

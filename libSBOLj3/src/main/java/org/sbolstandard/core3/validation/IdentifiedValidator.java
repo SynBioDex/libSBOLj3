@@ -10,6 +10,8 @@ import java.util.Set;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.vocabulary.RDF;
 import org.sbolstandard.core3.entity.Identified;
+import org.sbolstandard.core3.entity.Model;
+import org.sbolstandard.core3.entity.TopLevel;
 import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
@@ -234,13 +236,27 @@ public class IdentifiedValidator {
 	 * @param messages A list of validation messages to be appended to.
 	 * @return An updated ValidationMessages object.
 	 */
-	public static <T extends Identified> List<ValidationMessage> assertExists(Identified parent, URI propertyURI, Resource resource, List<T> identifieds, List<ValidationMessage> messages) {
+	public static <T extends TopLevel> List<ValidationMessage> assertExistsTopLevels(Identified parent, URI propertyURI, Resource resource, List<T> identifieds, List<ValidationMessage> messages) {
 		List<URI> uris = RDFUtil.getPropertiesAsURIs(resource, propertyURI);
 		if (uris != null && uris.size()>0) {
 			if (identifieds==null || identifieds.size()==0)
 			{
-				ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
-				messages = IdentifiedValidator.addToValidations(messages, message);
+				if (Configuration.getInstance().isCompleteDocument()) {
+					ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
+					messages = IdentifiedValidator.addToValidations(messages, message);
+				}
+				else {	//Document is not complete and it is ok to have a URI value only. However, there is an entity with different properties rather than the target entity				
+					for (URI childURI:uris){
+						Resource childResource=resource.getModel().getResource(childURI.toString());
+						if (childResource!=null && childResource.listProperties().hasNext()){
+							ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
+							messages = IdentifiedValidator.addToValidations(messages, message);
+						}
+					}
+				}
+				
+				//ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
+				//messages = IdentifiedValidator.addToValidations(messages, message);
 			}
 			else if (identifieds!=null)
 			{
@@ -258,6 +274,73 @@ public class IdentifiedValidator {
 		return messages;
 	}
 	
+	/**
+	 * Asserts validation messages for every valid component that exists in the supplied resource.
+	 * @param <T>
+	 * @param parent Unused.
+	 * @param propertyURI The URI to be asserted.
+	 * @param resource The resource to be checked against.
+	 * @param identifieds A list of identified components to be asserted.
+	 * @param messages A list of validation messages to be appended to.
+	 * @return An updated ValidationMessages object.
+	 */
+	public static <T extends Identified> List<ValidationMessage> assertExists(Identified parent, URI propertyURI, Resource resource, List<T> identifieds, List<ValidationMessage> messages) {
+		List<URI> uris = RDFUtil.getPropertiesAsURIs(resource, propertyURI);
+		if (uris != null && uris.size()>0) {
+			if (identifieds==null || identifieds.size()==0){								
+				ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
+				messages = IdentifiedValidator.addToValidations(messages, message);
+			}
+			else if (identifieds!=null){
+				List<URI> identifiedURIs=SBOLUtil.getURIs(identifieds);
+				for (URI uri: uris){
+					if (!identifiedURIs.contains(uri)){
+						ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uri);
+						messages = IdentifiedValidator.addToValidations(messages, message);
+					}
+				}
+			}
+		}
+		return messages;
+	}
+	
+	//GMGMGM
+		/**
+		 * Asserts validation messages for a valid child of the supplied component.
+		 * @param <T>
+		 * @param parent The parent component to be checked.
+		 * @param propertyURI The property URI to be asserted.
+		 * @param resource The resource containing the URIs to be checked.
+		 * @param child The child component to be checked.
+		 * @param messages A list of validation messages to be appended to.
+		 * @return An updated ValidationMessages object.
+		 */
+		public static <T extends Identified> List<ValidationMessage> assertEquals(Identified parent, URI propertyURI, Resource resource, TopLevel child, List<ValidationMessage> messages, URI childURI) {
+			List<URI> uris = RDFUtil.getPropertiesAsURIs(resource, propertyURI);
+			if (uris != null && uris.size()>0) {
+				if (child!=null && !child.getUri().equals(uris.get(0)) || uris.size()>1){
+					ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
+					messages = IdentifiedValidator.addToValidations(messages, message);
+				}		
+				else if (child==null)
+				{	//Document must be complete but we can't access the child entity.
+					if (Configuration.getInstance().isCompleteDocument()) {
+						ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
+						messages = IdentifiedValidator.addToValidations(messages, message);
+					}
+					else {	//Document is not complete and it is ok to have a URI value only. However, there is an entity with different properties rather than the target entity				
+						Resource childResource=resource.getModel().getResource(childURI.toString());
+						if (childResource!=null && childResource.listProperties().hasNext()){
+							ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", propertyURI, uris);
+							messages = IdentifiedValidator.addToValidations(messages, message);
+						}
+					}
+				}
+			}
+			return messages;
+		}
+
+		
 	/**
 	 * Asserts validation messages for a valid child of the supplied component.
 	 * @param <T>
@@ -279,6 +362,8 @@ public class IdentifiedValidator {
 		}
 		return messages;
 	}
+
+	
 	
 	/**
 	 * Asserts a validation message for every time a URI from a list is a prefix for the component's URI.

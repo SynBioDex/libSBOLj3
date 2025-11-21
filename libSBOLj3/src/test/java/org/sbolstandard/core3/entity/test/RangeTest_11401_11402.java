@@ -57,6 +57,7 @@ public class RangeTest_11401_11402 extends TestCase {
 		TestUtil.validateIdentified(device2, 2, "sbol3-11401,sbol3-11402");
 		String elements=device2.getSequences().get(0).getElements();
 		device2.getSequences().get(0).setElements(null);
+		boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();
 		Configuration.getInstance().setCompleteDocument(false);
 		TestUtil.validateIdentified(device2, 0);
 		Configuration.getInstance().setCompleteDocument(true);
@@ -65,16 +66,6 @@ public class RangeTest_11401_11402 extends TestCase {
 		((Range)sf.getLocations().get(0)).setStart(Optional.of(1));
         ((Range)sf.getLocations().get(0)).setEnd(Optional.of(3));		
 		TestUtil.validateIdentified(device2, 0);
-		Configuration.getInstance().setCompleteDocument(false);
-		
-		
-		
-		
-		
-		
-		
-		
-		
-
+		Configuration.getInstance().setCompleteDocument(isCompleteOriginal);
     }
 }

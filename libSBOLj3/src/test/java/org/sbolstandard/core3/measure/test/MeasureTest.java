@@ -137,7 +137,8 @@ public class MeasureTest extends TestCase {
         String tempLabel=millimole.getLabel();
        
         millimole.setPrefix(null);
-        millimole.setUnit(null);
+        Unit nullUnit=null;
+        millimole.setUnit(nullUnit);
         millimole.setSymbol(null);
         millimole.setLabel(null);
         TestUtil.validateIdentified(millimole,doc, 4);  
@@ -168,8 +169,8 @@ public class MeasureTest extends TestCase {
         
         Unit tempDen=milliMolePerLiter.getDenominator();
         Unit tempNum=milliMolePerLiter.getNumerator();
-        milliMolePerLiter.setDenominator(null);
-        milliMolePerLiter.setNumerator(null);
+        milliMolePerLiter.setDenominator(nullUnit);
+        milliMolePerLiter.setNumerator(nullUnit);
         TestUtil.validateIdentified(milliMolePerLiter,doc,2);  
         milliMolePerLiter.setDenominator(tempDen);
         milliMolePerLiter.setNumerator(tempNum);
@@ -182,7 +183,7 @@ public class MeasureTest extends TestCase {
         Optional<Integer> tempExp=m3.getExponent();
         Unit tempBase=m3.getBase();
         m3.setExponent(Optional.empty());
-        m3.setBase(null);
+        m3.setBase(nullUnit);
         TestUtil.validateIdentified(m3,doc,2); 
         
         m3.setExponent(null);
@@ -196,8 +197,8 @@ public class MeasureTest extends TestCase {
         TestUtil.validateProperty(um, "setTerm2", new Object[] {null}, Unit.class);
         Unit tempTerm1=um.getTerm1();
         Unit tempTerm2=um.getTerm2();
-        um.setTerm1(null);
-        um.setTerm2(null);
+        um.setTerm1(nullUnit);
+        um.setTerm2(nullUnit);
         TestUtil.validateIdentified(um,doc,2);     
         um.setTerm1(tempTerm1);
         um.setTerm2(tempTerm2);
@@ -207,29 +208,37 @@ public class MeasureTest extends TestCase {
         
         
     	//SBOL_VALID_ENTITY_TYPES - Measure.Unit
-		TestUtil.testValidEntity(doc, measure, measure.getUnit(), Arrays.asList(measure.getUnit(), measure), MeasureDataModel.Measure.unit);
+		//GMGMTestUtil.testValidEntity(doc, measure, measure.getUnit(), Arrays.asList(measure.getUnit(), measure), MeasureDataModel.Measure.unit);
+		TestUtil.testValidEntity(doc, measure, measure.getUnit(), media, MeasureDataModel.Measure.unit);
 		
 		//SBOL_VALID_ENTITY_TYPES - PrefixedUnit.Unit
-		TestUtil.testValidEntity(doc, millimole, millimole.getUnit(), Arrays.asList(millimole.getUnit(), measure), MeasureDataModel.PrefixedUnit.unit);
+    //GM:MultipleProperties: TestUtil.testValidEntity(doc, millimole, millimole.getUnit(), Arrays.asList(millimole.getUnit(), measure), MeasureDataModel.PrefixedUnit.unit);
+    TestUtil.testValidEntity(doc, millimole, millimole.getUnit(), Arrays.asList(media), MeasureDataModel.PrefixedUnit.unit);
 		
 		//SBOL_VALID_ENTITY_TYPES - SingularUnit.Unit
 		liter.setUnit(milli);//Just to provide a valid value!
-		TestUtil.testValidEntity(doc, millimole, liter.getUnit(), Arrays.asList(liter.getUnit(), measure), MeasureDataModel.SingularUnit.unit);
+		//GM:MultipleProperties: TestUtil.testValidEntity(doc, millimole, liter.getUnit(), Arrays.asList(liter.getUnit(), measure), MeasureDataModel.SingularUnit.unit);		
+    TestUtil.testValidEntity(doc, millimole, liter.getUnit(), Arrays.asList(media), MeasureDataModel.SingularUnit.unit);
 		
 		//SBOL_VALID_ENTITY_TYPES - UnitDivison.Denominator
-		TestUtil.testValidEntity(doc, milliMolePerLiter, milliMolePerLiter.getDenominator(), Arrays.asList(milliMolePerLiter.getDenominator(), measure), MeasureDataModel.UnitDivision.denominator);
+		//GM:MultipleProperties: TestUtil.testValidEntity(doc, milliMolePerLiter, milliMolePerLiter.getDenominator(), Arrays.asList(milliMolePerLiter.getDenominator(), measure), MeasureDataModel.UnitDivision.denominator);
+		TestUtil.testValidEntity(doc, milliMolePerLiter, milliMolePerLiter.getDenominator(), Arrays.asList(media), MeasureDataModel.UnitDivision.denominator);
 		
 		//SBOL_VALID_ENTITY_TYPES - UnitDivison.Numerator
-		TestUtil.testValidEntity(doc, milliMolePerLiter, milliMolePerLiter.getNumerator(), Arrays.asList(milliMolePerLiter.getNumerator(), measure), MeasureDataModel.UnitDivision.numerator);
+		//GM:MultipleProperties: TestUtil.testValidEntity(doc, milliMolePerLiter, milliMolePerLiter.getNumerator(), Arrays.asList(milliMolePerLiter.getNumerator(), measure), MeasureDataModel.UnitDivision.numerator);
+    TestUtil.testValidEntity(doc, milliMolePerLiter, milliMolePerLiter.getNumerator(), Arrays.asList(media), MeasureDataModel.UnitDivision.numerator);
 				
 		//SBOL_VALID_ENTITY_TYPES - UnitExponentiation.Base
-		TestUtil.testValidEntity(doc, m3, m3.getBase(), Arrays.asList(m3.getBase(), measure), MeasureDataModel.UnitExponentiation.base);
+		//GM:MultipleProperties: TestUtil.testValidEntity(doc, m3, m3.getBase(), Arrays.asList(m3.getBase(), measure), MeasureDataModel.UnitExponentiation.base);
+		TestUtil.testValidEntity(doc, m3, m3.getBase(), Arrays.asList(media), MeasureDataModel.UnitExponentiation.base);
 		
-		//SBOL_VALID_ENTITY_TYPES - UnitMultiplication.Base
-		TestUtil.testValidEntity(doc, um, um.getTerm1(), Arrays.asList(um.getTerm1(), measure), MeasureDataModel.UnitMultiplication.term1);
+		//SBOL_VALID_ENTITY_TYPES - UnitMultiplication.Base		
+    //GM:MultipleProperties: TestUtil.testValidEntity(doc, um, um.getTerm1(), Arrays.asList(um.getTerm1(), measure), MeasureDataModel.UnitMultiplication.term1);
+		TestUtil.testValidEntity(doc, um, um.getTerm1(), Arrays.asList(media), MeasureDataModel.UnitMultiplication.term1);
 				
 		//SBOL_VALID_ENTITY_TYPES - UnitMultiplication.Base
-		TestUtil.testValidEntity(doc, um, um.getTerm2(), Arrays.asList(um.getTerm2(), measure), MeasureDataModel.UnitMultiplication.term2);		
+		//GM:MultipleProperties: TestUtil.testValidEntity(doc, um, um.getTerm2(), Arrays.asList(um.getTerm2(), measure), MeasureDataModel.UnitMultiplication.term2);		
+    TestUtil.testValidEntity(doc, um, um.getTerm2(), Arrays.asList(media), MeasureDataModel.UnitMultiplication.term2);		
     
 		TestUtil.assertReadWrite(doc);
 	       

@@ -90,6 +90,11 @@
       "value" : "information1"
     }
      ] ,
+    "http://parts.igem.org/source" : [ { 
+      "type" : "uri" ,
+      "value" : "https://sbolstandard.org/examples/BBa_J23119"
+    }
+     ] ,
     "http://parts.igem.org/sigmaFactor" : [ { 
       "type" : "literal" ,
       "value" : "//rnap/prokaryote/ecoli/sigma70"

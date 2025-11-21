@@ -14,6 +14,8 @@ import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.MeasureDataModel;
 
+import jakarta.validation.Valid;
+
 /**
  * 
  * Represents a singular unit in the SBOL data model.
@@ -77,12 +79,36 @@ public class SingularUnit extends Unit{
 	}
 	
 	/**
+	 * Gets the unit of this entity.
+	 * @return The associated unit URI.
+	 * @throws SBOLGraphException
+	 */
+	@Valid
+	public URI getUnitURI() throws SBOLGraphException {
+		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, MeasureDataModel.SingularUnit.unit);	
+		//return contsructIdentified(MeasureDataModel.SingularUnit.unit, Unit.getSubClassTypes());
+	}
+	
+	/**
 	 * Sets the unit of the prefixed unit.
 	 * @param unit The unit to be applied.
 	 * @throws SBOLGraphException
 	 */
 	public void setUnit(Unit unit) {
-		RDFUtil.setProperty(resource, MeasureDataModel.SingularUnit.unit, SBOLUtil.toURI(unit));
+		URI unitURI=null;
+		if (unit != null) {
+			unitURI = unit.getUri();
+		}
+		RDFUtil.setProperty(resource, MeasureDataModel.SingularUnit.unit, unitURI);
+	}
+	
+	/**
+	 * Sets the unit of the prefixed unit.
+	 * @param unit The unit to be applied.
+	 * @throws SBOLGraphException
+	 */
+	public void setUnitURI(URI unit) {
+		RDFUtil.setProperty(resource, MeasureDataModel.SingularUnit.unit, unit);
 	}
 	
 	/**
@@ -102,7 +128,7 @@ public class SingularUnit extends Unit{
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
-		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.SingularUnit.unit, this.resource, getUnit(), validationMessages);
+		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.SingularUnit.unit, this.resource, getUnit(), validationMessages, this.getUnitURI());
 		return validationMessages;
 	}
 	

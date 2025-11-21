@@ -737,9 +737,16 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType) throws SBOLGraphException {
 		return addToList(model, null, metaDataType,TopLevelMetadata.class);
 	}
-	
+//GMGM
+	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType, List<URI> excludeNamespaces) throws SBOLGraphException {
+		return addToList (model, null, metaDataType,excludeNamespaces, TopLevelMetadata.class);		
+	}
+//GMGM	
 	public List<TopLevelMetadata> getTopLevelMetadataList() throws SBOLGraphException {
-		return addToList(model, this.metadataList, DataModel.TopLevel.uri, TopLevelMetadata.class);
+		List<URI> excludeNamespaces=new ArrayList<URI>();
+		excludeNamespaces.add(URINameSpace.PROV.getUri());
+		excludeNamespaces.add(URINameSpace.OM.getUri());
+		return addToList(model, this.metadataList, DataModel.TopLevel.uri, excludeNamespaces, TopLevelMetadata.class);
 	}
 	
 	/*public Measure createMeasure(URI uri, float value, URI unit) throws SBOLGraphException {
@@ -954,16 +961,31 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 
 	private <T extends Identified>  List<T> addToList(Model model, List<T> items, URI entityType, Class<T> identifiedClass) throws SBOLGraphException
 	{
-		if (items==null)
-		{
+		if (items==null){
 			List<Resource> resources=RDFUtil.getResourcesOfType(model, entityType);
-			if (resources!=null && resources.size()>0)
-			{
+			if (resources!=null && resources.size()>0){
 				items=new ArrayList<T>();
-				for (Resource resource:resources)
-				{
+				for (Resource resource:resources){
 					Identified identified=createIdentified(resource, identifiedClass) ;
 					items.add((T)identified);
+				}
+			}
+		}
+		return items;
+	}
+//GMGM
+	private <T extends Identified>  List<T> addToList(Model model, List<T> items, URI entityType, List<URI> excludePrefixList, Class<T> identifiedClass) throws SBOLGraphException
+	{
+		if (items==null){
+			List<Resource> resources=RDFUtil.getResourcesOfType(model, entityType);
+			if (resources!=null && resources.size()>0){
+				items=new ArrayList<T>();
+				for (Resource resource:resources){		
+					List<URI> types=RDFUtil.getRDFTypeswithPrefixOnly(resource, excludePrefixList);
+					if (types==null || types.size()==0){
+						Identified identified=createIdentified(resource, identifiedClass) ;
+						items.add((T)identified);							
+					}
 				}
 			}
 		}
@@ -1036,7 +1058,6 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 		addToList(topLevels, this.getBinaryPrefixes());
 		addToList(topLevels, this.getCollections());
 		addToList(topLevels, this.getCombinatorialDerivations());
-		addToList(topLevels, this.getComponents());
 		addToList(topLevels, this.getExperimentalData());
 		addToList(topLevels, this.getExperiments());
 		addToList(topLevels, this.getImplementations());
