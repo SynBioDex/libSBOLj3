@@ -852,7 +852,10 @@ public abstract class Identified implements ValidatableSBOLEntity {
         	
         	if (object.isResource()) {
         		Resource metadataResource=object.asResource();
-        		Metadata metadata=null;
+        		if (this.getUri().toString().equalsIgnoreCase(metadataResource.getURI())){
+					continue;
+				}
+				Metadata metadata=null;
         		if (RDFUtil.hasType(metadataResource.getModel(), metadataResource, DataModel.Identified.uri)){        				
         			metadata=new Metadata(metadataResource);
         			if (values==null){
