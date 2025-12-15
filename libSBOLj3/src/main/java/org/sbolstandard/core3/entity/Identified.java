@@ -161,15 +161,29 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.Identified.wasGeneratedBy);
 		return addToList(DataModel.Identified.wasGeneratedBy, Activity.class, ProvenanceDataModel.Activity.uri);
 	}
+
+	public List<URI> getWasGeneratedByURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.Identified.wasGeneratedBy);
+		//return addToList(DataModel.Identified.wasGeneratedBy, Activity.class, ProvenanceDataModel.Activity.uri);
+	}
 	
-	public void setWasGeneratedBy(List<Activity> wasGeneratedBy) {
+	public void setWasGeneratedBy(List<Activity> wasGeneratedBy) {		
 		RDFUtil.setProperty(resource, DataModel.Identified.wasGeneratedBy, SBOLUtil.getURIs(wasGeneratedBy));
 	}
 	
+	public void setWasGeneratedByURIs(List<URI> wasGeneratedBy) {
+		RDFUtil.setProperty(resource, DataModel.Identified.wasGeneratedBy, wasGeneratedBy);
+	}
+	
 	public void addWasGeneratedBy(Activity wasGeneratedBy) {
-		if (wasGeneratedBy!=null)
-		{
-			RDFUtil.addProperty(resource, DataModel.Identified.wasGeneratedBy, wasGeneratedBy.getUri());
+		if (wasGeneratedBy!=null){
+			addWasGeneratedBy(wasGeneratedBy.getUri());
+		}
+	}
+
+	public void addWasGeneratedBy(URI wasGeneratedBy) {
+		if (wasGeneratedBy!=null){
+			RDFUtil.addProperty(resource, DataModel.Identified.wasGeneratedBy, wasGeneratedBy);
 		}
 	}
 	
