@@ -2441,7 +2441,7 @@ PREFIX xsd:      <http://www.w3.org/2001/XMLSchema#>
 
 :topic_3411  rdfs:subClassOf  :topic_3303 .
 
-:format_3915  rdfs:subClassOf  :format_2058 , :format_3033 , :format_2333;
+:format_3915  rdfs:subClassOf  :format_3033 , :format_2058 , :format_2333;
         rdfs:subClassOf  [] ;
         rdfs:subClassOf  []  .
 

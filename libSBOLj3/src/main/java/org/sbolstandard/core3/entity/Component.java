@@ -1173,6 +1173,15 @@ public class Component extends TopLevel {
 	public List<Model> getModels() throws SBOLGraphException {
 		return addToList(DataModel.Component.model, Model.class, DataModel.Model.uri);
 	}
+
+	/**
+	 * Gets the URIs of all models associated with this component.
+	 * @return List of model URIs associated with this component
+	 * @throws SBOLGraphException if there is an error accessing this property
+	 */
+	public List<URI> getModelURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.Component.model);
+	}
 	
 	/**
 	 * 
@@ -1180,6 +1189,16 @@ public class Component extends TopLevel {
 	 */
 	public void setModels(List<Model> models) {
 		RDFUtil.setProperty(resource, DataModel.Component.model, SBOLUtil.getURIs(models));
+	}
+
+	/**
+	 * Sets the list of model URIs associated with this component.
+	 * This method replaces any existing model associations with the provided list of URIs.
+	 * 
+	 * @param models List of model URIs to associate with this component
+	 */
+	public void setModelURIs(List<URI> models) {
+		RDFUtil.setProperty(resource, DataModel.Component.model, models);
 	}
 	
 	/**
