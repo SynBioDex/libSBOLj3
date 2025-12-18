@@ -1,16 +1,15 @@
 package org.sbolstandard.core3.entity.provenance;
 
 import java.net.URI;
-import java.time.Month;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
-import java.util.TimeZone;
 
 import org.apache.jena.datatypes.xsd.XSDDateTime;
 import org.apache.jena.datatypes.xsd.impl.XSDDateType;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.sparql.function.library.date;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.ControlledTopLevel;
 import org.sbolstandard.core3.entity.Identified;
@@ -110,7 +109,32 @@ public class Activity extends ControlledTopLevel{
 			RDFUtil.setProperty(resource, ProvenanceDataModel.Activity.startedAtTime, dateTimeString);
 		}
 	}
+
+		public void setStartedAtTime(int year, int month, int day, int hour, int min, int sec, int millisecond) throws SBOLGraphException {
+		String dateTimeString = SBOLUtil.getDateTimeString(year, month, day, hour, min, sec, millisecond);					
+		if (dateTimeString!=null){
+			RDFUtil.setProperty(resource, ProvenanceDataModel.Activity.startedAtTime, dateTimeString);
+		}
+	}
 	
+	public void setStartedAtTime(XSDDateTime dateTime) throws SBOLGraphException {
+		String dateTimeString = null;
+		if (dateTime!=null){
+			dateTimeString = dateTime.toString();	
+		}				
+		if (dateTimeString!=null){
+			RDFUtil.setProperty(resource, ProvenanceDataModel.Activity.startedAtTime, dateTimeString);
+		}
+	}
+
+	public void setStartedAtTime(java.util.Date dateTime) throws SBOLGraphException {
+		XSDDateTime xsdDateTime = null;
+		if (dateTime!=null){
+			xsdDateTime=dateToXSDDateTime(dateTime);
+		}
+		setStartedAtTime(xsdDateTime);
+	}
+
 	/**
 	 * Returns the time this activity ends.
 	 * @return The time this activity ends.
@@ -154,6 +178,52 @@ public class Activity extends ControlledTopLevel{
 		if (dateTimeString!=null){
 			RDFUtil.setProperty(resource, ProvenanceDataModel.Activity.endedAtTime, dateTimeString);
 		}
+	}
+
+	/**
+	 * Sets the time this activity ends.
+	 * @param year The year this activity ends.
+	 * @param month The month this activity ends.
+	 * @param day The day this activity ends.
+	 * @param hour The hour this activity ends.
+	 * @param min The minute this activity ends.
+	 * @param sec The second this activity ends.
+	 * @param millisecond The millisecond this activity ends.
+	 * @throws SBOLGraphException
+	 */
+	public void setEndedAtTime(int year, int month, int day, int hour, int min, int sec, int millisecond) throws SBOLGraphException {
+		String dateTimeString = SBOLUtil.getDateTimeString(year, month, day, hour, min, sec, millisecond);					
+		if (dateTimeString!=null){
+			RDFUtil.setProperty(resource, ProvenanceDataModel.Activity.endedAtTime, dateTimeString);
+		}
+	}
+
+	public void setEndedAtTime(XSDDateTime dateTime) throws SBOLGraphException {
+		String dateTimeString = null;
+		if (dateTime!=null){
+			dateTimeString = dateTime.toString();	
+		}				
+		if (dateTimeString!=null){
+			RDFUtil.setProperty(resource, ProvenanceDataModel.Activity.endedAtTime, dateTimeString);
+		}
+	}
+
+	public void setEndedAtTime(java.util.Date dateTime) throws SBOLGraphException {
+		XSDDateTime xsdDateTime = null;
+		if (dateTime!=null){
+			xsdDateTime=dateToXSDDateTime(dateTime);
+		}
+		setEndedAtTime(xsdDateTime);
+	}
+
+	private XSDDateTime dateToXSDDateTime(java.util.Date dateTime) {
+		if (dateTime==null){
+			return null;
+		}
+		Calendar calendar=Calendar.getInstance();
+		calendar.setTime(dateTime);
+		XSDDateTime xsdDateTime = new XSDDateTime(calendar);
+		return xsdDateTime;
 	}
 
 	/**

@@ -298,6 +298,26 @@ public class SBOLUtil {
 	    	}
 	    	return dateTimeString;
 	    }
+
+		public static String getDateTimeString (int year, int month, int day, int hour, int min, int sec, int millisecond) throws SBOLGraphException
+	    {
+	    	String dateTimeString = null;			
+	    	if (year>=1900 && day>=1 && day<=31 && month>=1 && month<=12 && hour>=0 && hour<=23 && min>=0 && min<=59 && sec>=0 && sec<=59){
+				 Calendar calendar=Calendar.getInstance();
+			     TimeZone timeZone=calendar.getTimeZone();		     
+				 calendar.setTimeZone(TimeZone.getTimeZone("UTC"));
+			     calendar.set(year,month-1,day,hour,min,sec);
+			     calendar.set(Calendar.MILLISECOND,millisecond);   
+			     XSDDateTime dateTime= new XSDDateTime(calendar);
+			     dateTimeString= dateTime.toString();
+			    // calendar.setTimeZone(timeZone);		     
+			}
+	    	else{
+	    		String message=String.format("Invalid datetime. Year:%d, Month:%d, Day:%d, hour: %d, min:%d, sec:%d", year, month, day, hour, min, sec);
+	    		throw new SBOLGraphException(message);
+	    	}
+	    	return dateTimeString;
+	    }
 		
 		public static boolean hasEmptyEntireSequence(List<Location> locations) throws SBOLGraphException
 		{
