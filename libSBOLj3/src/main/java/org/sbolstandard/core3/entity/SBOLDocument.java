@@ -253,7 +253,10 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	}
 
 	public CombinatorialDerivation createCombinatorialDerivation(URI uri, URI namespace, Component template) throws SBOLGraphException {
+		return createCombinatorialDerivation(uri,namespace, template.getUri());
+	}
 
+	public CombinatorialDerivation createCombinatorialDerivation(URI uri, URI namespace, URI template) throws SBOLGraphException {
 		CombinatorialDerivation combinatorialDerivation= new CombinatorialDerivation(this.model, uri);
 		combinatorialDerivation.setTemplate(template);
 		combinatorialDerivation.setNamespace(namespace);
@@ -262,6 +265,17 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	}
 	
 	public CombinatorialDerivation createCombinatorialDerivation(String displayId, Component template) throws SBOLGraphException {
+		if (this.getBaseURI()!=null)
+		{
+			return createCombinatorialDerivation(SBOLAPI.append(this.getBaseURI(), displayId), SBOLUtil.toNameSpace(this.getBaseURI()), template);
+		}
+		else
+		{
+			throw new SBOLGraphException("Display ids can be used to construct entities only if the base URI property of the document is set. Displayid:" + displayId);
+		}
+	}
+
+	public CombinatorialDerivation createCombinatorialDerivation(String displayId, URI template) throws SBOLGraphException {
 		if (this.getBaseURI()!=null)
 		{
 			return createCombinatorialDerivation(SBOLAPI.append(this.getBaseURI(), displayId), SBOLUtil.toNameSpace(this.getBaseURI()), template);
