@@ -1116,22 +1116,21 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 			}
 		}
 		
-		List<Collection> collections=this.getCollections();
-		if (collections!=null)
-		{
-			List<URI> topLevelURIs= SBOLUtil.getURIs(topLevels);
-			for (Collection collection:collections)
-			{
-				List<URI> members=collection.getMembers();
-				if (members != null) {
-					for (URI member: members){
-						if (!topLevelURIs.contains(member)){
-							ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", DataModel.Collection.uri, collection, member);
-							message.childPath(DataModel.Collection.member, null);
-							messages=IdentifiedValidator.addToValidations(messages, message);
-						}
+		if (Configuration.getInstance().isCompleteDocument()){
+			List<Collection> collections=this.getCollections();		
+			if (collections!=null){
+				List<URI> topLevelURIs= SBOLUtil.getURIs(topLevels);
+				for (Collection collection:collections){
+					List<URI> members=collection.getMembers();
+					if (members != null) {
+						for (URI member: members){
+							if (!topLevelURIs.contains(member)){
+								ValidationMessage message = new ValidationMessage("{SBOL_VALID_ENTITY_TYPES}", DataModel.Collection.uri, collection, member);
+								message.childPath(DataModel.Collection.member, null);
+								messages=IdentifiedValidator.addToValidations(messages, message);
+							}
+						}					
 					}
-				
 				}
 			}
 		}
