@@ -10,6 +10,7 @@ import org.sbolstandard.core3.entity.SBOLDocument;
 import org.sbolstandard.core3.io.SBOLFormat;
 import org.sbolstandard.core3.io.SBOLIO;
 import org.sbolstandard.core3.test.TestUtil;
+import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.vocabulary.ComponentType;
 import org.sbolstandard.core3.vocabulary.Role;
@@ -39,11 +40,12 @@ public class CollectionTest extends TestCase {
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc);
         
-        
+        boolean isComplete=Configuration.getInstance().isCompleteDocument();
+        Configuration.getInstance().setCompleteDocument(true);
         col.setMembers(Arrays.asList(TetR_protein.getUri(), LacI_protein.getUri(), URI.create("http://invalidmemberuri.org")));
-        TestUtil.validateIdentified(col,doc,0,1);
-        
-        
+        TestUtil.validateDocument(doc,1, "sbol3-10111");   
+        TestUtil.validateIdentified(col,0);             
+        Configuration.getInstance().setCompleteDocument(isComplete);
     }
 
 }
