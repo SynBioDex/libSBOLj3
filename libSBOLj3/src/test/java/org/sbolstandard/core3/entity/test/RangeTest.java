@@ -48,7 +48,7 @@ public class RangeTest extends TestCase {
 		int order=range.getOrder().getAsInt();
 		assertEquals(order, 1);
 				
-		TestUtil.serialise(doc, "entity_additional/range", "range");
+		TestUtil.serialise(doc, "entity/range", "range");
 	    System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
 	    TestUtil.assertReadWrite(doc); 
 	    

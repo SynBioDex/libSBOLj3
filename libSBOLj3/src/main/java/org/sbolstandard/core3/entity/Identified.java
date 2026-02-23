@@ -954,6 +954,19 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		return RDFUtil.filterItems(this.resource.getModel(), identifieds, property, value);
 	}	
 	
+	public void remove() throws SBOLGraphException
+	{
+		List<Identified> children = this.getChildren();
+		if (children != null) {
+			for (Identified child : children) {
+				child.remove();
+			}
+		}
+		this.resource.removeProperties();
+		this.resource.getModel().removeAll(this.resource, null, (RDFNode)null);
+		this.resource.getModel().removeAll(null, null, this.resource);
+		
+	}
 }
 
 /*private void inferDisplayId(URI uri) {

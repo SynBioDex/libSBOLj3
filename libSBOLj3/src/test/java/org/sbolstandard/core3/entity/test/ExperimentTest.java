@@ -34,7 +34,7 @@ public class ExperimentTest extends TestCase {
         //Collections can have members
         TestUtil.validateIdentified(exp,doc,0); 
         
-        TestUtil.serialise(doc, "entity_additional/experiment", "experiment");
+        TestUtil.serialise(doc, "entity/experiment", "experiment");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         
         TestUtil.assertReadWrite(doc);

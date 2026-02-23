@@ -855,7 +855,7 @@ public class Component extends TopLevel {
 		return localSubComponent;	
 	}
 	
-	private LocalSubComponent createLocalSubComponent(String displayId, List<URI> types) throws SBOLGraphException
+	public LocalSubComponent createLocalSubComponent(String displayId, List<URI> types) throws SBOLGraphException
 	{
 		return createLocalSubComponent(SBOLAPI.append(this.getUri(), displayId), types);
 	}

@@ -25,7 +25,7 @@ public class ExternallyDefinedTest extends TestCase {
     	ExternallyDefined exDefined= ilab16_dev1.createExternallyDefined(Arrays.asList(ComponentType.Protein.getUri()), URI.create("http://uniprot.org/gfp"));
     	ExternallyDefined exDefined2= ilab16_dev1.createExternallyDefined(Arrays.asList(ComponentType.Protein.getUri()), URI.create("http://uniprot.org/rfp"));
     	 
-    	TestUtil.serialise(doc, "entity_additional/externallydefined", "externallydefined");    	     
+    	TestUtil.serialise(doc, "entity/externallydefined", "externallydefined");    	     
 		System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
 	    TestUtil.assertReadWrite(doc);
 	    

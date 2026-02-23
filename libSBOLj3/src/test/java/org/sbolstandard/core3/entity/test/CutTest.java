@@ -41,7 +41,7 @@ public class CutTest extends TestCase {
 		assertTrue(features!=null && features.size()>0);
 		assertTrue(features.size()==seqFeatures.size());
 		
-	    TestUtil.serialise(doc, "entity_additional/cut", "cut");
+	    TestUtil.serialise(doc, "entity/cut", "cut");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc); 
         
