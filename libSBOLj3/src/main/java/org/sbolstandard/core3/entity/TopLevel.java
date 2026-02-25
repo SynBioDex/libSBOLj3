@@ -81,11 +81,14 @@ public abstract class TopLevel extends Identified {
 	
 	public List<Attachment> getAttachments() throws SBOLGraphException {
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.TopLevel.attachment);
-		return addToList(DataModel.TopLevel.attachment, Attachment.class, DataModel.Attachment.uri);
-
-		
+		return addToList(DataModel.TopLevel.attachment, Attachment.class, DataModel.Attachment.uri);	
 	}
-	
+
+	public List<URI> getAttachmentURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.TopLevel.attachment);
+	}
+
+
 	public void setAttachmentsByURIs(List<URI> attachments) {
 		RDFUtil.setProperty(resource, DataModel.TopLevel.attachment, attachments);
 	}

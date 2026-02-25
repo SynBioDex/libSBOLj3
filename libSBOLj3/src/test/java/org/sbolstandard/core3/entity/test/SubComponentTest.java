@@ -48,7 +48,7 @@ public class SubComponentTest extends TestCase {
 		
 		//Range range2=(Range)termSubComponent.createRange(start, end,i13504Sequence);
 		
-		TestUtil.serialise(doc, "entity_additional/subcomponent", "subcomponent");
+		TestUtil.serialise(doc, "entity/subcomponent", "subcomponent");
 	    System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
 	    TestUtil.assertReadWrite(doc); 
 	    

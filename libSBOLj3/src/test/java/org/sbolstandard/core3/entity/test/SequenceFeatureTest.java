@@ -26,7 +26,7 @@ public class SequenceFeatureTest extends TestCase {
 		
 		SequenceFeature feature=gfp.createSequenceFeature(1, 3, seq);
 			
-		TestUtil.serialise(doc, "entity_additional/sequencefeature", "sequencefeature");
+		TestUtil.serialise(doc, "entity/sequencefeature", "sequencefeature");
 	    System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
 	    TestUtil.assertReadWrite(doc); 
 	    

@@ -1,4 +1,70 @@
 { 
+  "https://sbolstandard.org/examples/BBa_J23119/usage3" : { 
+    "http://sbols.org/v3#displayId" : [ { 
+      "type" : "literal" ,
+      "value" : "usage3"
+    }
+     ] ,
+    "http://sbols.org/v3#name" : [ { 
+      "type" : "literal" ,
+      "value" : "BBa_J23119_usage_3"
+    }
+     ] ,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://parts.igem.org/Z_iGEMUsage"
+    }
+    , { 
+      "type" : "uri" ,
+      "value" : "http://sbols.org/v3#Identified"
+    }
+     ]
+  }
+   ,
+  "https://sbolstandard.org/examples/BBa_J23119/information2" : { 
+    "http://sbols.org/v3#displayId" : [ { 
+      "type" : "literal" ,
+      "value" : "information2"
+    }
+     ] ,
+    "http://sbols.org/v3#name" : [ { 
+      "type" : "literal" ,
+      "value" : "BBa_J23119_experience2"
+    }
+     ] ,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://parts.igem.org/A_Information"
+    }
+    , { 
+      "type" : "uri" ,
+      "value" : "http://sbols.org/v3#Identified"
+    }
+     ]
+  }
+   ,
+  "https://sbolstandard.org/examples/BBa_J23119/information3" : { 
+    "http://sbols.org/v3#displayId" : [ { 
+      "type" : "literal" ,
+      "value" : "information3"
+    }
+     ] ,
+    "http://sbols.org/v3#name" : [ { 
+      "type" : "literal" ,
+      "value" : "BBa_J23119_experience3"
+    }
+     ] ,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://parts.igem.org/Z_Information"
+    }
+    , { 
+      "type" : "uri" ,
+      "value" : "http://sbols.org/v3#Identified"
+    }
+     ]
+  }
+   ,
   "https://sbolstandard.org/examples/BBa_J23119/usage1" : { 
     "http://sbols.org/v3#displayId" : [ { 
       "type" : "literal" ,
@@ -37,11 +103,11 @@
      ] ,
     "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
       "type" : "uri" ,
-      "value" : "http://sbols.org/v3#Identified"
+      "value" : "http://parts.igem.org/iGEMUsage"
     }
     , { 
       "type" : "uri" ,
-      "value" : "http://parts.igem.org/IGEMUsage"
+      "value" : "http://sbols.org/v3#Identified"
     }
      ] ,
     "http://parts.igem.org/uses2" : [ { 
@@ -130,6 +196,33 @@
      ]
   }
    ,
+  "https://sbolstandard.org/examples/BBa_J23119/usage2" : { 
+    "http://sbols.org/v3#displayId" : [ { 
+      "type" : "literal" ,
+      "value" : "usage2"
+    }
+     ] ,
+    "http://parts.igem.org/twins" : [ { 
+      "type" : "literal" ,
+      "value" : "7"
+    }
+     ] ,
+    "http://sbols.org/v3#name" : [ { 
+      "type" : "literal" ,
+      "value" : "BBa_J23119_usage_2"
+    }
+     ] ,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type" : [ { 
+      "type" : "uri" ,
+      "value" : "http://parts.igem.org/A_iGEMUsage"
+    }
+    , { 
+      "type" : "uri" ,
+      "value" : "http://sbols.org/v3#Identified"
+    }
+     ]
+  }
+   ,
   "https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts" : { 
     "http://sbols.org/v3#displayId" : [ { 
       "type" : "literal" ,
@@ -177,6 +270,14 @@
     }
      ] ,
     "http://parts.igem.org/hasInformation" : [ { 
+      "type" : "uri" ,
+      "value" : "https://sbolstandard.org/examples/BBa_J23119/information2"
+    }
+    , { 
+      "type" : "uri" ,
+      "value" : "https://sbolstandard.org/examples/BBa_J23119/information3"
+    }
+    , { 
       "type" : "uri" ,
       "value" : "https://sbolstandard.org/examples/BBa_J23119/information1"
     }
@@ -227,7 +328,15 @@
      ] ,
     "http://parts.igem.org/hasUsage" : [ { 
       "type" : "uri" ,
+      "value" : "https://sbolstandard.org/examples/BBa_J23119/usage3"
+    }
+    , { 
+      "type" : "uri" ,
       "value" : "https://sbolstandard.org/examples/BBa_J23119/usage1"
+    }
+    , { 
+      "type" : "uri" ,
+      "value" : "https://sbolstandard.org/examples/BBa_J23119/usage2"
     }
      ]
   }

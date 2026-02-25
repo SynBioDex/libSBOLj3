@@ -59,7 +59,7 @@ public class ParticipantTest extends TestCase {
 		Participation participation2=interaction2.createHigherOrderParticipation(Arrays.asList(ParticipationRole.Inhibitor.getUri()), interaction.getUri());
 			
 		 
-		TestUtil.serialise(doc, "entity_additional/participation", "participation");
+		TestUtil.serialise(doc, "entity/participation", "participation");
 	    System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
 	    TestUtil.assertReadWrite(doc); 
 	    
