@@ -41,7 +41,7 @@ public class ConstraintTest extends TestCase {
 			
 		org.sbolstandard.core3.entity.Constraint constraint=ilab16_dev1.createConstraint(RestrictionType.TopologyRestriction.meets.getUri(), sc_j23101, compRef_i13504_dev1);
 		
-	    TestUtil.serialise(doc, "entity_additional/constraint", "constraint");
+	    TestUtil.serialise(doc, "entity/constraint", "constraint");
       
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc);

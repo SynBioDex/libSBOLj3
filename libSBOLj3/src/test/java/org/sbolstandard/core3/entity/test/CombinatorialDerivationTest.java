@@ -33,7 +33,7 @@ public class CombinatorialDerivationTest extends TestCase {
 		CombinatorialDerivation cd=doc.createCombinatorialDerivation("cs1", pTetR);
 		
 		
-		TestUtil.serialise(doc, "entity_additional/combinatorialderivation", "combinatorialderivation");
+		TestUtil.serialise(doc, "entity/combinatorialderivation", "combinatorialderivation");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc);
         

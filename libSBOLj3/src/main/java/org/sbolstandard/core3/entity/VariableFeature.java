@@ -90,6 +90,11 @@ public class VariableFeature extends Identified{
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variant);
 		return addToList(DataModel.VariableFeature.variant, Component.class, DataModel.Component.uri);
 	}
+
+	public List<URI> getVariantURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variant);
+		//return addToList(DataModel.VariableFeature.variant, Component.class, DataModel.Component.uri);
+	}
 	
 	public void setVariants(List<Component> variants) {
 		RDFUtil.setProperty(resource, DataModel.VariableFeature.variant, SBOLUtil.getURIs(variants));
@@ -103,7 +108,12 @@ public class VariableFeature extends Identified{
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variantCollection);
 		return addToList(DataModel.VariableFeature.variantCollection, Collection.class, DataModel.Collection.uri);
 	}
-	
+
+	public List<URI> getVariantCollectionURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variantCollection);
+		//return addToList(DataModel.VariableFeature.variantCollection, Collection.class, DataModel.Collection.uri);
+	}
+
 	public void setVariantCollections(List<Collection> variantCollections) {
 		RDFUtil.setProperty(resource, DataModel.VariableFeature.variantCollection, SBOLUtil.getURIs(variantCollections));
 	}
@@ -115,6 +125,11 @@ public class VariableFeature extends Identified{
 	public List<CombinatorialDerivation> getVariantDerivations() throws SBOLGraphException {
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variantDerivation);
 		return addToList(DataModel.VariableFeature.variantDerivation, CombinatorialDerivation.class, DataModel.CombinatorialDerivation.uri);
+	}
+
+	public List<URI> getVariantDerivationURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.VariableFeature.variantDerivation);
+		//return addToList(DataModel.VariableFeature.variantDerivation, CombinatorialDerivation.class, DataModel.CombinatorialDerivation.uri);
 	}
 	
 	public void setVariantDerivations(List<CombinatorialDerivation> variantDerivations) {

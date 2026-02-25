@@ -161,15 +161,29 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		//return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.Identified.wasGeneratedBy);
 		return addToList(DataModel.Identified.wasGeneratedBy, Activity.class, ProvenanceDataModel.Activity.uri);
 	}
+
+	public List<URI> getWasGeneratedByURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.Identified.wasGeneratedBy);
+		//return addToList(DataModel.Identified.wasGeneratedBy, Activity.class, ProvenanceDataModel.Activity.uri);
+	}
 	
-	public void setWasGeneratedBy(List<Activity> wasGeneratedBy) {
+	public void setWasGeneratedBy(List<Activity> wasGeneratedBy) {		
 		RDFUtil.setProperty(resource, DataModel.Identified.wasGeneratedBy, SBOLUtil.getURIs(wasGeneratedBy));
 	}
 	
+	public void setWasGeneratedByURIs(List<URI> wasGeneratedBy) {
+		RDFUtil.setProperty(resource, DataModel.Identified.wasGeneratedBy, wasGeneratedBy);
+	}
+	
 	public void addWasGeneratedBy(Activity wasGeneratedBy) {
-		if (wasGeneratedBy!=null)
-		{
-			RDFUtil.addProperty(resource, DataModel.Identified.wasGeneratedBy, wasGeneratedBy.getUri());
+		if (wasGeneratedBy!=null){
+			addWasGeneratedBy(wasGeneratedBy.getUri());
+		}
+	}
+
+	public void addWasGeneratedBy(URI wasGeneratedBy) {
+		if (wasGeneratedBy!=null){
+			RDFUtil.addProperty(resource, DataModel.Identified.wasGeneratedBy, wasGeneratedBy);
 		}
 	}
 	
@@ -838,7 +852,10 @@ public abstract class Identified implements ValidatableSBOLEntity {
         	
         	if (object.isResource()) {
         		Resource metadataResource=object.asResource();
-        		Metadata metadata=null;
+        		if (this.getUri().toString().equalsIgnoreCase(metadataResource.getURI())){
+					continue;
+				}
+				Metadata metadata=null;
         		if (RDFUtil.hasType(metadataResource.getModel(), metadataResource, DataModel.Identified.uri)){        				
         			metadata=new Metadata(metadataResource);
         			if (values==null){
@@ -937,6 +954,19 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		return RDFUtil.filterItems(this.resource.getModel(), identifieds, property, value);
 	}	
 	
+	public void remove() throws SBOLGraphException
+	{
+		List<Identified> children = this.getChildren();
+		if (children != null) {
+			for (Identified child : children) {
+				child.remove();
+			}
+		}
+		this.resource.removeProperties();
+		this.resource.getModel().removeAll(this.resource, null, (RDFNode)null);
+		this.resource.getModel().removeAll(null, null, this.resource);
+		
+	}
 }
 
 /*private void inferDisplayId(URI uri) {

@@ -53,7 +53,7 @@ public class ComponentReferenceTest extends TestCase {
 		 
 		ComponentReference compRef=ilab16_dev1.createComponentReference(i13504SubComponent, sc_i13504_system);
 		
-	    TestUtil.serialise(doc, "entity_additonal/componentreference", "componentreference");
+	    TestUtil.serialise(doc, "entity/componentreference", "componentreference");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc);
         

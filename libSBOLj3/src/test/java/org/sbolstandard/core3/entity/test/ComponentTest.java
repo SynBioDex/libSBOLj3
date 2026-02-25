@@ -40,7 +40,7 @@ public class ComponentTest extends TestCase {
 		SBOLDocument doc=new SBOLDocument(base);
 		
 		Component popsReceiver=SBOLAPI.createDnaComponent(doc, "BBa_F2620", "BBa_F2620", "PoPS Receiver", Role.EngineeredGene, null); 
-	    TestUtil.serialise(doc, "entity_additional/component", "component");
+	    TestUtil.serialise(doc, "entity/component", "component");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc);
         

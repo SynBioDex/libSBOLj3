@@ -20,14 +20,18 @@
 <https://sbolstandard.org/examples/BBa_J23119> <http://parts.igem.org/belongsTo> <https://sbolstandard.org/examples/iGEMRepository> .
 <https://sbolstandard.org/examples/BBa_J23119> <http://parts.igem.org/hasUsage> <https://sbolstandard.org/examples/BBa_J23119/usage1> .
 <https://sbolstandard.org/examples/BBa_J23119> <http://sbols.org/v3#role> <https://identifiers.org/SO:0000167> .
+<https://sbolstandard.org/examples/BBa_J23119> <http://parts.igem.org/hasUsage> <https://sbolstandard.org/examples/BBa_J23119/usage2> .
 <https://sbolstandard.org/examples/BBa_J23119> <http://sbols.org/v3#name> "BBa_J23119 part" .
+<https://sbolstandard.org/examples/BBa_J23119> <http://parts.igem.org/hasInformation> <https://sbolstandard.org/examples/BBa_J23119/information3> .
+<https://sbolstandard.org/examples/BBa_J23119> <http://parts.igem.org/hasUsage> <https://sbolstandard.org/examples/BBa_J23119/usage3> .
 <https://sbolstandard.org/examples/BBa_J23119> <http://parts.igem.org/experienceURL> <http://parts.igem.org/Part:BBa_J23119:Experience> .
 <https://sbolstandard.org/examples/BBa_J23119> <http://sbols.org/v3#hasNamespace> <https://sbolstandard.org/examples> .
+<https://sbolstandard.org/examples/BBa_J23119> <http://parts.igem.org/hasInformation> <https://sbolstandard.org/examples/BBa_J23119/information2> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#Identified> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://sbols.org/v3#description> "BBa_J23119 usage statistics" .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://sbols.org/v3#name> "BBa_J23119_usage" .
+<https://sbolstandard.org/examples/BBa_J23119/usage1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/iGEMUsage> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://sbols.org/v3#displayId> "usage1" .
-<https://sbolstandard.org/examples/BBa_J23119/usage1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/IGEMUsage> .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/registryStar> "1" .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/twins> "7" .
 <https://sbolstandard.org/examples/BBa_J23119/usage1> <http://parts.igem.org/uses2> "442"^^<http://www.w3.org/2001/XMLSchema#int> .
@@ -43,6 +47,14 @@
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/Information> .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://sbols.org/v3#displayId> "information1" .
 <https://sbolstandard.org/examples/BBa_J23119/information1> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#Identified> .
+<https://sbolstandard.org/examples/BBa_J23119/usage3> <http://sbols.org/v3#name> "BBa_J23119_usage_3" .
+<https://sbolstandard.org/examples/BBa_J23119/usage3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/Z_iGEMUsage> .
+<https://sbolstandard.org/examples/BBa_J23119/usage3> <http://sbols.org/v3#displayId> "usage3" .
+<https://sbolstandard.org/examples/BBa_J23119/usage3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#Identified> .
+<https://sbolstandard.org/examples/BBa_J23119/information3> <http://sbols.org/v3#name> "BBa_J23119_experience3" .
+<https://sbolstandard.org/examples/BBa_J23119/information3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/Z_Information> .
+<https://sbolstandard.org/examples/BBa_J23119/information3> <http://sbols.org/v3#displayId> "information3" .
+<https://sbolstandard.org/examples/BBa_J23119/information3> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#Identified> .
 <https://sbolstandard.org/examples/iGEMRepository> <http://parts.igem.org/website> <http://parts.igem.org/Main_Page> .
 <https://sbolstandard.org/examples/iGEMRepository> <http://sbols.org/v3#description> "Registry of Standard Biological Parts" .
 <https://sbolstandard.org/examples/iGEMRepository> <http://sbols.org/v3#name> "iGEM Registry" .
@@ -50,3 +62,12 @@
 <https://sbolstandard.org/examples/iGEMRepository> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/Repository> .
 <https://sbolstandard.org/examples/iGEMRepository> <http://sbols.org/v3#displayId> "iGEMRepository" .
 <https://sbolstandard.org/examples/iGEMRepository> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#TopLevel> .
+<https://sbolstandard.org/examples/BBa_J23119/usage2> <http://parts.igem.org/twins> "7" .
+<https://sbolstandard.org/examples/BBa_J23119/usage2> <http://sbols.org/v3#name> "BBa_J23119_usage_2" .
+<https://sbolstandard.org/examples/BBa_J23119/usage2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/A_iGEMUsage> .
+<https://sbolstandard.org/examples/BBa_J23119/usage2> <http://sbols.org/v3#displayId> "usage2" .
+<https://sbolstandard.org/examples/BBa_J23119/usage2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#Identified> .
+<https://sbolstandard.org/examples/BBa_J23119/information2> <http://sbols.org/v3#name> "BBa_J23119_experience2" .
+<https://sbolstandard.org/examples/BBa_J23119/information2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://parts.igem.org/A_Information> .
+<https://sbolstandard.org/examples/BBa_J23119/information2> <http://sbols.org/v3#displayId> "information2" .
+<https://sbolstandard.org/examples/BBa_J23119/information2> <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://sbols.org/v3#Identified> .

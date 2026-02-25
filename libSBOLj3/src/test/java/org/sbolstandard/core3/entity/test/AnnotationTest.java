@@ -41,6 +41,13 @@ public class AnnotationTest extends TestCase {
         igemInf.addAnnotation(igem.local("regulation"), "//regulation/constitutive");
         igemInf.addAnnotation(igem.local("regulation"), "//regulation/second_regulation");
         Assert.assertTrue(igemInf.getType().contains( igem.local("Information")));
+
+		 //Internal metadata
+        Metadata igemInf_2=part.createMetadata("information2", igem.local("A_Information"), igem.local("hasInformation"));
+        igemInf_2.setName("BBa_J23119_experience2");
+		Metadata igemInf_3=part.createMetadata("information3", igem.local("Z_Information"), igem.local("hasInformation"));
+        igemInf_3.setName("BBa_J23119_experience3");
+		
         
         igemInf.addAnnotation(igem.local("source"), part.getUri());
         List<Object> uris= igemInf.getAnnotation(igem.local("source"));
@@ -49,7 +56,7 @@ public class AnnotationTest extends TestCase {
         
         
         
-        Identified igemInf2=part.createMetadata("usage1", igem.local("IGEMUsage"), igem.local("hasUsage"));
+        Metadata igemInf2=part.createMetadata("usage1", igem.local("iGEMUsage"), igem.local("hasUsage"));
         igemInf2.setName("BBa_J23119_usage");
         igemInf2.setDescription("BBa_J23119 usage statistics");
         igemInf2.addAnnotation(igem.local("inStock"), "true");
@@ -57,7 +64,15 @@ public class AnnotationTest extends TestCase {
         igemInf2.addAnnotation(igem.local("uses"), "442");
         igemInf2.addAnnotation(igem.local("uses2"), 442);
         igemInf2.addAnnotation(igem.local("twins"), "7");
-     
+		
+		Metadata igemInf2_2=part.createMetadata("usage2", igem.local("A_iGEMUsage"), igem.local("hasUsage"));
+        igemInf2_2.setName("BBa_J23119_usage_2");
+		igemInf2_2.addAnnotation(igem.local("twins"), "7");
+		Metadata igemInf2_3=part.createMetadata("usage3", igem.local("Z_iGEMUsage"), igem.local("hasUsage"));
+        igemInf2_3.setName("BBa_J23119_usage_3");
+		
+
+       
         //Metadata within metadata
         Identified igemInfInternal=igemInf2.createMetadata("twinParts", igem.local("TwinPartUsage"), igem.local("twinURLs"));
         igemInfInternal.setName("twin parts");
@@ -164,10 +179,12 @@ public class AnnotationTest extends TestCase {
 			 System.out.println("   Uses:" + metadata.getAnnotation(igem.local("uses2")));			 
 			 System.out.println("   Twins:" + metadata.getAnnotation(igem.local("twins")));
 			 List<Object> twinsURLs=metadata.getAnnotation(igem.local("twinURLs"));
-			 Metadata twinPartUsageMetadata=(Metadata) twinsURLs.get(0);
-			 System.out.println("   TwinPartUsage:");
-			 printMetadata(metadata,6);
-			 System.out.println("      twinURL:" + twinPartUsageMetadata.getAnnotation(igem.local("twinURL")));
+			 if (twinsURLs!=null){
+				Metadata twinPartUsageMetadata=(Metadata) twinsURLs.get(0);
+				System.out.println("   TwinPartUsage:");
+				printMetadata(metadata,6);
+				System.out.println("      twinURL:" + twinPartUsageMetadata.getAnnotation(igem.local("twinURL")));
+			 }
 		 }
 		 
 		 List<Object> repositoryMetadataList=identified.getAnnotation(igem.local("belongsTo"));

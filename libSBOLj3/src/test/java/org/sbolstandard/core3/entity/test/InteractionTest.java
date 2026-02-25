@@ -31,7 +31,7 @@ public class InteractionTest extends TestCase {
 		
         Interaction interaction= i13504_system.createInteraction(Arrays.asList(InteractionType.GeneticProduction.getUri()));
        
-        TestUtil.serialise(doc, "entity_additional/interaction", "interaction");
+        TestUtil.serialise(doc, "entity/interaction", "interaction");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc); 
         

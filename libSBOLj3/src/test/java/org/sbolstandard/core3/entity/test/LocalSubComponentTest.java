@@ -30,7 +30,7 @@ public class LocalSubComponentTest extends TestCase {
         i13504_system.setRoles(Arrays.asList(Role.EngineeredRegion));
         LocalSubComponent lsComponent = i13504_system.createLocalSubComponent(Arrays.asList(ComponentType.DNA.getUri()));
         lsComponent.setRoles(Arrays.asList(Role.CDS));
-        TestUtil.serialise(doc, "entity_additional/localsubcomponent", "localsubcomponent");
+        TestUtil.serialise(doc, "entity/localsubcomponent", "localsubcomponent");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
         TestUtil.assertReadWrite(doc);
         
