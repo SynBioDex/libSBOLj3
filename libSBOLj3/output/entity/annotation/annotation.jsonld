@@ -49,12 +49,28 @@
                 "@id": "SBO:0000251"
             },
             "@type": "sbol:Component",
-            "igem:hasInformation": {
-                "@id": "https://sbolstandard.org/examples/BBa_J23119/information1"
-            },
-            "igem:hasUsage": {
-                "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1"
-            },
+            "igem:hasInformation": [
+                {
+                    "@id": "https://sbolstandard.org/examples/BBa_J23119/information1"
+                },
+                {
+                    "@id": "https://sbolstandard.org/examples/BBa_J23119/information3"
+                },
+                {
+                    "@id": "https://sbolstandard.org/examples/BBa_J23119/information2"
+                }
+            ],
+            "igem:hasUsage": [
+                {
+                    "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1"
+                },
+                {
+                    "@id": "https://sbolstandard.org/examples/BBa_J23119/usage2"
+                },
+                {
+                    "@id": "https://sbolstandard.org/examples/BBa_J23119/usage3"
+                }
+            ],
             "sbol:role": {
                 "@id": "SO:0000167"
             },
@@ -104,7 +120,7 @@
             "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1",
             "@type": [
                 "sbol:Identified",
-                "igem:IGEMUsage"
+                "igem:iGEMUsage"
             ],
             "sbol:description": "BBa_J23119 usage statistics",
             "sbol:name": "BBa_J23119_usage",
@@ -120,6 +136,43 @@
                 "@id": "https://sbolstandard.org/examples/BBa_J23119/usage1/twinParts"
             },
             "igem:inStock": "true"
+        },
+        {
+            "@id": "https://sbolstandard.org/examples/BBa_J23119/usage2",
+            "igem:twins": "7",
+            "sbol:name": "BBa_J23119_usage_2",
+            "@type": [
+                "igem:A_iGEMUsage",
+                "sbol:Identified"
+            ],
+            "sbol:displayId": "usage2"
+        },
+        {
+            "@id": "https://sbolstandard.org/examples/BBa_J23119/information3",
+            "sbol:name": "BBa_J23119_experience3",
+            "@type": [
+                "igem:Z_Information",
+                "sbol:Identified"
+            ],
+            "sbol:displayId": "information3"
+        },
+        {
+            "@id": "https://sbolstandard.org/examples/BBa_J23119/usage3",
+            "sbol:name": "BBa_J23119_usage_3",
+            "@type": [
+                "igem:Z_iGEMUsage",
+                "sbol:Identified"
+            ],
+            "sbol:displayId": "usage3"
+        },
+        {
+            "@id": "https://sbolstandard.org/examples/BBa_J23119/information2",
+            "sbol:name": "BBa_J23119_experience2",
+            "@type": [
+                "igem:A_Information",
+                "sbol:Identified"
+            ],
+            "sbol:displayId": "information2"
         }
     ],
     "@context": {
