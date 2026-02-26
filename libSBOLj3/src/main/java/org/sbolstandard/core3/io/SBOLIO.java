@@ -1,17 +1,25 @@
 package org.sbolstandard.core3.io;
 
+import java.io.BufferedInputStream;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URI;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.ModelFactory;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.riot.Lang;
+import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
+import org.apache.jena.riot.RDFLanguages;
+import org.apache.jena.riot.RDFParser;
 import org.sbolstandard.core3.entity.SBOLDocument;
 import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
@@ -143,11 +151,22 @@ public class SBOLIO{
 		return doc;
 	}
 	public static SBOLDocument read(File file) throws FileNotFoundException, SBOLGraphException
-	{
-		Model model = RDFUtil.read(file) ;
-		SBOLDocument doc=new SBOLDocument(model);
-		assertValid(doc);
-		return doc;
+	{				
+		/*BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+		RDFFormat format = RDFUtil.detectFormatFromContent(in);
+		if (format == null) {
+			throw new SBOLGraphException("Could not detect the format of the input file: " + file.getAbsolutePath());
+		}
+		Model model = RDFUtil.read(file, format);*/
+		try{
+			Model model = RDFUtil.read(file);		
+			SBOLDocument doc=new SBOLDocument(model);
+			assertValid(doc);
+			return doc;
+		}
+		catch (IOException e) {
+			throw new SBOLGraphException("Error reading the input file: " + file.getName() + ". " + e.getMessage(), e);
+		}
 	}
 	
 	public static SBOLDocument read(URI uri, SBOLFormat format) throws FileNotFoundException, SBOLGraphException

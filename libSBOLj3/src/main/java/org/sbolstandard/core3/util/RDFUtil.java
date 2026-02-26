@@ -1,7 +1,9 @@
 package org.sbolstandard.core3.util;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -16,7 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import org.apache.commons.io.IOUtils;
-import org.apache.jena.datatypes.RDFDatatype;
 import org.apache.jena.datatypes.xsd.XSDDatatype;
 import org.apache.jena.datatypes.xsd.impl.XSDFloat;
 import org.apache.jena.query.ARQ;
@@ -37,14 +38,15 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.rdf.model.ResourceFactory;
 import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
+import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
+import org.apache.jena.riot.RDFLanguages;
 import org.apache.jena.riot.RDFWriter;
 import org.apache.jena.riot.RDFWriterBuilder;
 import org.apache.jena.riot.SysRIOT;
 import org.apache.jena.sparql.util.Context;
 import org.apache.jena.vocabulary.RDF;
-import org.sbolstandard.core3.vocabulary.DataModel;
 
 //IO: https://jena.apache.org/documentation/io/rdf-input.html
 //https://jena.apache.org/tutorials/rdf_api.html#ch-Writing-RDF
@@ -944,13 +946,103 @@ public class RDFUtil {
 	     * @param file The file path identifying the model.
 	     * @return A model object containing the values from the file.
 	     * @throws FileNotFoundException
+	     * @throws SBOLGraphException 
 	     */
-	    public static Model read(File file) throws FileNotFoundException
+	    /*public static Model read(File file) throws FileNotFoundException
 		{
 			Model model = RDFDataMgr.loadModel(file.getPath()) ;
 			return model;			
+		}*/
+		public static Model read(File file) throws FileNotFoundException, IOException{
+			BufferedInputStream in = new BufferedInputStream(new FileInputStream(file));
+			Lang lang = RDFLanguages.filenameToLang(file.getName());
+			if (lang == null) {
+				return read(in);
+			}
+			else{
+				Model model = ModelFactory.createDefaultModel();
+				RDFDataMgr.read(model, in, lang);
+				return model;	
+			}	
 		}
-	    
+
+		public static Model read(InputStream stream) throws FileNotFoundException, IOException{
+			RDFFormat format=detectFormatFromContent(stream);
+			return read(stream, format);
+		}
+
+	/**
+	 * Detects RDF format by inspecting file content.
+	 * @param file The file to inspect
+	 * @return The detected Lang, or null if cannot detect
+	 * @throws SBOLGraphException 
+	 */
+	public static RDFFormat detectFormatFromContent(InputStream stream) throws IOException{		
+		//try (BufferedReader reader = new BufferedReader(new InputStreamReader(stream))) {
+		try {
+			// Ensure the stream supports mark/reset
+			if (!stream.markSupported()) {
+				stream = new BufferedInputStream(stream);
+			}
+			String firstLine = getFirstLine(stream);
+			if (firstLine == null) {
+				return null;
+			}			
+			firstLine = firstLine.trim().toLowerCase();			
+			if (firstLine.startsWith("<?xml") || firstLine.startsWith("<rdf:rdf") || firstLine.contains("<rdf")) {
+				return RDFFormat.RDFXML;
+			}			
+			else if (firstLine.startsWith("@prefix") || firstLine.startsWith("@base") || firstLine.startsWith("base")) {
+				return RDFFormat.TURTLE;
+			}
+			else if (firstLine.startsWith("<") && firstLine.contains(">") && firstLine.endsWith(".")) {
+				return RDFFormat.NTRIPLES;
+			}
+			else if (firstLine.startsWith("{") || firstLine.startsWith("[")) {
+				return RDFFormat.JSONLD;
+			}
+			else {
+				return null;
+			}									
+		} 
+		catch (IOException e) {
+			throw new IOException("Error reading file for format detection: " + e.getMessage(), e);
+		}
+		/*finally {
+			try {
+				stream.reset();
+			} catch (IOException e) {								
+				throw new SBOLGraphException("Error resetting stream after format detection: " + e.getMessage(), e);
+			}
+		}	*/	
+	}
+
+	private static String getFirstLine(InputStream stream) throws IOException{
+		try{
+			stream.mark(1024); 
+			StringBuilder sb = new StringBuilder();
+			int b;
+			while ((b = stream.read()) != -1) {
+			char c = (char) b;
+				if (c == '\n' || c == '\r') {
+					break;
+				}
+				sb.append(c);
+			}
+			return sb.toString();
+		}
+		catch (IOException e) {
+			throw new IOException("Error getting the first line for format detection: " + e.getMessage(), e);
+		}
+		finally {
+			try {
+				stream.reset();
+			} catch (IOException e) {								
+				throw new IOException("Error resetting stream during format detection: " + e.getMessage(), e);
+			}
+		}
+	}
+	
 	    /**
 	     * Write a model to a specified file.
 	     * @param model The model to be written.
@@ -1010,14 +1102,12 @@ public class RDFUtil {
 	     * @return The corresponding RDF model.
 	     * @throws FileNotFoundException
 	     */
-	    public static Model read(InputStream stream, RDFFormat format) throws FileNotFoundException
-		{
-	    	if (ARQ.getContext()==null)
-	    	{
+	    public static Model read(InputStream stream, RDFFormat format) throws FileNotFoundException{
+	    	if (ARQ.getContext()==null){
 	    		ARQ.init();
-	    		System.out.println("**************");
+	    		/*System.out.println("**************");
 	    		System.out.println("Initialised ARQ");
-	    		System.out.println("**************");
+	    		System.out.println("**************");*/
 	    	}
 	    	Model model = ModelFactory.createDefaultModel();
 	    	RDFDataMgr.read(model, stream, format.getLang());
