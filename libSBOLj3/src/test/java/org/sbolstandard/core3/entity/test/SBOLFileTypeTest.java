@@ -1,7 +1,9 @@
 package org.sbolstandard.core3.entity.test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.net.URI;
 import java.util.Arrays;
 import org.sbolstandard.core3.api.SBOLAPI;
@@ -20,7 +22,7 @@ import junit.framework.TestCase;
 
 public class SBOLFileTypeTest extends TestCase {
 	
-	public void testCollection() throws SBOLGraphException, IOException
+	public void testFileType() throws SBOLGraphException, IOException
     {
 		String testOutput = "testoutput"  + File.separator + "filetypetest";
 		String baseUri="https://sbolstandard.org/examples/";
@@ -52,10 +54,6 @@ public class SBOLFileTypeTest extends TestCase {
 
         SBOLIO.write(doc, new File(testOutput + ".randomextension"), SBOLFormat.RDFXML);
         doc=SBOLIO.read(new File(testOutput + ".randomextension"));
-        
-        
- 
-        
 
         doc=SBOLIO.read(new File(testOutput + "JSON.txt"));
         SBOLIO.write(doc, new File(testOutput + "JSON.txt.jsonld"), SBOLFormat.JSONLD); 
@@ -68,6 +66,13 @@ public class SBOLFileTypeTest extends TestCase {
 
         doc=SBOLIO.read(new File(testOutput + "NTRIPLES.txt"));
         SBOLIO.write(doc, new File(testOutput + "NTRIPLES.txt.nt"), SBOLFormat.NTRIPLES);
-        doc=SBOLIO.read(new File(testOutput + "NTRIPLES.txt.nt"));       
+        doc=SBOLIO.read(new File(testOutput + "NTRIPLES.txt.nt"));    
+        
+        String output=SBOLIO.writeToString(doc, SBOLFormat.RDFXML);
+        doc=SBOLIO.read(output);
+        output=SBOLIO.writeToString(doc, SBOLFormat.TURTLE);
+        System.out.println(output);        
+
+
     }
 }

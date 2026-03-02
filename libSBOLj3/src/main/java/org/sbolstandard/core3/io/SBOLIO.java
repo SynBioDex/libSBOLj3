@@ -2,6 +2,7 @@ package org.sbolstandard.core3.io;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -74,6 +75,13 @@ public class SBOLIO{
 		}
 	}
 
+	public static String writeToString(SBOLDocument doc, SBOLFormat format) throws IOException, SBOLGraphException
+	{
+		OutputStream os=new ByteArrayOutputStream();
+        SBOLIO.write(doc, os, format);
+        String output=os.toString();
+        return output;
+	}
 	
 	public static void write(SBOLDocument doc, OutputStream stream, SBOLFormat format) throws FileNotFoundException, IOException, SBOLGraphException
 	{
@@ -191,13 +199,14 @@ public class SBOLIO{
 		return doc;
 	}
 	
-	/*public static SBOLDocument read(String input) throws FileNotFoundException
+	public static SBOLDocument read(String input) throws FileNotFoundException, IOException, SBOLGraphException
 	{
-		Model model = RDFUtil.read(input, null) ;
+		Model model = RDFUtil.read(input) ;
 		SBOLDocument doc=new SBOLDocument(model);
+		assertValid(doc);
 		return doc;
-	}*/
-	
+	}
+		
 	public static SBOLDocument read(String input, SBOLFormat format) throws FileNotFoundException, SBOLGraphException
 	{
 		return read(input, format.getFormat());
@@ -211,12 +220,13 @@ public class SBOLIO{
 		return doc;
 	}
 	
-	/*public static SBOLDocument read(InputStream stream) throws FileNotFoundException
+	public static SBOLDocument read(InputStream stream) throws FileNotFoundException, SBOLGraphException, IOException
 	{
-		Model model = RDFUtil.read(stream, null);
+		Model model = RDFUtil.read(stream);
 		SBOLDocument doc=new SBOLDocument(model);
+		assertValid(doc);
 		return doc;
-	}*/
+	}
 	
 	public static SBOLDocument read(InputStream stream, SBOLFormat format) throws FileNotFoundException, SBOLGraphException
 	{

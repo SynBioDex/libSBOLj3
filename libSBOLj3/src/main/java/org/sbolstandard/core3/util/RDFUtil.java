@@ -1145,6 +1145,20 @@ public class RDFUtil {
 			return model;	*/		
 		}
 	    
+		/**
+	     * Reads in an RDF model from a string.
+	     * @param input The string with the RDF model being read.
+	     * @return The corresponding RDF model.
+	     * @throws FileNotFoundException
+	     * @throws IOException
+	     */
+		public static Model read(String input) throws FileNotFoundException, IOException
+		{
+			InputStream stream=IOUtils.toInputStream(input, Charset.defaultCharset());
+			BufferedInputStream bufferedStream = new BufferedInputStream(stream);
+	    	return read(bufferedStream);
+		}	
+
 	    /**
 	     * Applies a filter to an RDF model.
 	     * @param model The model to be filtered.
