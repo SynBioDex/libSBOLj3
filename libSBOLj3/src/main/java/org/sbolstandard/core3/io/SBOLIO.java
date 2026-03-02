@@ -57,7 +57,7 @@ public class SBOLIO{
 		String output=null;
 		if (isValid(doc))
 		{
-			output=RDFUtil.write(doc.getRDFModel(), format, getTopLevelResources(doc));				
+			output=RDFUtil.write(doc.getRDFModel(), format, getTopLevelResources(doc), Configuration.getInstance().getSerialiseBaseURI());				
 		}
 		return output;
 	}
@@ -71,7 +71,7 @@ public class SBOLIO{
 	{
 		if (isValid(doc))
 		{
-			RDFUtil.write(doc.getRDFModel(), file, format, getTopLevelResources(doc));	
+			RDFUtil.write(doc.getRDFModel(), file, format, getTopLevelResources(doc), Configuration.getInstance().getSerialiseBaseURI());	
 		}
 	}
 
@@ -92,7 +92,7 @@ public class SBOLIO{
 	{
 		if (isValid(doc))
 		{
-			RDFUtil.write(doc.getRDFModel(), stream, format, getTopLevelResources(doc));	
+			RDFUtil.write(doc.getRDFModel(), stream, format, getTopLevelResources(doc), Configuration.getInstance().getSerialiseBaseURI());	
 		}
 	}
 

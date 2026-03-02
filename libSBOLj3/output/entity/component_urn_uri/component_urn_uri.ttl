@@ -9,8 +9,8 @@ PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 PREFIX prov:  <http://www.w3.org/ns/prov#>
 PREFIX sbol:  <http://sbols.org/v3#>
 
-<urn:uuid:fb2eb360-351f-4cac-b7a2-decc65464f6a>
+<urn:uuid:ab0a3ee3-72ec-452e-a7c5-f6c61652467d>
         a                  sbol:Component;
-        sbol:hasNamespace  <urn:uuid:1d856b96-89d5-4d63-9683-a90caf03ea80>;
+        sbol:hasNamespace  <urn:uuid:0ef3db4b-c182-477c-bd9e-db88a17a790f>;
         sbol:name          "TetR";
         sbol:type          SBO:0000252 .

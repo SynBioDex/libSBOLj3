@@ -134,6 +134,7 @@
         "EDAM": "https://identifiers.org/edam:",
         "SO": "https://identifiers.org/SO:",
         "prov": "http://www.w3.org/ns/prov#",
-        "om": "http://www.ontology-of-units-of-measure.org/resource/om-2/"
+        "om": "http://www.ontology-of-units-of-measure.org/resource/om-2/",
+        "@vocab": "https://sbolstandard.org/examples/"
     }
 }

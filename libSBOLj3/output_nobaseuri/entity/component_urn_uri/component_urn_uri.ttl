@@ -1,0 +1,14 @@
+PREFIX CHEBI: <https://identifiers.org/CHEBI:>
+PREFIX EDAM:  <https://identifiers.org/edam:>
+PREFIX GO:    <https://identifiers.org/GO:>
+PREFIX SBO:   <https://identifiers.org/SBO:>
+PREFIX SO:    <https://identifiers.org/SO:>
+PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX sbol:  <http://sbols.org/v3#>
+
+<urn:uuid:ab0a3ee3-72ec-452e-a7c5-f6c61652467d>
+        a                  sbol:Component;
+        sbol:hasNamespace  <urn:uuid:0ef3db4b-c182-477c-bd9e-db88a17a790f>;
+        sbol:name          "TetR";
+        sbol:type          SBO:0000252 .

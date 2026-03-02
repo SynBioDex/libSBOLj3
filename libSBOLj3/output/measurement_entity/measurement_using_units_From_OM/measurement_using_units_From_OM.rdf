@@ -8,13 +8,12 @@
     xmlns:SBO="https://identifiers.org/SBO:"
     xmlns:GO="https://identifiers.org/GO:"
     xmlns="https://sbolstandard.org/examples/"
-    xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/"
-   xml:base="https://sbolstandard.org/examples/">
-   <sbol:Component rdf:about="M9_Glucose_CAA">
+    xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/">
+   <sbol:Component rdf:about="https://sbolstandard.org/examples/M9_Glucose_CAA">
       <sbol:hasFeature>
-         <sbol:ExternallyDefined rdf:about="M9_Glucose_CAA/ExternallyDefined1">
+         <sbol:ExternallyDefined rdf:about="https://sbolstandard.org/examples/M9_Glucose_CAA/ExternallyDefined1">
             <sbol:hasMeasure>
-               <sbol:Identified rdf:about="M9_Glucose_CAA/ExternallyDefined1/measure1">
+               <sbol:Identified rdf:about="https://sbolstandard.org/examples/M9_Glucose_CAA/ExternallyDefined1/measure1">
                   <om:hasUnit>
                      <sbol:TopLevel rdf:about="http://www.ontology-of-units-of-measure.org/resource/om-2/millimolePerLitre"/>
                   </om:hasUnit>
@@ -30,7 +29,7 @@
       </sbol:hasFeature>
       <sbol:description>M9 Glucose CAA growth media</sbol:description>
       <sbol:name>M9 Glucose CAA</sbol:name>
-      <sbol:hasNamespace rdf:resource="/examples"/>
+      <sbol:hasNamespace rdf:resource="https://sbolstandard.org/examples"/>
       <sbol:type rdf:resource="https://identifiers.org/SBO:0000241"/>
       <sbol:displayId>M9_Glucose_CAA</sbol:displayId>
    </sbol:Component>

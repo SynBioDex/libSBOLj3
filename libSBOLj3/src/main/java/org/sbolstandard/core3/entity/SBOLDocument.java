@@ -111,8 +111,8 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	}
 	
 	public SBOLDocument(URI base) {
-		this();
-		RDFUtil.setBaseURI(this.model, base);
+		this();		
+		RDFUtil.setBaseURI(this.model, base);		
 	}
 	
 	public SBOLDocument(Model model) {

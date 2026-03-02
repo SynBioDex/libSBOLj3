@@ -783,14 +783,24 @@ public class RDFUtil {
 	     * @param stream The stream object performing the write operation.
 	     * @param format The RDF format type to be used.
 	     * @param topLevelResources The top level resources to be written.
+	     * @param includeBaseURI Whether to include the base URI in the output.
 	     */
-		public static void write(Model model, OutputStream stream, RDFFormat format, Resource[] topLevelResources
+		public static void write(Model model, OutputStream stream, RDFFormat format, Resource[] topLevelResources, boolean includeBaseURI
 				) {
 			if (format == null) {
 				format = RDFFormat.RDFXML_ABBREV;
 			}
 			boolean baseNsRemoved = false;
-			String baseUri = model.getNsPrefixURI("");
+			String baseUri = null;
+			if (includeBaseURI) {
+				baseUri = model.getNsPrefixURI("");
+			}
+			/*else This would remove the base URI from the model, which is not desirable as it would affect the model in memory. Instead, we can just avoid writing the base URI by not setting it in the writer properties.
+			*/
+			else {
+				model.removeNsPrefix("");
+			}
+
 			RDFWriterBuilder writerBuilder = RDFWriter.create().source(model).format(format);
 
 			if (format.equals(RDFFormat.RDFXML_ABBREV)){ // RDF/XML
@@ -816,6 +826,7 @@ public class RDFUtil {
 			if (baseNsRemoved) {
 				model.setNsPrefix("", baseUri);
 			}
+
 		}
 		 
 		/**
@@ -826,11 +837,11 @@ public class RDFUtil {
 		 * @return The data written to the RDF model as a string.
 		 * @throws IOException
 		 */
-		 public static String write(Model model, RDFFormat format, Resource[] topLevelResources) throws IOException {
+		 public static String write(Model model, RDFFormat format, Resource[] topLevelResources, boolean includeBaseURI) throws IOException {
 				String rdfData = null;
 				ByteArrayOutputStream stream = new ByteArrayOutputStream();
 				try {
-					write(model, stream, format, topLevelResources);
+					write(model, stream, format, topLevelResources, includeBaseURI);
 					rdfData = new String(stream.toString());
 				} finally {
 					if (stream != null) {
@@ -850,10 +861,10 @@ public class RDFUtil {
 		 * @throws IOException
 		 * @throws FileNotFoundException
 		 */
-	    public static void write(Model model, File file, RDFFormat format, Resource[] topLevelResources) throws IOException, FileNotFoundException {
+	    public static void write(Model model, File file, RDFFormat format, Resource[] topLevelResources, boolean includeBaseURI) throws IOException, FileNotFoundException {
 			FileOutputStream stream = new FileOutputStream(file);
 			try {
-				write(model, stream, format, topLevelResources);
+				write(model, stream, format, topLevelResources, includeBaseURI);
 			} 
 			finally {
 				if (stream != null) {

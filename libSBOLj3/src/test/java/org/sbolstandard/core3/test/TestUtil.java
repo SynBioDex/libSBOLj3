@@ -33,12 +33,34 @@ public class TestUtil {
 	public static final String baseOutput="output";
 	public static void serialise(SBOLDocument doc, String directory, String file) throws FileNotFoundException, IOException, SBOLGraphException
 	{
-		File outputDir=new File(baseOutput +  "/" + directory);
+		URI orgBaseURI=doc.getBaseURI();
+		createFiles(doc, baseOutput, directory, file);
+		URI baseURI=null;
+		try{
+			Configuration.getInstance().setSerialiseBaseURI(false);
+			baseURI=doc.getBaseURI();
+			createFiles(doc, baseOutput + "_nobaseuri", directory, file);
+			URI newBaseURI=doc.getBaseURI();
+			String str="";
+		}
+		finally{
+			Configuration.getInstance().setSerialiseBaseURI(true);
+			doc.setBaseURI(baseURI);
+		}
+		
+
+        
+	}
+	
+	private static void createFiles(SBOLDocument doc, String base, String directory, String file) throws IOException, SBOLGraphException
+	{
+        File outputDir=new File(base +  "/" + directory);
         if (!outputDir.exists())
         {
         	outputDir.mkdirs();
         }
-        String filename=String.format("%s/%s/%s", baseOutput,directory, file);
+
+		String filename=String.format("%s/%s/%s", base,directory, file);
         SBOLIO.write(doc, new File(filename + ".ttl"), SBOLFormat.TURTLE);
         SBOLIO.write(doc, new File(filename + ".rdf"),SBOLFormat.RDFXML);
         SBOLIO.write(doc, new File(filename + ".jsonld"), SBOLFormat.JSONLD);
@@ -46,9 +68,8 @@ public class TestUtil {
         SBOLIO.write(doc, new File(filename + ".rj"), RDFFormat.RDFJSON);
         SBOLIO.write(doc, new File(filename + ".nt"), SBOLFormat.NTRIPLES);
         SBOLUtil.sort(new File(filename + ".nt"), new File(filename + "_ordered.nt"), Charset.forName("ASCII"));
-        
+
 	}
-	
 	public static void assertReadWrite(SBOLDocument doc) throws IOException, SBOLGraphException
 	{
 		String output=SBOLIO.write(doc, SBOLFormat.TURTLE);

@@ -83,6 +83,7 @@ public class Configuration {
 	private Set<String> SboSystemDescriptionParameters=null;
 	private Set<String> SboParticipantRoles= null;
 	private Pattern displayIdPattern=null;
+	private boolean serialiseBaseURI=true;
 	
 	private Configuration(){
 		try{
@@ -114,7 +115,15 @@ public class Configuration {
 	public Pattern getDisplayIdPattern(){
 		return this.displayIdPattern;   
 	}
-	
+
+	public boolean getSerialiseBaseURI(){
+		return this.serialiseBaseURI;   
+	}
+
+	public void setSerialiseBaseURI(boolean serialiseBaseURI){
+		this.serialiseBaseURI = serialiseBaseURI;
+	}
+
 	public Set<String> getSboOccurringEntityInteractionTypes(){
 		return this.SboOccurringEntityInteractionTypes;   
 	}
