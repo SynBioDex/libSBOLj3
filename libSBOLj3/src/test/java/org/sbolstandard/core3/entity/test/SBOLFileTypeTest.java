@@ -71,6 +71,7 @@ public class SBOLFileTypeTest extends TestCase {
         String output=SBOLIO.writeToString(doc, SBOLFormat.RDFXML);
         doc=SBOLIO.read(output);
         output=SBOLIO.writeToString(doc, SBOLFormat.TURTLE);
+        doc=SBOLIO.read(output);
         System.out.println(output);        
 
 

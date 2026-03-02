@@ -992,7 +992,7 @@ public class RDFUtil {
 			if (firstLine.startsWith("<?xml") || firstLine.startsWith("<rdf:rdf") || firstLine.contains("<rdf")) {
 				return RDFFormat.RDFXML;
 			}			
-			else if (firstLine.startsWith("@prefix") || firstLine.startsWith("@base") || firstLine.startsWith("base")) {
+			else if (firstLine.startsWith("@prefix") || firstLine.startsWith("prefix")  || firstLine.startsWith("@base") || firstLine.startsWith("base")) {
 				return RDFFormat.TURTLE;
 			}
 			else if (firstLine.startsWith("<") && firstLine.contains(">") && firstLine.endsWith(".")) {

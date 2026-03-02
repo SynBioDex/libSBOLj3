@@ -6,7 +6,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.sbolstandard</groupId>
     <artifactId>libsbolj3</artifactId>
-    <version>1.0.5.2</version>
+    <version>1.0.5.3</version>
     <packaging>jar</packaging>
     <name>libSBOLj3</name>
     <description>Java library for SBOL3</description>
