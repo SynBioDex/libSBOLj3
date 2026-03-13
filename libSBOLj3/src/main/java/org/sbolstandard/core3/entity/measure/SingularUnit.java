@@ -1,11 +1,14 @@
 package org.sbolstandard.core3.entity.measure;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
+import org.sbolstandard.core3.entity.Identified;
 import org.sbolstandard.core3.entity.SBOLDocument;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
@@ -130,6 +133,20 @@ public class SingularUnit extends Unit{
 		List<ValidationMessage> validationMessages=super.getValidationMessages();
 		validationMessages= IdentifiedValidator.assertEquals(this, MeasureDataModel.SingularUnit.unit, this.resource, getUnit(), validationMessages, this.getUnitURI());
 		return validationMessages;
+	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, MeasureDataModel.SingularUnit.unit, Arrays.asList(getUnit()));
+		return identifieds;
+	}
+	
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, MeasureDataModel.SingularUnit.unit, Arrays.asList(getUnitURI()));
+		return identifieds;
 	}
 	
 }

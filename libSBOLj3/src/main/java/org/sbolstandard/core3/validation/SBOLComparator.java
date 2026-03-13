@@ -353,7 +353,7 @@ public class SBOLComparator {
 		if (entity1!=null & entity2!=null)
 		{
 			output = add(output,assertEqual(entity1, entity2, entity1.getRoles(),entity2.getRoles(), ProvenanceDataModel.Usage.role));
-			output = add(output,assertEqual(entity1, entity2, entity1.getEntity(),entity2.getEntity(), ProvenanceDataModel.Usage.entity));
+			output = add(output,assertEqual(entity1, entity2, entity1.getEntityURI(),entity2.getEntityURI(), ProvenanceDataModel.Usage.entity));
 		}
 		return output;
 	}

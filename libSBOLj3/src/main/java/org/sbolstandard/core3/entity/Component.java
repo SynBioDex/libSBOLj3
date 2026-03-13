@@ -1228,7 +1228,9 @@ public class Component extends TopLevel {
 	}
 	
 	/**
-	 * 
+	 * Gets the child objects associated with the current component, including features, interactions and interface.
+	 * @return List of Identified objects associated with the current component.
+	 * @throws SBOLGraphException if there is an error accessing the child objects
 	 */
 	@Override
 	public List<Identified> getChildren() throws SBOLGraphException {
@@ -1236,9 +1238,40 @@ public class Component extends TopLevel {
 		identifieds=addToList(identifieds, this.getFeatures());
 		identifieds=addToList(identifieds, this.getInteractions());
 		identifieds=addToList(identifieds, this.getInterface());
+		identifieds=addToList(identifieds, this.getConstraints());		
 		return identifieds;
 	}
-	
+
+	@Override
+	public Map<URI, List<? extends Identified>> getChildrenWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getChildrenWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Component.feature, this.getFeatures());
+		identifieds = addToMap(identifieds, DataModel.Component.interaction, this.getInteractions());
+		if (this.getInterface()==null)
+		{
+			String str="";
+		}
+		identifieds = addToMap(identifieds, DataModel.Component.hasInterface, Arrays.asList(this.getInterface()));
+		identifieds = addToMap(identifieds, DataModel.Component.constraint, this.getConstraints());	
+		return identifieds;
+	}
+		
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Component.model, getModels());
+		identifieds = addToMap(identifieds, DataModel.Component.sequence, getSequences());		
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, DataModel.Component.model, getModelURIs());
+		identifieds = addToURIMap(identifieds, DataModel.Component.sequence, getSequenceURIs());		
+		return identifieds;
+	}
+
 	/**
 	 * 
 	 * @param messages

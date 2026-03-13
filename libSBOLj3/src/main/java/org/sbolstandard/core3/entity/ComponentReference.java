@@ -1,7 +1,9 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -95,4 +97,13 @@ public class ComponentReference extends Feature{
 		
 		return validationMessages;
 	}
+	
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedChildEntitiesWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.ComponentReference.refersTo, Arrays.asList(getRefersTo()));
+		identifieds = addToMap(identifieds, DataModel.ComponentReference.inChildOf, Arrays.asList(getInChildOf()));		
+		return identifieds;
+	}
+
 }

@@ -751,11 +751,11 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType) throws SBOLGraphException {
 		return addToList(model, null, metaDataType,TopLevelMetadata.class);
 	}
-//GMGM
+
 	public List<TopLevelMetadata> getTopLevelMetadataList(URI metaDataType, List<URI> excludeNamespaces) throws SBOLGraphException {
 		return addToList (model, null, metaDataType,excludeNamespaces, TopLevelMetadata.class);		
 	}
-//GMGM	
+	
 	public List<TopLevelMetadata> getTopLevelMetadataList() throws SBOLGraphException {
 		List<URI> excludeNamespaces=new ArrayList<URI>();
 		excludeNamespaces.add(URINameSpace.PROV.getUri());
@@ -1016,36 +1016,8 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 	}
 	
 	//private Set<URI> topLevelResourceTypes;
-	public Set<URI> getTopLevelResourceTypes()
-	{
-		/*if (topLevelResourceTypes==null)
-		{*/
-			List<URI> types = Arrays.asList(DataModel.Component.uri,
-					DataModel.Sequence.uri,
-					DataModel.Model.uri,
-					DataModel.Implementation.uri,
-					DataModel.ExperimentalData.uri,
-					DataModel.Attachment.uri,
-					DataModel.Collection.uri,
-					DataModel.CombinatorialDerivation.uri,
-					DataModel.TopLevel.uri,
-					ProvenanceDataModel.Agent.uri,
-					ProvenanceDataModel.Plan.uri,
-					ProvenanceDataModel.Activity.uri,
-					MeasureDataModel.Measure.uri,
-					MeasureDataModel.SIPrefix.uri,
-					MeasureDataModel.BinaryPrefix.uri,
-					MeasureDataModel.SingularUnit.uri,
-					MeasureDataModel.UnitMultiplication.uri,
-					MeasureDataModel.UnitDivision.uri,
-					MeasureDataModel.UnitExponentiation.uri,
-					MeasureDataModel.PrefixedUnit.uri
-					);
-			Set<URI> topLevelResourceTypes=new HashSet<URI>(types);
-			
-			
-		//}
-		return topLevelResourceTypes;
+	public Set<URI> getTopLevelResourceTypes(){
+		return SBOLUtil.getTopLevelResourceTypes();
 	}
 	
 	/*public void addTopLevelResourceType2(URI type)
@@ -1857,7 +1829,7 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 							if (roles!=null){
 								Set<URI> matches = IdentifiedValidator.getMatchingSearchURIs(roles,ActivityType.getURIs());
 								if (matches!=null && matches.size()>0){//has DBTL role
-									URI entityURI=usage.getEntity();
+									URI entityURI=usage.getEntityURI();
 									if (entityURI!=null){
 										Resource resUsageEntity=this.getRDFModel().getResource(entityURI.toString());
 										List<URI> usageEntityTypes=RDFUtil.getPropertiesAsURIs(resUsageEntity, URI.create(RDF.type.getURI()));

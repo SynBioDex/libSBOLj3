@@ -1,7 +1,9 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -66,8 +68,18 @@ public class Participation extends Identified{
 		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Participation.higherOrderParticipant);	
 	}
 
-	public void setHigherOrderParticipant(URI higherOrderParticipant) {
-		RDFUtil.setProperty(resource, DataModel.Participation.higherOrderParticipant, higherOrderParticipant);
+	public Interaction getHigherOrderParticipantInteraction() throws SBOLGraphException {
+		return contsructIdentified(DataModel.Participation.higherOrderParticipant, Interaction.class, DataModel.Interaction.uri);
+		//return constructIdentified(DataModel.Participation.higherOrderParticipant, DataModel.Interaction.uri, Interaction.class);
+	}
+
+
+	public void setHigherOrderParticipant(URI higherOrderParticipantURI) {
+		RDFUtil.setProperty(resource, DataModel.Participation.higherOrderParticipant, higherOrderParticipantURI);
+	}
+
+	public void setHigherOrderParticipant(Interaction higherOrderParticipant) {		
+		setHigherOrderParticipant(SBOLUtil.toURI(higherOrderParticipant));
 	}
 	
 	@Override
@@ -103,6 +115,14 @@ public class Participation extends Identified{
 			}
 		}
 		return validationMessages;
+	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds = super.getReferencedChildEntitiesWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Participation.participant, Arrays.asList(getParticipant()));
+		identifieds = addToMap(identifieds, DataModel.Participation.higherOrderParticipant, Arrays.asList(getHigherOrderParticipantInteraction()));
+		return identifieds;
 	}
 	
 }

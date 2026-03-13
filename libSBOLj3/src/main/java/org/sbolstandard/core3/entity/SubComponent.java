@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -403,10 +404,29 @@ public class SubComponent extends FeatureWithLocation{
 	@Override
 	public List<Identified> getChildren() throws SBOLGraphException {
 		List<Identified> identifieds=super.getChildren();
-		identifieds=addToList(identifieds, this.getLocations());
-		identifieds=addToList(identifieds, this.getSourceLocations());
-		
+		identifieds=addToList(identifieds, this.getSourceLocations());		
 		return identifieds;
 	}
 	
+	@Override
+	public Map<URI, List<? extends Identified>> getChildrenWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getChildrenWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.SubComponent.sourceLocation, this.getSourceLocations());
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.SubComponent.instanceOf, Arrays.asList(getInstanceOf()));
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, DataModel.SubComponent.instanceOf, Arrays.asList(getInstanceOfURI()));
+		return identifieds;
+	}
+
 }

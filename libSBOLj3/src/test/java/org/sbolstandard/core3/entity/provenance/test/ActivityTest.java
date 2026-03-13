@@ -189,7 +189,7 @@ public class ActivityTest extends TestCase {
 			{
 				System.out.println("Usage:");
 				printMetadata(usage, 3);
-				System.out.println("   Entity:" + usage.getEntity());
+				System.out.println("   Entity:" + usage.getEntityURI());
 				System.out.println("   Roles:" + usage.getRoles());
 			}
 		}

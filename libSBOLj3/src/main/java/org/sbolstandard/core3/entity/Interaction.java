@@ -1,7 +1,10 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -100,7 +103,14 @@ public class Interaction extends Identified{
 		identifieds=addToList(identifieds, this.getParticipations());
 		return identifieds;
 	}
-	
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds = super.getReferencedChildEntitiesWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Interaction.participation, getParticipations());
+		return identifieds;
+	}
+
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException
 	{

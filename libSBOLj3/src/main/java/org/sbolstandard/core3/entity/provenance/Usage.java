@@ -1,7 +1,10 @@
 package org.sbolstandard.core3.entity.provenance;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.entity.ControlledIdentified;
@@ -37,7 +40,7 @@ public class Usage extends ControlledIdentified{
 	 * @throws SBOLGraphException
 	 */
 	@NotNull(message = "{USAGE_ENTITY_NOT_NULL}")
-	public URI getEntity() throws SBOLGraphException {
+	public URI getEntityURI() throws SBOLGraphException {
 		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, ProvenanceDataModel.Usage.entity);
 	}
 	
@@ -84,4 +87,10 @@ public class Usage extends ControlledIdentified{
 		return ProvenanceDataModel.Usage.uri;
 	}			
 	
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, ProvenanceDataModel.Usage.entity, Arrays.asList(getEntityURI()));
+		return identifieds;
+	}
 }

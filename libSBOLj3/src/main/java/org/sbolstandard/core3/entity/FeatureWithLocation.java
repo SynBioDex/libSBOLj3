@@ -2,7 +2,9 @@ package org.sbolstandard.core3.entity;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.apache.jena.rdf.model.Model;
@@ -10,7 +12,6 @@ import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.util.SBOLUtil;
-import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.*;
 import org.sbolstandard.core3.vocabulary.DataModel;
 import jakarta.validation.Valid;
@@ -299,4 +300,20 @@ public abstract class FeatureWithLocation extends Feature{
 		return (location>=start && location<=end);
 	}
 	
+
+	@Override
+	public List<Identified> getChildren() throws SBOLGraphException {
+		List<Identified> identifieds=super.getChildren();
+		identifieds=addToList(identifieds, this.getLocations());
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getChildrenWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getChildrenWithEdgeURIs();
+		identifieds = addToMap(identifieds, getDefaultLocationProperty(), this.getLocations());
+		return identifieds;
+	}
+	
+
 }

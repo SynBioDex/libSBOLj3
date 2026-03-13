@@ -1,6 +1,7 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -423,5 +424,13 @@ public class Constraint extends Identified{
 	@Override
 	public URI getResourceType() {
 		return DataModel.Constraint.uri;
+	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedChildEntitiesWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Constraint.subject, Arrays.asList(this.getSubject()));
+		identifieds = addToMap(identifieds, DataModel.Constraint.object, Arrays.asList(this.getObject()));		
+		return identifieds;
 	}
 }

@@ -1,7 +1,10 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.entity.measure.Measure;
@@ -157,6 +160,35 @@ public class VariableFeature extends Identified{
 	public URI getResourceType() {
 		return DataModel.VariableFeature.uri;
 	}
-	
-	
+
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds = super.getReferencedChildEntitiesWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.VariableFeature.variable, Arrays.asList(getVariable()));
+		identifieds = addToMap(identifieds, DataModel.VariableFeature.variantMeasure, getVariantMeasures());		
+		return identifieds;
+	}
+
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.VariableFeature.variant, getVariants());
+		identifieds = addToMap(identifieds, DataModel.VariableFeature.variantCollection, getVariantCollections());
+		identifieds = addToMap(identifieds, DataModel.VariableFeature.variantDerivation, getVariantDerivations());
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, DataModel.VariableFeature.variant, getVariantURIs());
+		identifieds = addToURIMap(identifieds, DataModel.VariableFeature.variantCollection, getVariantCollectionURIs());
+		identifieds = addToURIMap(identifieds, DataModel.VariableFeature.variantDerivation, getVariantDerivationURIs());
+		return identifieds;
+	}
+
+
+			
 }

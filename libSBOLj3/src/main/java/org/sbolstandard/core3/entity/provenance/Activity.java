@@ -1,15 +1,16 @@
 package org.sbolstandard.core3.entity.provenance;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.jena.datatypes.xsd.XSDDateTime;
 import org.apache.jena.datatypes.xsd.impl.XSDDateType;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
-import org.apache.jena.sparql.function.library.date;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.ControlledTopLevel;
 import org.sbolstandard.core3.entity.Identified;
@@ -21,6 +22,7 @@ import org.sbolstandard.core3.util.SBOLUtil;
 import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.ActivityType;
+import org.sbolstandard.core3.vocabulary.DataModel;
 import org.sbolstandard.core3.vocabulary.ProvenanceDataModel;
 
 import jakarta.validation.Valid;
@@ -259,6 +261,10 @@ public class Activity extends ControlledTopLevel{
 		//return RDFUtil.getPropertiesAsURIs(this.resource, ProvenanceDataModel.Activity.wasInformedBy);
 		return addToList(ProvenanceDataModel.Activity.wasInformedBy, Activity.class, ProvenanceDataModel.Activity.uri);	
 	}
+
+	public List<URI> getWasInformedByURIs() throws SBOLGraphException {
+		return RDFUtil.getPropertiesAsURIs(this.resource, ProvenanceDataModel.Activity.wasInformedBy);
+	}
 	
 	/**
 	 * Sets the activity that informs this activity.
@@ -416,7 +422,29 @@ public class Activity extends ControlledTopLevel{
 		identifieds=addToList(identifieds, this.getAssociations());
 		return identifieds;
 	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getChildrenWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getChildrenWithEdgeURIs();
+		identifieds = addToMap(identifieds, ProvenanceDataModel.Activity.qualifiedUsage, this.getUsages());
+		identifieds = addToMap(identifieds, ProvenanceDataModel.Activity.qualifiedAssociation, this.getAssociations());
+		return identifieds;
+	}
+		
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, ProvenanceDataModel.Activity.wasInformedBy, getWasInformedBys());
+		return identifieds;
+	}
 	
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, ProvenanceDataModel.Activity.wasInformedBy, getWasInformedByURIs());
+		return identifieds;
+	}
+
 	/**
 	 * Gets the validation messages associated with this activity.
 	 * @return A list object containing the validation messages associated with this activity.

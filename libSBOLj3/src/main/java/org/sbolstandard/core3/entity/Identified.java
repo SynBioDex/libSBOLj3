@@ -4,10 +4,13 @@ import java.lang.reflect.Constructor;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import java.util.Optional;
+import java.util.Set;
 import java.util.regex.Matcher;
 
 import org.apache.commons.lang3.StringUtils;
@@ -247,14 +250,148 @@ public abstract class Identified implements ValidatableSBOLEntity {
 	}
 	
 	abstract public URI getResourceType();
-	public List<Identified> getChildren() throws SBOLGraphException
-	{
+	public List<Identified> getChildren() throws SBOLGraphException{
 		List<Identified> identifieds=null;
 		identifieds=addToList(identifieds, this.getMeasures());
 		identifieds=addToList(identifieds, this.getMetadataEntites());		
 		return identifieds;
 	}
+
+	/*public List<TopLevel> getTopLevels() throws SBOLGraphException{
+		List<TopLevel> topLevels=null;
+		List<TopLevelMetadata> topLevelMetadata=getConnectedEntitiesHavingTypeProperty(TopLevelMetadata.class, DataModel.TopLevel.uri);
+		topLevels = addToTopLevelList(topLevels, topLevelMetadata);	
+		topLevels = addToTopLevelList(topLevels, getWasGeneratedBy());				
+		return topLevels;
+	}*/
+
+	public Map<URI, List<? extends Identified>> getChildrenWithEdgeURIs() throws SBOLGraphException{
+		HashMap<URI, List<? extends Identified>> identifieds=new HashMap<>();
+		identifieds.put(DataModel.Identified.measure, this.getMeasures());
+		Map<URI, List<? extends Metadata>> metadataEntities=getConnectedEntitiesHavingTypeProperty(Metadata.class, DataModel.Identified.uri);
+		identifieds.putAll(metadataEntities);		
+		return identifieds;
+	}
+
+	/**
+	 * Returns the referenced child entities with the edge URIs. For example, for a Constraint entity, it will return an subject-Feature pair.
+	 * @return
+	 * @throws SBOLGraphException
+	 */
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException{
+		HashMap<URI, List<? extends Identified>> identifieds=new HashMap<>();
+		identifieds.put(DataModel.Identified.wasGeneratedBy, this.getWasGeneratedBy());		
+		return identifieds;
+	}
+
+	/**
+	 * Returns the referenced top levels with the edge URIs. For example, for an Identity, it will return wasGeneratedBy-Activity pairs.
+	 * @return
+	 * @throws SBOLGraphException
+	 */
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<? extends Identified>> identifieds=new HashMap<>();
+		Map<URI, List<? extends TopLevelMetadata>> topLevelMetadata=getConnectedEntitiesHavingTypeProperty(TopLevelMetadata.class, DataModel.TopLevel.uri);
+		if (topLevelMetadata != null) identifieds.putAll(topLevelMetadata);
+		identifieds = addToMap(identifieds, DataModel.Identified.wasGeneratedBy, this.getWasGeneratedBy());		
+		return identifieds;
+	}
 	
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=new HashMap<>();
+		Map<URI, List<? extends TopLevelMetadata>> topLevelMetadata=getConnectedEntitiesHavingTypeProperty(TopLevelMetadata.class, DataModel.TopLevel.uri);
+		if (topLevelMetadata!=null){
+			for (Entry<URI, List<? extends TopLevelMetadata>> entry: topLevelMetadata.entrySet()){
+				List<URI> uris=SBOLUtil.getURIs(entry.getValue());			
+				identifieds.put(entry.getKey(), uris);
+			}
+		}
+		identifieds=addToURIMap(identifieds, DataModel.Identified.wasGeneratedBy, this.getWasGeneratedByURIs());		
+		//identifieds.putAll(getConnectedEntitiesHavingTypeProperty(Activity.class, ProvenanceDataModel.Activity.uri));
+		return identifieds;
+	}
+	
+	/**
+	 * Returns a combined map of edge URIs to entity lists, where each list may contain
+	 * {@link Identified} objects or {@link URI} objects. Merges results from
+	 * {@link #getChildrenWithEdgeURIs()}, {@link #getReferencedChildEntitiesWithEdgeURIs()},
+	 * and {@link #getReferencedTopLevelsWithEdgeURIs()}. For any edge in
+	 * {@link #getReferencedTopLevelURIsWithEdgeURIs()} whose URIs are not covered by resolved
+	 * Identified objects, the unresolved URIs are included as raw URI values.
+	 * @return a map of edge URIs to lists of connected entities, where entities may be either Identified objects or raw URIs for unresolved references
+	 * @throws SBOLGraphException
+	 */
+	public Map<URI, List<Object>> getConnectedEntities() throws SBOLGraphException {
+		Map<URI, List<Object>> result = new HashMap<>();
+		addToObjectMap(result, getChildrenWithEdgeURIs());
+		addToObjectMap(result, getReferencedChildEntitiesWithEdgeURIs());
+		Map<URI, List<? extends Identified>> topLevels = getReferencedTopLevelsWithEdgeURIs();
+		addToObjectMap(result, topLevels);
+		
+		Map<URI, List<URI>> topLevelURIs = getReferencedTopLevelURIsWithEdgeURIs();
+		addUnresolvedURIs(result, topLevelURIs, topLevels);
+		return result;
+	}
+
+	private void addUnresolvedURIs(Map<URI, List<Object>> result, Map<URI, List<URI>> topLevelURIs, Map<URI, List<? extends Identified>> topLevels) {
+		if (topLevelURIs != null) {
+			for (Entry<URI, List<URI>> entry : topLevelURIs.entrySet()) {
+				URI edgeURI = entry.getKey();
+				List<URI> uris = entry.getValue();
+				if (uris != null) {
+					Set<URI> resolvedURIs = new HashSet<>();
+					if (topLevels != null) {
+						List<? extends Identified> resolved = topLevels.get(edgeURI);
+						if (resolved != null) {
+							for (Identified id : resolved) {
+								resolvedURIs.add(id.getUri());
+							}
+						}
+					}
+					for (URI uri : uris) {
+						if (!resolvedURIs.contains(uri)) {
+							result.computeIfAbsent(edgeURI, k -> new ArrayList<>()).add(uri);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void addToObjectMap(Map<URI, List<Object>> result, Map<URI, List<? extends Identified>> source) {
+		if (source != null) {
+			for (Entry<URI, List<? extends Identified>> entry : source.entrySet()) {
+				if (entry.getValue() != null && !entry.getValue().isEmpty()) {
+					result.computeIfAbsent(entry.getKey(), k -> new ArrayList<>()).addAll(entry.getValue());
+				}
+			}
+		}
+	}
+
+	protected  Map<URI, List<? extends Identified>> addToMap(Map<URI, List<? extends Identified>>  identifieds, URI uri, List<? extends Identified> list){
+		if (identifieds==null){
+			identifieds=new HashMap<>();
+		}
+		if (uri!=null && list!=null && !list.isEmpty()){
+			List<? extends Identified> cleaned = list.stream().filter(Objects::nonNull).toList();
+			if (!cleaned.isEmpty())
+			identifieds.put(uri, cleaned);
+		}
+		return identifieds; 
+	}
+
+	protected  Map<URI, List<URI>> addToURIMap(Map<URI, List<URI>>  identifieds, URI uri, List<URI> list){
+		if (identifieds==null){
+			identifieds=new HashMap<>();
+		}
+		if (uri!=null && list!=null && !list.isEmpty()){
+			list.removeIf(Objects::isNull);
+			if ( !list.isEmpty()){
+				identifieds.put(uri, list);
+			}
+		}
+		return identifieds; 
+	}
 	/*
 	public List<Identified> getReferencedEntities() throws SBOLGraphException{
 		List<Identified> identifieds=null;
@@ -519,6 +656,21 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		}
 		return listA;
 	}
+
+	
+	protected <T extends TopLevel> List<TopLevel> addToTopLevelList(List<TopLevel> listA, List<T> listB)
+	{
+		if (listB!=null && listB.size()>0)
+		{
+			if (listA==null)
+			{
+				listA=new ArrayList<TopLevel>();
+			}
+			listA.addAll(listB);
+		}
+		return listA;
+	}
+
 	/*protected <T extends Identified> List<T> addToList(List<T> items, Identified identified, URI property)
 	{
 		RDFUtil.addProperty(this.resource,property, identified.getUri());
@@ -867,7 +1019,109 @@ public abstract class Identified implements ValidatableSBOLEntity {
         }
         return values;		
 	}
+
+	public <T extends Identified> Map<URI, List<? extends T>> getConnectedEntitiesHavingTypeProperty(Class<T> classType, URI typeURI) throws SBOLGraphException
+	{
+		return getConnectedEntitiesWithThePropertyHavingType(classType, null, typeURI);
+		/*ArrayList<T> values=null;
+        for (StmtIterator iterator=resource.listProperties();iterator.hasNext();){        	
+        	Statement stmt=iterator.next();
+        	RDFNode object=stmt.getObject();
+        	
+        	if (object.isResource()) {
+        		Resource valueResource=object.asResource();
+        		if (this.getUri().toString().equalsIgnoreCase(valueResource.getURI())){
+					continue;
+				}
+				T entity=null;
+        		if (RDFUtil.hasType(valueResource.getModel(), valueResource, typeURI)){        				
+        			entity=(T)createIdentified(valueResource, classType);
+        			if (values==null){
+                    	values=new ArrayList<T>();
+                    }
+            		values.add(entity); 
+        		}        			        		       		
+        	}        	
+        }
+        return values;*/		
+	}
+
+	public <T extends Identified> Map<URI, List<? extends T>> getConnectedEntitiesWithThePropertyHavingType(Class<T> classType, URI property, URI typeURI) throws SBOLGraphException
+	{
+		return getConnectedEntitiesWithThePropertyHavingType(new HashMap<Class<? extends T>, URI>(){{ put(classType, typeURI); }}, property);
+		/*ArrayList<T> values=null;
+        for (StmtIterator iterator=resource.listProperties();iterator.hasNext();){        	
+        	Statement stmt=iterator.next();
+        	RDFNode object=stmt.getObject();
+        	String currentProperty=stmt.getPredicate().getURI();
+			boolean isMatchingProperty=false;
+			if (property==null)
+			{
+				isMatchingProperty=true;
+			}
+			else if (currentProperty.equalsIgnoreCase(property.toString())){
+				isMatchingProperty=true;
+			}
+
+        	if (isMatchingProperty && object.isResource()) {
+        		Resource valueResource=object.asResource();
+        		if (this.getUri().toString().equalsIgnoreCase(valueResource.getURI())){
+					continue;
+				}
+				T entity=null;
+        		if (RDFUtil.hasType(valueResource.getModel(), valueResource, typeURI)){        				
+        			entity=(T)createIdentified(valueResource, classType);
+        			if (values==null){
+                    	values=new ArrayList<T>();
+                    }
+            		values.add(entity); 
+        		}        			        		       		
+        	}        	
+        }
+        return values;		*/
+	}
+
 	
+	public <T extends Identified> Map<URI, List<? extends T>> getConnectedEntitiesWithThePropertyHavingType(Map<Class<? extends T>, URI> classTypePropertyMap, URI property) throws SBOLGraphException
+	{
+		HashMap<URI, List<? extends T>> values=new HashMap<URI, List<? extends T>>();
+        for (StmtIterator iterator=resource.listProperties();iterator.hasNext();){        	
+        	Statement stmt=iterator.next();
+        	RDFNode object=stmt.getObject();
+        	String currentProperty=stmt.getPredicate().getURI();
+			boolean isMatchingProperty=false;
+			if (property==null)
+			{
+				isMatchingProperty=true;
+			}
+			else if (currentProperty.equalsIgnoreCase(property.toString())){
+				isMatchingProperty=true;
+			}
+
+        	if (isMatchingProperty && object.isResource()) {
+        		Resource valueResource=object.asResource();
+        		if (this.getUri().toString().equalsIgnoreCase(valueResource.getURI())){
+					continue;//Ignore self-referencing properties
+				}
+				URI connectingPropertyURI=URI.create(currentProperty);
+				if (classTypePropertyMap!=null){
+					for (Entry<Class<? extends T>, URI> entry: classTypePropertyMap.entrySet()){
+						if (RDFUtil.hasType(valueResource.getModel(), valueResource, entry.getValue())){
+							T entity=(T)createIdentified(valueResource, entry.getKey());
+							List<? extends T> list = values.get(connectingPropertyURI);
+							if (list==null){
+								list = new ArrayList<T>();
+							}							
+							((List<T>) list).add(entity);
+							values.put(connectingPropertyURI, list);
+						}
+					}
+				}								        			        		       		
+        	}        	
+        }
+        return values;		
+	}
+
 	
 	/*
 	public List<Metadata> getAnnotations() throws SBOLGraphException {

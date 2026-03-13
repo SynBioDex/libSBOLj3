@@ -3,6 +3,8 @@ package org.sbolstandard.core3.entity;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.util.RDFUtil;
@@ -145,6 +147,19 @@ public abstract class TopLevel extends Identified {
 	public URI getResourceType() {
 		return DataModel.TopLevel.uri;
 	}
-	
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.TopLevel.attachment, this.getAttachments());
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();
+		identifieds = addToURIMap(identifieds, DataModel.TopLevel.attachment, this.getAttachmentURIs());
+		return identifieds;
+	}
 	
 }

@@ -90,7 +90,8 @@ public class ParticipantTest extends TestCase {
 	    participation.setParticipant(temp);
 	    TestUtil.validateIdentified(participation,doc,2,3);
 	    
-	    participation.setHigherOrderParticipant(null);
+		URI nullURI=null;
+	    participation.setHigherOrderParticipant(nullURI);
 	    participation.setRoles(tempRoles);
 	    TestUtil.validateIdentified(participation,doc,0);
 	    
