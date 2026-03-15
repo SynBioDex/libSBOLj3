@@ -1,5 +1,6 @@
 package org.sbolstandard.core3.entity.test;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -19,7 +20,11 @@ public class NetworkTest extends TestCase {
 
 	public void testNetwork() throws SBOLGraphException, IOException, Exception {
 		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(false);
-
+		/*File file = new File("/Users/goksel/Downloads/PoPSReceiverDetailed.ttl");
+		SBOLDocument doc = SBOLIO.read(file);				
+		SBOLAPI.printConnectivity(doc);
+ 		System.out.println("  Successfully printed the connectivity.");
+		*/
 		Path outputDir = Paths.get(TestUtil.baseOutput);
 		List<Path> sbolFiles = Files.walk(outputDir)
 				.filter(p -> p.toString().endsWith(".rdf"))
@@ -35,7 +40,7 @@ public class NetworkTest extends TestCase {
 			} catch (Exception e) {
 				System.out.println("  Error reading file: " + e.getMessage());
 			}
-		}
+		}			
 
 		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);
 	}

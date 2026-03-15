@@ -1247,10 +1247,6 @@ public class Component extends TopLevel {
 		Map<URI, List<? extends Identified>> identifieds=super.getChildrenWithEdgeURIs();
 		identifieds = addToMap(identifieds, DataModel.Component.feature, this.getFeatures());
 		identifieds = addToMap(identifieds, DataModel.Component.interaction, this.getInteractions());
-		if (this.getInterface()==null)
-		{
-			String str="";
-		}
 		identifieds = addToMap(identifieds, DataModel.Component.hasInterface, Arrays.asList(this.getInterface()));
 		identifieds = addToMap(identifieds, DataModel.Component.constraint, this.getConstraints());	
 		return identifieds;

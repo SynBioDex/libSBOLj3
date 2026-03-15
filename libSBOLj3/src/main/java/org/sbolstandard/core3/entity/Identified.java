@@ -384,12 +384,12 @@ public abstract class Identified implements ValidatableSBOLEntity {
 		if (identifieds==null){
 			identifieds=new HashMap<>();
 		}
+
 		if (uri!=null && list!=null && !list.isEmpty()){
-			list.removeIf(Objects::isNull);
-			if ( !list.isEmpty()){
-				identifieds.put(uri, list);
-			}
-		}
+			List<URI> cleaned = list.stream().filter(Objects::nonNull).toList();
+			if (!cleaned.isEmpty())
+			identifieds.put(uri, cleaned);
+		}		
 		return identifieds; 
 	}
 	/*
