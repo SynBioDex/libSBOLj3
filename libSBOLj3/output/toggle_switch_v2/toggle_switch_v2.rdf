@@ -476,7 +476,7 @@
                   <sbol:displayId>ComponentReference3</sbol:displayId>
                </sbol:ComponentReference>
             </sbol:subject>
-            <sbol:restriction rdf:resource="http://sbols.org/v3#verifyIdentical"/>
+            <sbol:restriction rdf:resource="http://sbols.org/v3#replaces"/>
             <sbol:object>
                <sbol:SubComponent rdf:about="toggle_switch/SubComponent2">
                   <sbol:instanceOf rdf:resource="molecule2"/>
@@ -502,7 +502,7 @@
       <sbol:hasConstraint>
          <sbol:Constraint rdf:about="toggle_switch/Constraint4">
             <sbol:subject rdf:resource="toggle_switch/ComponentReference4"/>
-            <sbol:restriction rdf:resource="http://sbols.org/v3#verifyIdentical"/>
+            <sbol:restriction rdf:resource="http://sbols.org/v3#replaces"/>
             <sbol:object rdf:resource="toggle_switch/SubComponent2"/>
             <sbol:displayId>Constraint4</sbol:displayId>
          </sbol:Constraint>
@@ -515,7 +515,7 @@
       <sbol:hasConstraint>
          <sbol:Constraint rdf:about="toggle_switch/Constraint1">
             <sbol:subject rdf:resource="toggle_switch/ComponentReference1"/>
-            <sbol:restriction rdf:resource="http://sbols.org/v3#verifyIdentical"/>
+            <sbol:restriction rdf:resource="http://sbols.org/v3#replaces"/>
             <sbol:object>
                <sbol:SubComponent rdf:about="toggle_switch/SubComponent1">
                   <sbol:instanceOf rdf:resource="molecule1"/>
@@ -539,7 +539,7 @@
       <sbol:hasConstraint>
          <sbol:Constraint rdf:about="toggle_switch/Constraint2">
             <sbol:subject rdf:resource="toggle_switch/ComponentReference2"/>
-            <sbol:restriction rdf:resource="http://sbols.org/v3#verifyIdentical"/>
+            <sbol:restriction rdf:resource="http://sbols.org/v3#replaces"/>
             <sbol:object rdf:resource="toggle_switch/SubComponent1"/>
             <sbol:displayId>Constraint2</sbol:displayId>
          </sbol:Constraint>

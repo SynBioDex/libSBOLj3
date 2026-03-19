@@ -805,6 +805,14 @@ public class SBOLDocument implements ValidatableSBOLEntity {
 
 	}*/
 	
+	public <T extends Identified> T getIdentified(String displayId, Class<T> identified) throws SBOLGraphException{
+		if (this.getBaseURI()!=null){
+			return getIdentified(SBOLAPI.append(this.getBaseURI(), displayId), identified);
+		}
+		else{
+			throw new SBOLGraphException("Display ids can be used to retrieve entities only if the base URI property of the document is set. Displayid:" + displayId);
+		}
+	}
 	
 	public <T extends Identified> T getIdentified(URI uri, Class<T> identified) throws SBOLGraphException
 	{
