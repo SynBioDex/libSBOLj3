@@ -23,13 +23,13 @@ public class ModelTest_12507 extends TestCase {
         model.setNamespace(URI.create(namespace));
         toggleSwitch.setModels(Arrays.asList(model));
                         
-        TestUtil.validateIdentified(model,doc,0);
+        TestUtil.validateIdentifiedAndDocument(model,doc,0);
         
         model.setFramework(URI.create("http://invalidmodelframework.org"));		
-     	TestUtil.validateIdentified(model,doc,1,"sbol3-12507");
+     	TestUtil.validateIdentifiedAndDocument(model,doc,1,"sbol3-12507", "ModelTest_12507");
      	
      	model.setFramework(ModelFramework.Logical);		
-     	TestUtil.validateIdentified(model,doc,0);     	
+     	TestUtil.validateIdentifiedAndDocument(model,doc,0);     	
     }
 
 }

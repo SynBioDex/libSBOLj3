@@ -35,13 +35,13 @@ public class ConstraintTest_11705 extends TestCase {
         
         int errorNo=0;
         SBOLAPI.mapTo(multicellularSystem, senderSystem, ahl, receiverSystem,ahl);        
-        TestUtil.validateDocument(doc, errorNo);
+        TestUtil.validateDocument(doc, errorNo, null, null);
        
         SBOLAPI.createConstraint(receiverSystem, receiverCell, nonAHL, RestrictionType.TopologyRestriction.contains.getUri());        
         SBOLAPI.mapTo(multicellularSystem, senderSystem, ahl, receiverSystem,nonAHL);        
         
         //CompRef -->SubComponent test
-        TestUtil.validateDocument(doc, ++errorNo);
+        TestUtil.validateDocument(doc, errorNo, null, null);
  
         
         //CompRef-->CompRef--> SubComponent test
@@ -65,11 +65,11 @@ public class ConstraintTest_11705 extends TestCase {
         
         //No error
         multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.verifyIdentical.getUri(), csIPTG_SenderL1, csIPTG_ReceiverL1);
-        TestUtil.validateDocument(doc, errorNo);
+        TestUtil.validateDocument(doc, errorNo, null, null );
        
         //Error since they are the same
         multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.differentFrom.getUri(), csIPTG_SenderL1, csIPTG_ReceiverL1);
-        TestUtil.validateDocument(doc, ++errorNo);
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_differentFrom");
      
         
         Component araSenderL2=SBOLAPI.createComponent(doc, "senderAraSubSystem", ComponentType.FunctionalEntity.getUri(), "SenderAraSubSystem", "Sender Ara Sub System", Role.FunctionalCompartment);
@@ -90,11 +90,11 @@ public class ConstraintTest_11705 extends TestCase {
        
         //No error
         multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.verifyIdentical.getUri(), csAra_SenderL1, csAra_ReceiverL1);
-        TestUtil.validateDocument(doc, errorNo);
+        TestUtil.validateDocument(doc, errorNo, null, null);
         
         //Error since they are the same
         multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.differentFrom.getUri(), csAra_SenderL1, csAra_ReceiverL1);
-        TestUtil.validateDocument(doc, ++errorNo);
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_differentFrom");
         
         //Error:
         //Change receiver.Ara (ExternallyDefined) --> receiver.Ara (SubComponent). 
@@ -102,19 +102,19 @@ public class ConstraintTest_11705 extends TestCase {
         Component Ara=SBOLAPI.createComponent(doc, "Ara", ComponentType.SimpleChemical.getUri(), "Ara", "Ara", Role.Effector);
         SubComponent scAra_ReceiverL3=araReceiverL3.createSubComponent(Ara);
         csAra_ReceiverL2.setRefersTo(scAra_ReceiverL3);
-        TestUtil.validateDocument(doc, ++errorNo);
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_differentTypes");
         
        
         senderSubComponent.setOrientation(Orientation.inline);
         receiverSubComponent.setOrientation(Orientation.inline);
         Constraint orientationConstraint=multicellularSystem.createConstraint(OrientationRestriction.sameOrientationAs, senderSubComponent, receiverSubComponent);
-        TestUtil.validateDocument(doc, errorNo);
+        TestUtil.validateDocument(doc, errorNo, null, null);
        
         receiverSubComponent.setOrientation(Orientation.reverseComplement);
-        TestUtil.validateDocument(doc, ++errorNo);
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_orientationMismatch");
         
         orientationConstraint.setRestriction(OrientationRestriction.oppositeOrientationAs);
-        TestUtil.validateDocument(doc, --errorNo);
+        TestUtil.validateDocument(doc, --errorNo,null, null);
          
          
         

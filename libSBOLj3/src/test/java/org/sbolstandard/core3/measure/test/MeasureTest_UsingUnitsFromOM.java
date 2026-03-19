@@ -57,20 +57,20 @@ public class MeasureTest_UsingUnitsFromOM extends TestCase {
         TestUtil.assertReadWrite(doc);
 
         Measure measure2=CaCl2.createMeasure(SBOLAPI.append(CaCl2.getUri(), "measure2"), 0.2f, URI.create("https://sbolstandard.org/unitexample1"));
-        TestUtil.validateIdentified(measure2,doc,0,0);
+        TestUtil.validateIdentifiedAndDocument(measure2,doc,0,0);
         
 
         //Test for a complete document. http://...unitexample1 is just an URI and is not valid now!
         boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();
     	Configuration.getInstance().setCompleteDocument(true);    	
-        TestUtil.validateIdentified(measure2,doc,1,1);
+        TestUtil.validateIdentifiedAndDocument(measure2,doc,1,1);
         Configuration.getInstance().setCompleteDocument(isCompleteOriginal);           
       
 
         URI nullURI=null;
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         Measure measure3=CaCl2.createMeasure(SBOLAPI.append(CaCl2.getUri(), "measure3"), 0.2f, nullURI);
-        TestUtil.validateIdentified(measure3,doc,1,1);
+        TestUtil.validateIdentifiedAndDocument(measure3,doc,1,1);
         Configuration.getInstance().setValidateAfterSettingProperties(true);
         
     }

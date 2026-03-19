@@ -139,7 +139,7 @@ public class CombinatorialDerivationExampleTest extends TestCase {
 		System.out.print(SBOLIO.write(doc, SBOLFormat.TURTLE));
 		Configuration.getInstance().setValidateBeforeSaving(true);
 		
-		TestUtil.validateDocument(doc, 0);
+		TestUtil.validateDocument(doc, 0, null, null);
 		     
     }
 

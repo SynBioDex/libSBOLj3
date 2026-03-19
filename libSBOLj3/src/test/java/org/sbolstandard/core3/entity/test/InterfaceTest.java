@@ -48,7 +48,7 @@ public class InterfaceTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-        TestUtil.validateIdentified(compInterface,doc,0);
+        TestUtil.validateIdentifiedAndDocument(compInterface,doc,0);
         
         //INTERFACE_INPUT_MUST_REFER_TO_A_FEATURE_OF_THE_PARENT
         Component LacIProducer2=SBOLAPI.createDnaComponent(doc, "LacI_producer2", "LacI producer2", "LacI producer2", Role.EngineeredGene, null); 
@@ -56,12 +56,12 @@ public class InterfaceTest extends TestCase {
         compInterface.setInputs(Arrays.asList(lacISubComponent2,tetRSubComponent));
         compInterface.setOutputs(Arrays.asList(lacISubComponent2,tetRSubComponent));
         compInterface.setNonDirectionals(Arrays.asList(lacISubComponent2,tetRSubComponent));
-        TestUtil.validateIdentified(LacIProducer,doc,3);
+        TestUtil.validateIdentifiedAndDocument(LacIProducer,doc,3);
         
         compInterface.setInputs(Arrays.asList(lacISubComponent,tetRSubComponent));
         compInterface.setOutputs(Arrays.asList(lacISubComponent));
         compInterface.setNonDirectionals(Arrays.asList(aTCSubComponent));
-        TestUtil.validateIdentified(LacIProducer,doc,0);
+        TestUtil.validateIdentifiedAndDocument(LacIProducer,doc,0);
         
         Resource resource = TestUtil.getResource(compInterface);
         
@@ -69,20 +69,20 @@ public class InterfaceTest extends TestCase {
 		RDFUtil.setProperty(resource, DataModel.Interface.input, SBOLUtil.getURIs(Arrays.asList(lacISubComponent,tetRSubComponent, aTC)));
 		RDFUtil.setProperty(resource, DataModel.Interface.output, SBOLUtil.getURIs(Arrays.asList(lacISubComponent,tetRSubComponent, aTC)));
 		RDFUtil.setProperty(resource, DataModel.Interface.nondirectional, SBOLUtil.getURIs(Arrays.asList(lacISubComponent,tetRSubComponent, aTC)));
-		TestUtil.validateIdentified(compInterface,doc,3);
+		TestUtil.validateIdentifiedAndDocument(compInterface,doc,3);
 		compInterface.setInputs(Arrays.asList(lacISubComponent,tetRSubComponent));
 		compInterface.setOutputs(Arrays.asList(lacISubComponent));
 	    compInterface.setNonDirectionals(Arrays.asList(aTCSubComponent));  
-	    TestUtil.validateIdentified(compInterface,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(compInterface,doc,0);
 	 
 	    //SBOL_VALID_ENTITY_TYPES - Component.interface
 	    Resource resLacIProducer= TestUtil.getResource(LacIProducer);
         
 	    URI tempURI=LacIProducer.getInterface().getUri();
 	  	RDFUtil.setProperty(resLacIProducer, DataModel.Component.hasInterface, LacIProducer.getUri());
-	  	TestUtil.validateIdentified(LacIProducer,doc,1);
+	  	TestUtil.validateIdentifiedAndDocument(LacIProducer,doc,1);
 	  	RDFUtil.setProperty(resLacIProducer, DataModel.Component.hasInterface, tempURI);
-	  	TestUtil.validateIdentified(LacIProducer,doc,0);
+	  	TestUtil.validateIdentifiedAndDocument(LacIProducer,doc,0);
 	    
     }
 

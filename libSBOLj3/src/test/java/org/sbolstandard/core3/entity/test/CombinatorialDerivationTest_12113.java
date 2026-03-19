@@ -39,13 +39,13 @@ public class CombinatorialDerivationTest_12113 extends TestCase {
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	    pTetRSequenceFeature2.setWasDerivedFrom(Arrays.asList(pTetRSequenceFeature.getUri()));
 	    		  	    
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0,null, null);
 	    pTetR.createConstraint(RestrictionType.SequentialRestriction.contains, pTetRSequenceFeature, sc_start);
-	    TestUtil.validateDocument(doc, 2, "sbol3-12113, sbol3-12113"); //Two errors due to a single missing constraint with a missing subject and missing object 
+	    TestUtil.validateDocument(doc, 2, "sbol3-12113, sbol3-12113", "CombinatorialDerivationTest_12113_missingConstraint"); //Two errors due to a single missing constraint with a missing subject and missing object 
 	    pTetR2.createConstraint(RestrictionType.SequentialRestriction.contains, sc_start2, pTetRSequenceFeature2 );//Subject and object are switched.
-	    TestUtil.validateDocument(doc, 2, "sbol3-12113, sbol3-12113"); 
+	    TestUtil.validateDocument(doc, 2, "sbol3-12113, sbol3-12113", "CombinatorialDerivationTest_12113_wrongConstraint");//Two errors due to a single constraint with a missing subject and missing object
 	    pTetR2.createConstraint(RestrictionType.SequentialRestriction.contains, pTetRSequenceFeature2, sc_start2 );
-	    TestUtil.validateDocument(doc, 0); 
+	    TestUtil.validateDocument(doc, 0,null, null); 
 	    	     
 	    
     }

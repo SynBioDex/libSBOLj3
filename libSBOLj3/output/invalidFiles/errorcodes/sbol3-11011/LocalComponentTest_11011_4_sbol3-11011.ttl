@@ -1,0 +1,78 @@
+BASE   <https://synbiohub.org/public/igem/>
+PREFIX :      <https://synbiohub.org/public/igem/>
+PREFIX CHEBI: <https://identifiers.org/CHEBI:>
+PREFIX EDAM:  <https://identifiers.org/edam:>
+PREFIX GO:    <https://identifiers.org/GO:>
+PREFIX SBO:   <https://identifiers.org/SBO:>
+PREFIX SO:    <https://identifiers.org/SO:>
+PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX sbol:  <http://sbols.org/v3#>
+
+<BBa_F2620/SubComponent1>
+        a                sbol:SubComponent;
+        sbol:displayId   "SubComponent1";
+        sbol:instanceOf  :TetR_protein .
+
+:BBa_C0062_protein  a      sbol:Component;
+        sbol:description   "LuxR protein";
+        sbol:displayId     "BBa_C0062_protein";
+        sbol:hasNamespace  <../igem>;
+        sbol:hasSequence   :BBa_C0062_protein_Sequence1;
+        sbol:name          "LuxR";
+        sbol:role          SO:0000316;
+        sbol:type          SBO:0000252 .
+
+<TetR_protein/LocalSubComponent1>
+        a               sbol:LocalSubComponent;
+        sbol:displayId  "LocalSubComponent1";
+        sbol:role       SO:0000316;
+        sbol:type       SBO:0000251 .
+
+:TetR_protein  a           sbol:Component;
+        sbol:description   "TetR protein";
+        sbol:displayId     "TetR_protein";
+        sbol:hasFeature    <TetR_protein/LocalSubComponent2> , <TetR_protein/LocalSubComponent1>;
+        sbol:hasNamespace  <../igem>;
+        sbol:hasSequence   :TetR_protein_Sequence1;
+        sbol:name          "TetR";
+        sbol:role          SO:0000316;
+        sbol:type          SBO:0000252 .
+
+:BBa_C0062_protein_Sequence1
+        a                  sbol:Sequence;
+        sbol:description   "BBa_C0062_protein sequence";
+        sbol:displayId     "BBa_C0062_protein_Sequence1";
+        sbol:elements      "NNNNNNNNNNN";
+        sbol:encoding      EDAM:format_1208;
+        sbol:hasNamespace  <../igem>;
+        sbol:name          "Sequence1" .
+
+<BBa_F2620/SubComponent2>
+        a                sbol:SubComponent;
+        sbol:displayId   "SubComponent2";
+        sbol:instanceOf  :BBa_C0062_protein .
+
+:TetR_protein_Sequence1
+        a                  sbol:Sequence;
+        sbol:description   "TetR_protein sequence";
+        sbol:displayId     "TetR_protein_Sequence1";
+        sbol:elements      "NNNNNNNNNNN";
+        sbol:encoding      EDAM:format_1208;
+        sbol:hasNamespace  <../igem>;
+        sbol:name          "Sequence1" .
+
+:BBa_F2620  a              sbol:Component;
+        sbol:description   "PoPS Receiver";
+        sbol:displayId     "BBa_F2620";
+        sbol:hasFeature    <BBa_F2620/SubComponent2> , <BBa_F2620/SubComponent1>;
+        sbol:hasNamespace  <../igem>;
+        sbol:name          "BBa_F2620";
+        sbol:role          SO:0000704;
+        sbol:type          SBO:0000251 .
+
+<TetR_protein/LocalSubComponent2>
+        a               sbol:LocalSubComponent;
+        sbol:displayId  "LocalSubComponent2";
+        sbol:role       SO:0000316;
+        sbol:type       SBO:0000252 .

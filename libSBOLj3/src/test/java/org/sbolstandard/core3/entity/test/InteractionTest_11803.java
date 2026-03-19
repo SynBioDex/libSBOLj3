@@ -24,19 +24,19 @@ public class InteractionTest_11803 extends TestCase {
 		
         //Valid: Only one occurring entity type
         Interaction interaction= i13504_system.createInteraction(Arrays.asList(InteractionType.GeneticProduction.getUri()));
-        TestUtil.validateIdentified(interaction,0);
+        TestUtil.validateIdentifiedOnly(doc, interaction,0, null, null);
         
         //Valid: Only one occurring entity type. 4--> modelling framework
         interaction.setTypes(Arrays.asList(InteractionType.GeneticProduction.getUri(), URINameSpace.SBO.local("0000004")));
-        TestUtil.validateIdentified(interaction,0);
+        TestUtil.validateIdentifiedOnly(doc, interaction,0, null, null);
         
         //Invalid: no valid type
         interaction.setTypes(Arrays.asList(URINameSpace.SBO.local("00006444"), URINameSpace.SBO.local("0000004")));
-        TestUtil.validateIdentified(interaction,1);
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11803", "InteractionTest_11803.Interaction.interaction.invalidType");
         
         //Invalid: Two valid types.
         interaction.setTypes(Arrays.asList(InteractionType.GeneticProduction.getUri(),InteractionType.Degradation.getUri()));
-        TestUtil.validateIdentified(interaction,1); 
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11803", "InteractionTest_11803.Interaction.interaction.invalidType2"); 
     }
 	
 }

@@ -45,53 +45,34 @@ public class UsageTest_13001 extends TestCase {
         
         toggleSwitchOptimised.addWasGeneratedBy(activity);
              	
-        TestUtil.validateIdentified(activity,0);  
+        TestUtil.validateIdentifiedOnly(doc, activity,0, null, null);  
         Implementation imp=doc.createImplementation("implementation");
         
         usage1.addRole(ActivityType.Learn.getUri());        
         usage1.setEntity(imp.getUri());
-        TestUtil.validateDocument(doc,1,"sbol3-13001");  
+        TestUtil.validateDocument(doc,1,"sbol3-13001", "UsageTest_13001.Usage.roleInvalidForUsage");  
         ExperimentalData exp=doc.createExperimentalData("ExpData");
         usage1.setEntity(exp.getUri());
-        TestUtil.validateDocument(doc,0); 
+        TestUtil.validateDocument(doc,0, null, null); 
         
         
         usage1.setRoles(Arrays.asList(ActivityType.Test.getUri()));  
-        TestUtil.validateDocument(doc,1,"sbol3-12901");  
+        TestUtil.validateDocument(doc,1,"sbol3-12901", "UsageTest_13001.Usage.roleInvalidForUsage_2");  
         
         
         usage1.setRoles(Arrays.asList(ActivityType.Build.getUri())); 
-        TestUtil.validateDocument(doc,2,"sbol3-12901,sbol3-13001");
+        TestUtil.validateDocument(doc,2,"sbol3-12901,sbol3-13001", "UsageTest_13001.Usage.roleInvalidForUsage_3");
         usage1.setEntity(imp.getUri());
-        TestUtil.validateDocument(doc,1, "sbol3-12901") ; 
+        TestUtil.validateDocument(doc,1, "sbol3-12901", "UsageTest_13001.Usage.roleInvalidForUsage_4") ; 
         
         usage1.setRoles(Arrays.asList(ActivityType.Design.getUri())); 
-        TestUtil.validateDocument(doc,1,"sbol3-13001");
+        TestUtil.validateDocument(doc,1,"sbol3-13001", "UsageTest_13001.Usage.roleInvalidForUsage_5");
         usage1.setEntity(toggleSwitchOptimised.getUri());
-        TestUtil.validateDocument(doc,0);
-         
-        
-        
-         
-        
-        /*usage1.setEntity(toggleSwitchOptimised.getUri());
-        TestUtil.validateDocument(doc,0); 
-        */
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        TestUtil.validateDocument(doc,0, null, null);
         
         activity.setTypes(Arrays.asList(URI.create("http://non-dbtl_type.org"))); 
         usage1.setRoles(Arrays.asList(URI.create("http://non-dbtl_type.org")));         
-        TestUtil.validateDocument(doc,0);
+        TestUtil.validateDocument(doc,0,null, null);
         
     }
 

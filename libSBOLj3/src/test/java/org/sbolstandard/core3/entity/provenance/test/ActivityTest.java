@@ -141,17 +141,17 @@ public class ActivityTest extends TestCase {
 	            
     	TestUtil.validateProperty(association, "setAgent", new Object[] {null}, Agent.class); 
         TestUtil.validateProperty(usage1, "setEntity", new Object[] {null}, URI.class); 
-        TestUtil.validateDocument(doc, 0);
+        TestUtil.validateDocument(doc, 0, null, null);
         Agent nullAgent=null;
         association.setAgent(nullAgent);
-        TestUtil.validateIdentified(association,doc, 1);
+        TestUtil.validateIdentifiedAndDocument(association,doc, 1);
         usage1.setEntity(null);
-        TestUtil.validateIdentified(usage1,doc, 1,2);
+        TestUtil.validateIdentifiedAndDocument(usage1,doc, 1,2);
         
         //Clean the errors.
         association.setAgent(agent);
         usage1.setEntity(toggleSwitch.getUri());
-        TestUtil.validateIdentified(usage1,doc, 0);
+        TestUtil.validateIdentifiedAndDocument(usage1,doc, 0);
         
 		//SBOL_VALID_ENTITY_TYPES - Activity.Usages
 		TestUtil.testValidEntity(doc, activity, activity.getUsages(),  activity.getAssociations(), ProvenanceDataModel.Activity.qualifiedUsage);

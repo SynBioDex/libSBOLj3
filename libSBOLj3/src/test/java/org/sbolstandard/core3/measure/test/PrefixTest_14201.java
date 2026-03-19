@@ -28,16 +28,16 @@ public class PrefixTest_14201 extends TestCase {
 	    milli.setLongComment("This is an example long comment for the milli prefix.");
 	      
 	        
-		TestUtil.validateDocument(doc,0);
+		TestUtil.validateDocument(doc,0, null, null);
 		
 		milli.setLabel("milliA");
-		TestUtil.validateDocument(doc,0);
+		TestUtil.validateDocument(doc,0, null, null);
 		
 		Resource res=TestUtil.getResource(milli);
 		RDFUtil.setProperty(res, DataModel.Identified.name, "milliB");
-		TestUtil.validateDocument(doc,1, "sbol3-14201");
+		TestUtil.validateDocument(doc,1, "sbol3-14201", "PrefixTest_14201.PrefixName");
 		milli.setLabel("milliA");
-		TestUtil.validateDocument(doc,0);
+		TestUtil.validateDocument(doc,0, null, null);
     }
 
 }

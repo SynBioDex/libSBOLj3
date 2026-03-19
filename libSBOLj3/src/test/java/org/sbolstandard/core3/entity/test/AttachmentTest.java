@@ -61,20 +61,20 @@ public class AttachmentTest extends TestCase {
         
         URI temp=attachment.getSource();
         attachment.setSource(URI.create("https://sbolstandard.org/attachment1_source2"));
-        TestUtil.validateIdentified(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
         attachment.setSource(temp);
         
         //Attachment.source: exactly one.
         
         TestUtil.validateProperty(attachment, "setSource", new Object[] {null}, URI.class);
         attachment.setSource(null);
-        TestUtil.validateIdentified(attachment,doc,1);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
         attachment.setSource(temp);
         
         //Attachment.format: optional
         temp=attachment.getFormat();
         attachment.setFormat(null);
-        TestUtil.validateIdentified(attachment, doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment, doc,0);
         attachment.setFormat(temp);
         
         //Attachment.hashAlgorithm: optional
@@ -82,36 +82,36 @@ public class AttachmentTest extends TestCase {
         String tempHash=attachment.getHash();
         attachment.setHashAlgorithm(null);
         attachment.setHash(null);
-        TestUtil.validateIdentified(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
         attachment.setHashAlgorithm(HashAlgorithm.get(tempAlg));
         attachment.setHash(tempHash);
         
         //Attachment.hash: optional
         String tempString=attachment.getHash();
         attachment.setHash(null);
-        TestUtil.validateIdentified(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
         attachment.setHash(tempString);
         
         //Attachment size can't be negative
         OptionalLong tempLong=attachment.getSize();
         TestUtil.validateProperty(attachment, "setSize", new Object[] {OptionalLong.of(-1)}, OptionalLong.class);
         attachment.setSize(OptionalLong.of(-1));
-        TestUtil.validateIdentified(attachment,doc,1);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
         
         //Attachment size can be empty
         attachment.setSize(OptionalLong.empty());
-        TestUtil.validateIdentified(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
               
         //Attachment size can be zero
         attachment.setSize(OptionalLong.of(0));
-        TestUtil.validateIdentified(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
         
         //Attachment size can be bigger than zero
         attachment.setSize(tempLong);
-        TestUtil.validateIdentified(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
         
         attachment.setHashAlgorithm(null);
-        TestUtil.validateIdentified(attachment,doc,1);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
         
         /*attachment2.setWasDerivedFrom(null);
         TestUtil.validateIdentified(attachment2,doc,0);

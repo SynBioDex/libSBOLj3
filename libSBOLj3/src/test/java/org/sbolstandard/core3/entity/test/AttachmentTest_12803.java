@@ -24,12 +24,12 @@ public class AttachmentTest_12803 extends TestCase {
         attachment2.setHashAlgorithm(HashAlgorithm.blake2b_256);
         attachment2.setHash("aaa");
         
-        TestUtil.validateIdentified(attachment2,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);
         
         attachment2.setFormat(URI.create("http://invalidformat.org"));		
-     	TestUtil.validateIdentified(attachment2,doc,1,"sbol3-12803");
+     	TestUtil.validateIdentifiedAndDocument(attachment2,doc,1,"sbol3-12803", "AttachmentTest_12803");
      	attachment2.setFormat(ModelLanguage.CellML);		
-     	TestUtil.validateIdentified(attachment2,doc,0);     	
+     	TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);     	
     }
 
 	/*public  List<String> validateAttachment32(Attachment attachment)

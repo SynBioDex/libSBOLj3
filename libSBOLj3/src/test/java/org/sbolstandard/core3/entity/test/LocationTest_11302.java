@@ -36,11 +36,11 @@ public class LocationTest_11302 extends TestCase {
 		Range range=termSubComponent.createRange(start, end,i13504Sequence);
 		range.setOrientation(Orientation.inline);
 		
-		TestUtil.validateIdentified(device, 0);
+		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		
 		//Set a sequence that does not exist to the device component which includes the Location object.
 		range.setSequence(term.getSequences().get(0));
-		TestUtil.validateIdentified(device, 1);
+		TestUtil.validateIdentifiedOnly(doc, device, 1, "sbol3-11302", "LocationTest_11302.Location.location.invalidSequence");
 		
 		
 		Sequence secondTermSeq=doc.createSequence("term_na2");
@@ -49,7 +49,7 @@ public class LocationTest_11302 extends TestCase {
 		SequenceFeature seqFeature=device.createSequenceFeature(secondTermSeq);
 		//Use a sequence that has been added to the parent (device) as an EntireSequence entity.
 		range.setSequence(secondTermSeq);
-		TestUtil.validateIdentified(device, 0);
+		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		
 	}
 }

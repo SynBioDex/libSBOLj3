@@ -22,7 +22,7 @@ import junit.framework.TestCase;
 
 public class MeasureTest extends TestCase {
 	
-	public void test() throws SBOLGraphException, IOException, Exception
+	public void testMeasure() throws SBOLGraphException, IOException, Exception
     {
 		String baseUri="https://sbolstandard.org/examples/";
         SBOLDocument doc=new SBOLDocument(URI.create(baseUri));
@@ -104,24 +104,24 @@ public class MeasureTest extends TestCase {
 
         Optional<Float> temp=measure.getValue();
         measure.setValue(Optional.of(4f));
-        TestUtil.validateIdentified(measure,doc,  0);  
+        TestUtil.validateIdentifiedAndDocument(measure,doc,  0);  
         
         TestUtil.validateProperty(measure, "setValue", new Object[] {Optional.empty()}, Optional.class);
         TestUtil.validateProperty(measure, "setValue", new Object[] {null}, Optional.class);
         measure.setValue(Optional.empty());
-        TestUtil.validateIdentified(measure, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(measure, doc, 1);
         measure.setValue(null);
-        TestUtil.validateIdentified(measure, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(measure, doc, 1);
         
-        TestUtil.validateIdentified(CaCl2, 1);  
+        TestUtil.validateIdentifiedOnly(doc, CaCl2, 1, "", "MeasureTest.Measure.valueInvalidForUnit");  
         measure.setValue(temp);
-        TestUtil.validateIdentified(CaCl2, 0);  
+        TestUtil.validateIdentifiedOnly(doc, CaCl2, 0, null, null);  
         
         TestUtil.validateProperty(measure, "setUnit", new Object[] {null}, Unit.class);
         Unit tempUnit=measure.getUnit();
         Unit tempUnit2=null;
         measure.setUnit(tempUnit2);
-        TestUtil.validateIdentified(measure, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(measure, doc, 1);
         measure.setUnit(tempUnit);
         
         TestUtil.validateProperty(millimole, "setPrefix", new Object[] {null}, Prefix.class);
@@ -141,28 +141,28 @@ public class MeasureTest extends TestCase {
         millimole.setUnit(nullUnit);
         millimole.setSymbol(null);
         millimole.setLabel(null);
-        TestUtil.validateIdentified(millimole,doc, 4);  
-        TestUtil.validateDocument(doc, 4);  
+        TestUtil.validateIdentifiedAndDocument(millimole,doc, 4);  
+        TestUtil.validateDocument(doc, 4, null, "MeasureTest.PrefixedUnit.prefixInvalid_unitInvalid_symbolInvalid_labelInvalid");  
         millimole.setSymbol("");
         millimole.setLabel("");
-        TestUtil.validateIdentified(millimole,doc, 4);  
+        TestUtil.validateIdentifiedAndDocument(millimole,doc, 4);  
         millimole.setPrefix(tempPrefix);
         millimole.setUnit(tempUnit);
         millimole.setSymbol(tempSymbol);
         millimole.setLabel(tempLabel);
-        TestUtil.validateDocument(doc, 0);  
+        TestUtil.validateDocument(doc, 0, null, null);  
           
         TestUtil.validateProperty(milli, "setFactor", new Object[] {null}, Optional.class);
         TestUtil.validateProperty(milli, "setFactor", new Object[] {Optional.empty()}, Optional.class);
         Optional<Float> tempFactor=milli.getFactor();
         
         milli.setFactor(Optional.empty());
-        TestUtil.validateIdentified(milli,1);  
+        TestUtil.validateIdentifiedOnly(doc, milli,1, null, "MeasureTest.Measure.factorInvalidForUnit");  
         milli.setFactor(null);
-        TestUtil.validateIdentified(milli,1);  
+        TestUtil.validateIdentifiedOnly(doc, milli,1, null, "MeasureTest.Measure.factorInvalidForUnit");  
         milli.setFactor(tempFactor);
         
-        TestUtil.validateDocument(doc,0);  
+        TestUtil.validateDocument(doc,0, null, null);  
         
         TestUtil.validateProperty(milliMolePerLiter, "setDenominator", new Object[] {null}, Unit.class);
         TestUtil.validateProperty(milliMolePerLiter, "setNumerator", new Object[] {null}, Unit.class);
@@ -171,10 +171,10 @@ public class MeasureTest extends TestCase {
         Unit tempNum=milliMolePerLiter.getNumerator();
         milliMolePerLiter.setDenominator(nullUnit);
         milliMolePerLiter.setNumerator(nullUnit);
-        TestUtil.validateIdentified(milliMolePerLiter,doc,2);  
+        TestUtil.validateIdentifiedAndDocument(milliMolePerLiter,doc,2);  
         milliMolePerLiter.setDenominator(tempDen);
         milliMolePerLiter.setNumerator(tempNum);
-        TestUtil.validateIdentified(milliMolePerLiter,doc,0);  
+        TestUtil.validateIdentifiedAndDocument(milliMolePerLiter,doc,0);  
         
         
         TestUtil.validateProperty(m3, "setBase", new Object[] {null}, Unit.class);
@@ -184,13 +184,13 @@ public class MeasureTest extends TestCase {
         Unit tempBase=m3.getBase();
         m3.setExponent(Optional.empty());
         m3.setBase(nullUnit);
-        TestUtil.validateIdentified(m3,doc,2); 
+        TestUtil.validateIdentifiedAndDocument(m3,doc,2); 
         
         m3.setExponent(null);
-        TestUtil.validateIdentified(m3,2); 
+        TestUtil.validateIdentifiedOnly(doc, m3,2, null, "MeasureTest.Measure.exponentInvalidForUnit"); 
         m3.setExponent(tempExp);
         m3.setBase(tempBase);
-        TestUtil.validateIdentified(m3,0); 
+        TestUtil.validateIdentifiedOnly(doc, m3,0, null, null); 
         
         
         TestUtil.validateProperty(um, "setTerm1", new Object[] {null}, Unit.class);
@@ -199,10 +199,10 @@ public class MeasureTest extends TestCase {
         Unit tempTerm2=um.getTerm2();
         um.setTerm1(nullUnit);
         um.setTerm2(nullUnit);
-        TestUtil.validateIdentified(um,doc,2);     
+        TestUtil.validateIdentifiedAndDocument(um,doc,2);     
         um.setTerm1(tempTerm1);
         um.setTerm2(tempTerm2);
-        TestUtil.validateIdentified(um,doc,0);     
+        TestUtil.validateIdentifiedAndDocument(um,doc,0);     
         
         BinaryPrefix kilo=doc.createBinaryPrefix("kilo", "kilo", "kilo", 1000f);
         

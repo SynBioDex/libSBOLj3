@@ -29,20 +29,20 @@ public class CombinatorialDerivationTest_12105 extends TestCase {
 	    
 	    
 	    CombinatorialDerivation cd=doc.createCombinatorialDerivation("cs1", pTetR);
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 		   
 	    pTetR2.setWasDerivedFrom(Arrays.asList(cd.getUri()));
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "CombinatorialDerivationTest_12105_pTetR2WasDerivedFromCD");
 	    
 	    sc_start2.setWasDerivedFrom(Arrays.asList(pTetR.getUri()));
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "CombinatorialDerivationTest_12105_sc_start2WasDerivedFromPTetR");
 	    
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	    
 	    Component genericpromoter=SBOLAPI.createDnaComponent(doc, "BBa_R0040gen", "pTetRgen", "TetR repressible promoter", Role.Promoter, "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
 	    pTetR.setWasDerivedFrom(Arrays.asList(genericpromoter.getUri()));
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	    
     }
 

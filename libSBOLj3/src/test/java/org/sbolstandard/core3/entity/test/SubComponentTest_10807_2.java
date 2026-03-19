@@ -29,14 +29,14 @@ public class SubComponentTest_10807_2 extends TestCase {
         SubComponent insertSC = plasmid.createSubComponent(insert);
         Range range=insertSC.createRange(181,214, plasmid.getSequences().get(0));
         
-        TestUtil.validateIdentified(insertSC,doc,1, "sbol3-10807");
+        TestUtil.validateIdentifiedAndDocument(insertSC,doc,1, "sbol3-10807", "SubComponentTest_10807_2");
         
         range.setEnd(Optional.of(215));
-        TestUtil.validateIdentified(insertSC,doc,0);
+        TestUtil.validateIdentifiedAndDocument(insertSC,doc,0, null, null);
          
         insert.getSequences().get(0).setElements(null);
         range.setEnd(Optional.of(214));
-        TestUtil.validateIdentified(insertSC,doc,0);
+        TestUtil.validateIdentifiedAndDocument(insertSC,doc,0, null, null);
         
         
 	   // String output=SBOLIO.write(doc, SBOLFormat.TURTLE);

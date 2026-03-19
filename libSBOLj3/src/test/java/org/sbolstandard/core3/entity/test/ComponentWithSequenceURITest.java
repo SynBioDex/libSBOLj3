@@ -27,7 +27,7 @@ public class ComponentWithSequenceURITest extends TestCase {
 	    popsReceiver.setSequences(URI.create("http://example.org/sequence1"));
 	    
 		
-        TestUtil.validateIdentified(popsReceiver, 0);
+        TestUtil.validateIdentifiedOnly(doc,popsReceiver, 0, null, null);
         /*
         
         SBOLDocument doc=SBOLIO.read(new File("/Users/goksel/Downloads/PoPSReceiver.ttl"), SBOLFormat.TURTLE);

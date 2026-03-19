@@ -30,21 +30,21 @@ public class RangeTest_11403 extends TestCase {
 		SubComponent termSubComponent=device.createSubComponent(term);
 		termSubComponent.setOrientation(Orientation.inline);
 		
-		TestUtil.validateIdentified(device, 0);
+		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		
 		//Sequence seqStart = SBOLAPI.addSequence(doc, device, Encoding.NucleicAcid, "cca");
 		
 		Range startRange=termSubComponent.createSourceRange(3, 6, term.getSequences().get(0));
-		TestUtil.validateIdentified(device, 0);
+		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		
 		startRange.setEnd(Optional.of(3));
-		TestUtil.validateIdentified(device, 0);
+		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		
 		startRange.setEnd(Optional.of(2));
-		TestUtil.validateIdentified(device, 1);
+		TestUtil.validateIdentifiedOnly(doc, device, 1, "sbol3-11403","RangeTest_11403.Range.range.endInvalidForSequence");
 		
 		startRange.setEnd(Optional.of(4));
-		TestUtil.validateIdentified(device, 0);
+		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		
 		
 		

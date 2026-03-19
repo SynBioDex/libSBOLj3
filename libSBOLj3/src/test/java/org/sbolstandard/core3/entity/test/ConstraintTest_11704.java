@@ -35,9 +35,9 @@ public class ConstraintTest_11704 extends TestCase {
 		ComponentReference compRef_i13504_dev1=ilab16_dev1.createComponentReference(i13504SubComponent, sc_i13504_system);
 		
 		org.sbolstandard.core3.entity.Constraint constraint=ilab16_dev1.createConstraint(RestrictionType.TopologyRestriction.meets.getUri(), sc_j23101, compRef_i13504_dev1);
-		TestUtil.validateIdentified(constraint,doc,0);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,0);
 		org.sbolstandard.core3.entity.Constraint constraint2=ilab16_dev1.createConstraint(ParticipationRole.Inhibited.getUri(), sc_j23101, compRef_i13504_dev1);
-		TestUtil.validateIdentified(constraint2,doc,1);
+		TestUtil.validateIdentifiedAndDocument(constraint2,doc,1);
 		
 	    
 		

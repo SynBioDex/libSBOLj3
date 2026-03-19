@@ -1,0 +1,23 @@
+BASE   <https://sbolstandard.org/examples/>
+PREFIX :      <https://sbolstandard.org/examples/>
+PREFIX CHEBI: <https://identifiers.org/CHEBI:>
+PREFIX EDAM:  <https://identifiers.org/edam:>
+PREFIX GO:    <https://identifiers.org/GO:>
+PREFIX SBO:   <https://identifiers.org/SBO:>
+PREFIX SO:    <https://identifiers.org/SO:>
+PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX sbol:  <http://sbols.org/v3#>
+
+:litre  a                     om:SingularUnit , sbol:TopLevel;
+        sbol:description      "The litre is a unit of volume defined as 1.0e-3 cubic metre.";
+        sbol:displayId        "litre";
+        sbol:hasNamespace     </examples>;
+        sbol:name             "literB";
+        om:alternativeLabel   "litre2" , "liter";
+        om:alternativeSymbol  "L" , "L2";
+        om:comment            "The litre is a unit of volume defined as 1.0e-3 cubic metre.";
+        om:hasFactor          "0.001";
+        om:label              "literA";
+        om:longcomment        "This is an example long comment.";
+        om:symbol             "l" .

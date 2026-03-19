@@ -28,11 +28,11 @@ public class ExperimentTest extends TestCase {
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
         //Collections can be empty
-        TestUtil.validateIdentified(exp,doc,0);
+        TestUtil.validateIdentifiedAndDocument(exp,doc,0);
                 
         exp.setMembers(Arrays.asList(attachment1.getUri(), attachment2.getUri()));
         //Collections can have members
-        TestUtil.validateIdentified(exp,doc,0); 
+        TestUtil.validateIdentifiedAndDocument(exp,doc,0); 
         
         TestUtil.serialise(doc, "entity/experiment", "experiment");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));

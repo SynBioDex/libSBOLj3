@@ -30,16 +30,16 @@ public class UnitTest_13502 extends TestCase {
 		liter.setLongComment("This is an example long comment.");
 		liter.setFactor(Optional.of(0.001f));
 		
-		TestUtil.validateDocument(doc,0);
+		TestUtil.validateDocument(doc,0, null, null);
 		
 		liter.setComment("aaa");
-		TestUtil.validateDocument(doc,0);
+		TestUtil.validateDocument(doc,0, null, null);
 		
 		Resource res=TestUtil.getResource(liter);
 		RDFUtil.setProperty(res, DataModel.Identified.description, "bbb");
-		TestUtil.validateDocument(doc,1, "sbol3-13502");
+		TestUtil.validateDocument(doc,1, "sbol3-13502", "UnitTest_13502.UnitDescription");
 		liter.setComment("bbb");
-		TestUtil.validateDocument(doc,0);
+		TestUtil.validateDocument(doc,0,null, null);
     }
 
 }

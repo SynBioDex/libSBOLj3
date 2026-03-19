@@ -28,11 +28,11 @@ public class ComponentReferenceTest_10904 extends TestCase {
         SubComponent scIPTGSenderL2_L1= multicellularSystem.createSubComponent(iptgSenderL2);
         ComponentReference csIPTG_SenderL1=multicellularSystem.createComponentReference(scIPTG_SenderL2, scIPTGSenderL2_L1);
         
-        TestUtil.validateDocument(doc, 0);
+        TestUtil.validateDocument(doc, 0, null, null);
         //Error: Create a Cref referring to a subComponent from the parent rather than a feature from the subcomponent linked via the invhildOf property.
         SubComponent scAra_L1= multicellularSystem.createSubComponent(Ara);
         ComponentReference csAra_SenderL1=multicellularSystem.createComponentReference(scAra_L1, scIPTGSenderL2_L1);
-        TestUtil.validateDocument(doc, 1);
+        TestUtil.validateDocument(doc, 1, "sbol3-10904", "ComponentReferenceTest_10904");
         
         
        

@@ -23,7 +23,7 @@ public class CombinatorialDerivationTest_12108 extends TestCase {
 		Component pTetR=SBOLAPI.createDnaComponent(doc, "BBa_R0040", "pTetR", "TetR repressible promoter", Role.Promoter, "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
 	    Component pTetR2=SBOLAPI.createDnaComponent(doc, "BBa_R0040_2", "pTetR2", "TetR repressible promoter", Role.Promoter, "accctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
 	    
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	    
 	    CombinatorialDerivation cd=doc.createCombinatorialDerivation("cs1", pTetR);
 		   
@@ -37,12 +37,12 @@ public class CombinatorialDerivationTest_12108 extends TestCase {
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	  
 	    
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	    pTetR.addRole(URI.create("http://sbolstandard.org/testrole"));
-	    TestUtil.validateDocument(doc, 1,"sbol3-12108");
+	    TestUtil.validateDocument(doc, 1,"sbol3-12108", "CombinatorialDerivationTest_12108_pTetRRoleInvalid");
 	    
 	    pTetR2.setRoles(null);
-	    TestUtil.validateDocument(doc, 2, "sbol3-12108,sbol3-10613");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12108,sbol3-10613", "CombinatorialDerivationTest_12108_pTetR2RolesNull");
 		   
 	    
     }

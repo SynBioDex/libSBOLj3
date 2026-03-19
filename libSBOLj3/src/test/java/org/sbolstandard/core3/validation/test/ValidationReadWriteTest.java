@@ -22,7 +22,7 @@ import junit.framework.TestCase;
 
 public class ValidationReadWriteTest extends TestCase {
 	
-	public void test() throws SBOLGraphException, IOException
+	public void testValidationReadWrite() throws SBOLGraphException, IOException
     {
 		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);
 	    
@@ -89,38 +89,38 @@ public class ValidationReadWriteTest extends TestCase {
         
         Optional<Float> temp=measure.getValue();
         measure.setValue(Optional.of(4f));
-        TestUtil.validateIdentified(measure,doc,  0);  
+        TestUtil.validateIdentifiedAndDocument(measure,doc,  0);  
         
         measure.setValue(Optional.empty());
-        TestUtil.validateIdentified(measure, doc, 1);  
+        TestUtil.validateIdentifiedAndDocument(measure, doc, 1);  
       
-        TestUtil.validateIdentified(CaCl2, 1);  
+        TestUtil.validateIdentifiedOnly(doc, CaCl2, 1, null, "ValidationReadWriteTest.Measure.valueInvalidForUnit");  
         measure.setValue(temp);
-        TestUtil.validateIdentified(CaCl2, 0);  
+        TestUtil.validateIdentifiedOnly(doc, CaCl2, 0, null, null);  
          
         millimole.setPrefix(null);
 		Unit nullUnit=null;
         millimole.setUnit(nullUnit);
         millimole.setSymbol(null);
         millimole.setLabel(null);
-        TestUtil.validateIdentified(millimole,doc, 4);  
-        TestUtil.validateDocument(doc, 4);  
+        TestUtil.validateIdentifiedAndDocument(millimole,doc, 4);  
+        TestUtil.validateDocument(doc, 4, null,	"ValidationReadWriteTest.PrefixedUnit_1");  
         
         
         milli.setFactor(Optional.empty());
-        TestUtil.validateIdentified(milli,1);  
-        TestUtil.validateDocument(doc,5);  
+        TestUtil.validateIdentifiedOnly(doc, milli,1, null, "ValidationReadWriteTest.Measure.factorInvalidForUnit");  
+        TestUtil.validateDocument(doc,5, null, "ValidationReadWriteTest.PrefixedUnit_2");  
         milliMolePerLiter.setDenominator(nullUnit);
         milliMolePerLiter.setNumerator(nullUnit);
-        TestUtil.validateIdentified(milliMolePerLiter,doc,2,7);  
+        TestUtil.validateIdentifiedAndDocument(milliMolePerLiter,doc,2,7);  
         
         m3.setExponent(Optional.empty());
         m3.setBase(nullUnit);
-        TestUtil.validateIdentified(m3,doc,2,9);  
+        TestUtil.validateIdentifiedAndDocument(m3,doc,2,9);  
         
         um.setTerm1(nullUnit);
         um.setTerm2(nullUnit);
-        TestUtil.validateIdentified(um,doc,2,11);  
+        TestUtil.validateIdentifiedAndDocument(um,doc,2,11);  
         
         
         //Validating the invalid SBOL document will throw exceptions	   
@@ -199,7 +199,7 @@ public class ValidationReadWriteTest extends TestCase {
 	    }
 	    assertTrue(!exception);
 	  
-	   TestUtil.validateDocument(doc3,11);  
+	   TestUtil.validateDocument(doc3,11, null, "ValidationReadWriteTest_4");  
 	   Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);
 	    
         

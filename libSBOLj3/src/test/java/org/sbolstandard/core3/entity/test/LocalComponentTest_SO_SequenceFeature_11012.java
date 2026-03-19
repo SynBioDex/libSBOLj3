@@ -20,32 +20,32 @@ public class LocalComponentTest_SO_SequenceFeature_11012 extends TestCase {
 		SBOLDocument doc = new SBOLDocument(base);
 
 		Component popsReceiver = SBOLAPI.createDnaComponent(doc, "BBa_F2620", "BBa_F2620", "PoPS Receiver", Role.EngineeredGene, null);
-		TestUtil.validateDocument(doc, 0);
+		TestUtil.validateDocument(doc, 0, null, null);
 
 		LocalSubComponent lsComponent = popsReceiver.createLocalSubComponent(Arrays.asList(ComponentType.DNA.getUri()));
 
 		// No role
-		TestUtil.validateDocument(doc, 1);
+		TestUtil.validateDocument(doc, 1, "sbol3-11012", "LocalComponentTest_11012_lsComponentNoRole");
 
 		// Assign one valid URI
 		lsComponent.setRoles(Arrays.asList(Role.RBS));// biological_region
-		TestUtil.validateDocument(doc, 0);
+		TestUtil.validateDocument(doc, 0, null, null);
 
 		// Assign two valid URIs:
 		lsComponent.setRoles(Arrays.asList(Role.RBS, URINameSpace.SO.local("0001411")));// biological_region
-		TestUtil.validateDocument(doc, 1);
+		TestUtil.validateDocument(doc, 1, "sbol3-11012", "LocalComponentTest_11012_lsComponentTwoRoles");
 
 		// Assign three valid SO URIs.
 		lsComponent.setRoles(Arrays.asList(Role.RBS, URINameSpace.SO.local("0001411"), URINameSpace.SO.local("0000842")));// biological_region and gene_component_region
-		TestUtil.validateDocument(doc, 1);
+		TestUtil.validateDocument(doc, 1, "sbol3-11012", "LocalComponentTest_11012_lsComponentThreeRoles");
 
 		// Assign an invalid URI
 		lsComponent.setRoles(Arrays.asList(URINameSpace.SO.local("0000738")));// nuclear_sequence
-		TestUtil.validateDocument(doc, 1);
+		TestUtil.validateDocument(doc, 1, "sbol3-11012", "LocalComponentTest_11012_lsComponentInvalidRole1");
 
 		// Assign two invalid URIs
 		lsComponent.setRoles(Arrays.asList(URINameSpace.SO.local("0000738"), URINameSpace.SO.local("0000736")));// nuclear_sequence
-		TestUtil.validateDocument(doc, 1);
+		TestUtil.validateDocument(doc, 1, "sbol3-11012", "LocalComponentTest_11012_lsComponentTwoInvalidRoles");
 
 	}
 }

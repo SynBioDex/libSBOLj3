@@ -42,13 +42,13 @@ public class IdentifiedTest_ActivityType_10205 extends TestCase {
         association.setRoles(Arrays.asList(ActivityType.Design.getUri()));
         
         attachment.setWasGeneratedBy(Arrays.asList(activity));
-        TestUtil.validateIdentified(attachment, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(attachment, doc, 0);
         
         association.setRoles(Arrays.asList(ActivityType.Build.getUri()));
-        TestUtil.validateDocument(doc, 2,"sbol3-10205, sbol3-12902");
+        TestUtil.validateDocument(doc, 2,"sbol3-10205, sbol3-12902", "IdentifiedTest_ActivityType_10205.Activity.roleInvalidForSBOLType");
         
         association.setRoles(Arrays.asList(ActivityType.Design.getUri()));        
-        TestUtil.validateIdentified(attachment, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(attachment, doc, 0);
         
         
         

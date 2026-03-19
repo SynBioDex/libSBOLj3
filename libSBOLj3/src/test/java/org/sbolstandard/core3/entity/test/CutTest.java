@@ -48,20 +48,20 @@ public class CutTest extends TestCase {
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
     	Cut cut=(Cut)feature.getLocations().get(0);
-    	TestUtil.validateIdentified(cut,doc,0);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,0);
     	
     	//Cut.at can't be null
     	TestUtil.validateProperty(cut, "setAt", new Object[] {Optional.empty()}, Optional.class);
     	cut.setAt(Optional.empty());
-    	TestUtil.validateIdentified(cut,doc,1);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,1);
     	
     	//Cut.at can't be negative
     	TestUtil.validateProperty(cut, "setAt", new Object[] {Optional.of(-5)}, Optional.class);
     	cut.setAt(Optional.of(-5));
-    	TestUtil.validateIdentified(cut,doc,1);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,1);
     	
     	cut.setAt(Optional.of(5));
-    	TestUtil.validateIdentified(cut,doc,0);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,0);
     	
     	//Location.sequence can't be null
     	TestUtil.validateProperty(cut, "setSequence", new Object[] {null}, Sequence.class);
@@ -77,21 +77,21 @@ public class CutTest extends TestCase {
 		System.out.println("validateAfterReadingSBOLDocuments:" + Configuration.getInstance().validateAfterReadingSBOLDocuments());
 		System.out.println("isCompleteDocument:" + Configuration.getInstance().isCompleteDocument());
 
-    	TestUtil.validateIdentified(cut,doc,1,2);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,1,2);
 		boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();
     	Configuration.getInstance().setCompleteDocument(true);
     	//TestUtil.validateIdentified(cut,doc,2,3);
-    	TestUtil.validateIdentified(cut,2,"sbol3-11501");
-    	TestUtil.validateDocument(doc,3,"sbol3-11501,sbol3-11302");
+    	TestUtil.validateIdentifiedOnly(doc, cut,2,"sbol3-11501", "CutTest_11501.Cut.cut");
+    	TestUtil.validateDocument(doc,3,"sbol3-11501,sbol3-11302", "CutTest_11501.Cut.cut_sequence.nullValue");
     	
     	
     	
     	 //SBOL_VALID_ENTITY_TYPES - Component.interface
 	    Resource resource= TestUtil.getResource(cut);
 	    RDFUtil.setProperty(resource, DataModel.Location.sequence, Arrays.asList(pTetR.getUri()));
-	  	TestUtil.validateIdentified(cut,2,"sbol3-11501,sbol3-10111");
+	  	TestUtil.validateIdentifiedOnly(doc, cut,2,"sbol3-11501,sbol3-10111", "CutTest.Cut.cut, CutTest_11501.Cut.sequence.nullValue");
 	  	cut.setSequence(sequence);
-		TestUtil.validateIdentified(cut,doc,0);
+		TestUtil.validateIdentifiedAndDocument(cut,doc,0);
 		Configuration.getInstance().setCompleteDocument(isCompleteOriginal);
 
     }

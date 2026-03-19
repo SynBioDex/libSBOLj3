@@ -31,7 +31,7 @@ public class SubComponentTest_10807 extends TestCase {
 		feature.setOrientation(Orientation.inline);
 		
 		
-		TestUtil.validateIdentified(feature,doc,0);
+		TestUtil.validateIdentifiedAndDocument(feature,doc,0);
 
 		//https://github.com/SynBioDex/SEPs/blob/master/sep_026.md
 		
@@ -47,7 +47,7 @@ public class SubComponentTest_10807 extends TestCase {
 	    feature.createRange(7, 9, seq);
 	    
 	    
-	    TestUtil.validateIdentified(feature,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,0);
 	    
 	    Configuration.getInstance().setValidateBeforeSaving(false);
 	    String output=SBOLIO.write(doc, SBOLFormat.TURTLE);

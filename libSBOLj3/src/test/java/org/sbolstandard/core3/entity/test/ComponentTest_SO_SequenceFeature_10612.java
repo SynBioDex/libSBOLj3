@@ -19,13 +19,13 @@ public class ComponentTest_SO_SequenceFeature_10612 extends TestCase {
 		SBOLDocument doc=new SBOLDocument(base);
 		
 		Component popsReceiver=SBOLAPI.createDnaComponent(doc, "BBa_F2620", "BBa_F2620", "PoPS Receiver", Role.EngineeredGene, null); 
-		TestUtil.validateDocument(doc,0);
+		TestUtil.validateDocument(doc,0, null, null);
 		
 		Component TetR_protein=SBOLAPI.createProteinComponent(doc,popsReceiver, "TetR_protein", "TetR", "TetR protein", Role.CDS, "NNNNNNNNNNN");
-		TestUtil.validateIdentified(TetR_protein, doc,1);
+		TestUtil.validateIdentifiedAndDocument(TetR_protein, doc,1);
 		
 		Component LuxR_protein=SBOLAPI.createProteinComponent(doc,popsReceiver, "BBa_C0062_protein", "LuxR",  "LuxR protein", Role.CDS, "NNNNNNNNNNN");
-		TestUtil.validateIdentified(LuxR_protein, doc,1, 2);
+		TestUtil.validateIdentifiedAndDocument(LuxR_protein, doc,1, 2);
 		
 		
 		

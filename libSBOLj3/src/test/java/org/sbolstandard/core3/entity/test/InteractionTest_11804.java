@@ -32,23 +32,23 @@ public class InteractionTest_11804 extends TestCase {
         //Valid: Only one occurring entity type
         Interaction interaction= LacIProducer.createInteraction(Arrays.asList(InteractionType.NonCovalentBinding.getUri()));
     	//Valid interaction when there are no participants
-        TestUtil.validateIdentified(interaction,0);
+        TestUtil.validateIdentifiedOnly(doc, interaction,0, null, null);
         
         //InValid interaction since the role does not come from Table 12 altough 15 (substrate) is a subclass of 10 (reactant)
         Participation testParticipation= SBOLAPI.createParticipation(interaction, Arrays.asList(URINameSpace.SBO.local("0000015")), TetR_protein_subComponent);
-        TestUtil.validateIdentified(interaction,1);
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole");
         
         SBOLAPI.createParticipation(interaction, Arrays.asList(ParticipationRole.Reactant.getUri()), TetR_protein_subComponent);
-        TestUtil.validateIdentified(interaction,1);
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole2");
         
         SBOLAPI.createParticipation(interaction, Arrays.asList(ParticipationRole.Reactant.getUri()), aTC_subComponent);
-        TestUtil.validateIdentified(interaction,1);
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole3");
         
         SBOLAPI.createParticipation(interaction, Arrays.asList(ParticipationRole.Product.getUri()), atC_TetR_subComponent);
-        TestUtil.validateIdentified(interaction,1);
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole4");
         
         testParticipation.setRoles(Arrays.asList(ParticipationRole.Reactant.getUri()));
-        TestUtil.validateIdentified(interaction,0);
+        TestUtil.validateIdentifiedOnly(doc, interaction,0, null, null);
         
        // Interaction interaction2= LacIProducer.createInteraction(Arrays.asList(InteractionType.NonCovalentBinding.getUri()));
         

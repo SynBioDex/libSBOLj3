@@ -32,19 +32,19 @@ public class ModelTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-        TestUtil.validateIdentified(model,doc,0);
+        TestUtil.validateIdentifiedAndDocument(model,doc,0);
 		
         TestUtil.validateProperty(model, "setSource", new Object[] {null}, URI.class);
         model.setSource(null);
-		TestUtil.validateIdentified(model,doc,1);
+		TestUtil.validateIdentifiedAndDocument(model,doc,1);
 		
 		TestUtil.validateProperty(model, "setFramework", new Object[] {null}, URI.class);
 		model.setFramework(null);
-		TestUtil.validateIdentified(model,doc,2);
+		TestUtil.validateIdentifiedAndDocument(model,doc,2);
 		
 		TestUtil.validateProperty(model, "setLanguage", new Object[] {null}, URI.class);        
 		model.setLanguage(null);
-		TestUtil.validateIdentified(model,doc,3);
+		TestUtil.validateIdentifiedAndDocument(model,doc,3);
     }
 
 }

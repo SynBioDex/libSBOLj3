@@ -1,0 +1,139 @@
+BASE   <https://synbiohub.org/public/igem/>
+PREFIX :      <https://synbiohub.org/public/igem/>
+PREFIX CHEBI: <https://identifiers.org/CHEBI:>
+PREFIX EDAM:  <https://identifiers.org/edam:>
+PREFIX GO:    <https://identifiers.org/GO:>
+PREFIX SBO:   <https://identifiers.org/SBO:>
+PREFIX SO:    <https://identifiers.org/SO:>
+PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX sbol:  <http://sbols.org/v3#>
+
+<BBa_R0040_2/SequenceFeature1>
+        a                    sbol:SequenceFeature;
+        sbol:displayId       "SequenceFeature1";
+        sbol:hasLocation     <BBa_R0040_2/SequenceFeature1/EntireSequence1>;
+        prov:wasDerivedFrom  <BBa_R0040/SequenceFeature1> .
+
+:cd1    a                        sbol:CombinatorialDerivation;
+        sbol:displayId           "cd1";
+        sbol:hasNamespace        <../igem>;
+        sbol:hasVariableFeature  <cd1/VariableFeature2> , <cd1/VariableFeature1>;
+        sbol:template            :BBa_R0040 .
+
+:BBa_R0040_2  a              sbol:Component;
+        sbol:description     "TetR repressible promoter";
+        sbol:displayId       "BBa_R0040_2";
+        sbol:hasFeature      <BBa_R0040_2/SequenceFeature1> , <BBa_R0040_2/SubComponent1>;
+        sbol:hasNamespace    <../igem>;
+        sbol:hasSequence     :BBa_R0040_2_Sequence1;
+        sbol:name            "pTetR2";
+        sbol:role            SO:0000167;
+        sbol:type            SBO:0000251;
+        prov:wasDerivedFrom  :cd1 .
+
+<BBa_R0040/SequenceFeature1/EntireSequence1>
+        a                 sbol:EntireSequence;
+        sbol:displayId    "EntireSequence1";
+        sbol:hasSequence  :BBa_R0040_Sequence1 .
+
+<BBa_R0040_2/SequenceFeature1/EntireSequence1>
+        a                 sbol:EntireSequence;
+        sbol:displayId    "EntireSequence1";
+        sbol:hasSequence  :BBa_R0040_2_Sequence1 .
+
+:BBa_R0040_start  a        sbol:Component;
+        sbol:description   "promoter_start";
+        sbol:displayId     "BBa_R0040_start";
+        sbol:hasNamespace  <../igem>;
+        sbol:hasSequence   :BBa_R0040_start_Sequence1;
+        sbol:name          "pTetR_start";
+        sbol:role          SO:0000804;
+        sbol:type          SBO:0000251 .
+
+:BBa_R0040_start2  a       sbol:Component;
+        sbol:description   "promoter_start2";
+        sbol:displayId     "BBa_R0040_start2";
+        sbol:hasNamespace  <../igem>;
+        sbol:hasSequence   :BBa_R0040_start2_Sequence1;
+        sbol:name          "pTetR_start2";
+        sbol:role          SO:0000804;
+        sbol:type          SBO:0000251 .
+
+<cd1/VariableFeature1>
+        a                 sbol:VariableFeature;
+        sbol:cardinality  sbol:one;
+        sbol:displayId    "VariableFeature1";
+        sbol:variable     <BBa_R0040/SubComponent1>;
+        sbol:variant      :BBa_R0040_start2 .
+
+:promoterlib  a            sbol:Collection;
+        sbol:displayId     "promoterlib";
+        sbol:hasNamespace  <../igem> .
+
+<BBa_R0040/SubComponent1>
+        a                sbol:SubComponent;
+        sbol:displayId   "SubComponent1";
+        sbol:instanceOf  :BBa_R0040_start .
+
+:BBa_R0040_start_Sequence1
+        a                  sbol:Sequence;
+        sbol:description   "BBa_R0040_start sequence";
+        sbol:displayId     "BBa_R0040_start_Sequence1";
+        sbol:elements      "tccctat";
+        sbol:encoding      EDAM:format_1207;
+        sbol:hasNamespace  <../igem>;
+        sbol:name          "Sequence1" .
+
+:BBa_R0040_2_Sequence1
+        a                  sbol:Sequence;
+        sbol:description   "BBa_R0040_2 sequence";
+        sbol:displayId     "BBa_R0040_2_Sequence1";
+        sbol:elements      "accctatcagtgatagagattgacatccctatcagtgatagagatactgagcac";
+        sbol:encoding      EDAM:format_1207;
+        sbol:hasNamespace  <../igem>;
+        sbol:name          "Sequence1" .
+
+<BBa_R0040/SequenceFeature1>
+        a                 sbol:SequenceFeature;
+        sbol:displayId    "SequenceFeature1";
+        sbol:hasLocation  <BBa_R0040/SequenceFeature1/EntireSequence1> .
+
+:BBa_R0040_start2_Sequence1
+        a                  sbol:Sequence;
+        sbol:description   "BBa_R0040_start2 sequence";
+        sbol:displayId     "BBa_R0040_start2_Sequence1";
+        sbol:elements      "accctat";
+        sbol:encoding      EDAM:format_1207;
+        sbol:hasNamespace  <../igem>;
+        sbol:name          "Sequence1" .
+
+:BBa_R0040  a              sbol:Component;
+        sbol:description   "TetR repressible promoter";
+        sbol:displayId     "BBa_R0040";
+        sbol:hasFeature    <BBa_R0040/SequenceFeature1> , <BBa_R0040/SubComponent1>;
+        sbol:hasNamespace  <../igem>;
+        sbol:hasSequence   :BBa_R0040_Sequence1;
+        sbol:name          "pTetR";
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+<cd1/VariableFeature2>
+        a                 sbol:VariableFeature;
+        sbol:cardinality  sbol:one;
+        sbol:displayId    "VariableFeature2";
+        sbol:variable     <BBa_R0040_2/SubComponent1> .
+
+<BBa_R0040_2/SubComponent1>
+        a                    sbol:SubComponent;
+        sbol:displayId       "SubComponent1";
+        sbol:instanceOf      :BBa_R0040_start2;
+        prov:wasDerivedFrom  <BBa_R0040/SubComponent1> .
+
+:BBa_R0040_Sequence1  a    sbol:Sequence;
+        sbol:description   "BBa_R0040 sequence";
+        sbol:displayId     "BBa_R0040_Sequence1";
+        sbol:elements      "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac";
+        sbol:encoding      EDAM:format_1207;
+        sbol:hasNamespace  <../igem>;
+        sbol:name          "Sequence1" .

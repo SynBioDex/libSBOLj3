@@ -28,7 +28,7 @@ public class CombinatorialDerivationTest_12106 extends TestCase {
 	    //pTetR.setWasDerivedFrom(Arrays.asList(genericpromoter.getUri()));
 	    //col.addMember(pTetR);
 	    col.addMembers(Arrays.asList(pTetR2, pTetR3));
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0,null, null);
 	    
 	    CombinatorialDerivation cd=doc.createCombinatorialDerivation("cs1", pTetR);
 		   
@@ -36,14 +36,12 @@ public class CombinatorialDerivationTest_12106 extends TestCase {
 	    
 	    Component start=SBOLAPI.createDnaComponent(doc, "BBa_R0040_start", "pTetR_start", "promoter_start", Role.EngineeredRegion, "tccctat");	
 	    SubComponent sc_start=pTetR.createSubComponent(start);	    
-	    
-	    
-	    TestUtil.validateDocument(doc, 2,"sbol3-12106");
+	    	    
+	    TestUtil.validateDocument(doc, 2,"sbol3-12106", "CombinatorialDerivationTest_12106_1");
 		
 	    col.addMember(pTetR);
-	    TestUtil.validateDocument(doc, 2,"sbol3-12106");
+	    TestUtil.validateDocument(doc, 2,"sbol3-12106", "CombinatorialDerivationTest_12106_2");
 		
-	    
     }
 
 }

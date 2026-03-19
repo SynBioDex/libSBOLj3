@@ -34,7 +34,7 @@ public class ComponentReferenceTest_10902 extends TestCase {
         ComponentReference csIPTG_SenderL2=iptgSenderL2.createComponentReference(scIPTG_SenderL3, scIPTGSenderL3_L2);
         ComponentReference csIPTG_SenderL1=multicellularSystem.createComponentReference(csIPTG_SenderL2, scIPTGSenderL2_L1);
         
-        TestUtil.validateDocument(doc, 2);
+        TestUtil.validateDocument(doc, 2, "sbol3-10901, sbol3-10902", "ComponentReferenceTest_10902");
        
     }
 }

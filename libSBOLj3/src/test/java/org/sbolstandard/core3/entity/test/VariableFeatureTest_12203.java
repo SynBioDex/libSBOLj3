@@ -38,7 +38,7 @@ public class VariableFeatureTest_12203 extends TestCase {
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	    pTetRSequenceFeature2.setWasDerivedFrom(Arrays.asList(pTetRSequenceFeature.getUri()));
 	    
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null	);
 		  
 	    Component start3=SBOLAPI.createDnaComponent(doc, "BBa_R0040_start3", "pTetR_start3", "promoter_start3", Role.EngineeredRegion, "cccctat");			
 		Collection col=doc.createCollection("promoterlib");		
@@ -49,7 +49,7 @@ public class VariableFeatureTest_12203 extends TestCase {
 	    innerCol.addMembers(Arrays.asList(start2, start3, attachment2));
 	    col.addMember(innerCol);
 	    varFeature.setVariantCollections(Arrays.asList(col));
-	    TestUtil.validateDocument(doc, 2, "sbol3-12203");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12203", "VariableFeatureTest_12203_varFeatureVariantCollections");
 		  
 	    
 		  

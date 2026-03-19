@@ -29,17 +29,17 @@ public class AttachmentTest_12807 extends TestCase {
         attachment2.setHashAlgorithm(HashAlgorithm.blake2b_256);
         attachment2.setHash("aaa");
         
-        TestUtil.validateIdentified(attachment2,doc,0);        
+        TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);        
     	
         Resource resource = TestUtil.getResource(attachment2);		
     	RDFUtil.setProperty(resource, DataModel.Attachment.hashAlgorithm, "invalidAlg");
     	Configuration.getInstance().setValidateRecommendedRules(false);
-    	TestUtil.validateIdentified(attachment2,doc,0);
+    	TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
     	Configuration.getInstance().setValidateRecommendedRules(true);				
-    	TestUtil.validateIdentified(attachment2,doc,1, "sbol3-12807");
+    	TestUtil.validateIdentifiedAndDocument(attachment2,doc,1, "sbol3-12807", "AttachmentTest_12807");
     	
     	attachment2.setHashAlgorithm(HashAlgorithm.blake2b_256);      	
-      	TestUtil.validateIdentified(attachment2,doc,0);    	
+      	TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);    	
     }
 
 }

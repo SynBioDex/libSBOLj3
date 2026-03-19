@@ -39,25 +39,25 @@ public class CombinatorialDerivationTest_12115 extends TestCase {
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	    pTetRSequenceFeature2.setWasDerivedFrom(Arrays.asList(pTetRSequenceFeature.getUri()));
 	    		  	    
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	    start.addType(URI.create("http:sbolstandard.org/testtype"));	    
-	    TestUtil.validateDocument(doc, 1, "sbol3-12115");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12115", "CombinatorialDerivationTest_12115_startType");
 	    start2.addType(URI.create("http:sbolstandard.org/testtype"));	    
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 		    
 	    LocalSubComponent lsc1= pTetR.createLocalSubComponent(Arrays.asList(URI.create("http:sbolstandard.org/localsubcomponenttype1")));
 	    LocalSubComponent lsc2= pTetR2.createLocalSubComponent(Arrays.asList(URI.create("http:sbolstandard.org/localsubcomponenttype2")));
 	    lsc2.addWasDerivedFrom(lsc1);	    
-	    TestUtil.validateDocument(doc, 1, "sbol3-12115");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12115", "CombinatorialDerivationTest_12115_localSubComponent");
 	    lsc2.addType(URI.create("http:sbolstandard.org/localsubcomponenttype1"));
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 		
 	    ExternallyDefined ed1= pTetR.createExternallyDefined(Arrays.asList(URI.create("http:sbolstandard.org/externallyDefinedtType1")), URI.create("http://sbolstandard.org/externalentity1"));
 	    ExternallyDefined ed2= pTetR2.createExternallyDefined(Arrays.asList(URI.create("http:sbolstandard.org/externallyDefinedtType2")), URI.create("http://sbolstandard.org/externalentity2"));
 	    ed2.addWasDerivedFrom(ed1);	    
-	    TestUtil.validateDocument(doc, 1, "sbol3-12115");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12115", "CombinatorialDerivationTest_12115_externallyDefined");
 	    ed2.addType(URI.create("http:sbolstandard.org/externallyDefinedtType1"));
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	    
 	    
 	    Component end=SBOLAPI.createDnaComponent(doc, "BBa_R0040_end", "pTetR_end", "promoter_end", Role.EngineeredRegion, "gagcac");	
@@ -77,10 +77,10 @@ public class CombinatorialDerivationTest_12115 extends TestCase {
 	    System.out.println(SBOLIO.write(doc,SBOLFormat.RDFXML));
 	    Configuration.getInstance().setValidateBeforeSaving(true);*/
 		   
-	    TestUtil.validateDocument(doc, 1, "sbol3-12115");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12115", "CombinatorialDerivationTest_12115_componentReferenceDerivedFrom");
 	    
 	    lsc4.addType(URI.create("http:sbolstandard.org/localsubcomponenttype3"));
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	
 	    
 	    

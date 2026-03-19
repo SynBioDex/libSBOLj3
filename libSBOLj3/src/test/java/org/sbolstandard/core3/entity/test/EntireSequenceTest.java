@@ -40,7 +40,7 @@ public class EntireSequenceTest extends TestCase {
 	    SubComponent pTetRSC=device.createSubComponent(pTetR);
 	    pTetR.getSequences().get(0).setElements(null);
 	    pTetRSC.createEntireSequence(pTetR.getSequences().get(0));
-	    TestUtil.validateIdentified(pTetRSC, 0);
+	    TestUtil.validateIdentifiedOnly(doc, pTetRSC, 0, null, null);
 	    
 	    
     	

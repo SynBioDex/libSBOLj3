@@ -1,6 +1,7 @@
 package org.sbolstandard.core3.entity.test;
 
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import org.sbolstandard.core3.api.SBOLAPI;
@@ -21,8 +22,9 @@ public class ZInternationalURITest extends TestCase {
 		
 		SBOLDocument doc=new SBOLDocument(base);
 		Configuration.getInstance().setValidateAfterSettingProperties(false);
-		//String pattern="[\\p{L}]+";
+		//String pattern="[\p{L}]+";
 		String pattern="^[\\p{L}_]+[\\p{L}0-9_]*$";
+		
 		
 		System.out.println("a".matches(pattern));
 		System.out.println("abb".matches(pattern));
@@ -37,7 +39,7 @@ public class ZInternationalURITest extends TestCase {
 		String[] test = {"Jean-Marie Le'Blancö", "Żółć", "Ὀδυσσεύς", "原田雅彦"};
 		for (String str : test) {
 		    System.out.print(str.matches("[\\p{Alpha}]+") + " ");
-		   // System.out.print(str.matches("^(?U)[\\p{Alpha}\\-'. ]+") + " ");
+		   // System.out.print(str.matches("^(?U)[\p{Alpha}\-'. ]+") + " ");
 		    
 		}
 		
@@ -55,46 +57,45 @@ public class ZInternationalURITest extends TestCase {
 		//char[] russianAlphabet = getAlphabet(true,'а','я');
 		
 		//doc.createComponent(base, base, Arrays.asList((ComponentType.DNA.getUri())));
-		TestUtil.validateDocument(doc, 0);
-		
-		testComponent(doc, "1abb", 1);
+		TestUtil.validateDocument(doc, 0, null, null);
+		int errorIndex=1;
+		testComponent(doc, "1abb", 1, "sbol3-10201", errorIndex++);
 		
 		//testComponent(doc, "1abb", 1);
 		
 		
-	    testComponent(doc, "abb",0);
-		testComponent(doc, "abcö", 0);
-		testComponent(doc, "ab1_AB123", 0);
-		testComponent(doc, "_ab", 0);
-		testComponent(doc, "_test", 0);
-		testComponent(doc, "ab_12", 0);
+	    testComponent(doc, "abb",0, null, 0);
+		testComponent(doc, "abcö", 0, null, 0);
+		testComponent(doc, "ab1_AB123", 0, null, 0);
+		testComponent(doc, "_ab", 0, null, 0);
+		testComponent(doc, "_test", 0, null, 0);
+		testComponent(doc, "ab_12", 0, null, 0);
 		
 		char[] frChars = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','é','è','à','ù','ç','â','ê','î','ô','û','ë','ï'};
  		String strFrenchIdentifier= String.valueOf(frChars);
- 		testComponent(doc, strFrenchIdentifier, 0);
- 		testComponent(doc, strFrenchIdentifier.toUpperCase(), 0); 		
- 		testComponent(doc, "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 0);//Russian?
+ 		testComponent(doc, strFrenchIdentifier, 0, null, 0);
+ 		testComponent(doc, strFrenchIdentifier.toUpperCase(), 0, null, 0); 		
+ 		testComponent(doc, "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ", 0, null, 0);//Russian?
  		
  		
  		char[] trChars = {'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','r','s','t','u','v','x','y','z','ç','ğ','ö','ı','ş','ü'};
  		String strTurkishIdentifier= String.valueOf(trChars);
- 		testComponent(doc, strTurkishIdentifier, 0);
- 		testComponent(doc, strTurkishIdentifier.toUpperCase(), 0); 		
+ 		testComponent(doc, strTurkishIdentifier, 0, null, 0);
+ 		testComponent(doc, strTurkishIdentifier.toUpperCase(), 0, null, 0); 		
  	
- 		testComponent(doc, "päypal", 0);
+ 		testComponent(doc, "päypal", 0, null, 0);
  		
- 		testComponent(doc, "清华大学", 0);
+ 		testComponent(doc, "清华大学", 0, null, 0);
  		
- 		testComponent(doc, "ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜäëïöüiçÇßØøÅåÆæÞþÐð",0);
- 	  //testComponent(doc, "ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜäëïöü¡¿çÇßØøÅåÆæÞþÐð",0);
- 		
- 		testComponent(doc, "päypal1", 0);
- 		testComponent(doc, "£päypal", 1); 	 	 	
- 		testComponent(doc, "1päypal", 1);
-		testComponent(doc, "ab1-AB", 1);
-		testComponent(doc, "ab.", 1);		
+ 		testComponent(doc, "ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜäëïöüiçÇßØøÅåÆæÞþÐð",0, null, 0);
+ 	 	
+ 		testComponent(doc, "päypal1", 0, null, 0);
+ 		testComponent(doc, "£päypal", 1, "sbol3-10201", errorIndex++); 	 	 	
+ 		testComponent(doc, "1päypal", 1, "sbol3-10201", errorIndex++);
+		testComponent(doc, "ab1-AB", 1, "sbol3-10201", errorIndex++);
+		testComponent(doc, "ab.", 1, "sbol3-10201", errorIndex++);		
 		try {
-			testComponent(doc, "ab#", 1);
+			testComponent(doc, "ab#", 1, "sbol3-10201", errorIndex++);
 		}
 		catch (Exception ex){
         	if (!(ex instanceof SBOLGraphException)){
@@ -103,21 +104,21 @@ public class ZInternationalURITest extends TestCase {
 		}
 		
 		try {
-			testComponent(doc, "ab?", 1);
+			testComponent(doc, "ab?", 1, "sbol3-10201", errorIndex++);
 		}
 		catch (Exception ex){
         	if (!(ex instanceof SBOLGraphException)){
         		throw ex;
         	}
 		}        
-		testComponent(doc, "ab'", 1);		
+		testComponent(doc, "ab'", 1, "sbol3-10201", errorIndex++);		
 		
     }
 	
-	private void testComponent(SBOLDocument doc, String displayId, int error) throws SBOLGraphException
+	private void testComponent(SBOLDocument doc, String displayId, int error, String errorCodes, int index) throws SBOLGraphException, FileNotFoundException, IOException
 	{
 		Component c6=SBOLAPI.createDnaComponent(doc, displayId, null, null, Role.Promoter, null); 
-		TestUtil.validateIdentified(c6,error);	
+		TestUtil.validateIdentifiedOnly(doc, c6,error, errorCodes, "ZInternationalURITest.Component.displayIdInvalid" + index);	
 	}
 	
 	

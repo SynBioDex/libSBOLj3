@@ -23,13 +23,13 @@ public class ModelTest_12504 extends TestCase {
         model.setNamespace(URI.create(namespace));
         toggleSwitch.setModels(Arrays.asList(model));
                         
-        TestUtil.validateIdentified(model,doc,0);
+        TestUtil.validateIdentifiedAndDocument(model,doc,0);
         
         model.setLanguage(URI.create("http://invalidmodellanguage.org"));		
-     	TestUtil.validateIdentified(model,doc,1,"sbol3-12504");
+     	TestUtil.validateIdentifiedAndDocument(model,doc,1,"sbol3-12504", "ModelTest_12504");
      	
      	model.setLanguage(ModelLanguage.SBML);		
-     	TestUtil.validateIdentified(model,doc,0);
+     	TestUtil.validateIdentifiedAndDocument(model,doc,0, null, null);
      	
     }
 

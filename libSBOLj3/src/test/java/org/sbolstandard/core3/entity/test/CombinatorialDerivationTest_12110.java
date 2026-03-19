@@ -22,7 +22,7 @@ public class CombinatorialDerivationTest_12110 extends TestCase {
 		Component pTetR=SBOLAPI.createDnaComponent(doc, "BBa_R0040", "pTetR", "TetR repressible promoter", Role.Promoter, "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
 	    Component pTetR2=SBOLAPI.createDnaComponent(doc, "BBa_R0040_2", "pTetR2", "TetR repressible promoter", Role.Promoter, "accctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
 	    
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0, null, null);
 	    
 	    CombinatorialDerivation cd=doc.createCombinatorialDerivation("cs1", pTetR);
 		   
@@ -44,17 +44,17 @@ public class CombinatorialDerivationTest_12110 extends TestCase {
 	    SubComponent sc_end2=pTetR2.createSubComponent(end);	    
 	    varFeature.setVariants(Arrays.asList(start2));
 	    
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110");		   
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "CombinatorialDerivationTest_12110_1");		   
 	    sc_end2.setWasDerivedFrom(Arrays.asList(sc_end.getUri()));
 		   
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0,null, null);
 	    
 	    SequenceFeature cut1=pTetR.createSequenceFeature(5, pTetR.getSequences().get(0));
 	    SequenceFeature cut2=pTetR2.createSequenceFeature(5, pTetR2.getSequences().get(0));
 	    cut2.setWasDerivedFrom(Arrays.asList(cut1.getUri()));
-	    TestUtil.validateDocument(doc, 0);
+	    TestUtil.validateDocument(doc, 0,null, null);
 	    
 	    cut2.setWasDerivedFrom(Arrays.asList(cut1.getUri(), sc_end.getUri()));
-	    TestUtil.validateDocument(doc, 3, "sbol3-12109,sbol3-12110,sbol3-12115");	 
+	    TestUtil.validateDocument(doc, 3, "sbol3-12109,sbol3-12110,sbol3-12115", "CombinatorialDerivationTest_12110_2");	 
     }
 }

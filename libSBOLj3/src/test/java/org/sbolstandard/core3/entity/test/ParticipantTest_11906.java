@@ -3,6 +3,8 @@ package org.sbolstandard.core3.entity.test;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
+
+import org.apache.jena.sparql.function.library.namespace;
 import org.sbolstandard.core3.api.SBOLAPI;
 import org.sbolstandard.core3.entity.*;
 import org.sbolstandard.core3.test.TestUtil;
@@ -22,9 +24,9 @@ public class ParticipantTest_11906 extends TestCase {
         device.setRoles(Arrays.asList(Role.EngineeredGene));
         String gfp_na="atgcgtaaaggagaagaacttttcactggagttgtcccaattcttgttgaattagatggtgatgttaatgggcacaaattttctgtcagtggagagggtgaaggtgatgcaacatacggaaaacttacccttaaatttatttgcactactggaaaactacctgttccatggccaacacttgtcactactttcggttatggtgttcaatgctttgcgagatacccagatcatatgaaacagcatgactttttcaagagtgccatgcccgaaggttatgtacaggaaagaactatatttttcaaagatgacgggaactacaagacacgtgctgaagtcaagtttgaaggtgatacccttgttaatagaatcgagttaaaaggtattgattttaaagaagatggaaacattcttggacacaaattggaatacaactataactcacacaatgtatacatcatggcagacaaacaaaagaatggaatcaaagttaacttcaaaattagacacaacattgaagatggaagcgttcaactagcagaccattatcaacaaaatactccaattggcgatggccctgtccttttaccagacaaccattacctgtccacacaatctgccctttcgaaagatcccaacgaaaagagagaccacatggtccttcttgagtttgtaacagctgctgggattacacatggcatggatgaactatacaaataataa";
 		Component gfp=SBOLAPI.createDnaComponent(doc, "E0040", "gfp", "gfp coding sequence", Role.CDS, gfp_na);
-		TestUtil.validateDocument(doc, 0);
+		TestUtil.validateDocument(doc, 0, null, null);
         SubComponent gfpSubComponent=SBOLAPI.appendComponent(doc, device,gfp, Orientation.inline);
-        TestUtil.validateDocument(doc, 0);
+        TestUtil.validateDocument(doc, 0,null, null);
 		
         Component i13504_system=SBOLAPI.createComponent(doc,"i13504_system", ComponentType.DNA.getUri(), "i13504 system", null, Role.FunctionalCompartment);
         i13504_system.setRoles(Arrays.asList(Role.FunctionalCompartment, Role.EngineeredGene));
@@ -43,19 +45,19 @@ public class ParticipantTest_11906 extends TestCase {
         Interaction interaction= i13504_system.createInteraction(Arrays.asList(InteractionType.GeneticProduction.getUri()));
        
         Participation participation= interaction.createParticipation(Arrays.asList(ParticipationRole.Template.getUri()), gfpCDSReference);
-		TestUtil.validateDocument(doc, 0);
+		TestUtil.validateDocument(doc, 0, null, null);
         
 		Participation par2= interaction.createParticipation(Arrays.asList(URI.create("http://sbolstandard.prg/nonSboUri")), gfpCDSReference);		
-        TestUtil.validateDocument(doc, 2,"sbol3-11804, sbol3-11906");
+        TestUtil.validateDocument(doc, 2,"sbol3-11804, sbol3-11906", "ParticipantTest_11906_1");
         
         par2.setRoles(Arrays.asList(ParticipationRole.Product.getUri(), ParticipationRole.Template.getUri()));
-        TestUtil.validateDocument(doc, 1, "sbol3-11906");
+        TestUtil.validateDocument(doc, 1, "sbol3-11906", "ParticipantTest_11906_2");
         
         par2.setRoles(Arrays.asList(URI.create("http://sbolstandard.prg/nonSboUri"), ParticipationRole.Product.getUri(), ParticipationRole.Template.getUri()));
-        TestUtil.validateDocument(doc, 1, "sbol3-11906");
+        TestUtil.validateDocument(doc, 1, "sbol3-11906", "ParticipantTest_11906_3");
         
         par2.setRoles(Arrays.asList(URI.create("http://sbolstandard.prg/nonSboUri"), ParticipationRole.Product.getUri()));
-        TestUtil.validateDocument(doc, 0);
+        TestUtil.validateDocument(doc, 0,   null, null);
 
    }
 

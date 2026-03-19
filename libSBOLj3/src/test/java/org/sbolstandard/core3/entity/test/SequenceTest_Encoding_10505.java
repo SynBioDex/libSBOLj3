@@ -33,7 +33,7 @@ public class SequenceTest_Encoding_10505 extends TestCase {
 		Sequence seq4=doc.createSequence("seq4");
 		seq4.setEncoding(URINameSpace.EDAM.local("format_3162"));
 	      
-	    TestUtil.validateDocument(doc,2);
+	    TestUtil.validateDocument(doc,2, "sbol3-10505", "SequenceTest_Encoding_10505");
 	 	
     }
 

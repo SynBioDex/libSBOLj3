@@ -14,7 +14,7 @@ import junit.framework.TestCase;
 
 public class ActivityTest_12902 extends TestCase {
 	
-	public void testAttachment() throws SBOLGraphException, IOException, Exception
+	public void testActivity_12902() throws SBOLGraphException, IOException, Exception
     {
 		String baseUri="https://sbolstandard.org/examples/";
         SBOLDocument doc=new SBOLDocument(URI.create(baseUri));
@@ -46,16 +46,16 @@ public class ActivityTest_12902 extends TestCase {
         
         toggleSwitchOptimised.addWasGeneratedBy(activity);
              	
-        TestUtil.validateIdentified(activity,1);  
+        TestUtil.validateIdentifiedOnly(doc, activity,1, "sbol3-12901", "ActivityTest_12902.Activity.typeInvalidForSBOLType");  
                
         usage1.setRoles(Arrays.asList(ActivityType.Learn.getUri()));                
-        TestUtil.validateIdentified(activity,doc,0);  
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0, null, null);  
         
         association.setRoles(Arrays.asList(ActivityType.Learn.getUri()));     
-        TestUtil.validateIdentified(activity,doc,1, "sbol3-12902");
+        TestUtil.validateIdentifiedAndDocument(activity,doc,1, "sbol3-12902", "ActivityTest_12902.Activity.roleInvalidForSBOLType");
         
         activity.setTypes(Arrays.asList(URI.create("http://non-dbtl_type.org"))); 
-        TestUtil.validateIdentified(activity,doc,0);
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0, null, null);
         
         
     }

@@ -138,10 +138,10 @@ public class VariableFeatureTest_12204 extends TestCase {
 		System.out.print(SBOLIO.write(doc, SBOLFormat.TURTLE));
 		Configuration.getInstance().setValidateBeforeSaving(true);
 		
-		TestUtil.validateDocument(doc, 0);
+		TestUtil.validateDocument(doc, 0, null, null);
 		     
 		varFeatureTer.setVariantDerivations(Arrays.asList(compDerPro));
-		TestUtil.validateDocument(doc, 2, "sbol3-12204");// First: compDerPro.varFeatureGen.VariantDerivation = compDerTer, Second: compDerTer.varFeatureTer.VariantDerivation = compDerPro
+		TestUtil.validateDocument(doc, 2, "sbol3-12204", "VariableFeatureTest_12204");// First: compDerPro.varFeatureGen.VariantDerivation = compDerTer, Second: compDerTer.varFeatureTer.VariantDerivation = compDerPro
 		 
 	}
 }

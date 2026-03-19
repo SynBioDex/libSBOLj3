@@ -21,36 +21,36 @@ public class ExternallyDefinedTest_11108 extends TestCase {
 
 		//EXTERNALLYDEFINED_TYPE_ONLY_DNA_OR_RNA_INCLUDE_STRAND_OR_TOPOLOGY
 		exDefined.setTypes(Arrays.asList(ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateIdentified(exDefined,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,0);
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateDocument(doc,0);
+	    TestUtil.validateDocument(doc,0, null, null);
         
 	    exDefined.setTypes(Arrays.asList(ComponentType.DNA.getUri()));
-	    TestUtil.validateIdentified(exDefined,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,0);
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateIdentified(exDefined,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,0);
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.TopologyType.Linear.getUri(), ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateDocument(doc,1);
+	    TestUtil.validateDocument(doc,1, "sbol3-11108", "ExternallyDefinedTest_11108_exDefinedInvalidType_1");
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.Protein.getUri(), ComponentType.TopologyType.Linear.getUri(), ComponentType.TopologyType.Circular.getUri()));
-	    TestUtil.validateDocument(doc,1);
+	    TestUtil.validateDocument(doc,1, "sbol3-11108", "ExternallyDefinedTest_11108_exDefinedInvalidType_2");
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.TopologyType.Linear.getUri(), ComponentType.TopologyType.Circular.getUri()));
-	    TestUtil.validateIdentified(exDefined,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,1);
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.RNA.getUri(), ComponentType.TopologyType.Linear.getUri(), ComponentType.TopologyType.Circular.getUri()));
-	    TestUtil.validateIdentified(exDefined,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,1);
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.RNA.getUri(), ComponentType.TopologyType.Linear.getUri()));
-	    TestUtil.validateIdentified(exDefined,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,0);
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.StrandType.Double.getUri(), ComponentType.Protein.getUri()));
-	    TestUtil.validateDocument(doc,1);
+	    TestUtil.validateDocument(doc,1, "sbol3-11108", "ExternallyDefinedTest_11108_exDefinedInvalidType_3");
 	    
 	    exDefined.setTypes(Arrays.asList(ComponentType.StrandType.Double.getUri(), ComponentType.DNA.getUri()));
-	    TestUtil.validateIdentified(exDefined,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,0);
 	}
 }

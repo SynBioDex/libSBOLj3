@@ -45,7 +45,7 @@ public class ActivityTest extends TestCase {
         
         toggleSwitchOptimised.addWasGeneratedBy(activity);
              	
-        TestUtil.validateIdentified(activity,doc,0);
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0);
         
         //2nd Activity
         Plan planAssembly=doc.createPlan("GibsonAssembly");
@@ -70,7 +70,7 @@ public class ActivityTest extends TestCase {
         imp.addWasGeneratedBy(activity2);
         imp.addWasDerivedFrom(toggleSwitchOptimised);
         
-        TestUtil.validateIdentified(activity,doc,0);
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0);
         
         
       //3nd Activity
@@ -94,7 +94,7 @@ public class ActivityTest extends TestCase {
         exp.addWasGeneratedBy(activity3);
         exp.addWasDerivedFrom(imp);
         
-        TestUtil.validateIdentified(activity,doc,0);
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0);
         
         
         //4th Activity
@@ -119,7 +119,7 @@ public class ActivityTest extends TestCase {
         model2.addWasGeneratedBy(activity4);
         model2.addWasDerivedFrom(exp);
         
-        TestUtil.validateIdentified(activity,doc,0);
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0);
         
         TestUtil.assertReadWrite(doc);
        

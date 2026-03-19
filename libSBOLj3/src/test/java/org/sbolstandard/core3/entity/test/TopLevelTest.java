@@ -39,33 +39,33 @@ public class TopLevelTest extends TestCase {
         //TOPLEVEL_NAMESPACE_NOT_NULL
         TestUtil.validateProperty(attachment, "setNamespace", new Object[] {null}, URI.class);
         attachment.setNamespace(null);
-	    TestUtil.validateIdentified(attachment,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
 	    
 	    //TOPLEVEL_URI_STARTS_WITH_NAMESPACE 
         attachment.setNamespace(URI.create("http://sdfsf.org"));
-        TestUtil.validateIdentified(attachment,doc,1);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
 	    attachment.setNamespace(URI.create("https://sbolstandard.org"));
-	    TestUtil.validateIdentified(attachment,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
 	    
 	    //TOPLEVEL_URI_PATTERN
 	    Attachment attachment2=doc.createAttachment("attachment2", URI.create("https://sbolstandard.org/local/attachment3"));
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org"));
-	    TestUtil.validateIdentified(attachment2,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples"));
-	    TestUtil.validateIdentified(attachment2,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples/"));
-	    TestUtil.validateIdentified(attachment2,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1);
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples/attachment2"));
-	    TestUtil.validateIdentified(attachment2,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1);
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples/attach"));
-	    TestUtil.validateIdentified(attachment2,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1);
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples"));
-	    TestUtil.validateIdentified(attachment2,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
 	    
 	    Attachment attachment3=doc.createAttachment(URI.create("https://sbolstandard.org/attachment3"), URI.create("https://sbolstandard.org"), URI.create("https://sbolstandard.org/local/attachment3"));
-	    TestUtil.validateDocument(doc,0); 
+	    TestUtil.validateDocument(doc,0, null, null); 
 	    attachment.setAttachments(attachment2,attachment3);
-	    TestUtil.validateDocument(doc,0);  
+	    TestUtil.validateDocument(doc,0, null, null);  
 		   
 	    
 	    Resource resource = TestUtil.getResource(attachment);
@@ -73,18 +73,18 @@ public class TopLevelTest extends TestCase {
 	    Component pTetR=SBOLAPI.createDnaComponent(doc, "BBa_R0040", "pTetR", "TetR repressible promoter", Role.Promoter, "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
 	    Component pLacI=SBOLAPI.createDnaComponent(doc, "pLacI", "pLacI", "LacI repressible promoter", Role.Promoter, "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac");
 		
-	    TestUtil.validateDocument(doc,0);  
+	    TestUtil.validateDocument(doc,0, null, null);  
 		
 	    //SBOL_VALID_ENTITY_TYPES - TopLevel.attachments
 	  	List<URI> tempURIs=SBOLUtil.getURIs(attachment.getAttachments());
 	  	RDFUtil.setProperty(resource, DataModel.TopLevel.attachment, SBOLUtil.getURIs(doc.getComponents()));
-	  	TestUtil.validateIdentified(attachment,doc,1);
+	  	TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
 	  	attachment.setAttachments(attachment2,attachment3);
-	  	TestUtil.validateIdentified(attachment,doc,0);		  
+	  	TestUtil.validateIdentifiedAndDocument(attachment,doc,0);		  
 	  	
 	    //TOPLEVEL_URI_CANNOT_BE_USED_AS_A_PREFIX
 	    Attachment attachment4=doc.createAttachment(URI.create("https://sbolstandard.org/attachment3/withprefix"), URI.create("https://sbolstandard.org"), URI.create("https://sbolstandard.org/local/attachment4"));
-	    TestUtil.validateDocument(doc,1);
+	    TestUtil.validateDocument(doc,1, "sbol3-10103", "TopLevelTest");
 	    
 	    
 		

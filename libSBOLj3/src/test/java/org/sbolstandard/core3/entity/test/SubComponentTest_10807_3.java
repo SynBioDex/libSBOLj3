@@ -29,15 +29,15 @@ public class SubComponentTest_10807_3 extends TestCase {
 	    RNAPbindingSC.createRange(181,185, plasmid.getSequences().get(0));
 	    Range range2=RNAPbindingSC.createRange(210,213, plasmid.getSequences().get(0));
 	    
-	    TestUtil.validateIdentified(RNAPbindingSC,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(RNAPbindingSC,doc,1);
 	    range2.setEnd(Optional.of(214));
-	    TestUtil.validateIdentified(RNAPbindingSC,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(RNAPbindingSC,doc,0);
 	    String output=SBOLIO.write(doc, SBOLFormat.TURTLE);
 	    System.out.println(output);
 	   
 	    
 	    range2.setSequence(RNAPbinding.getSequences().get(0));
-	    TestUtil.validateIdentified(RNAPbindingSC,doc,2,3);
+	    TestUtil.validateIdentifiedAndDocument(RNAPbindingSC,doc,2,3);
 	   
 	   /* range2.setSequence(plasmid.getSequences().get(0));
 	    TestUtil.validateIdentified(RNAPbindingSC,doc,0);

@@ -26,7 +26,7 @@ public class TopLevelReferenceTest extends TestCase {
        
 	  	Component compWithSeqURI=SBOLAPI.createDnaComponent(doc, "pLacI", "pLacI", "LacI repressible promoter2", Role.Promoter, null);
 	  	compWithSeqURI.addSequence(URI.create("https://sbolstandard.org/sequences/sequence1"));
-	  	TestUtil.validateDocument(doc,0);
+	  	TestUtil.validateDocument(doc,0, null, null);
 	  				
     }
 

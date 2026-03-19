@@ -53,52 +53,52 @@ public class ConstraintTest extends TestCase {
     	Feature tempObject=constraint.getObject();
     	
  
-        TestUtil.validateIdentified(constraint,doc,0);
+        TestUtil.validateIdentifiedAndDocument(constraint,doc,0);
         TestUtil.validateProperty(constraint, "setRestriction", new Object[] {null}, URI.class);
         URI testURI=null;
 		constraint.setRestriction(testURI);
-		TestUtil.validateIdentified(constraint,doc,2);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,2);
 		
 		TestUtil.validateProperty(constraint, "setObject", new Object[] {null}, Feature.class);
 		constraint.setObject(null);
-		TestUtil.validateIdentified(constraint,doc,3);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,3);
 		
 		TestUtil.validateProperty(constraint, "setSubject", new Object[] {null}, Feature.class);
 		constraint.setSubject(null);
-		TestUtil.validateIdentified(constraint,doc,4);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,4);
 		
 		constraint.setRestriction(tempRestriction);
 		constraint.setSubject(tempSubject);
 		constraint.setObject(tempObject);
-		TestUtil.validateIdentified(constraint,doc,0);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,0);
 		
 		//CONSTRAINT_SUBJECT_MUST_REFER_TO_A_FEATURE_OF_THE_PARENT
 		constraint.setSubject(i13504SubComponent);
-		TestUtil.validateIdentified(ilab16_dev1,doc,1,1);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,1,1);
 		constraint.setSubject(tempSubject);
-		TestUtil.validateIdentified(ilab16_dev1,doc,0,0);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0,0);
 		
 		//CONSTRAINT_OBJECT_MUST_REFER_TO_A_FEATURE_OF_THE_PARENT
 		constraint.setObject(i13504SubComponent);
-		TestUtil.validateIdentified(ilab16_dev1,doc,1,1);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,1,1);
 		
 		//In addition to adding an invalid subject URI, the subject and the object uri cannot be the same. Hence the following line will introduce two errors.
 		//CONSTRAINT_OBJECT_AND_SUBJECT_ARE_NOT_EQUAL
 		constraint.setSubject(i13504SubComponent);
-		TestUtil.validateIdentified(ilab16_dev1,doc,3,3);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,3,3);
 		constraint.setSubject(tempSubject);
 		constraint.setObject(tempObject);
-		TestUtil.validateIdentified(ilab16_dev1,doc,0);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0);
 		
 		Resource resource = TestUtil.getResource(constraint);
 		//SBOL_VALID_ENTITY_TYPES - Constraint.subject & object
 		RDFUtil.setProperty(resource, DataModel.Constraint.subject, device.getUri());
-		TestUtil.validateIdentified(constraint,doc,2);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,2);
 		RDFUtil.setProperty(resource, DataModel.Constraint.object, device.getUri());
-		TestUtil.validateIdentified(constraint,doc,4);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,4);
 		constraint.setSubject(tempSubject);
 		constraint.setObject(tempObject);
-		TestUtil.validateIdentified(constraint,doc,0);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,0);
 		
 		
     }

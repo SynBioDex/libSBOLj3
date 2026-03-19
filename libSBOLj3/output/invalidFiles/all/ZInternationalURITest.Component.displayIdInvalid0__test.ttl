@@ -1,0 +1,46 @@
+BASE   <https://synbiohub.org>
+PREFIX :      <https://synbiohub.org>
+PREFIX CHEBI: <https://identifiers.org/CHEBI:>
+PREFIX EDAM:  <https://identifiers.org/edam:>
+PREFIX GO:    <https://identifiers.org/GO:>
+PREFIX SBO:   <https://identifiers.org/SBO:>
+PREFIX SO:    <https://identifiers.org/SO:>
+PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX sbol:  <http://sbols.org/v3#>
+
+</abcö>  a                 sbol:Component;
+        sbol:displayId     "abcö";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</_test>  a                sbol:Component;
+        sbol:displayId     "_test";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ab1_AB123>  a            sbol:Component;
+        sbol:displayId     "ab1_AB123";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</_ab>  a                  sbol:Component;
+        sbol:displayId     "_ab";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</1abb>  a                 sbol:Component;
+        sbol:displayId     "1abb";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</abb>  a                  sbol:Component;
+        sbol:displayId     "abb";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
