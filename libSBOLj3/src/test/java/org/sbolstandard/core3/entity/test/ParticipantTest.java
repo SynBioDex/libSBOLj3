@@ -69,12 +69,26 @@ public class ParticipantTest extends TestCase {
 	    TestUtil.validateIdentifiedAndDocument(participation,doc,0, null, null);
 	    
 	    TestUtil.validateProperty(participation, "setRoles", new Object[] {null}, List.class);
-	    TestUtil.validateProperty(participation, "setRoles", new Object[] {new ArrayList<URI>()}, List.class);
 	    
-	    List<URI> tempRoles=participation.getRoles();
-	    participation.setRoles(null);
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2, "sbol3-11804", "Participation.rolesNull");
-		
+	 	TestUtil.validateProperty(participation, "setRoles", new Object[] {new ArrayList<URI>()}, List.class);
+	    
+	     List<URI> tempRoles=participation.getRoles();
+	     participation.setRoles(null);
+	     TestUtil.validateIdentifiedAndDocument(participation,doc,1,2, "sbol3-11804", "Participation.rolesNull");
+/*
+
+--------------------
+Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
+	Property: interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: Interaction
+Document Validation test: Participation.roles cannot be empty.,
+	Property: interactions[0].participations[1].roles,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
+	Entity Type: Participation
+--------------------
+*/
+		 
 	    participation.setRoles(new ArrayList<URI>());
 	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2, "sbol3-11804", "Participation.rolesEmpty");
 	    
@@ -141,19 +155,6 @@ public class ParticipantTest extends TestCase {
 	    URI uri=URI.create("https://synbiohub.org/public/igem/cs1");
 	    System.out.print(URI.create("https://synbiohub.org/public"));
 	    
-	    
-		    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-	    
-		
     }
 
 }

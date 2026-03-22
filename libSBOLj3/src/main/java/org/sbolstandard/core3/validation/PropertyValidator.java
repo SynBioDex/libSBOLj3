@@ -22,9 +22,10 @@ public class PropertyValidator {
 	{	
 		try
 		{
-			ValidatorFactory factory = Validation.byDefaultProvider()
-	 	            .configure()
-	 	            .buildValidatorFactory();
+			jakarta.validation.Configuration<?> config = Validation.byDefaultProvider().configure();
+			ValidatorFactory factory = config
+					.parameterNameProvider(new AnnotationBasedParameterNameProvider(config.getDefaultParameterNameProvider()))
+					.buildValidatorFactory();
 			
 			//propertyValidator.validator = factory.getValidator().forExecutables();	
 			this.setExecutableValidator(factory.getValidator().forExecutables());	
@@ -101,7 +102,8 @@ public class PropertyValidator {
 	{
 		List<String> fragments=new ArrayList<String>();
     	fragments.add(violation.getMessage());
-    	fragments.add(String.format("Property: %s",violation.getPropertyPath().toString()));
+    	fragments.add(String.format("Property: %s",getPropertyPathString(violation)));
+		//fragments.add(String.format("Property: %s",violation.getPropertyPath().toString()));
     	if (violation.getLeafBean()!=null && violation.getLeafBean() instanceof Identified ){
     	    Identified identifiedLeaf= (Identified) violation.getLeafBean();
     	    fragments.add(String.format("Entity URI: %s",identifiedLeaf.getUri().toString()));
@@ -114,6 +116,45 @@ public class PropertyValidator {
     	return message;
 	}
 	
+	private static String getPropertyPathString(ConstraintViolation<?> violation) {
+		Object leafBean = violation.getLeafBean();
+		if (leafBean != null) {
+			for (jakarta.validation.Path.Node node : violation.getPropertyPath()) {
+				if (node.getKind() == jakarta.validation.ElementKind.METHOD) {
+					// Return-value / parameter validation: look up @PropertyName on the method
+					PropertyName ann = findMethodAnnotation(leafBean.getClass(), node.getName());
+					if (ann != null) {
+						return ann.value();
+					}
+				} else if (node.getKind() == jakarta.validation.ElementKind.PROPERTY) {
+					// Getter property constraint: derive getter name and look for @PropertyName
+					String name = node.getName();
+					String getter = "get" + Character.toUpperCase(name.charAt(0)) + name.substring(1);
+					PropertyName ann = findMethodAnnotation(leafBean.getClass(), getter);
+					if (ann != null) {
+						return ann.value();
+					}
+				}
+			}
+		}
+		String path = violation.getPropertyPath().toString();
+		if (path.startsWith("set")) {
+			int dot = path.indexOf('.');
+			return dot >= 0 ? path.substring(dot + 1) : path;
+		}
+		return path;
+		
+	}
+
+	private static PropertyName findMethodAnnotation(Class<?> clazz, String methodName) {
+		for (Method m : clazz.getMethods()) {
+			if (m.getName().equals(methodName)) {
+				return m.getAnnotation(PropertyName.class);
+			}
+		}
+		return null;
+	}
+
 	public static List<String>  getViolotionMessages(Set<ConstraintViolation<Identified>> violations)
 	{
 		List<String> messages=null;

@@ -112,7 +112,7 @@ public class SBOLValidator {
 		return true; 
 	}
 	
-	public static List<String> validateSBOLDocument2(SBOLDocument document)
+	public static List<String> validateSBOLDocumentGMGM(SBOLDocument document)
 	{
 		Validator validator=null; 
 		ValidatorFactory factory = Validation.byDefaultProvider()

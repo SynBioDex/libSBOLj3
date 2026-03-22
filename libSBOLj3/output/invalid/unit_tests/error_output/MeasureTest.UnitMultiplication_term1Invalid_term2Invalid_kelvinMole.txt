@@ -1,9 +1,9 @@
-Identified Validation test: UnitMultiplication.term1 cannot be null.,
-	Property: term1URI,
-	Entity URI: https://sbolstandard.org/examples/kelvinMole,
-	Entity Type: UnitMultiplication
 Identified Validation test: UnitMultiplication.term2 cannot be null.,
 	Property: term2URI,
+	Entity URI: https://sbolstandard.org/examples/kelvinMole,
+	Entity Type: UnitMultiplication
+Identified Validation test: UnitMultiplication.term1 cannot be null.,
+	Property: term1URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
 	Entity Type: UnitMultiplication
 --------------------

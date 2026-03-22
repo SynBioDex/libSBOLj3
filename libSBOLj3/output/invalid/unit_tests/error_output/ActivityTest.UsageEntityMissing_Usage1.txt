@@ -1,9 +1,9 @@
-Document Validation test: Association.agent cannot be null,
-	Property: activities[0].associations[0].agentURI,
-	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Association1,
-	Entity Type: Association
 Document Validation test: Usage.entity cannot be null.,
 	Property: activities[0].usages[0].entityURI,
 	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Usage1,
 	Entity Type: Usage
+Document Validation test: Association.agent cannot be null,
+	Property: activities[0].associations[0].agentURI,
+	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Association1,
+	Entity Type: Association
 --------------------

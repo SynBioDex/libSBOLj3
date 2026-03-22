@@ -1,7 +1,3 @@
-Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
-	Property: subComponents[0].roleIntegration,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
-	Entity Type: SubComponent
 Identified Validation test: sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence. ADDITIONAL INFORMATION: Sequence length:80, Calculated location length:0, Sequence: https://synbiohub.org/public/igem/B0015_Sequence1,
 	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
 	Property: subComponents[0].hasLocation,
@@ -11,4 +7,8 @@ Identified Validation test: Range.end cannot be empty.,
 	Property: subComponents[0].locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range
+Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
+	Property: subComponents[0].roleIntegration,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
 --------------------

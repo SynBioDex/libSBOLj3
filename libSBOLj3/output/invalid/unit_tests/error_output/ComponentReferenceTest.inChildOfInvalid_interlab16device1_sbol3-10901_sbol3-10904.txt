@@ -1,26 +1,26 @@
-Identified Validation test: sbol3-10904 - If the refersTo property of a ComponentReference refers to a Feature of any other type besides ComponentReference, then that Feature MUST be a child of the Component referred to by the instanceOf property of the SubComponent referred to by the inChildOf property of the first ComponentReference.,
-	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
-	Child Entity Type: SubComponent,
-	Property: componentReferences[0].refersTo,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
-	Entity Type: ComponentReference
 Identified Validation test: sbol3-10901 - If a ComponentReference object is a child of a Component, then its inChildOf property MUST be a SubComponent of its parent.,
 	Child Entity URI: https://synbiohub.org/public/igem/simpleDevice/SubComponent1,
 	Child Entity Type: SubComponent,
 	Property: hasFeature[https://synbiohub.org/public/igem/interlab16device1/ComponentReference1].inChildOf,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
 	Entity Type: Component
---------------------
-Document Validation test: sbol3-10901 - If a ComponentReference object is a child of a Component, then its inChildOf property MUST be a SubComponent of its parent.,
-	Child Entity URI: https://synbiohub.org/public/igem/simpleDevice/SubComponent1,
+Identified Validation test: sbol3-10904 - If the refersTo property of a ComponentReference refers to a Feature of any other type besides ComponentReference, then that Feature MUST be a child of the Component referred to by the instanceOf property of the SubComponent referred to by the inChildOf property of the first ComponentReference.,
+	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
 	Child Entity Type: SubComponent,
-	Property: components[1].hasFeature[https://synbiohub.org/public/igem/interlab16device1/ComponentReference1].inChildOf,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
-	Entity Type: Component
+	Property: componentReferences[0].refersTo,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
+	Entity Type: ComponentReference
+--------------------
 Document Validation test: sbol3-10904 - If the refersTo property of a ComponentReference refers to a Feature of any other type besides ComponentReference, then that Feature MUST be a child of the Component referred to by the instanceOf property of the SubComponent referred to by the inChildOf property of the first ComponentReference.,
 	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
 	Child Entity Type: SubComponent,
 	Property: components[1].componentReferences[0].refersTo,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
 	Entity Type: ComponentReference
+Document Validation test: sbol3-10901 - If a ComponentReference object is a child of a Component, then its inChildOf property MUST be a SubComponent of its parent.,
+	Child Entity URI: https://synbiohub.org/public/igem/simpleDevice/SubComponent1,
+	Child Entity Type: SubComponent,
+	Property: components[1].hasFeature[https://synbiohub.org/public/igem/interlab16device1/ComponentReference1].inChildOf,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
+	Entity Type: Component
 --------------------

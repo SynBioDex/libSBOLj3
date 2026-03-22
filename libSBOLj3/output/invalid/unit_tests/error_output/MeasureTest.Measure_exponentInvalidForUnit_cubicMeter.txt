@@ -1,9 +1,9 @@
-Identified Validation test: UnitExponentiation.base cannot be null.,
-	Property: baseURI,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
 Identified Validation test: UnitExponentiation.exponent cannot be empty.,
 	Property: exponent,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
+Identified Validation test: UnitExponentiation.base cannot be null.,
+	Property: baseURI,
 	Entity URI: https://sbolstandard.org/examples/cubicMeter,
 	Entity Type: UnitExponentiation
 --------------------

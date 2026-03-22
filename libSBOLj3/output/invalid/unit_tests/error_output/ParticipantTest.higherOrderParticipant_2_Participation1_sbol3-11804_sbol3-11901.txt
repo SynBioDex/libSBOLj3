@@ -1,13 +1,13 @@
-Document Validation test: sbol3-11901 - A Participation MUST contain precisely one participant or higherOrderParticipant property.,
-	Property: components[2].interactions[0].participations[1].participant,
+Document Validation test: Participation.roles cannot be empty.,
+	Property: roleAA,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
 	Entity Type: Participation
 Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
 	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
 	Entity Type: Interaction
-Document Validation test: Participation.roles cannot be empty.,
-	Property: components[2].interactions[0].participations[1].roles,
+Document Validation test: sbol3-11901 - A Participation MUST contain precisely one participant or higherOrderParticipant property.,
+	Property: components[2].interactions[0].participations[1].participant,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
 	Entity Type: Participation
 --------------------

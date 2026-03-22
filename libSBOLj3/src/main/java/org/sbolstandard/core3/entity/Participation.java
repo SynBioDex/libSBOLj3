@@ -11,7 +11,9 @@ import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.util.SBOLUtil;
+import org.sbolstandard.core3.util.URINameSpace;
 import org.sbolstandard.core3.validation.IdentifiedValidator;
+import org.sbolstandard.core3.validation.PropertyName;
 import org.sbolstandard.core3.validation.PropertyValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.DataModel;
@@ -45,12 +47,13 @@ public class Participation extends Identified{
 		return validationMessages;
 	}
 	
-	@NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}")
+	@NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") 
+	@PropertyName("roleAA")
 	public List<URI> getRoles() {
 		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.role);
 	}
 	
-	public void setRoles(@NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") List<URI> roles) throws SBOLGraphException {
+	public void setRoles(@PropertyName("roleZZ")  @NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") List<URI> roles) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setRoles", new Object[] {roles}, List.class);
 		RDFUtil.setProperty(resource, DataModel.role, roles);
 	}

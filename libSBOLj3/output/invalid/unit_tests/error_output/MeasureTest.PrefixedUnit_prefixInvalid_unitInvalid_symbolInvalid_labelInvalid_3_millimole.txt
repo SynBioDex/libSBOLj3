@@ -1,7 +1,8 @@
-Identified Validation test: PrefixedUnit.unit cannot be null.,
-	Property: unitURI,
+Identified Validation test: Unit.symbol cannot be empty.,
+	Property: symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
+	Entity Type: PrefixedUnit,
+	Value: 
 Identified Validation test: PrefixedUnit.prefix cannot be null.,
 	Property: prefix,
 	Entity URI: https://sbolstandard.org/examples/millimole,
@@ -11,12 +12,20 @@ Identified Validation test: Unit.label cannot be empty.,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit,
 	Value: 
-Identified Validation test: Unit.symbol cannot be empty.,
-	Property: symbol,
+Identified Validation test: PrefixedUnit.unit cannot be null.,
+	Property: unitURI,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+--------------------
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit,
 	Value: 
---------------------
 Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
@@ -26,13 +35,4 @@ Document Validation test: Unit.symbol cannot be empty.,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit,
 	Value: 
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit,
-	Value: 
-Document Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefixedUnits[0].prefix,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 --------------------
