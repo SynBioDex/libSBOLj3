@@ -1,10 +1,10 @@
 Identified Validation test: Component.types cannot be empty.,
 	Property: types,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
 --------------------
 Document Validation test: Component.types cannot be empty.,
 	Property: components[1].types,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
 --------------------

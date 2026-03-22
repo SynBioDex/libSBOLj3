@@ -1,7 +1,7 @@
 Identified Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
 	Child Entity URI: https://synbiohub.org/public/igem/TetR,
-	Child Entity Type: class org.sbolstandard.core3.entity.Component,
+	Child Entity Type: Component,
 	Property: hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR_binding],
 	Entity URI: https://synbiohub.org/public/igem/TetR_binding,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
 --------------------

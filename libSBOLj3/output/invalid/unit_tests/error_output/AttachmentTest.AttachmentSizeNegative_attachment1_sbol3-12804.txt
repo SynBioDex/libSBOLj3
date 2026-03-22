@@ -1,12 +1,12 @@
 Identified Validation test: sbol3-12804 The size property, if specified, MUST indicate file size in bytes.,
 	Property: size,
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment,
+	Entity Type: Attachment,
 	Value: -1
 --------------------
 Document Validation test: sbol3-12804 The size property, if specified, MUST indicate file size in bytes.,
 	Property: attachments[1].size,
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment,
+	Entity Type: Attachment,
 	Value: -1
 --------------------

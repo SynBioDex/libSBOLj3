@@ -24,7 +24,7 @@ Then include it as a Maven dependency in your project's POM file.
    <dependency>
       <groupId>org.sbolstandard</groupId>
       <artifactId>libSBOLj3</artifactId>
-      <version>1.0.5</version>
+      <version>1.0.5.3</version>
    </dependency>
    ...
 </dependencies>
@@ -43,7 +43,7 @@ Use this option if you are developing a Java application using [Maven](https://m
    <dependency>
     		<groupId>org.sbolstandard</groupId>
    		<artifactId>libsbolj3</artifactId>
-    		<version>1.0.5</version>
+    		<version>1.0.5.3</version>
    </dependency>
    ...
 </dependencies>
@@ -196,3 +196,132 @@ WHERE {
             sbol:type SBO:0000251 .
 }
 ```
+
+
+## Error reporting
+
+The libSBOLj3 validation framework reports errors at entity or document level. Each error message has the following structure:
+
+```
+<Level> Validation test: <Message>,
+   Value: <OPTIONAL - Set for offending literal value or values. Not included if the violation is due to a child entity>,
+   Child Entity IRI: <OPTIONAL, the child entity's IRI. if the violation is due a child entity, in which case the Value property is not included.>,
+   Child Entity Type: <OPTIONAL, SBOL entity type. Included if the Child Entity IRI is included.>
+   Property: <REQUIRED - property path. The full path between the invalid top-level entity and the value (or the child entity) causing the violation.>,
+   Entity URI: <REQUIRED - URI of the entity with the error>,
+   Entity Type: <REQUIRED -  SBOL entity type>
+```
+
+where
+
+* Level : ```Identified``` or ```Document```
+
+* Message: Free text message. It starts with the SBOL validation code, if applicable
+
+* Property path: Can be a property URI value or a path between start and end values or nodes. 
+      
+   * VALUE: A string property
+      * E.g.: instanceOf
+   * A_TOP_LEVEL_LIST[INDEX_OR_IRI].1ST_LEVEL_CHILD_LIST[INDEX_1_OR_IRI_1]...NTH_LEVEL_CHILD_LIST[INDEX_N_OR_IRI_N].VALUE: Each INDEX can be a numeric index value or a IRI
+      * E.g.: components[0].subComponents[0].instanceOfURI
+      * E.g.: components[3].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR_binding]
+
+
+
+### Example error messages
+
+**[Level: Identified] Missing properties** 
+The example below is the result validating a SubComponent entity. The entity includes two validation errors which are reported as below. While the first error is directly related to the entity, the second entity is due to a Location child entity of the SubComponent entity.
+```
+Identified Validation test: SubComponent.isInstanceOf cannot be null.,
+	Property: instanceOfURI,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
+Identified Validation test: Range.end cannot be empty.,
+	Property: locations[0].end,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
+	Entity Type: Range
+```
+
+
+**[Level: Document] Missing required property (`Range.end`), reported at document level**
+The example below shows when the SBOLDocument including the SubComponent from the above example is validated. The property path now shows the link between the top-level parent Component entity and the child SubComponent entity's instanceOf property.
+   ```components[0].subComponents[0].instanceOfURI```
+
+Similarly, the property path for the second error now shows the link between the top-level parent Component entity and the child SubComponent entity's location entity's end property:
+   ```components[0].subComponents[0].locations[0].end```
+
+```
+Document Validation test: SubComponent.isInstanceOf cannot be null.,
+	Property: components[0].subComponents[0].instanceOfURI,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
+Document Validation test: Range.end cannot be empty.,
+	Property: components[0].subComponents[0].locations[0].end,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
+	Entity Type: Range
+```
+**Rule violation with error code (`sbol3-10802`)**
+```
+Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
+	Property: roleIntegration,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
+```
+
+**Reporting invalid values or invalid child entities**
+```
+Document Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
+	Value: https://synbiohub.org/public/igem/TetR,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf,
+	Entity URI: https://synbiohub.org/public/igem/TetR,
+	Entity Type: Component
+```
+
+Please note that values can be a set as shown below. The attachment has two further attachments, which have different entity types and hence are not valid.
+```
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/BBa_R0040, https://sbolstandard.org/examples/pLacI],
+	Property: attachments[0].hasAttachment,
+	Entity URI: https://sbolstandard.org/examples/attachment1,
+	Entity Type: Attachment
+```
+
+The following is also possible. The last property has a IRI key pointing to the invalid child entity which also has the same IRI.
+```
+	Child Entity URI: https://synbiohub.org/public/igem/i13504,
+	Child Entity Type: Component,
+	Property: hasFeature[https://synbiohub.org/public/igem/i13504/SubComponent1].instanceOf[https://synbiohub.org/public/igem/i13504],
+	Entity URI: https://synbiohub.org/public/igem/i13504,
+	Entity Type: Component
+```
+
+In the following example, the last property does not have a IRI key but the error message reports the child entity.
+```
+Document Validation test: sbol3-10901 - If a ComponentReference object is a child of a Component, then its inChildOf property MUST be a SubComponent of its parent.,
+	Child Entity URI: https://synbiohub.org/public/igem/simpleDevice/SubComponent1,
+	Child Entity Type: SubComponent,
+	Property: components[1].hasFeature[https://synbiohub.org/public/igem/interlab16device1/ComponentReference1].inChildOf,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
+	Entity Type: Component
+```
+
+**Reporting invalid values involving multiple nodes and edges**
+In the following example, the there are more nodes and edges involved. Component --> Interaction --> Participation --> invalidValue
+```
+Document Validation test: sbol3-11903 - The Interaction referenced by the higherOrderParticipant property of a Participation MUST be contained by the Component that contains the Interaction that contains the Participation. ,
+	Value: http://someinvalidhigherorderparticipant.org,
+	Property: components[2].hasInteraction[https://sbolstandard.org/examples/i13504_system/Interaction2].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction2/Participation1].higherOrderParticipant,
+	Entity URI: https://sbolstandard.org/examples/i13504_system,
+	Entity Type: Component
+```
+
+```
+Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
+	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: Interaction
+```
+
+
+All validation errors produced during a test run are in `output/invalid/unit_tests/error_output_all.txt`. Individual per-entity error files are written to `output/invalid/unit_tests/error_output/`. Invalid SBOL files that triggered errors are stored under `output/invalid/unit_tests/invalid_files/` and are also organised by error codes under `output/invalid/unit_tests/error_codes/`.

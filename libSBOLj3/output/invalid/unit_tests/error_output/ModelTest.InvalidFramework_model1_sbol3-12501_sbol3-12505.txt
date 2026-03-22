@@ -1,18 +1,18 @@
 Identified Validation test: sbol3-12505 - The URI contained by the framework property of a Model MUST specify the modeling framework of the model.,
 	Property: framework,
 	Entity URI: https://sbolstandard.org/examples/model1,
-	Entity Type: class org.sbolstandard.core3.entity.Model
+	Entity Type: Model
 Identified Validation test: sbol3-12501 - The URI contained by the source property of a Model MUST specify the location of the model's source file.,
 	Property: source,
 	Entity URI: https://sbolstandard.org/examples/model1,
-	Entity Type: class org.sbolstandard.core3.entity.Model
+	Entity Type: Model
 --------------------
-Document Validation test: sbol3-12505 - The URI contained by the framework property of a Model MUST specify the modeling framework of the model.,
-	Property: models[0].framework,
-	Entity URI: https://sbolstandard.org/examples/model1,
-	Entity Type: class org.sbolstandard.core3.entity.Model
 Document Validation test: sbol3-12501 - The URI contained by the source property of a Model MUST specify the location of the model's source file.,
 	Property: models[0].source,
 	Entity URI: https://sbolstandard.org/examples/model1,
-	Entity Type: class org.sbolstandard.core3.entity.Model
+	Entity Type: Model
+Document Validation test: sbol3-12505 - The URI contained by the framework property of a Model MUST specify the modeling framework of the model.,
+	Property: models[0].framework,
+	Entity URI: https://sbolstandard.org/examples/model1,
+	Entity Type: Model
 --------------------

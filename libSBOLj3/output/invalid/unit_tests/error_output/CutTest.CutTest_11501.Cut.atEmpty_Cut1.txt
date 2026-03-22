@@ -1,10 +1,10 @@
 Identified Validation test: Cut.at cannot be null.,
 	Property: at,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1/Cut1,
-	Entity Type: class org.sbolstandard.core3.entity.Cut
+	Entity Type: Cut
 --------------------
 Document Validation test: Cut.at cannot be null.,
 	Property: components[0].sequenceFeatures[0].locations[0].at,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1/Cut1,
-	Entity Type: class org.sbolstandard.core3.entity.Cut
+	Entity Type: Cut
 --------------------

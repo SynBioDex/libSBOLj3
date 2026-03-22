@@ -2,10 +2,10 @@ Document Validation test: sbol3-10106 - An object MUST NOT have rdfType properti
 	Value: [http://sbols.org/v3#Sequence, http://sbols.org/v3#Attachment],
 	Property: sequences[0].http://www.w3.org/1999/02/22-rdf-syntax-ns#type[https://sbolstandard.org/examples/attachment1],
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Sequence
+	Entity Type: Sequence
 Document Validation test: sbol3-10106 - An object MUST NOT have rdfType properties in the "http://sbols.org/v3#" namespace that refer to disjoint classes.,
 	Value: [http://sbols.org/v3#Sequence, http://sbols.org/v3#Attachment],
 	Property: attachments[0].http://www.w3.org/1999/02/22-rdf-syntax-ns#type[https://sbolstandard.org/examples/attachment1],
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------

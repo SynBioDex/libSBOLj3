@@ -1,18 +1,18 @@
 Identified Validation test: sbol3-11803 - Exactly one type property of an Interaction SHOULD refer to a term from the occurring entity relationship branch of the SBO.,
 	Property: type,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: class org.sbolstandard.core3.entity.Interaction
+	Entity Type: Interaction
 Identified Validation test: Interaction.types cannot be empty.,
 	Property: types,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: class org.sbolstandard.core3.entity.Interaction
+	Entity Type: Interaction
 --------------------
-Document Validation test: Interaction.types cannot be empty.,
-	Property: components[0].interactions[0].types,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: class org.sbolstandard.core3.entity.Interaction
 Document Validation test: sbol3-11803 - Exactly one type property of an Interaction SHOULD refer to a term from the occurring entity relationship branch of the SBO.,
 	Property: components[0].interactions[0].type,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: class org.sbolstandard.core3.entity.Interaction
+	Entity Type: Interaction
+Document Validation test: Interaction.types cannot be empty.,
+	Property: components[0].interactions[0].types,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: Interaction
 --------------------

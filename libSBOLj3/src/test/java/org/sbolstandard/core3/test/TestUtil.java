@@ -27,6 +27,7 @@ import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.PropertyValidator;
 import org.sbolstandard.core3.validation.SBOLComparator;
 import org.sbolstandard.core3.validation.SBOLValidator;
+import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.ComponentType;
 
 import static org.junit.Assert.*;
@@ -40,6 +41,7 @@ public class TestUtil {
 		try {
 			File unitTestsDir = Paths.get("output", "invalid", "unit_tests").toFile();
 			if (unitTestsDir.exists()) {
+				// Delete all subdirectories
 				File[] subDirs = unitTestsDir.listFiles(File::isDirectory);
 				if (subDirs != null) {
 					for (File subDir : subDirs) {
@@ -48,9 +50,16 @@ public class TestUtil {
 							.forEach(p -> p.toFile().delete());
 					}
 				}
+				// Delete all files directly in unit_tests/ (e.g. error_output_all.txt)
+				File[] files = unitTestsDir.listFiles(File::isFile);
+				if (files != null) {
+					for (File file : files) {
+						file.delete();
+					}
+				}
 			}
 		} catch (IOException e) {
-			System.err.println("Could not delete output/invalid/unit_tests subfolders: " + e.getMessage());
+			System.err.println("Could not delete output/invalid/unit_tests contents: " + e.getMessage());
 		}
 	}
 
@@ -882,9 +891,9 @@ public class TestUtil {
 			{
 				throw new IOException("Could not find the calling test class name in the stack trace. Stack trace:" + Arrays.toString(Thread.currentThread().getStackTrace()));
 			}
-			
-			File file = Paths.get("output", "invalid", "unit_tests", "invalid_files", callingTestClass + "." + fileName +  ".ttl").toFile();
-			File fileErrorOutput = Paths.get("output", "invalid", "unit_tests", "error_output", callingTestClass + "." + fileName +  ".txt").toFile();
+			fileName=callingTestClass + "." + fileName;
+			File file = Paths.get("output", "invalid", "unit_tests", "invalid_files", fileName +  ".ttl").toFile();
+			File fileErrorOutput = Paths.get("output", "invalid", "unit_tests", "error_output", fileName +  ".txt").toFile();
 			File fileErrorOutputAll = Paths.get("output", "invalid", "unit_tests", "error_output_all.txt").toFile();
 						
 			assertTrue("File name starts with the calling test class name: " + callingTestClass,
@@ -900,7 +909,8 @@ public class TestUtil {
 			Files.write(fileErrorOutput.toPath(), output.getBytes());
 
 			fileErrorOutputAll.getParentFile().mkdirs();
-			Files.write(fileErrorOutputAll.toPath(), output.getBytes(), java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
+			String message= "**********>>" + System.lineSeparator() + "Test:" + fileName + System.lineSeparator() + output  + "<<**********" + System.lineSeparator() + System.lineSeparator();
+			Files.write(fileErrorOutputAll.toPath(), message.getBytes(), java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
 
 			if (errorCodes!=null && errorCodes.length()>0){
 				List<String> errorCodeList=Arrays.asList(errorCodes.split(","));	
@@ -1054,6 +1064,25 @@ public class TestUtil {
 		return resource;
 	}
 	
+	public static void printErrorPath(ValidationMessage message) {
+		System.out.println(buildErrorPath(message));
+	}
+
+	private static String buildErrorPath(ValidationMessage message) {
+		if (message == null) {
+			return "";
+		}
+		StringBuilder path = new StringBuilder();
+		path.append(SBOLUtil.toQualifiedString(message.getProperty()));
+		if (message.getChildEntity() != null) {
+			path.append("[").append(message.getChildEntity().getUri()).append("]");
+			if (message.getChildMessage() != null) {
+				path.append(".").append(buildErrorPath(message.getChildMessage()));
+			}
+		}
+		return path.toString();
+	}
+
 	public static <T extends Identified, T2 extends Identified> void testValidEntity(SBOLDocument doc, Identified identified, List<T2> validChildIdentifieds, List<T> invalidChildIdentifieds, URI property) throws SBOLGraphException, Exception
 	{
 		Resource resource = TestUtil.getResource(identified);

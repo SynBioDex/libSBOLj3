@@ -1,10 +1,10 @@
 Identified Validation test: Measure.value cannot be null.,
 	Property: value,
 	Entity URI: https://sbolstandard.org/examples/M9_Glucose_CAA/ExternallyDefined1/measure1,
-	Entity Type: class org.sbolstandard.core3.entity.Identified$1
+	Entity Type: 
 --------------------
 Document Validation test: Measure.value cannot be null.,
 	Property: components[0].externallyDefineds[0].measures[0].value,
 	Entity URI: https://sbolstandard.org/examples/M9_Glucose_CAA/ExternallyDefined1/measure1,
-	Entity Type: class org.sbolstandard.core3.entity.measure.Measure
+	Entity Type: Measure
 --------------------

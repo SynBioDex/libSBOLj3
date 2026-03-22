@@ -1,13 +1,13 @@
 Document Validation test: ExternallyDefined.definition cannot be null.,
+	Property: components[0].externallyDefineds[0].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
+	Entity Type: ExternallyDefined
+Document Validation test: ExternallyDefined.definition cannot be null.,
 	Property: components[0].externallyDefineds[1].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: class org.sbolstandard.core3.entity.ExternallyDefined
+	Entity Type: ExternallyDefined
 Document Validation test: ExternallyDefined.type cannot be empty.,
 	Property: components[0].externallyDefineds[1].types,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: class org.sbolstandard.core3.entity.ExternallyDefined
-Document Validation test: ExternallyDefined.definition cannot be null.,
-	Property: components[0].externallyDefineds[0].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
-	Entity Type: class org.sbolstandard.core3.entity.ExternallyDefined
+	Entity Type: ExternallyDefined
 --------------------

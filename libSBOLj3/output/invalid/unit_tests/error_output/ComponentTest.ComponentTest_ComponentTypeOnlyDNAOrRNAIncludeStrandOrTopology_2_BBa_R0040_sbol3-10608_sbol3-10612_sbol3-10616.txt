@@ -1,32 +1,32 @@
-Identified Validation test: sbol3-10616  If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
-	Value: Protein,
-	Property: type,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
-Identified Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
-	Value: [https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252, https://identifiers.org/SO:0000988],
-	Property: type,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
 Identified Validation test: sbol3-10612 - A role property of a Component SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
 	Value: https://identifiers.org/SO:0000167,
 	Property: role,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
---------------------
-Document Validation test: sbol3-10616  If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
+	Entity Type: Component
+Identified Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
 	Value: Protein,
-	Property: components[1].type,
+	Property: type,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
+Identified Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
+	Value: [https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252, https://identifiers.org/SO:0000988],
+	Property: type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: Component
+--------------------
 Document Validation test: sbol3-10612 - A role property of a Component SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
 	Value: https://identifiers.org/SO:0000167,
 	Property: components[1].role,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
+Document Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
+	Value: Protein,
+	Property: components[1].type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: Component
 Document Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
 	Value: [https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252, https://identifiers.org/SO:0000988],
 	Property: components[1].type,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
 --------------------

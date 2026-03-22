@@ -15,6 +15,7 @@ import org.sbolstandard.core3.test.TestUtil;
 import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
+import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.*;
 
 import junit.framework.TestCase;
@@ -114,8 +115,19 @@ public class ParticipantTest extends TestCase {
 	    
 	    //PARTICIPANT_HIGHERORDERPARTICIPANT_MUST_REFER_TO_AN_INTERACTION_OF_THE_PARENT
 	    participation2.setHigherOrderParticipant(URI.create("http://someinvalidhigherorderparticipant.org"));
-	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 1, "sbol3-11903", "higherOrderParticipantInvalid");
-		    
+	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 1,"sbol3-11903", "higherOrderParticipantInvalid");
+	    List<ValidationMessage> messages = doc.getValidationMessages();			    
+		if (messages != null) {
+			for (ValidationMessage msg : messages) {
+				TestUtil.printErrorPath(msg);
+			}
+		}
+
+	    participation2.setHigherOrderParticipant(interaction2.getUri());
+	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 0, null, null);
+		//TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 1, "sbol3-11903", "higherOrderParticipantInvalid");
+		
+
 	    /*
 	    URI uri=URI.create("https://www.abc.org");
 	    URI uri2=URI.create("https://www.abc.org:443");

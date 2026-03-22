@@ -2,10 +2,10 @@ Document Validation test: sbol3-11008 - A LocalSubComponent SHOULD NOT have a ty
 	Value: [https://identifiers.org/SO:0000988, https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252],
 	Property: components[0].localSubComponents[0].type,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
-	Entity Type: class org.sbolstandard.core3.entity.LocalSubComponent
+	Entity Type: LocalSubComponent
 Document Validation test: sbol3-11011 - A role property of a LocalSubComponent SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
 	Value: https://identifiers.org/SO:0000316,
 	Property: components[0].localSubComponents[0].role,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
-	Entity Type: class org.sbolstandard.core3.entity.LocalSubComponent
+	Entity Type: LocalSubComponent
 --------------------

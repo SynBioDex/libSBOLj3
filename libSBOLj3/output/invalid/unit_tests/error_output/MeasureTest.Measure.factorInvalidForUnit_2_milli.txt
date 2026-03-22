@@ -1,5 +1,5 @@
 Identified Validation test: Prefix.factor cannot be null.,
 	Property: factor,
 	Entity URI: https://sbolstandard.org/examples/milli,
-	Entity Type: class org.sbolstandard.core3.entity.measure.SIPrefix
+	Entity Type: SIPrefix
 --------------------

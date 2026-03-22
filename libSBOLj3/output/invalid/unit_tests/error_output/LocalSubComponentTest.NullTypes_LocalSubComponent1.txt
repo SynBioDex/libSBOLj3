@@ -1,10 +1,10 @@
 Identified Validation test: LocalSubComponent.types cannot be empty.,
 	Property: types,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
-	Entity Type: class org.sbolstandard.core3.entity.LocalSubComponent
+	Entity Type: LocalSubComponent
 --------------------
 Document Validation test: LocalSubComponent.types cannot be empty.,
 	Property: components[0].localSubComponents[0].types,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
-	Entity Type: class org.sbolstandard.core3.entity.LocalSubComponent
+	Entity Type: LocalSubComponent
 --------------------

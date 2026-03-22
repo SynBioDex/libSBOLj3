@@ -1,10 +1,10 @@
 Identified Validation test: TopLevel.namespace cannot be null.,
 	Property: namespace,
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------
 Document Validation test: TopLevel.namespace cannot be null.,
 	Property: attachments[0].namespace,
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------

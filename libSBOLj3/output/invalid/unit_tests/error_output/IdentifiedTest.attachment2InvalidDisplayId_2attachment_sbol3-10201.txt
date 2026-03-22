@@ -1,10 +1,10 @@
 Identified Validation test: sbol3-10201 - The displayId property, if specified, MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.,
 	Property: displayId,
 	Entity URI: https://sbolstandard.org/examples/2attachment,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------
 Document Validation test: sbol3-10201 - The displayId property, if specified, MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.,
 	Property: attachments[1].displayId,
 	Entity URI: https://sbolstandard.org/examples/2attachment,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------

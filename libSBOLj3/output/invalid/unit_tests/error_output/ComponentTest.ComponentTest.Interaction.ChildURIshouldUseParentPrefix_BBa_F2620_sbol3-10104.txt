@@ -1,14 +1,14 @@
 Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: class org.sbolstandard.core3.entity.Interaction,
+	Child Entity Type: Interaction,
 	Property: Identified[https://synbiohub.org/public/igem/protein_production],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
 --------------------
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: class org.sbolstandard.core3.entity.Interaction,
+	Child Entity Type: Interaction,
 	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: class org.sbolstandard.core3.entity.Component
+	Entity Type: Component
 --------------------

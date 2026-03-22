@@ -1,18 +1,18 @@
 Identified Validation test: UnitMultiplication.term1 cannot be null.,
 	Property: term1URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
-	Entity Type: class org.sbolstandard.core3.entity.measure.UnitMultiplication
+	Entity Type: UnitMultiplication
 Identified Validation test: UnitMultiplication.term2 cannot be null.,
 	Property: term2URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
-	Entity Type: class org.sbolstandard.core3.entity.measure.UnitMultiplication
+	Entity Type: UnitMultiplication
 --------------------
 Document Validation test: UnitMultiplication.term2 cannot be null.,
 	Property: unitMultiplications[0].term2URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
-	Entity Type: class org.sbolstandard.core3.entity.measure.UnitMultiplication
+	Entity Type: UnitMultiplication
 Document Validation test: UnitMultiplication.term1 cannot be null.,
 	Property: unitMultiplications[0].term1URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
-	Entity Type: class org.sbolstandard.core3.entity.measure.UnitMultiplication
+	Entity Type: UnitMultiplication
 --------------------

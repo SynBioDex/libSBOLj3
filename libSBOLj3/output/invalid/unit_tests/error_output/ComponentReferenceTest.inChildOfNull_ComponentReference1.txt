@@ -1,10 +1,10 @@
 Identified Validation test: ComponentReference.inChildOf cannot be null.,
 	Property: inChildOf,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
-	Entity Type: class org.sbolstandard.core3.entity.ComponentReference
+	Entity Type: ComponentReference
 --------------------
 Document Validation test: ComponentReference.inChildOf cannot be null.,
 	Property: components[1].componentReferences[0].inChildOf,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
-	Entity Type: class org.sbolstandard.core3.entity.ComponentReference
+	Entity Type: ComponentReference
 --------------------

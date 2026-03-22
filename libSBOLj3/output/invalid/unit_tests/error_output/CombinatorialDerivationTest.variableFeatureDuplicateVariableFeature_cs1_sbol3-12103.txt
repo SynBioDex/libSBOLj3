@@ -1,14 +1,14 @@
 Identified Validation test: sbol3-12103 - A CombinatorialDerivation MUST NOT contain two or more hasVariableFeature properties that refer to VariableFeature objects with a variable property that contain the same URI.,
 	Child Entity URI: https://synbiohub.org/public/igem/BBa_R0040/SubComponent1,
-	Child Entity Type: class org.sbolstandard.core3.entity.SubComponent,
+	Child Entity Type: SubComponent,
 	Property: hasVariableFeature[https://synbiohub.org/public/igem/cs1/VariableFeature1].variable,
 	Entity URI: https://synbiohub.org/public/igem/cs1,
-	Entity Type: class org.sbolstandard.core3.entity.CombinatorialDerivation
+	Entity Type: CombinatorialDerivation
 --------------------
 Document Validation test: sbol3-12103 - A CombinatorialDerivation MUST NOT contain two or more hasVariableFeature properties that refer to VariableFeature objects with a variable property that contain the same URI.,
 	Child Entity URI: https://synbiohub.org/public/igem/BBa_R0040/SubComponent1,
-	Child Entity Type: class org.sbolstandard.core3.entity.SubComponent,
+	Child Entity Type: SubComponent,
 	Property: combinatorialDerivations[0].hasVariableFeature[https://synbiohub.org/public/igem/cs1/VariableFeature1].variable,
 	Entity URI: https://synbiohub.org/public/igem/cs1,
-	Entity Type: class org.sbolstandard.core3.entity.CombinatorialDerivation
+	Entity Type: CombinatorialDerivation
 --------------------

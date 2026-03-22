@@ -2,11 +2,11 @@ Identified Validation test: sbol3-10102 - A TopLevel URL MUST use the following 
 	Value: https://sbolstandard.org/examples/,
 	Property: hasNamespace,
 	Entity URI: https://sbolstandard.org/examples/attachment2,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------
 Document Validation test: sbol3-10102 - A TopLevel URL MUST use the following pattern: [namespace]/[local]/[displayId], where namespace and displayId are required fragments, and the local fragment is an optional relative path.,
 	Value: https://sbolstandard.org/examples/,
 	Property: attachments[1].hasNamespace,
 	Entity URI: https://sbolstandard.org/examples/attachment2,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------

@@ -1,10 +1,10 @@
 Identified Validation test: sbol3-10202 - An Identified object MUST NOT refer to itself via its own prov:wasDerivedFrom property.,
 	Property: wasDerivedFrom,
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------
 Document Validation test: sbol3-10202 - An Identified object MUST NOT refer to itself via its own prov:wasDerivedFrom property.,
 	Property: attachments[0].wasDerivedFrom,
 	Entity URI: https://sbolstandard.org/examples/attachment1,
-	Entity Type: class org.sbolstandard.core3.entity.Attachment
+	Entity Type: Attachment
 --------------------

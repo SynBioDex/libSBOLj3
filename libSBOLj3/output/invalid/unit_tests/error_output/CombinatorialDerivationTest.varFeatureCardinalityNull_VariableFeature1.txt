@@ -1,10 +1,10 @@
 Identified Validation test: VariableFeature.cardinality cannot be null.,
 	Property: cardinality,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature1,
-	Entity Type: class org.sbolstandard.core3.entity.VariableFeature
+	Entity Type: VariableFeature
 --------------------
 Document Validation test: VariableFeature.cardinality cannot be null.,
 	Property: combinatorialDerivations[0].variableFeatures[0].cardinality,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature1,
-	Entity Type: class org.sbolstandard.core3.entity.VariableFeature
+	Entity Type: VariableFeature
 --------------------
