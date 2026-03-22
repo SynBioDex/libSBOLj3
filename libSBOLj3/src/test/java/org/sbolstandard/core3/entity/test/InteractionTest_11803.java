@@ -32,11 +32,11 @@ public class InteractionTest_11803 extends TestCase {
         
         //Invalid: no valid type
         interaction.setTypes(Arrays.asList(URINameSpace.SBO.local("00006444"), URINameSpace.SBO.local("0000004")));
-        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11803", "InteractionTest_11803.Interaction.interaction.invalidType");
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11803", "interaction_invalidType");
         
         //Invalid: Two valid types.
         interaction.setTypes(Arrays.asList(InteractionType.GeneticProduction.getUri(),InteractionType.Degradation.getUri()));
-        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11803", "InteractionTest_11803.Interaction.interaction.invalidType2"); 
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11803", "interaction_invalidType2"); 
     }
 	
 }

@@ -30,7 +30,7 @@ public class SubComponentTest_10805 extends TestCase {
 		feature.setOrientation(Orientation.inline);
 		
 		
-		TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+		TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 
 	    feature.createCut(3, seq);
 	    feature.createRange(6, 10, seq);
@@ -39,15 +39,15 @@ public class SubComponentTest_10805 extends TestCase {
 	    feature.createCut(13, seq);
 	    feature.createRange(20, 30, seq);
 	    feature.createRange(40, 60, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 	 
 	    //Overlapping range (10805) and the sequence range sum do not match the sequence length (100807):
 	    feature.createRange(60, 61, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,2);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,2, "sbol3-10805,sbol3-10807", "OverlappingRange");
 	   
 	    feature.createRange(16, 20, seq);
 	    feature.createRange(7, 8, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,4); 
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,4, "sbol3-10805,sbol3-10807", "OverlappingRange_2"); 
 	    
     }
 

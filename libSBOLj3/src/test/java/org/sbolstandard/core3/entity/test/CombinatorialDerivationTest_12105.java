@@ -32,10 +32,10 @@ public class CombinatorialDerivationTest_12105 extends TestCase {
 	    TestUtil.validateDocument(doc, 0, null, null);
 		   
 	    pTetR2.setWasDerivedFrom(Arrays.asList(cd.getUri()));
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "CombinatorialDerivationTest_12105_pTetR2WasDerivedFromCD");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "pTetR2WasDerivedFromCD");
 	    
 	    sc_start2.setWasDerivedFrom(Arrays.asList(pTetR.getUri()));
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "CombinatorialDerivationTest_12105_sc_start2WasDerivedFromPTetR");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "sc_start2WasDerivedFromPTetR");
 	    
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	    TestUtil.validateDocument(doc, 0, null, null);

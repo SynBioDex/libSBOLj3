@@ -23,7 +23,7 @@ public class ComponentTest_SO_SequenceFeature_10613 extends TestCase {
 		
 		 Component rbs=doc.createComponent("rbs", Arrays.asList(ComponentType.DNA.getUri()));
 		 //No role
-		 TestUtil.validateDocument(doc,1, "sbol3-10613", "ComponentTest_SO_SequenceFeature_10613_rbsNoRole");
+		 TestUtil.validateDocument(doc,1, "sbol3-10613", "SO_SequenceFeature_10613_rbsNoRole");
 		 
 		 //Assign one valid URI
 		 rbs.setRoles(Arrays.asList(Role.RBS));//biological_region
@@ -31,18 +31,18 @@ public class ComponentTest_SO_SequenceFeature_10613 extends TestCase {
 		 
 		 //Assign two valid URIs:
 		 rbs.setRoles(Arrays.asList(Role.RBS,URINameSpace.SO.local("0001411")));//biological_region
-		 TestUtil.validateDocument(doc,1, "sbol3-10613", "ComponentTest_SO_SequenceFeature_10613_rbsTwoRoles");
+		 TestUtil.validateDocument(doc,1, "sbol3-10613", "SO_SequenceFeature_10613_rbsTwoRoles");
 		 
 		 //Assign three valid SO URIs.
 		 rbs.setRoles(Arrays.asList(Role.RBS,URINameSpace.SO.local("0001411"), URINameSpace.SO.local("0000842")));//biological_region and gene_component_region
-		 TestUtil.validateDocument(doc,1, "sbol3-10613", "ComponentTest_SO_SequenceFeature_10613_rbsThreeRoles");
+		 TestUtil.validateDocument(doc,1, "sbol3-10613", "SO_SequenceFeature_10613_rbsThreeRoles");
 		 
 		 //Assign an invalid URI
 		 rbs.setRoles(Arrays.asList(URINameSpace.SO.local("0000738")));//nuclear_sequence 
-		 TestUtil.validateDocument(doc,1, "sbol3-10613", "ComponentTest_SO_SequenceFeature_10613_rbsInvalidRole");
+		 TestUtil.validateDocument(doc,1, "sbol3-10613", "SO_SequenceFeature_10613_rbsInvalidRole");
 		 
 		 //Assign two invalid URIs
 		 rbs.setRoles(Arrays.asList(URINameSpace.SO.local("0000738"), URINameSpace.SO.local("0000736")));//nuclear_sequence 
-		 TestUtil.validateDocument(doc,1, "sbol3-10613", "ComponentTest_SO_SequenceFeature_10613_rbsTwoInvalidRoles");    
+		 TestUtil.validateDocument(doc,1, "sbol3-10613", "SO_SequenceFeature_10613_rbsTwoInvalidRoles");    
     }
 }

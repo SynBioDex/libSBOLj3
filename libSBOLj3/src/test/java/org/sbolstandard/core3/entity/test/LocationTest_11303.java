@@ -45,11 +45,11 @@ public class LocationTest_11303 extends TestCase {
 		
 		//Range term1Frag=termSubComponent.createSourceRange(2, 7, term.getSequences().get(0));
 		//Range term1Annotation=termSubComponent.createRange(1, 5, device.getSequences().get(0));
-		TestUtil.validateIdentifiedAndDocument(device, doc, 1, "sbol3-11303", "LocationTest_11303_1");
+		TestUtil.validateIdentifiedAndDocument(device, doc, 1, "sbol3-11303", "Invalid_1");
 		term1Frag.setSequence(term.getSequences().get(0));
 		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		Range term1Annotation=termSubComponent.createRange(1, 5, device.getSequences().get(0));
-		TestUtil.validateIdentifiedAndDocument(device, doc, 1, "sbol3-10806", "LocationTest_11303_2");
+		TestUtil.validateIdentifiedAndDocument(device, doc, 1, "sbol3-10806", "Invalid_2");
 		term1Frag.setEnd(Optional.of(6));
 		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		

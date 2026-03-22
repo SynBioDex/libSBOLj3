@@ -41,13 +41,13 @@ public class CombinatorialDerivationTest_12112 extends TestCase {
 	    VariableFeature varFeature=cd.createVariableFeature(VariableFeatureCardinality.One, sc_start);
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	    System.out.println(sc_start2.getWasDerivedFrom());
-	    TestUtil.validateDocument(doc, 1, "sbol3-12112", "CombinatorialDerivationTest_12112_scStartDerivedFromCD");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12112", "scStartDerivedFromCD");
 	    
 	    varFeature.setVariants(Arrays.asList(start2, start3));
 	    TestUtil.validateDocument(doc, 0, null, null);
 	    	    
 	    varFeature.setVariants(null);
-	    TestUtil.validateDocument(doc, 1, "sbol3-12112", "CombinatorialDerivationTest_12112_varFeatureVariantsNull");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12112", "varFeatureVariantsNull");
 	    
 	    Attachment attachment=doc.createAttachment("testattachment",URI.create("http://sbolstandard.org/attachment1"));	    
 	    col.addMember(attachment);
@@ -55,10 +55,10 @@ public class CombinatorialDerivationTest_12112 extends TestCase {
 	    innerCol.addMembers(Arrays.asList(start2, start3));
 	    col.addMember(innerCol);
 	    varFeature.setVariantCollections(Arrays.asList(col));
-	    TestUtil.validateDocument(doc, 1, "sbol3-12203", "CombinatorialDerivationTest_12112_varFeatureVariantCollections");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12203", "varFeatureVariantCollections");
 	    
 	    varFeature.setVariantCollections(null);
-	    TestUtil.validateDocument(doc, 1, "sbol3-12112", "CombinatorialDerivationTest_12112_varFeatureVariantCollectionsNull");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12112", "varFeatureVariantCollectionsNull");
 	    
 	    Component genericstart=SBOLAPI.createDnaComponent(doc, "genericstart", "genericstart", "genericstart", Role.EngineeredRegion, "accctat");		    
 	    CombinatorialDerivation cd2=doc.createCombinatorialDerivation("cd2", genericstart);

@@ -20,18 +20,18 @@ public class ExternallyDefinedTest_11107 extends TestCase {
 		ExternallyDefined exDefined = ilab16_dev1.createExternallyDefined(Arrays.asList(ComponentType.Protein.getUri()), URI.create("http://uniprot.org/gfp"));
 
 		// COMPONENT_TYPE_AT_MOST_ONE_TOPOLOGY_TYPE
-		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 0);
+		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 0, null, null);
 		
 		exDefined.setTypes(Arrays.asList(ComponentType.DNA.getUri()));
-		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 0);
+		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 0, null, null);
 		
 		exDefined.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.TopologyType.Circular.getUri()));
-		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 0);
+		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 0, null, null);
 		
 		exDefined.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.TopologyType.Circular.getUri(), ComponentType.TopologyType.Linear.getUri()));
-		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 1);
+		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 1, "sbol3-11107", "ExternallyDefined_types");
 		
 		exDefined.setTypes(Arrays.asList(ComponentType.Protein.getUri(), ComponentType.TopologyType.Circular.getUri(), ComponentType.TopologyType.Linear.getUri()));
-		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 1);
+		TestUtil.validateIdentifiedAndDocument(exDefined, doc, 1, "sbol3-11108", "ExternallyDefined_types_2");
 	}
 }

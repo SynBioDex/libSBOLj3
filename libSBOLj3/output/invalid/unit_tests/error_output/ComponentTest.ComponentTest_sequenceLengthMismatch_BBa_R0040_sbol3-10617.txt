@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10617 - If a Component has more than one hasSequence property that refer to Sequence objects with the same encoding, then the elements of these Sequence objects SHOULD have equal lengths,
+	Value: [https://synbiohub.org/public/igem/BBa_R0040_Sequence3, https://synbiohub.org/public/igem/BBa_R0040_Sequence1],
+	Property: hasSequence,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------
+Document Validation test: sbol3-10617 - If a Component has more than one hasSequence property that refer to Sequence objects with the same encoding, then the elements of these Sequence objects SHOULD have equal lengths,
+	Value: [https://synbiohub.org/public/igem/BBa_R0040_Sequence3, https://synbiohub.org/public/igem/BBa_R0040_Sequence1],
+	Property: components[1].hasSequence,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------

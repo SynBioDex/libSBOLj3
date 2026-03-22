@@ -1,0 +1,9 @@
+Document Validation test: sbol3-11302 - For every Location that is not an EntireSequence and that is the value of a hasLocation property of a Feature, the value of its hasSequence property MUST also either be a value of the hasSequence property of the parent Component or else be the value of some hasSequence property of an EntireSequence that is also a child of the same Component,
+	Property: components[0].hasFeature[https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1].hasLocation[https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1/Cut1].hasSequence,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+Document Validation test: Location.sequence cannot be null.,
+	Property: components[0].sequenceFeatures[0].locations[0].sequenceURI,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1/Cut1,
+	Entity Type: class org.sbolstandard.core3.entity.Cut
+--------------------

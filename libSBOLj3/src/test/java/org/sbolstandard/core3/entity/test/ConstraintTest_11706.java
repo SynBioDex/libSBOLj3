@@ -108,7 +108,7 @@ public class ConstraintTest_11706 extends TestCase {
 	    
 	    //Precedes - Error
 	    Constraint const_5713=gfp.createConstraint(SequentialRestriction.precedes, feature57, feature13);
-	    TestUtil.validateIdentifiedOnly(doc, const_5713,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_5713");
+	    TestUtil.validateIdentifiedOnly(doc, const_5713,1,"sbol3-11706", "Constraint_const_5713");
 	    
 	    
 	    //Strictly precedes - No error
@@ -117,7 +117,7 @@ public class ConstraintTest_11706 extends TestCase {
 	
 	    //Strictly precedes - Error
 	    Constraint const_1324_sp=gfp.createConstraint(SequentialRestriction.strictlyPrecedes, feature13, feature24);	   
-	    TestUtil.validateIdentifiedOnly(doc, const_1324_sp, 1, "sbol3-11706", "ConstraintTest_11706.Constraint.const_1324_sp");
+	    TestUtil.validateIdentifiedOnly(doc, const_1324_sp, 1, "sbol3-11706", "Constraint_const_1324_sp");
 	  
 	    
 	    //Meets -  No Error   
@@ -126,11 +126,11 @@ public class ConstraintTest_11706 extends TestCase {
 	  
 	    //Meets -  Error
 	    Constraint const_1346_meets=gfp.createConstraint(SequentialRestriction.meets, feature13, feature46);
-	    TestUtil.validateIdentifiedOnly(doc, const_1346_meets,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1346_meets");
+	    TestUtil.validateIdentifiedOnly(doc, const_1346_meets,1,"sbol3-11706", "Constraint_const_1346_meets");
 	
 	    //Meets - Error
 	    Constraint const_1324_meets=gfp.createConstraint(SequentialRestriction.meets, feature13, feature24);
-	    TestUtil.validateIdentifiedOnly(doc, const_1324_meets,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1324_meets");
+	    TestUtil.validateIdentifiedOnly(doc, const_1324_meets,1,"sbol3-11706", "Constraint_const_1324_meets");
 	    
 	   
 	    //Starts -  No Error   
@@ -139,11 +139,11 @@ public class ConstraintTest_11706 extends TestCase {
 	  
 	    //Starts -  Error
 	    Constraint const_1324_starts=gfp.createConstraint(SequentialRestriction.starts, feature13, feature24);
-	    TestUtil.validateIdentifiedOnly(doc, const_1324_starts,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1324_starts");
+	    TestUtil.validateIdentifiedOnly(doc, const_1324_starts,1,"sbol3-11706", "Constraint_const_1324_starts");
 	    
 	    //Starts -  Error
 	    Constraint const_4613_starts=gfp.createConstraint(SequentialRestriction.starts, feature46, feature13);
-	    TestUtil.validateIdentifiedOnly(doc, const_4613_starts,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_4613_starts");
+	    TestUtil.validateIdentifiedOnly(doc, const_4613_starts,1,"sbol3-11706", "Constraint_const_4613_starts");
 	    
 	    
 	    //Finishes -  No Error   
@@ -152,7 +152,7 @@ public class ConstraintTest_11706 extends TestCase {
 	  
 	    //Finishes -  Error
 	    Constraint const_1324_finishes=gfp.createConstraint(SequentialRestriction.finishes, feature13, feature24);
-	    TestUtil.validateIdentifiedOnly(doc, const_1324_finishes,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1324_finishes");
+	    TestUtil.validateIdentifiedOnly(doc, const_1324_finishes,1,"sbol3-11706", "Constraint_const_1324_finishes");
 	    
 	  
 	    //Overlaps -  No Error   
@@ -165,7 +165,7 @@ public class ConstraintTest_11706 extends TestCase {
 	
 	    //Overlaps -  Error
 	    Constraint const_1357_overlaps=gfp.createConstraint(SequentialRestriction.overlaps, feature13, feature57);
-	    TestUtil.validateIdentifiedOnly(doc, const_1357_overlaps,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1357_overlaps");
+	    TestUtil.validateIdentifiedOnly(doc, const_1357_overlaps,1,"sbol3-11706", "Constraint_const_1357_overlaps");
 	
 	  
 	    //Contains  -  No Error
@@ -174,7 +174,7 @@ public class ConstraintTest_11706 extends TestCase {
 	    
 	    //Contains  -  Error
 	    Constraint const_1314_contains=gfp.createConstraint(SequentialRestriction.contains, feature13, feature14);
-	    TestUtil.validateIdentifiedOnly(doc, const_1314_contains,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1314_contains");
+	    TestUtil.validateIdentifiedOnly(doc, const_1314_contains,1,"sbol3-11706", "Constraint_const_1314_contains");
 	    
 	    
 	    //Strictly Contains -  No Error   
@@ -183,7 +183,7 @@ public class ConstraintTest_11706 extends TestCase {
 	
 	    //Strictly Contains  -  Error
 	    Constraint const_1413_sc=gfp.createConstraint(SequentialRestriction.strictlyContains, feature14, feature13);
-	    TestUtil.validateIdentifiedOnly(doc, const_1413_sc,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1413_sc");
+	    TestUtil.validateIdentifiedOnly(doc, const_1413_sc,1,"sbol3-11706", "Constraint_const_1413_sc");
 	
 	
 	    //Equals -  No Error   
@@ -192,7 +192,7 @@ public class ConstraintTest_11706 extends TestCase {
 	
 	    //Equals  -  Error
 	    Constraint const_1314_equals=gfp.createConstraint(SequentialRestriction.equals, feature13, feature14);
-	    TestUtil.validateIdentifiedOnly(doc, const_1314_equals,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1314_equals");
+	    TestUtil.validateIdentifiedOnly(doc, const_1314_equals,1,"sbol3-11706", "Constraint_const_1314_equals");
 	
 	    
 	    //Range vs cut
@@ -202,7 +202,7 @@ public class ConstraintTest_11706 extends TestCase {
 	    
 	    //Starts -  No Error   
 	    Constraint const_1_24_starts=gfp.createConstraint(SequentialRestriction.starts, cut1, feature24);
-	    TestUtil.validateIdentifiedOnly(doc, const_1_24_starts,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1_24_starts");
+	    TestUtil.validateIdentifiedOnly(doc, const_1_24_starts,1,"sbol3-11706", "Constraint_const_1_24_starts");
 	    
 	    
 	    //Range vs entire sequence
@@ -212,7 +212,7 @@ public class ConstraintTest_11706 extends TestCase {
 	    
 	    //Starts -  No Error   
 	    Constraint const_entire_13_starts=gfp.createConstraint(SequentialRestriction.starts, entire, feature13);
-	    TestUtil.validateIdentifiedOnly(doc, const_entire_13_starts,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_entire_13_starts");
+	    TestUtil.validateIdentifiedOnly(doc, const_entire_13_starts,1,"sbol3-11706", "Constraint_const_entire_13_starts");
 	    
 		/*********************
 	     * Multiple locations
@@ -223,7 +223,7 @@ public class ConstraintTest_11706 extends TestCase {
 	  
 	    //Starts -  Error   
 	    Constraint const_1357_1457_starts=gfp.createConstraint(SequentialRestriction.starts, feature1357, feature1457);
-	    TestUtil.validateIdentifiedOnly(doc, const_1357_1457_starts,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_1357_1457_starts");
+	    TestUtil.validateIdentifiedOnly(doc, const_1357_1457_starts,1,"sbol3-11706", "Constraint_const_1357_1457_starts");
 	    
 	    //Starts -  No Error   
 	    Constraint const_1357_1458_starts=gfp.createConstraint(SequentialRestriction.starts, feature1357, feature1458);
@@ -239,7 +239,7 @@ public class ConstraintTest_11706 extends TestCase {
 	    
 	    //Overlaps - Error
 	    Constraint const_9_12__14_17__19_23_overlaps_1457=gfp.createConstraint(SequentialRestriction.overlaps, feature9_12__14_17__19_23, feature1457);
-	    TestUtil.validateIdentifiedOnly(doc, const_9_12__14_17__19_23_overlaps_1457,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_9_12__14_17__19_23_overlaps_1457");
+	    TestUtil.validateIdentifiedOnly(doc, const_9_12__14_17__19_23_overlaps_1457,1,"sbol3-11706", "Constraint_const_9_12__14_17__19_23_overlaps_1457");
 	    
 	    //Overlaps - No Error
 	    Constraint const_9_12__14_17__19_23_overlaps_89=gfp.createConstraint(SequentialRestriction.overlaps, feature9_12__14_17__19_23, feature89);
@@ -260,11 +260,11 @@ public class ConstraintTest_11706 extends TestCase {
 	    
 	    //Strictly Contains - Error
 	    Constraint const_9_12__14_17_sc_10_11__15_16__20_22=gfp.createConstraint(SequentialRestriction.strictlyContains, feature9_12__14_17, feature10_11__15_16__20_22);
-	    TestUtil.validateIdentifiedOnly(doc, const_9_12__14_17_sc_10_11__15_16__20_22,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_9_12__14_17_sc_10_11__15_16__20_22");
+	    TestUtil.validateIdentifiedOnly(doc, const_9_12__14_17_sc_10_11__15_16__20_22,1,"sbol3-11706", "Constraint_const_9_12__14_17_sc_10_11__15_16__20_22");
 	  
 	    //Strictly Contains - Error
 	    Constraint const_9_12__14_17__19_23_equals_9_12__14_17=gfp.createConstraint(SequentialRestriction.equals, feature9_12__14_17__19_23, feature9_12__14_17);
-	    TestUtil.validateIdentifiedOnly(doc, const_9_12__14_17__19_23_equals_9_12__14_17,1,"sbol3-11706", "ConstraintTest_11706.Constraint.const_9_12__14_17__19_23_equals_9_12__14_17");
+	    TestUtil.validateIdentifiedOnly(doc, const_9_12__14_17__19_23_equals_9_12__14_17,1,"sbol3-11706", "Constraint_const_9_12__14_17__19_23_equals_9_12__14_17");
 	  
     }
 }

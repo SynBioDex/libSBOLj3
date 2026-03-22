@@ -44,7 +44,7 @@ public class CombinatorialDerivationTest_12110 extends TestCase {
 	    SubComponent sc_end2=pTetR2.createSubComponent(end);	    
 	    varFeature.setVariants(Arrays.asList(start2));
 	    
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "CombinatorialDerivationTest_12110_1");		   
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "Invalid");		   
 	    sc_end2.setWasDerivedFrom(Arrays.asList(sc_end.getUri()));
 		   
 	    TestUtil.validateDocument(doc, 0,null, null);
@@ -55,6 +55,6 @@ public class CombinatorialDerivationTest_12110 extends TestCase {
 	    TestUtil.validateDocument(doc, 0,null, null);
 	    
 	    cut2.setWasDerivedFrom(Arrays.asList(cut1.getUri(), sc_end.getUri()));
-	    TestUtil.validateDocument(doc, 3, "sbol3-12109,sbol3-12110,sbol3-12115", "CombinatorialDerivationTest_12110_2");	 
+	    TestUtil.validateDocument(doc, 3, "sbol3-12109,sbol3-12110,sbol3-12115", "InvalidWasDeriveds");	 
     }
 }

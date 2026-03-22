@@ -39,7 +39,7 @@ public class CombinatorialDerivationTest_12107 extends TestCase {
 	    
 	    TestUtil.validateDocument(doc, 0, null, null);
 	    pTetR.addType(URI.create("http://sbolstandard.org/testtype"));
-	    TestUtil.validateDocument(doc, 1, "sbol3-12107", "CombinatorialDerivationTest_12107_pTetRTypeInvalid");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12107", "pTetRTypeInvalid");
 		   
     }
 

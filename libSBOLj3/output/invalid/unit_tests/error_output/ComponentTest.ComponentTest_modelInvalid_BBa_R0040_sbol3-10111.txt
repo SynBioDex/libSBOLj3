@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/BBa_R0040_Sequence1],
+	Property: hasModel,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/BBa_R0040_Sequence1],
+	Property: components[1].hasModel,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------

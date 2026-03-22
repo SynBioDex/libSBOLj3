@@ -32,19 +32,19 @@ public class ModelTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-        TestUtil.validateIdentifiedAndDocument(model,doc,0);
+        TestUtil.validateIdentifiedAndDocument(model,doc,0, null, null);
 		
         TestUtil.validateProperty(model, "setSource", new Object[] {null}, URI.class);
         model.setSource(null);
-		TestUtil.validateIdentifiedAndDocument(model,doc,1);
+		TestUtil.validateIdentifiedAndDocument(model,doc,1, "sbol3-12501", "InvalidSource");
 		
 		TestUtil.validateProperty(model, "setFramework", new Object[] {null}, URI.class);
 		model.setFramework(null);
-		TestUtil.validateIdentifiedAndDocument(model,doc,2);
+		TestUtil.validateIdentifiedAndDocument(model,doc,2, "sbol3-12501,sbol3-12505", "InvalidFramework");
 		
 		TestUtil.validateProperty(model, "setLanguage", new Object[] {null}, URI.class);        
 		model.setLanguage(null);
-		TestUtil.validateIdentifiedAndDocument(model,doc,3);
+		TestUtil.validateIdentifiedAndDocument(model,doc,3, "sbol3-12501,sbol3-12502,sbol3-12505", "InvalidLanguage");
     }
 
 }

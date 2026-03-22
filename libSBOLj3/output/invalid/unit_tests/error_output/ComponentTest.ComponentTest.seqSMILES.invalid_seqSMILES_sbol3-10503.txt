@@ -1,0 +1,6 @@
+Identified Validation test: sbol3-10503 - The elements property of a Sequence MUST be consistent with its encoding property.,
+	Value: Hydrogen Dioxode,
+	Property: elements,
+	Entity URI: https://synbiohub.org/public/igem/seqSMILES,
+	Entity Type: class org.sbolstandard.core3.entity.Sequence
+--------------------

@@ -1,0 +1,32 @@
+Identified Validation test: sbol3-12001 - The Feature referenced by the input property of an Interface MUST be contained by the Component that contains the Interface.,
+	Value: https://sbolstandard.org/examples/LacI_producer/SubComponent2,
+	Property: hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].input,
+	Entity URI: https://sbolstandard.org/examples/LacI_producer,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+Identified Validation test: sbol3-12003 - The Feature referenced by the nondirectional property of an Interface MUST be contained by the Component that contains the Interface.,
+	Value: https://sbolstandard.org/examples/LacI_producer2/SubComponent1,
+	Property: hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].nondirectional,
+	Entity URI: https://sbolstandard.org/examples/LacI_producer,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+Identified Validation test: sbol3-12002 - The Feature referenced by the output property of an Interface MUST be contained by the Component that contains the Interface.,
+	Value: https://sbolstandard.org/examples/LacI_producer/SubComponent2,
+	Property: hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].output,
+	Entity URI: https://sbolstandard.org/examples/LacI_producer,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------
+Document Validation test: sbol3-12001 - The Feature referenced by the input property of an Interface MUST be contained by the Component that contains the Interface.,
+	Value: https://sbolstandard.org/examples/LacI_producer/SubComponent2,
+	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].input,
+	Entity URI: https://sbolstandard.org/examples/LacI_producer,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+Document Validation test: sbol3-12003 - The Feature referenced by the nondirectional property of an Interface MUST be contained by the Component that contains the Interface.,
+	Value: https://sbolstandard.org/examples/LacI_producer2/SubComponent1,
+	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].nondirectional,
+	Entity URI: https://sbolstandard.org/examples/LacI_producer,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+Document Validation test: sbol3-12002 - The Feature referenced by the output property of an Interface MUST be contained by the Component that contains the Interface.,
+	Value: https://sbolstandard.org/examples/LacI_producer/SubComponent2,
+	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].output,
+	Entity URI: https://sbolstandard.org/examples/LacI_producer,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------

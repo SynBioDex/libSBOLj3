@@ -39,27 +39,27 @@ public class CombinatorialDerivationTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 0, null, null);
         
         //template is required.
         Component tmpURI=cd.getTemplate();
         TestUtil.validateProperty(cd, "setTemplate", new Object[] {null}, Component.class);
         Component nullValue=null;
         cd.setTemplate(nullValue);
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 1, null, "templateNull");
         URI nullURI=null;
         cd.setTemplate(nullURI);
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 1, null, "templateURINull");
         cd.setTemplate(tmpURI);
-        TestUtil.validateIdentifiedAndDocument(cd,doc,0);
+        TestUtil.validateIdentifiedAndDocument(cd,doc,0, null, null);
 		
         
         //SBOL_VALID_ENTITY_TYPES CombinatorialDerivation.template
         Resource resource = TestUtil.getResource(cd);
         RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, Arrays.asList(cd.getUri()));
-		TestUtil.validateIdentifiedAndDocument(cd,doc,1);
+		TestUtil.validateIdentifiedAndDocument(cd,doc,1, "sbol3-10111", "templateInvalid");
 		RDFUtil.setProperty(resource, DataModel.CombinatorialDerivation.template, pTetR.getUri());
-		TestUtil.validateIdentifiedAndDocument(cd,doc,0);
+		TestUtil.validateIdentifiedAndDocument(cd,doc,0, null, null);
 		
         
         
@@ -67,41 +67,41 @@ public class CombinatorialDerivationTest extends TestCase {
         
         TestUtil.validateProperty(vf, "setCardinality", new Object[] {null}, VariableFeatureCardinality.class);
         vf.setCardinality(null);
-        TestUtil.validateIdentifiedAndDocument(vf, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(vf, doc, 1, null, "varFeatureCardinalityNull");
         
         TestUtil.validateProperty(vf, "setVariable", new Object[] {null}, Feature.class);
         vf.setVariable(null);
-        TestUtil.validateDocument(doc, 3, "sbol3-12202", "CombinatorialDerivationTest_varFeatureVariableNull");
+        TestUtil.validateDocument(doc, 3, "sbol3-12202", "varFeatureVariableNull");
         
         vf.setCardinality(VariableFeatureCardinality.One);
         vf.setVariable(startFeature);
-        TestUtil.validateIdentifiedAndDocument(vf, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(vf, doc, 0, null, null);
         
         cd.setStrategy(CombinatorialDerivationStrategy.Enumerate);
-        TestUtil.validateIdentifiedAndDocument(vf, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(vf, doc, 0, null, null);
         
         TestUtil.validateReturnValue(cd, "toStrategy", new Object[] {URI.create("http://sbols.org/v3#InvalidStrategy")}, URI.class);
         
         cd.setStrategy(CombinatorialDerivationStrategy.Enumerate);
         vf.setCardinality(VariableFeatureCardinality.OneOrMore);
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 1, "sbol3-12102", "varFeatureCardinalityInvalidForStrategy");
         vf.setCardinality(VariableFeatureCardinality.One);
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 0, null, null);
         
         VariableFeature vf2=cd.createVariableFeature(VariableFeatureCardinality.One,startFeature);
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 1,"sbol3-12103", "variableFeatureDuplicateVariableFeature");
         VariableFeature vf4=cd.createVariableFeature(VariableFeatureCardinality.One,startCodonFeature);
         
         //SBOL_VALID_ENTITY_TYPES - VariableFeature.Variable
         //VARIABLEFEATURE_FEATURE_NOT_NULL
         Resource resvf4= TestUtil.getResource(vf4);
         RDFUtil.setProperty(resvf4, DataModel.VariableFeature.variable, startFeature.getUri());
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 2);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 2, "sbol3-12103", "variableFeatureDuplicateVariableFeature2");
         
         //Clear the errors
         vf4.setVariable(startCodonFeature);
         vf2.setVariable(endCodonFeature);
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 0, null, null);
         
         TestUtil.validateReturnValue(vf4, "toCardinality", new Object[] {URI.create("http://invalidcardinality.org")}, URI.class);
         TestUtil.validateReturnValue(false, vf4, "toCardinality", new Object[] {VariableFeatureCardinality.One.getUri()}, URI.class);
@@ -114,14 +114,14 @@ public class CombinatorialDerivationTest extends TestCase {
         RDFUtil.setProperty(resvf, DataModel.VariableFeature.variantMeasure, startCodonFeature.getUri());
           
         
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 4);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 4, "sbol3-10111", "variableFeatureVariantInvalid");
         URI tmp=null;
         RDFUtil.setProperty(resvf, DataModel.VariableFeature.variantCollection, tmp);
         RDFUtil.setProperty(resvf, DataModel.VariableFeature.variantDerivation, tmp);
         RDFUtil.setProperty(resvf, DataModel.VariableFeature.variant, tmp);
         RDFUtil.setProperty(resvf, DataModel.VariableFeature.variantMeasure, tmp);
         
-        TestUtil.validateIdentifiedAndDocument(cd, doc, 0);
+        TestUtil.validateIdentifiedAndDocument(cd, doc, 0, null, null);
     
     }
 

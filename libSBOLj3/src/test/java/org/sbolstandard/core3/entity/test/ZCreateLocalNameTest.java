@@ -36,17 +36,6 @@ public class ZCreateLocalNameTest extends TestCase {
 				
 		
 		removeSubComponent(doc, popsReceiver, s2);
-		//model.createResource("http://sbols.org/v3#BBa_F2620/SubComponent2"));
-		/*StmtIterator it= model.listStatements(recRes, model.createProperty("http://sbols.org/v3#hasFeature"), s2Res);
-		while (it.hasNext()) {
-			Statement stmt=it.next();
-			System.out.println(stmt.getResource().getURI());	
-			model.remove(stmt);
-			break;			
-		}*/
-		
-		/*String output1=RDFUtil.write(model, RDFFormat.TURTLE, null);
-		System.out.println(output1);*/
 		
 		SubComponent s4= popsReceiver.createSubComponent(pTetR);
 		removeSubComponent(doc, popsReceiver, s3);

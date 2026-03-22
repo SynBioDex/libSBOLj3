@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-11903 - The Interaction referenced by the higherOrderParticipant property of a Participation MUST be contained by the Component that contains the Interaction that contains the Participation. ,
+	Value: http://someinvalidhigherorderparticipant.org,
+	Property: hasInteraction[https://sbolstandard.org/examples/i13504_system/Interaction2].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction2/Participation1].higherOrderParticipant,
+	Entity URI: https://sbolstandard.org/examples/i13504_system,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------
+Document Validation test: sbol3-11903 - The Interaction referenced by the higherOrderParticipant property of a Participation MUST be contained by the Component that contains the Interaction that contains the Participation. ,
+	Value: http://someinvalidhigherorderparticipant.org,
+	Property: components[2].hasInteraction[https://sbolstandard.org/examples/i13504_system/Interaction2].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction2/Participation1].higherOrderParticipant,
+	Entity URI: https://sbolstandard.org/examples/i13504_system,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------

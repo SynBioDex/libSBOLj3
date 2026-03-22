@@ -1,0 +1,6 @@
+Identified Validation test: sbol3-10503 - The elements property of a Sequence MUST be consistent with its encoding property.,
+	Value: InChI=JS/C2H6O/c1-2-3/h3H,2H2,1H3,
+	Property: elements,
+	Entity URI: https://synbiohub.org/public/igem/seqINCHI,
+	Entity Type: class org.sbolstandard.core3.entity.Sequence
+--------------------

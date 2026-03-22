@@ -50,23 +50,23 @@ public class UsageTest_13001 extends TestCase {
         
         usage1.addRole(ActivityType.Learn.getUri());        
         usage1.setEntity(imp.getUri());
-        TestUtil.validateDocument(doc,1,"sbol3-13001", "UsageTest_13001.Usage.roleInvalidForUsage");  
+        TestUtil.validateDocument(doc,1,"sbol3-13001", "Usage.roleInvalidForUsage");  
         ExperimentalData exp=doc.createExperimentalData("ExpData");
         usage1.setEntity(exp.getUri());
         TestUtil.validateDocument(doc,0, null, null); 
         
         
         usage1.setRoles(Arrays.asList(ActivityType.Test.getUri()));  
-        TestUtil.validateDocument(doc,1,"sbol3-12901", "UsageTest_13001.Usage.roleInvalidForUsage_2");  
+        TestUtil.validateDocument(doc,1,"sbol3-12901", "Usage.roleInvalidForUsage_2");  
         
         
         usage1.setRoles(Arrays.asList(ActivityType.Build.getUri())); 
-        TestUtil.validateDocument(doc,2,"sbol3-12901,sbol3-13001", "UsageTest_13001.Usage.roleInvalidForUsage_3");
+        TestUtil.validateDocument(doc,2,"sbol3-12901,sbol3-13001", "Usage_roleInvalidForUsage_3");
         usage1.setEntity(imp.getUri());
-        TestUtil.validateDocument(doc,1, "sbol3-12901", "UsageTest_13001.Usage.roleInvalidForUsage_4") ; 
+        TestUtil.validateDocument(doc,1, "sbol3-12901", "Usage_roleInvalidForUsage_4") ; 
         
         usage1.setRoles(Arrays.asList(ActivityType.Design.getUri())); 
-        TestUtil.validateDocument(doc,1,"sbol3-13001", "UsageTest_13001.Usage.roleInvalidForUsage_5");
+        TestUtil.validateDocument(doc,1,"sbol3-13001", "Usage_roleInvalidForUsage_5");
         usage1.setEntity(toggleSwitchOptimised.getUri());
         TestUtil.validateDocument(doc,0, null, null);
         

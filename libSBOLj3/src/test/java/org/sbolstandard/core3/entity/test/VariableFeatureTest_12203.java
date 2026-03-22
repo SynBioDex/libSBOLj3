@@ -49,7 +49,7 @@ public class VariableFeatureTest_12203 extends TestCase {
 	    innerCol.addMembers(Arrays.asList(start2, start3, attachment2));
 	    col.addMember(innerCol);
 	    varFeature.setVariantCollections(Arrays.asList(col));
-	    TestUtil.validateDocument(doc, 2, "sbol3-12203", "VariableFeatureTest_12203_varFeatureVariantCollections");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12203", "varFeatureVariantCollections");
 		  
 	    
 		  

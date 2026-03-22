@@ -1,0 +1,5 @@
+Identified Validation test: sbol3-10201 - The displayId property, if specified, MUST be composed of only alphanumeric or underscore characters and MUST NOT begin with a digit.,
+	Property: displayId,
+	Entity URI: https://synbiohub.org/1päypal,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------

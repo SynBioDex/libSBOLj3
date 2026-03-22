@@ -65,56 +65,56 @@ public class ParticipantTest extends TestCase {
 	    
 	    Configuration.getInstance().setValidateAfterSettingProperties(false);
 	        
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(participation,doc,0, null, null);
 	    
 	    TestUtil.validateProperty(participation, "setRoles", new Object[] {null}, List.class);
 	    TestUtil.validateProperty(participation, "setRoles", new Object[] {new ArrayList<URI>()}, List.class);
 	    
 	    List<URI> tempRoles=participation.getRoles();
 	    participation.setRoles(null);
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2);
+	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2, "sbol3-11804", "Participation.rolesNull");
 		
 	    participation.setRoles(new ArrayList<URI>());
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2);
+	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2, "sbol3-11804", "Participation.rolesEmpty");
 	    
 	    //PARTICIPANT_MUST_HAVE_ONE_PARTICIPANT_OR_HIGHERORDERPARTICIPANT
 	    Feature temp=participation.getParticipant();
 	    participation.setParticipant(null);
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,2,3);
+	    TestUtil.validateIdentifiedAndDocument(participation,doc,2,3, "sbol3-11804,sbol3-11901", "participantNull");
 	    
 	    participation.setHigherOrderParticipant(interaction2.getUri());
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2);
+	    TestUtil.validateIdentifiedAndDocument(participation,doc,1,2,"sbol3-11804", "higherOrderParticipant");
 	    
 	   //PARTICIPANT_MUST_HAVE_ONE_PARTICIPANT_OR_HIGHERORDERPARTICIPANT 
 	    participation.setHigherOrderParticipant(interaction2.getUri());
 	    participation.setParticipant(temp);
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,2,3);
+	    TestUtil.validateIdentifiedAndDocument(participation,doc,2,3, "sbol3-11804,sbol3-11901", "higherOrderParticipant_2");
 	    
 		URI nullURI=null;
 	    participation.setHigherOrderParticipant(nullURI);
 	    participation.setRoles(tempRoles);
-	    TestUtil.validateIdentifiedAndDocument(participation,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(participation,doc,0, null, null);
 	    
 	    Resource resource = TestUtil.getResource(participation);
 		
 	    //SBOL_VALID_ENTITY_TYPES - Participation.Feature/Participant
 	    Feature participant=participation.getParticipant();
 	  	RDFUtil.setProperty(resource, DataModel.Participation.participant, Arrays.asList(participant.getUri(), inhibitor.getUri()));
-	  	TestUtil.validateIdentifiedOnly(doc, participation,1, "sbol3-10111", "ParticipantTest.Participation.participant.invalidType");
+	  	TestUtil.validateIdentifiedOnly(doc, participation,1, "sbol3-10111", "Participation.participant.invalidType");
 	  	participation.setParticipant(participant);
-	  	TestUtil.validateIdentifiedAndDocument(participation,doc,0);		
+	  	TestUtil.validateIdentifiedAndDocument(participation,doc,0, null, null);		
 	  		
 	  		
 	    //PARTICIPANT_PARTICIPANT_MUST_REFER_TO_A_FEATURE_OF_THE_PARENT
 	    participation.setParticipant(sf);
-	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 1);
+	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 1,"sbol3-11902", "participantInvalid");
 	    
 	    participation.setParticipant(temp);
-	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 0);
+	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 0, null, null);
 	    
 	    //PARTICIPANT_HIGHERORDERPARTICIPANT_MUST_REFER_TO_AN_INTERACTION_OF_THE_PARENT
 	    participation2.setHigherOrderParticipant(URI.create("http://someinvalidhigherorderparticipant.org"));
-	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 1);
+	    TestUtil.validateIdentifiedAndDocument(i13504_system,doc, 1, "sbol3-11903", "higherOrderParticipantInvalid");
 		    
 	    /*
 	    URI uri=URI.create("https://www.abc.org");

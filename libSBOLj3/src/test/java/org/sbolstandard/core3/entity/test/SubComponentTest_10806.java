@@ -28,7 +28,7 @@ public class SubComponentTest_10806 extends TestCase {
 		feature.setOrientation(Orientation.inline);
 		
 		
-		TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+		TestUtil.validateIdentifiedAndDocument(feature,doc,0,	null, null);
 
 		/*Component test=SBOLAPI.createDnaComponent(doc, "test", "test", null, Role.CDS, "aaaaaa");
 		feature.createRange(1, 3, test.getSequences().get(0));   
@@ -46,7 +46,7 @@ public class SubComponentTest_10806 extends TestCase {
 	    //TestUtil.validateIdentified(feature,doc,1);
 	    
 	    //feature.createSourceRange(12, 12, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 	    
     }
 

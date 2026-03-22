@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/i13504_system],
+	Property: hasParticipation,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: class org.sbolstandard.core3.entity.Interaction
+--------------------
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/i13504_system],
+	Property: components[0].interactions[0].hasParticipation,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: class org.sbolstandard.core3.entity.Interaction
+--------------------

@@ -36,24 +36,24 @@ public class LocalSubComponentTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
         //LocalSubComponent.types cannot be empty
         TestUtil.validateProperty(lsComponent, "setTypes", new Object[] {null}, List.class);
         TestUtil.validateProperty(lsComponent, "setTypes", new Object[] {new ArrayList<URI>()}, List.class);
         
         List<URI> tempTypes=lsComponent.getTypes();
         lsComponent.setTypes(null);
-        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1);
+        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1, null, "NullTypes");
         
         lsComponent.setTypes(new ArrayList<URI>());
-        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1);
+        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1, null, "EmptyTypes");
         lsComponent.setTypes(tempTypes);
-        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+        TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
         
         lsComponent.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.Protein.getUri() ));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1, "sbol3-11001", "DNAAndProteinTypes");
 	    lsComponent.setTypes(Arrays.asList(ComponentType.DNA.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
 	    
 	    Sequence seq=doc.createSequence("seq1");
 	    seq.setEncoding(Encoding.NucleicAcid);
@@ -61,7 +61,7 @@ public class LocalSubComponentTest extends TestCase {
 	    
 	    i13504_system.setSequences(Arrays.asList(seq));
 	    lsComponent.createCut(2, seq);
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
 		
 	    Resource resource = TestUtil.getResource(lsComponent);
 		
@@ -69,53 +69,47 @@ public class LocalSubComponentTest extends TestCase {
 		List<URI> tempURIs=SBOLUtil.getURIs(lsComponent.getLocations());
 		tempURIs.add(i13504_system.getUri());
 		RDFUtil.setProperty(resource, lsComponent.getDefaultLocationProperty(), tempURIs);
-		TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1);
+		TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1, "sbol3-10111", "LocationInvalid");
 		tempURIs.remove(i13504_system.getUri());
 		RDFUtil.setProperty(resource, lsComponent.getDefaultLocationProperty(), tempURIs);
-		TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+		TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
 
 	    //LOCALSUBCOMPONENT_TYPE_ONLY_DNA_OR_RNA_INCLUDE_STRAND_OR_TOPOLOGY
         lsComponent.setTypes(Arrays.asList(ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateDocument(doc,1, " sbol3-11011", "LocalSubComponentTest_11012");
+	    TestUtil.validateDocument(doc,1, " sbol3-11011", "11012");
         
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.DNA.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.TopologyType.Linear.getUri(), ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateDocument(doc,2, "sbol3-11008,sbol3-11011", "LocalSubComponentTest_11012_2");
+	    TestUtil.validateDocument(doc,2, "sbol3-11008,sbol3-11011", "11012_2");
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.Protein.getUri(), ComponentType.TopologyType.Linear.getUri(), ComponentType.TopologyType.Circular.getUri()));
-	    TestUtil.validateDocument(doc,2, "sbol3-11008,sbol3-11011", "LocalSubComponentTest_11012_3");
+	    TestUtil.validateDocument(doc,2, "sbol3-11008,sbol3-11011", "11012_3");
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.TopologyType.Linear.getUri(), ComponentType.TopologyType.Circular.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1, "sbol3-11007", "DNAAndTopologyTypes");
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.RNA.getUri(), ComponentType.TopologyType.Linear.getUri(), ComponentType.TopologyType.Circular.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,1, "sbol3-11007", "RNAAndTopologyTypes");
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.RNA.getUri(), ComponentType.TopologyType.Linear.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.StrandType.Double.getUri(), ComponentType.Protein.getUri()));
-	    TestUtil.validateDocument(doc,2, "sbol3-11008,sbol3-11011", "LocalSubComponentTest_11012_4");
+	    TestUtil.validateDocument(doc,2, "sbol3-11008,sbol3-11011", "11012_4");
 	    
 	    lsComponent.setTypes(Arrays.asList(ComponentType.StrandType.Double.getUri(), ComponentType.DNA.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
-		    
-	    
-	    
-	    
-	    
-	    
-	    
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
+		
 	    // ensure it validates is optional checks are disabled
 		Configuration.getInstance().setValidateRecommendedRules(false);
 	    lsComponent.setTypes(Arrays.asList(ComponentType.OptionalComponentType.Cell.getUri()));
-	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(lsComponent,doc,0, null, null);
 
 		Configuration.getInstance().setValidateRecommendedRules(true);
 		

@@ -37,11 +37,11 @@ public class CombinatorialDerivationTest_12111 extends TestCase {
 	    pTetR2.setWasDerivedFrom(Arrays.asList(cd.getUri()));
 	    //sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	   
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "CombinatorialDerivationTest_12105_pTetR2WasDerivedFromCD");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12110", "pTetR2WasDerivedFromCD");
 	    VariableFeature varFeature=cd.createVariableFeature(VariableFeatureCardinality.ZeroOrMore, sc_start);
-	    TestUtil.validateDocument(doc, 1,"sbol3-12105", "CombinatorialDerivationTest_12105_varFeatureZeroOrMore");
+	    TestUtil.validateDocument(doc, 1,"sbol3-12105", "varFeatureZeroOrMore");
 	    varFeature.setCardinality(VariableFeatureCardinality.One);
-	    TestUtil.validateDocument(doc, 2,"sbol3-12105,sbol3-12111", "CombinatorialDerivationTest_12111_varFeatureOne");	    
+	    TestUtil.validateDocument(doc, 2,"sbol3-12105,sbol3-12111", "varFeatureOne");	    
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));
 	    
 	    varFeature.setVariants(Arrays.asList(start2));
@@ -69,15 +69,15 @@ public class CombinatorialDerivationTest_12111 extends TestCase {
 	    
 	    //sc_start derived by two, cardinality is one : Error
 	    cut2.setWasDerivedFrom(Arrays.asList(cut1.getUri(), sc_start.getUri()));
-	    TestUtil.validateDocument(doc, 2,"sbol3-12111,sbol3-12115", "CombinatorialDerivationTest_12111_cut2DerivedByTwo");//Two errors, the second one is due to not having the types from the sc_start.types on cut1
+	    TestUtil.validateDocument(doc, 2,"sbol3-12111,sbol3-12115", "cut2DerivedByTwo");//Two errors, the second one is due to not having the types from the sc_start.types on cut1
 	    
 	    varFeature.setCardinality(VariableFeatureCardinality.OneOrMore);
-	    TestUtil.validateDocument(doc, 1, "sbol3-12115", "CombinatorialDerivationTest_12111_varFeatureOneOrMore");//The type error remains 
+	    TestUtil.validateDocument(doc, 1, "sbol3-12115", "varFeatureOneOrMore");//The type error remains 
 	    
 	    //sc_start is not used to derive anything,cardinality is one more error: Error
 	    sc_start2.setWasDerivedFrom(null);
 	    cut2.setWasDerivedFrom(Arrays.asList(cut1.getUri()));
-	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12111", "CombinatorialDerivationTest_12111_scStartNotUsed");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12105,sbol3-12111", "scStartNotUsed");
 	    
 	    varFeature.setCardinality(VariableFeatureCardinality.ZeroOrMore);	    
 	    sc_start2.setWasDerivedFrom(Arrays.asList(sc_start.getUri()));

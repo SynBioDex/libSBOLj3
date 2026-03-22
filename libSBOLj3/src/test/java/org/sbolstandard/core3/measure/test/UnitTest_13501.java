@@ -37,7 +37,7 @@ public class UnitTest_13501 extends TestCase {
 		
 		Resource res=TestUtil.getResource(liter);
 		RDFUtil.setProperty(res, DataModel.Identified.name, "literB");
-		TestUtil.validateDocument(doc,1, "sbol3-13501", "UnitTest_13501.UnitName");
+		TestUtil.validateDocument(doc,1, "sbol3-13501", "InvalidUnitName");
 		liter.setLabel("literA");
 		TestUtil.validateDocument(doc,0, null, null);
     }

@@ -1,0 +1,10 @@
+Identified Validation test: ExternallyDefined.definition cannot be null.,
+	Property: definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: class org.sbolstandard.core3.entity.ExternallyDefined
+--------------------
+Document Validation test: ExternallyDefined.definition cannot be null.,
+	Property: components[0].externallyDefineds[1].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: class org.sbolstandard.core3.entity.ExternallyDefined
+--------------------

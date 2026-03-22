@@ -31,21 +31,21 @@ public class ExternallyDefinedTest extends TestCase {
 	    
 	    Configuration.getInstance().setValidateAfterSettingProperties(false);
 	       	     
-	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(exDefined,doc,0, null, null);
 	    
 	    TestUtil.validateProperty(exDefined, "setDefinition", new Object[] {null}, URI.class);
         exDefined.setDefinition(null);
-        TestUtil.validateIdentifiedAndDocument(exDefined,doc,1);
+        TestUtil.validateIdentifiedAndDocument(exDefined,doc,1,null, "exDefinedMissingDefinition_1");
         
         TestUtil.validateProperty(exDefined, "setTypes", new Object[] {null}, List.class);
         exDefined.setTypes(null);
-        TestUtil.validateIdentifiedAndDocument(exDefined,doc,2);
+        TestUtil.validateIdentifiedAndDocument(exDefined,doc,2, null, "exDefinedMissingTypes_1");
         
         exDefined2.setDefinition(null);
-        TestUtil.validateIdentifiedAndDocument(exDefined2,doc,1,3); 
+        TestUtil.validateIdentifiedAndDocument(exDefined2,doc,1, 3, null, "exDefined2MissingDefinition_1");
         
         exDefined2.setTypes(Arrays.asList(ComponentType.DNA.getUri(), ComponentType.Protein.getUri() ));
-	    TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,4);
+	    TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,4, null, "ilab16_dev1InvalidExternallyDefinedType");
 	    
 	    // EXTERNALLYDEFINED_TYPE_IN_TABLE2
 	    // Removed this best practise rule
@@ -53,10 +53,10 @@ public class ExternallyDefinedTest extends TestCase {
 	    TestUtil.validateIdentified(ilab16_dev1,doc,4);*/
 
 	    exDefined2.setTypes(Arrays.asList(ComponentType.OptionalComponentType.Cell.getUri() ));
-	    TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,3);
+	    TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,3, null, "exDefined2_invalidType");
 	    
 	    Configuration.getInstance().setValidateRecommendedRules(false);
-	    TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,3);
+	    TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,3, null, "exDefined2_invalidType_2");
 
 	    Configuration.getInstance().setValidateRecommendedRules(true);
         

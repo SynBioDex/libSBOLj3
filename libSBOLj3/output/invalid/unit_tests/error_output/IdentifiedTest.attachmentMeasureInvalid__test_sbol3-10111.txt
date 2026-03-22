@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/attachment1],
+	Property: hasMeasure,
+	Entity URI: https://sbolstandard.org/examples/attachment1,
+	Entity Type: class org.sbolstandard.core3.entity.Attachment
+--------------------
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/attachment1],
+	Property: attachments[0].hasMeasure,
+	Entity URI: https://sbolstandard.org/examples/attachment1,
+	Entity Type: class org.sbolstandard.core3.entity.Attachment
+--------------------

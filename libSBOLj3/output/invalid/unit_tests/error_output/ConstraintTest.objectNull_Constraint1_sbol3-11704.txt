@@ -1,0 +1,26 @@
+Identified Validation test: Constraint.restriction cannot be null.,
+	Property: restriction,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Identified Validation test: sbol3-11704 - The value of the restriction property of a Constraint SHOULD be drawn from Table 8, Table 9, or Table 10.,
+	Property: restriction,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Identified Validation test: Constraint.object cannot be null.,
+	Property: object,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+--------------------
+Document Validation test: Constraint.restriction cannot be null.,
+	Property: components[2].constraints[0].restriction,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Document Validation test: sbol3-11704 - The value of the restriction property of a Constraint SHOULD be drawn from Table 8, Table 9, or Table 10.,
+	Property: components[2].constraints[0].restriction,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Document Validation test: Constraint.object cannot be null.,
+	Property: components[2].constraints[0].object,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+--------------------

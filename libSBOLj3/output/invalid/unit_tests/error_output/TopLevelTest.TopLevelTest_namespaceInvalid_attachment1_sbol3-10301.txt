@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10301 - If the URI for the TopLevel object is a URL, then the URI of the hasNamespace property MUST prefix match that URL.,
+	Value: http://sdfsf.org,
+	Property: hasNamespace,
+	Entity URI: https://sbolstandard.org/examples/attachment1,
+	Entity Type: class org.sbolstandard.core3.entity.Attachment
+--------------------
+Document Validation test: sbol3-10301 - If the URI for the TopLevel object is a URL, then the URI of the hasNamespace property MUST prefix match that URL.,
+	Value: http://sdfsf.org,
+	Property: attachments[0].hasNamespace,
+	Entity URI: https://sbolstandard.org/examples/attachment1,
+	Entity Type: class org.sbolstandard.core3.entity.Attachment
+--------------------

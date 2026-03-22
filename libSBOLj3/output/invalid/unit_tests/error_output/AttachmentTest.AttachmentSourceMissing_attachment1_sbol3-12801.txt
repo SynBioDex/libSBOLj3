@@ -1,0 +1,10 @@
+Identified Validation test: sbol3-12801 - The source property of an Attachment MUST specify the location of the model's source file.,
+	Property: source,
+	Entity URI: https://sbolstandard.org/examples/attachment1,
+	Entity Type: class org.sbolstandard.core3.entity.Attachment
+--------------------
+Document Validation test: sbol3-12801 - The source property of an Attachment MUST specify the location of the model's source file.,
+	Property: attachments[1].source,
+	Entity URI: https://sbolstandard.org/examples/attachment1,
+	Entity Type: class org.sbolstandard.core3.entity.Attachment
+--------------------

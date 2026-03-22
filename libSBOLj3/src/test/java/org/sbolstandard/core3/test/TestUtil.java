@@ -7,6 +7,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -34,6 +35,25 @@ public class TestUtil {
 
 	public static final String baseOutput="output";
 	public static final boolean createInvalidFiles=true;
+
+	static {
+		try {
+			File unitTestsDir = Paths.get("output", "invalid", "unit_tests").toFile();
+			if (unitTestsDir.exists()) {
+				File[] subDirs = unitTestsDir.listFiles(File::isDirectory);
+				if (subDirs != null) {
+					for (File subDir : subDirs) {
+						Files.walk(subDir.toPath())
+							.sorted(java.util.Comparator.reverseOrder())
+							.forEach(p -> p.toFile().delete());
+					}
+				}
+			}
+		} catch (IOException e) {
+			System.err.println("Could not delete output/invalid/unit_tests subfolders: " + e.getMessage());
+		}
+	}
+
 	public static void serialise(SBOLDocument doc, String directory, String file) throws FileNotFoundException, IOException, SBOLGraphException
 	{
 		URI orgBaseURI=doc.getBaseURI();
@@ -779,19 +799,21 @@ public class TestUtil {
 		return output;
 	}
 	
-	public static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrors) throws SBOLGraphException
+	private static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrors) throws SBOLGraphException
 	{	String output="";		
 		output=output + validateIdentifiedOnly(identified, numberOfExpectedErrors);
 		output=output + validateDocument(doc, numberOfExpectedErrors);
 		return output;
 	}
 	
-	public static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrorsInIdentified, int numberOfExpectedErrorsInDocument) throws SBOLGraphException
+	public static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrorsInIdentified, int numberOfExpectedErrorsInDocument, String documentErrorCodes, String testName) throws SBOLGraphException, FileNotFoundException, IOException
 	{	 
 		String output="";				
-		output=output + validateIdentifiedOnly(identified, numberOfExpectedErrorsInIdentified);
-		output=output + validateDocument(doc, numberOfExpectedErrorsInDocument);
-		return output;
+		String output1 = validateIdentifiedOnly(identified, numberOfExpectedErrorsInIdentified);
+		String output2= validateDocument(doc, numberOfExpectedErrorsInDocument);
+		assertErrorCodes(documentErrorCodes, output2);					
+		createInvalidFiles(doc, identified.getDisplayId(), output2, documentErrorCodes, testName);				
+		return output1 + output2;
 	}
 	
 	public static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrorsInIdentified, String errorCodes, String testName) throws SBOLGraphException, FileNotFoundException, IOException	
@@ -818,6 +840,10 @@ public class TestUtil {
 	}
 	
 	public static String validateIdentifiedOnly(SBOLDocument doc, Identified identified,int numberOfExpectedErrors, String errorCodes, String testName) throws SBOLGraphException, FileNotFoundException, IOException{
+		return validateIdentifiedOnly(doc, identified, numberOfExpectedErrors, errorCodes, testName, true);
+	}
+
+	public static String validateIdentifiedOnly(SBOLDocument doc, Identified identified,int numberOfExpectedErrors, String errorCodes, String testName, boolean log ) throws SBOLGraphException, FileNotFoundException, IOException{
 		String output=validateIdentifiedOnly(identified, numberOfExpectedErrors);		
 		assertErrorCodes(errorCodes, output);			
 
@@ -829,14 +855,15 @@ public class TestUtil {
 			else{
 				assertErrorCodes(errorCodes, output);			
 			}	*/
-		
-		createInvalidFiles(doc, identified.getDisplayId(), output, errorCodes, testName);
+		if (log) {			
+			createInvalidFiles(doc, identified.getDisplayId(), output, errorCodes, testName);
+		}
 		return output;
 	}
 
 	private static void createInvalidFiles(SBOLDocument doc, String entityId, String output, String errorCodes, String testName) throws FileNotFoundException, IOException, SBOLGraphException
 	{
-		if (output!=null && output.length()>0 && testName!=null	&& testName.length()>0){
+		if (output!=null && output.length()>0 && testName!=null	&& testName.length()>0 && !output.toLowerCase().contains("no errors.")){
 			String fileName = testName;
 			if (entityId!=null && entityId.length()>0){
 				fileName=fileName + "_" + entityId;
@@ -844,13 +871,41 @@ public class TestUtil {
 			if (errorCodes!=null && errorCodes.length()>0)
 			{
 				fileName=fileName + "_" + errorCodes.replace(",", "_");
-			}			
-			File file = Paths.get("output", "invalidFiles", "all", fileName +  ".ttl").toFile();
+			}	
+			String callingTestClass = Arrays.stream(Thread.currentThread().getStackTrace())
+				.map(StackTraceElement::getClassName)
+				.map(c -> c.substring(c.lastIndexOf('.') + 1))
+				.filter(c -> c.contains("Test") && !c.equals("TestUtil"))
+				.findFirst()
+				.orElse(null);
+			if (callingTestClass==null)
+			{
+				throw new IOException("Could not find the calling test class name in the stack trace. Stack trace:" + Arrays.toString(Thread.currentThread().getStackTrace()));
+			}
+			
+			File file = Paths.get("output", "invalid", "unit_tests", "invalid_files", callingTestClass + "." + fileName +  ".ttl").toFile();
+			File fileErrorOutput = Paths.get("output", "invalid", "unit_tests", "error_output", callingTestClass + "." + fileName +  ".txt").toFile();
+			File fileErrorOutputAll = Paths.get("output", "invalid", "unit_tests", "error_output_all.txt").toFile();
+						
+			assertTrue("File name starts with the calling test class name: " + callingTestClass,
+				file.getName().toLowerCase().startsWith(callingTestClass.toLowerCase()));
+
+			if (Files.exists(file.toPath())){
+				throw new IOException("The file already exists:" + file.getAbsolutePath());
+			}
 			alwaysWrite(file, doc, SBOLFormat.TURTLE);
+			
+			//Files.createFile(fileErrorOutput.toPath());
+			fileErrorOutput.getParentFile().mkdirs();
+			Files.write(fileErrorOutput.toPath(), output.getBytes());
+
+			fileErrorOutputAll.getParentFile().mkdirs();
+			Files.write(fileErrorOutputAll.toPath(), output.getBytes(), java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
+
 			if (errorCodes!=null && errorCodes.length()>0){
 				List<String> errorCodeList=Arrays.asList(errorCodes.split(","));	
 				for (String errorCode: errorCodeList){
-					File file2 = Paths.get("output", "invalidFiles", "errorcodes", errorCode, fileName + ".ttl").toFile();
+					File file2 = Paths.get("output", "invalid", "unit_tests", "error_codes", errorCode, fileName + ".ttl").toFile();
 					alwaysWrite(file2, doc, SBOLFormat.TURTLE);
 				}
 			}

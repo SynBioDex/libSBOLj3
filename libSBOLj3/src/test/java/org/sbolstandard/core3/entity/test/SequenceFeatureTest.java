@@ -32,7 +32,7 @@ public class SequenceFeatureTest extends TestCase {
 	    
 	    Configuration.getInstance().setValidateAfterSettingProperties(false);
 	       
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 	    
 	    TestUtil.validateReturnValue(feature, "toOrientation", new Object[] {URI.create("http://invalidorientation.org")}, URI.class);
 		

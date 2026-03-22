@@ -1,0 +1,25 @@
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
+	Child Entity Type: class org.sbolstandard.core3.entity.Participation,
+	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
+	Entity Type: class org.sbolstandard.core3.entity.Interaction
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
+	Child Entity Type: class org.sbolstandard.core3.entity.Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
+	Child Entity Type: class org.sbolstandard.core3.entity.Participation,
+	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
+	Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Entity Type: class org.sbolstandard.core3.entity.Interaction
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Child Entity Type: class org.sbolstandard.core3.entity.Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------

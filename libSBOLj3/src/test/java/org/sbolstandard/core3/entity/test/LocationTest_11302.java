@@ -40,7 +40,7 @@ public class LocationTest_11302 extends TestCase {
 		
 		//Set a sequence that does not exist to the device component which includes the Location object.
 		range.setSequence(term.getSequences().get(0));
-		TestUtil.validateIdentifiedOnly(doc, device, 1, "sbol3-11302", "LocationTest_11302.Location.location.invalidSequence");
+		TestUtil.validateIdentifiedOnly(doc, device, 1, "sbol3-11302", "Location_invalidSequence");
 		
 		
 		Sequence secondTermSeq=doc.createSequence("term_na2");

@@ -22,19 +22,10 @@ public class ComponentTest_SO_SequenceFeature_10612 extends TestCase {
 		TestUtil.validateDocument(doc,0, null, null);
 		
 		Component TetR_protein=SBOLAPI.createProteinComponent(doc,popsReceiver, "TetR_protein", "TetR", "TetR protein", Role.CDS, "NNNNNNNNNNN");
-		TestUtil.validateIdentifiedAndDocument(TetR_protein, doc,1);
+		TestUtil.validateIdentifiedAndDocument(TetR_protein, doc,1, "sbol3-10612", "SO_SequenceFeature_10612");
 		
 		Component LuxR_protein=SBOLAPI.createProteinComponent(doc,popsReceiver, "BBa_C0062_protein", "LuxR",  "LuxR protein", Role.CDS, "NNNNNNNNNNN");
-		TestUtil.validateIdentifiedAndDocument(LuxR_protein, doc,1, 2);
-		
-		
-		
-		
-			
-		
-		
-	    
-               
-        
+		TestUtil.validateIdentifiedAndDocument(LuxR_protein, doc,1, 2, "sbol3-10612", "RoleNotFrom_SOSequenceFeature");
+				
     }
 }

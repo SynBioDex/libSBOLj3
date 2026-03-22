@@ -1,0 +1,38 @@
+Identified Validation test: Constraint.subject cannot be null.,
+	Property: subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504],
+	Property: subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Identified Validation test: Constraint.object cannot be null.,
+	Property: object,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504],
+	Property: object,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+--------------------
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504],
+	Property: components[2].constraints[0].subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Document Validation test: Constraint.object cannot be null.,
+	Property: components[2].constraints[0].object,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504],
+	Property: components[2].constraints[0].object,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+Document Validation test: Constraint.subject cannot be null.,
+	Property: components[2].constraints[0].subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: class org.sbolstandard.core3.entity.Constraint
+--------------------

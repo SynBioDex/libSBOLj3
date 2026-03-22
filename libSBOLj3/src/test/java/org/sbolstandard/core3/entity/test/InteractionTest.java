@@ -37,7 +37,7 @@ public class InteractionTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-        TestUtil.validateIdentifiedAndDocument(interaction,doc,0);
+        TestUtil.validateIdentifiedAndDocument(interaction,doc,0, null, null);
         
         //Interaction.types cannot be empty
         TestUtil.validateProperty(interaction, "setTypes", new Object[] {null}, List.class);
@@ -45,18 +45,18 @@ public class InteractionTest extends TestCase {
         
         interaction.setTypes(null);
         
-        TestUtil.validateIdentifiedAndDocument(interaction,doc,2);
+        TestUtil.validateIdentifiedAndDocument(interaction,doc,2, "sbol3-11803", "interactionTypesInvalid");
         interaction.setTypes(Arrays.asList(InteractionType.GeneticProduction.getUri()));
-        TestUtil.validateIdentifiedAndDocument(interaction,doc,0);
+        TestUtil.validateIdentifiedAndDocument(interaction,doc,0, null, null);
         
         Resource resource = TestUtil.getResource(interaction);
         
 		//SBOL_VALID_ENTITY_TYPES - Interaction.participation
 		RDFUtil.setProperty(resource, DataModel.Interaction.participation, i13504_system.getUri());
-		TestUtil.validateIdentifiedAndDocument(interaction,doc,1);
+		TestUtil.validateIdentifiedAndDocument(interaction,doc,1, "sbol3-10111", "interactionParticipationInvalid");
 		URI tmp=null;
 		RDFUtil.setProperty(resource, DataModel.Interaction.participation, tmp);
-		TestUtil.validateIdentifiedAndDocument(interaction,doc,0);
+		TestUtil.validateIdentifiedAndDocument(interaction,doc,0, null, null);
 	
     }
 	

@@ -8,9 +8,9 @@
     xmlns:SBO="https://identifiers.org/SBO:"
     xmlns:GO="https://identifiers.org/GO:"
     xmlns:om="http://www.ontology-of-units-of-measure.org/resource/om-2/">
-   <sbol:Component rdf:about="urn:uuid:ab2f1686-a497-4d26-8738-acb563cb6eb8">
+   <sbol:Component rdf:about="urn:uuid:8ec78df6-777f-43a3-9b5a-7b8caf48245f">
       <sbol:name>TetR</sbol:name>
-      <sbol:hasNamespace rdf:resource="urn:uuid:c4614879-33dc-46f6-9c6e-2dbdab82722f"/>
+      <sbol:hasNamespace rdf:resource="urn:uuid:9af5db8a-228a-459c-aae5-cc195fa44d15"/>
       <sbol:type rdf:resource="https://identifiers.org/SBO:0000252"/>
    </sbol:Component>
 </rdf:RDF>

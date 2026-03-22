@@ -39,10 +39,10 @@ public class CombinatorialDerivationTest_12108 extends TestCase {
 	    
 	    TestUtil.validateDocument(doc, 0, null, null);
 	    pTetR.addRole(URI.create("http://sbolstandard.org/testrole"));
-	    TestUtil.validateDocument(doc, 1,"sbol3-12108", "CombinatorialDerivationTest_12108_pTetRRoleInvalid");
+	    TestUtil.validateDocument(doc, 1,"sbol3-12108", "pTetRRoleInvalid");
 	    
 	    pTetR2.setRoles(null);
-	    TestUtil.validateDocument(doc, 2, "sbol3-12108,sbol3-10613", "CombinatorialDerivationTest_12108_pTetR2RolesNull");
+	    TestUtil.validateDocument(doc, 2, "sbol3-12108,sbol3-10613", "pTetR2RolesNull");
 		   
 	    
     }

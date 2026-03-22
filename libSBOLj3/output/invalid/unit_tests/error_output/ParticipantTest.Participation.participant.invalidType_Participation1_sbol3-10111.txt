@@ -1,0 +1,6 @@
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/TetR, https://sbolstandard.org/examples/i13504_system/ComponentReference1],
+	Property: participant,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
+	Entity Type: class org.sbolstandard.core3.entity.Participation
+--------------------

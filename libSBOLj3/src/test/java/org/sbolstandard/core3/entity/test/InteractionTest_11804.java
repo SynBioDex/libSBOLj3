@@ -36,16 +36,16 @@ public class InteractionTest_11804 extends TestCase {
         
         //InValid interaction since the role does not come from Table 12 altough 15 (substrate) is a subclass of 10 (reactant)
         Participation testParticipation= SBOLAPI.createParticipation(interaction, Arrays.asList(URINameSpace.SBO.local("0000015")), TetR_protein_subComponent);
-        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole");
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "interaction_invalidRole");
         
         SBOLAPI.createParticipation(interaction, Arrays.asList(ParticipationRole.Reactant.getUri()), TetR_protein_subComponent);
-        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole2");
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "interaction_invalidRole2");
         
         SBOLAPI.createParticipation(interaction, Arrays.asList(ParticipationRole.Reactant.getUri()), aTC_subComponent);
-        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole3");
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "interaction_invalidRole3");
         
         SBOLAPI.createParticipation(interaction, Arrays.asList(ParticipationRole.Product.getUri()), atC_TetR_subComponent);
-        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "InteractionTest_11804.Interaction.interaction.invalidRole4");
+        TestUtil.validateIdentifiedOnly(doc, interaction,1, "sbol3-11804", "interaction_invalidRole4");
         
         testParticipation.setRoles(Arrays.asList(ParticipationRole.Reactant.getUri()));
         TestUtil.validateIdentifiedOnly(doc, interaction,0, null, null);

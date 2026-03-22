@@ -118,7 +118,7 @@ public class ZInternationalURITest extends TestCase {
 	private void testComponent(SBOLDocument doc, String displayId, int error, String errorCodes, int index) throws SBOLGraphException, FileNotFoundException, IOException
 	{
 		Component c6=SBOLAPI.createDnaComponent(doc, displayId, null, null, Role.Promoter, null); 
-		TestUtil.validateIdentifiedOnly(doc, c6,error, errorCodes, "ZInternationalURITest.Component.displayIdInvalid" + index);	
+		TestUtil.validateIdentifiedOnly(doc, c6,error, errorCodes, "Component_displayIdInvalid" + index);	
 	}
 	
 	

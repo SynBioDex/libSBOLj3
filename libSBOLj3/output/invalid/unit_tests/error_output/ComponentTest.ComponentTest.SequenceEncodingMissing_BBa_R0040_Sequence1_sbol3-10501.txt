@@ -1,0 +1,10 @@
+Document Validation test: sbol3-10616  If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
+	Value: DNA,
+	Property: components[1].type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+Document Validation test: sbol3-10501 - If the elements property is set, then the encoding property of Sequence MUST be provided.,
+	Property: sequences[0].encoding,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040_Sequence1,
+	Entity Type: class org.sbolstandard.core3.entity.Sequence
+--------------------

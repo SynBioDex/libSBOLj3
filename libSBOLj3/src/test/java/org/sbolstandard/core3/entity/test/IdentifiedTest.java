@@ -30,44 +30,44 @@ public class IdentifiedTest extends TestCase {
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
         attachment.setDisplayId("test");
-        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0, null, null);
         attachment.setDisplayId("1test");
-        TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,1, "sbol3-10201", "attachmentInvalidDisplayId");
         attachment.setDisplayId("_test");
-        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0, null, null);
         TestUtil.validateProperty(attachment, "setDisplayId", new Object[] {"!qq"}, String.class);
         
         Attachment attachment2=doc.createAttachment("2attachment", URI.create("https://sbolstandard.org/attachment2_source"));
-        TestUtil.validateIdentifiedAndDocument(attachment2,doc,1);
+        TestUtil.validateIdentifiedAndDocument(attachment2,doc,1, "sbol3-10201", "attachment2InvalidDisplayId");
         attachment2.setDisplayId("attachment2");
-        TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);
       
         //IDENTIFIED_CANNOT_BE_REFERREDBY_WASDERIVEDFROM
         attachment.setWasDerivedFrom(null);
-        TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,0, null, null);
         attachment.setWasDerivedFrom(Arrays.asList(attachment.getUri()));
-        TestUtil.validateIdentifiedAndDocument(attachment, doc, 1);
+        TestUtil.validateIdentifiedAndDocument(attachment, doc, 1, "sbol3-10202", "attachmentWasDerivedFromInvalid");
         attachment.setWasDerivedFrom(null);
-        TestUtil.validateIdentifiedAndDocument(attachment, doc, 0);       
+        TestUtil.validateIdentifiedAndDocument(attachment, doc, 0, null, null);       
         
         Resource resource = TestUtil.getResource(attachment);
         
 		//SBOL_VALID_ENTITY_TYPES - Identified.wasGeenratedBy
 		RDFUtil.setProperty(resource, DataModel.Identified.wasGeneratedBy, attachment.getUri());
-		TestUtil.validateIdentifiedAndDocument(attachment, doc, 1);
+		TestUtil.validateIdentifiedAndDocument(attachment, doc, 1, "sbol3-10111", "attachmentWasGeneratedByInvalid");
 		attachment.setWasGeneratedBy(null);
-		TestUtil.validateIdentifiedAndDocument(attachment, doc, 0);
+		TestUtil.validateIdentifiedAndDocument(attachment, doc, 0, null, null);
 		
 		RDFUtil.setProperty(resource, DataModel.Identified.measure, attachment.getUri());
-		TestUtil.validateIdentifiedAndDocument(attachment, doc, 1);
+		TestUtil.validateIdentifiedAndDocument(attachment, doc, 1, "sbol3-10111", "attachmentMeasureInvalid");
 		URI tmp=null;
 		RDFUtil.setProperty(resource, DataModel.Identified.measure, tmp);
-		TestUtil.validateIdentifiedAndDocument(attachment, doc, 0);
+		TestUtil.validateIdentifiedAndDocument(attachment, doc, 0, null, null);
 									       		
 		//IDENTIFIED_SUITABLE_SBOL_ENTITY_TYPES
         //This will cause an invalid attachment and will create an invalid sequence. Two document errors - one attachment error.
         attachment.addAnnotationType(DataModel.Sequence.uri);
-        TestUtil.validateIdentifiedAndDocument(attachment, doc, 1,2);
+        TestUtil.validateIdentifiedAndDocument(attachment, doc, 1,2, "sbol3-10106", "attachmentInvalidType");
         
     }
 }

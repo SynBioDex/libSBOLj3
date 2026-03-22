@@ -29,12 +29,12 @@ public class CollectionTest extends TestCase {
       
         Collection col=doc.createCollection("col1");
         //Collections can be empty
-        TestUtil.validateIdentifiedAndDocument(col,doc,0);
+        TestUtil.validateIdentifiedAndDocument(col,doc,0, null, null);
                 
         col.addUriMembers(Arrays.asList(TetR_protein.getUri()));
         col.addMember(LacI_protein);
         //Collections can have members
-        TestUtil.validateIdentifiedAndDocument(col,doc,0); 
+        TestUtil.validateIdentifiedAndDocument(col,doc,0, null, null); 
         
         TestUtil.serialise(doc, "entity/collection", "collection");
         System.out.println(SBOLIO.write(doc, SBOLFormat.TURTLE));
@@ -43,7 +43,7 @@ public class CollectionTest extends TestCase {
         boolean isComplete=Configuration.getInstance().isCompleteDocument();
         Configuration.getInstance().setCompleteDocument(true);
         col.setMembers(Arrays.asList(TetR_protein.getUri(), LacI_protein.getUri(), URI.create("http://invalidmemberuri.org")));
-        TestUtil.validateDocument(doc,1, "sbol3-10111", "CollectionTest.InvalidMemberURI");   
+        TestUtil.validateDocument(doc,1, "sbol3-10111", "InvalidMemberURI");   
         TestUtil.validateIdentifiedOnly(doc, col,0, null, null);             
         Configuration.getInstance().setCompleteDocument(isComplete);
     }

@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/test],
+	Property: built,
+	Entity URI: https://sbolstandard.org/examples/impl1,
+	Entity Type: class org.sbolstandard.core3.entity.Implementation
+--------------------
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://sbolstandard.org/examples/test],
+	Property: implementations[0].built,
+	Entity URI: https://sbolstandard.org/examples/impl1,
+	Entity Type: class org.sbolstandard.core3.entity.Implementation
+--------------------

@@ -59,42 +59,42 @@ public class ComponentReferenceTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-		TestUtil.validateIdentifiedAndDocument(compRef,doc,0);
+		TestUtil.validateIdentifiedAndDocument(compRef,doc,0, null, null);
 		
 		//refersTo is required
 		TestUtil.validateProperty(compRef, "setRefersTo", new Object[] {null}, Feature.class);
 		Feature temp=compRef.getRefersTo();
 		compRef.setRefersTo(null);
-		TestUtil.validateIdentifiedAndDocument(compRef,doc,1);
+		TestUtil.validateIdentifiedAndDocument(compRef,doc,1, null, "refersToNull");
 		compRef.setRefersTo(temp);
-		TestUtil.validateIdentifiedAndDocument(compRef,doc,0);
+		TestUtil.validateIdentifiedAndDocument(compRef,doc,0, null, null);
 		
 		
 		//SBOL_VALID_ENTITY_TYPES ComponentReference.refersTo
         Resource resource = TestUtil.getResource(compRef);
         RDFUtil.setProperty(resource, DataModel.ComponentReference.refersTo, i13504_system.getUri());
-		TestUtil.validateIdentifiedAndDocument(compRef,doc,2);
+		TestUtil.validateIdentifiedAndDocument(compRef,doc,2,"sbol3-10111", "refersToInvalid");
 		RDFUtil.setProperty(resource, DataModel.ComponentReference.refersTo, temp.getUri());
-		TestUtil.validateIdentifiedAndDocument(compRef,doc,0);
+		TestUtil.validateIdentifiedAndDocument(compRef,doc,0, null, null);
 		
 		
 		//inChildOf is required
 		TestUtil.validateProperty(compRef, "setInChildOf", new Object[] {null}, SubComponent.class);
 		SubComponent tempSubComponent=compRef.getInChildOf();
 		compRef.setInChildOf(null);
-		TestUtil.validateIdentifiedAndDocument(compRef,doc,1);
+		TestUtil.validateIdentifiedAndDocument(compRef,doc,1, null, "inChildOfNull");
 		compRef.setInChildOf(tempSubComponent);
-		TestUtil.validateIdentifiedAndDocument(compRef,doc,0);
+		TestUtil.validateIdentifiedAndDocument(compRef,doc,0, null, null);
 		
 		//inchildOf must refer to a subcomponent in parent component.
 		compRef.setInChildOf(termSubComponent);
-		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc, 2);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc, 2, "sbol3-10901,sbol3-10904", "inChildOfInvalid");
 		compRef.setInChildOf(tempSubComponent);
-		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0, null, null);
 		
 		//SBOL_VALID_ENTITY_TYPES ComponentReference.inChildOf
 		RDFUtil.setProperty(resource, DataModel.ComponentReference.inChildOf, URI.create("http://invalidcomponentreference.org"));
-		TestUtil.validateIdentifiedOnly(doc, compRef, 2, "sbol3-10111", "ComponentReferenceTest_ComponentReference.inChildOf.nullValue");
+		TestUtil.validateIdentifiedOnly(doc, compRef, 2, "sbol3-10111", "ComponentReference.inChildOf.nullValue");
 		compRef.setInChildOf(tempSubComponent);
 		TestUtil.validateIdentifiedOnly(doc, compRef,0, null,null);				
     }

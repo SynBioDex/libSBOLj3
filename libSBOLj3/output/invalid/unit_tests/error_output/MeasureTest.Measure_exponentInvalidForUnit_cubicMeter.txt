@@ -1,0 +1,18 @@
+Identified Validation test: UnitExponentiation.base cannot be null.,
+	Property: baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitExponentiation
+Identified Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: exponent,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitExponentiation
+--------------------
+Document Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: unitExponentiations[0].exponent,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitExponentiation
+Document Validation test: UnitExponentiation.base cannot be null.,
+	Property: unitExponentiations[0].baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitExponentiation
+--------------------

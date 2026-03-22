@@ -31,11 +31,11 @@ public class SubComponentTest_10807 extends TestCase {
 		feature.setOrientation(Orientation.inline);
 		
 		
-		TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+		TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 
 		//https://github.com/SynBioDex/SEPs/blob/master/sep_026.md
 		
-		//sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence.
+		//sbol3-10807 If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence.
 		
 		/*Component test=SBOLAPI.createDnaComponent(doc, "test", "test", null, Role.CDS, "aaaaaa");
 		feature.createRange(1, 3, test.getSequences().get(0));   
@@ -47,7 +47,7 @@ public class SubComponentTest_10807 extends TestCase {
 	    feature.createRange(7, 9, seq);
 	    
 	    
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 	    
 	    Configuration.getInstance().setValidateBeforeSaving(false);
 	    String output=SBOLIO.write(doc, SBOLFormat.TURTLE);

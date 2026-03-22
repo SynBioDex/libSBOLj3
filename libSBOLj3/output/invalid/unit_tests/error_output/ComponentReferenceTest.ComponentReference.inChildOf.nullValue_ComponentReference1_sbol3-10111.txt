@@ -1,0 +1,10 @@
+Identified Validation test: ComponentReference.inChildOf cannot be null.,
+	Property: inChildOf,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
+	Entity Type: class org.sbolstandard.core3.entity.ComponentReference
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [http://invalidcomponentreference.org],
+	Property: inChildOf,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
+	Entity Type: class org.sbolstandard.core3.entity.ComponentReference
+--------------------

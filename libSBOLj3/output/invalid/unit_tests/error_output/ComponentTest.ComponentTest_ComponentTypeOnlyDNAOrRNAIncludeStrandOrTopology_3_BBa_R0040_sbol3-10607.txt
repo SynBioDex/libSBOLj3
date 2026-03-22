@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10607 - If the type property of a Component contains the DNA or RNA type URI listed in Table 2, then its type property SHOULD also contain at most one URI that refers to a term from the topology  attribute branch of the SO.,
+	Value: [https://identifiers.org/SBO:0000251, https://identifiers.org/SO:0000987, https://identifiers.org/SO:0000988],
+	Property: type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------
+Document Validation test: sbol3-10607 - If the type property of a Component contains the DNA or RNA type URI listed in Table 2, then its type property SHOULD also contain at most one URI that refers to a term from the topology  attribute branch of the SO.,
+	Value: [https://identifiers.org/SBO:0000251, https://identifiers.org/SO:0000987, https://identifiers.org/SO:0000988],
+	Property: components[1].type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: class org.sbolstandard.core3.entity.Component
+--------------------

@@ -32,7 +32,7 @@ public class ComponentReferenceTest_10904 extends TestCase {
         //Error: Create a Cref referring to a subComponent from the parent rather than a feature from the subcomponent linked via the invhildOf property.
         SubComponent scAra_L1= multicellularSystem.createSubComponent(Ara);
         ComponentReference csAra_SenderL1=multicellularSystem.createComponentReference(scAra_L1, scIPTGSenderL2_L1);
-        TestUtil.validateDocument(doc, 1, "sbol3-10904", "ComponentReferenceTest_10904");
+        TestUtil.validateDocument(doc, 1, "sbol3-10904", "Invalid");
         
         
        

@@ -1,0 +1,16 @@
+Document Validation test: Range.start must be bigger than zero.,
+	Property: components[0].subComponents[0].locations[0].start,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
+	Entity Type: class org.sbolstandard.core3.entity.Range,
+	Value: 0
+Document Validation test: sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence. ADDITIONAL INFORMATION: Sequence length:80, Calculated location length:1, Sequence: https://synbiohub.org/public/igem/B0015_Sequence1,
+	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
+	Property: components[0].subComponents[0].hasLocation,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: class org.sbolstandard.core3.entity.SubComponent
+Document Validation test: Range.end must be bigger than zero.,
+	Property: components[0].subComponents[0].locations[0].end,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
+	Entity Type: class org.sbolstandard.core3.entity.Range,
+	Value: 0
+--------------------

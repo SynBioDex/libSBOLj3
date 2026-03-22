@@ -54,29 +54,29 @@ public class RangeTest extends TestCase {
 	    
 	    Configuration.getInstance().setValidateAfterSettingProperties(false);
 	    
-	    TestUtil.validateIdentifiedAndDocument(range,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(range,doc,0, null, null);
 	    
 	    //Range.start cannot be empty
 	    TestUtil.validateProperty(range, "setStart", new Object[] {Optional.empty()}, Optional.class);        
 	    TestUtil.validateProperty(range, "setEnd", new Object[] {Optional.empty()}, Optional.class);        
 	    range.setStart(Optional.empty());
 	    range.setEnd(Optional.empty());
-	    TestUtil.validateIdentifiedAndDocument(range,doc,2,3);
+	    TestUtil.validateIdentifiedAndDocument(range,doc,2,3, "sbol3-10807", "rangeStartAndEndEmpty");
 	    
 	    //Range.start cannot be negative
 	    range.setStart(Optional.of(-1));
 	    range.setEnd(Optional.of(-1));
-	    TestUtil.validateIdentifiedAndDocument(range,doc,2,3);
+	    TestUtil.validateIdentifiedAndDocument(range,doc,2,3, "sbol3-10807", "rangeStartAndEndNegative");
 	    
 	    //Range.start cannot be negative
 	    range.setStart(Optional.of(0));
 	    range.setEnd(Optional.of(0));
-		TestUtil.validateIdentifiedAndDocument(range,doc,2,3);
+		TestUtil.validateIdentifiedAndDocument(range,doc,2,3, "sbol3-10807", "rangeStartAndEndZero");
 	    
 	   //Range.start cannot be negative
 	    range.setStart(Optional.of(start));
 	    range.setEnd(Optional.of(end));
-	    TestUtil.validateIdentifiedAndDocument(range,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(range,doc,0, null, null);
 	    
 	    	
 	    	

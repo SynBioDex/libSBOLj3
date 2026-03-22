@@ -39,11 +39,11 @@ public class RangeTest_11401_11402 extends TestCase {
 		
 		//RANGE_START_VALID_FOR_SEQUENCE
 		Range startRange2=termSubComponent.createSourceRange(100, 3, term.getSequences().get(0));
-		TestUtil.validateIdentifiedOnly(doc, device, 2, "sbol3-11401, sbol3-11403", "RangeTest_11401_11402.Range.range.startInvalidForSequence");
+		TestUtil.validateIdentifiedOnly(doc, device, 2, "sbol3-11401, sbol3-11403", "range_startInvalidForSequence");
 		
 		//RANGE_END_VALID_FOR_SEQUENCE
 		startRange2.setEnd(Optional.of(200));
-		TestUtil.validateIdentifiedOnly(doc, device, 2, "sbol3-11401, sbol3-11402", "RangeTest_11401_11402.Range.range.endInvalidForSequence");
+		TestUtil.validateIdentifiedOnly(doc, device, 2, "sbol3-11401, sbol3-11402", "range_endInvalidForSequence");
 		
 		startRange2.setStart(Optional.of(1));
 		startRange2.setEnd(Optional.of(20));
@@ -54,14 +54,14 @@ public class RangeTest_11401_11402 extends TestCase {
 		device2.setRoles(Arrays.asList(Role.EngineeredGene));		
 		SBOLAPI.addSequence(doc, device2, Encoding.NucleicAcid, term_na);
 		SequenceFeature sf=device2.createSequenceFeature(200, 300, device2.getSequences().get(0));
-		TestUtil.validateIdentifiedOnly(doc, device2, 2, "sbol3-11401,sbol3-11402", "RangeTest_11401_11402.Range.range.startEndInvalidForSequence");
+		TestUtil.validateIdentifiedOnly(doc, device2, 2, "sbol3-11401,sbol3-11402", "range_startEndInvalidForSequence");
 		String elements=device2.getSequences().get(0).getElements();
 		device2.getSequences().get(0).setElements(null);
 		boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();
 		Configuration.getInstance().setCompleteDocument(false);
 		TestUtil.validateIdentifiedOnly(doc, device2, 0, null, null);
 		Configuration.getInstance().setCompleteDocument(true);
-		TestUtil.validateIdentifiedOnly(doc, device2, 2,"sbol3-11401,sbol3-11402", "RangeTest_11401_11402.Range.range.startEndInvalidForSequenceForCompleteDocument");
+		TestUtil.validateIdentifiedOnly(doc, device2, 2,"sbol3-11401,sbol3-11402", "range_startEndInvalidForSequenceForCompleteDocument");
 		device2.getSequences().get(0).setElements(elements);
 		((Range)sf.getLocations().get(0)).setStart(Optional.of(1));
         ((Range)sf.getLocations().get(0)).setEnd(Optional.of(3));		

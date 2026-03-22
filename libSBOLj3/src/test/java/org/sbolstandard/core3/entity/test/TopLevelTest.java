@@ -39,28 +39,28 @@ public class TopLevelTest extends TestCase {
         //TOPLEVEL_NAMESPACE_NOT_NULL
         TestUtil.validateProperty(attachment, "setNamespace", new Object[] {null}, URI.class);
         attachment.setNamespace(null);
-	    TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment,doc,1, null, "TopLevelTest_namespaceNull");
 	    
 	    //TOPLEVEL_URI_STARTS_WITH_NAMESPACE 
         attachment.setNamespace(URI.create("http://sdfsf.org"));
-        TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
+        TestUtil.validateIdentifiedAndDocument(attachment,doc,1, "sbol3-10301", "TopLevelTest_namespaceInvalid");
 	    attachment.setNamespace(URI.create("https://sbolstandard.org"));
-	    TestUtil.validateIdentifiedAndDocument(attachment,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment,doc,0, null, null);
 	    
 	    //TOPLEVEL_URI_PATTERN
 	    Attachment attachment2=doc.createAttachment("attachment2", URI.create("https://sbolstandard.org/local/attachment3"));
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org"));
-	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples"));
-	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples/"));
-	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1, "sbol3-10102", "TopLevelTest_namespaceInvalid_2");
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples/attachment2"));
-	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1, "sbol3-10102", "TopLevelTest_namespaceInvalid_3");
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples/attach"));
-	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,1, "sbol3-10102", "TopLevelTest_namespaceInvalid_4");
 	    attachment2.setNamespace(URI.create("https://sbolstandard.org/examples"));
-	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);
 	    
 	    Attachment attachment3=doc.createAttachment(URI.create("https://sbolstandard.org/attachment3"), URI.create("https://sbolstandard.org"), URI.create("https://sbolstandard.org/local/attachment3"));
 	    TestUtil.validateDocument(doc,0, null, null); 
@@ -78,9 +78,9 @@ public class TopLevelTest extends TestCase {
 	    //SBOL_VALID_ENTITY_TYPES - TopLevel.attachments
 	  	List<URI> tempURIs=SBOLUtil.getURIs(attachment.getAttachments());
 	  	RDFUtil.setProperty(resource, DataModel.TopLevel.attachment, SBOLUtil.getURIs(doc.getComponents()));
-	  	TestUtil.validateIdentifiedAndDocument(attachment,doc,1);
+	  	TestUtil.validateIdentifiedAndDocument(attachment,doc,1, "sbol3-10111", "TopLevelTest_attachmentsInvalid");
 	  	attachment.setAttachments(attachment2,attachment3);
-	  	TestUtil.validateIdentifiedAndDocument(attachment,doc,0);		  
+	  	TestUtil.validateIdentifiedAndDocument(attachment,doc,0, null, null);		  
 	  	
 	    //TOPLEVEL_URI_CANNOT_BE_USED_AS_A_PREFIX
 	    Attachment attachment4=doc.createAttachment(URI.create("https://sbolstandard.org/attachment3/withprefix"), URI.create("https://sbolstandard.org"), URI.create("https://sbolstandard.org/local/attachment4"));

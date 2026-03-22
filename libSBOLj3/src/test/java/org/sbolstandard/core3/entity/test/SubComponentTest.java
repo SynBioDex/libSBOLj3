@@ -54,32 +54,32 @@ public class SubComponentTest extends TestCase {
 	    
 	    Configuration.getInstance().setValidateAfterSettingProperties(false);
 	     
-	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,0, null, null);
 	    
 	    TestUtil.validateProperty(termSubComponent, "setInstanceOf", new Object[] {null}, Component.class);
 	    URI nullURI=null;
 	    termSubComponent.setInstanceOf(nullURI);	    
 	    range.setEnd(Optional.empty());
 	    //range2.setEnd(Optional.empty());
-	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,2);
+	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,2,null, "SubComponent_instanceOfNull");
 	    termSubComponent.setRoleIntegration(null);
-	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,2);
+	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,2,null, "SubComponent_roleIntegrationNull");
 	    termSubComponent.setRoleIntegration(RoleIntegration.mergeRoles);
-	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,2);
+	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,2, null, "SubComponent_roleIntegrationMergeRoles");
 	    
 	    //Roles must be provided if roleIntegration is not nulls
 	    termSubComponent.setRoleIntegration(null);
 	    termSubComponent.setRoles(Arrays.asList(URI.create("http://testrole.org")));
-	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,3);
+	    TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,3, "sbol3-10802", "SubComponent_roleIntegrationNullRolesNotNull");
 	    
 	    termSubComponent.setInstanceOf(term);
-	    TestUtil.validateIdentifiedOnly(doc, device, 3, "sbol3-10802, sbol3-10807", "SubComponentTest.SubComponent.instanceOfInvalid");   
+	    TestUtil.validateIdentifiedOnly(doc, device, 3, "sbol3-10802, sbol3-10807", "SubComponent_instanceOfInvalid");   
 	    termSubComponent.setInstanceOf(device);
-	    TestUtil.validateIdentifiedOnly(doc, device, 5, "sbol3-10802,sbol3-10803,sbol3-10804,sbol3-10807", "SubComponentTest.SubComponent.instanceOfInvalid2");
+	    TestUtil.validateIdentifiedOnly(doc, device, 5, "sbol3-10802,sbol3-10803,sbol3-10804,sbol3-10807", "SubComponent_instanceOfInvalid2");
 	    
 	    //Clean the errors
 	    termSubComponent.setInstanceOf(term);
-	    TestUtil.validateIdentifiedOnly(doc, device, 3, "sbol3-10802, sbol3-10807", "SubComponentTest.SubComponent.instanceOfInvalid3");   
+	    TestUtil.validateIdentifiedOnly(doc, device, 3, "sbol3-10802, sbol3-10807", "SubComponent_instanceOfInvalid3");   
 	    range.setEnd(Optional.of(end));
 	    //range2.setEnd(Optional.of(end));
 	    termSubComponent.setRoleIntegration(RoleIntegration.mergeRoles);
@@ -91,16 +91,13 @@ public class SubComponentTest extends TestCase {
 	    //SBOL_VALID_ENTITY_TYPES - SubComponent.instanceOf
 	    Component instanceOf=termSubComponent.getInstanceOf();
 	  	RDFUtil.setProperty(resource, DataModel.SubComponent.instanceOf, Arrays.asList(range.getUri()));
-	  	TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,1);
+	  	TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,1, "sbol3-10111", "SubComponent_instanceOfInvalid");
 	  	termSubComponent.setInstanceOf(term);
-	  	TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,0);	
+	  	TestUtil.validateIdentifiedAndDocument(termSubComponent,doc,0, null, null);
+	  		
+	    //SBOL_VALID_ENTITY_TYPES - SubComponent.roleIntegration
+	    RoleIntegration roleIntegration=termSubComponent.getRoleIntegration();
 	  	
-	  	/*Cut cutSource=termSubComponent.createSourceCut(1, i13504Sequence);
-	  	RDFUtil.setProperty(resource, DataModel.SubComponent.sourceLocation, Arrays.asList(cutSource.getUri(), i13504Sequence.getUri()));
-	  	TestUtil.validateIdentified(termSubComponent,doc,2);
-	  	//RDFUtil.setProperty(resource, DataModel.SubComponent.sourceLocation, Arrays.asList(range2.getUri()));
-	  	TestUtil.validateIdentified(termSubComponent,doc,0);	
-	  	*/
 	  	TestUtil.assertReadWrite(doc);	  		  
     }
 }

@@ -1,0 +1,37 @@
+Document Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: unitExponentiations[0].exponent,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitExponentiation
+Document Validation test: Unit.symbol cannot be empty.,
+	Property: prefixedUnits[0].symbol,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: class org.sbolstandard.core3.entity.measure.PrefixedUnit
+Document Validation test: UnitDivision.numerator cannot be null.,
+	Property: unitDivisions[0].numeratorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitDivision
+Document Validation test: PrefixedUnit.unit cannot be null.,
+	Property: prefixedUnits[0].unitURI,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: class org.sbolstandard.core3.entity.measure.PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: class org.sbolstandard.core3.entity.measure.PrefixedUnit
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: class org.sbolstandard.core3.entity.measure.PrefixedUnit
+Document Validation test: Prefix.factor cannot be null.,
+	Property: SIPrefixes[0].factor,
+	Entity URI: https://sbolstandard.org/examples/milli,
+	Entity Type: class org.sbolstandard.core3.entity.measure.SIPrefix
+Document Validation test: UnitDivision.denominator cannot be null.,
+	Property: unitDivisions[0].denominatorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitDivision
+Document Validation test: UnitExponentiation.base cannot be null.,
+	Property: unitExponentiations[0].baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: class org.sbolstandard.core3.entity.measure.UnitExponentiation
+--------------------

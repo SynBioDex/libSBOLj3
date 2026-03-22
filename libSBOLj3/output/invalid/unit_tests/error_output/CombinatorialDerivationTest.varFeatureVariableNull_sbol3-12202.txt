@@ -1,0 +1,13 @@
+Document Validation test: VariableFeature.feature cannot be null.,
+	Property: combinatorialDerivations[0].variableFeatures[0].variable,
+	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature1,
+	Entity Type: class org.sbolstandard.core3.entity.VariableFeature
+Document Validation test: VariableFeature.cardinality cannot be null.,
+	Property: combinatorialDerivations[0].variableFeatures[0].cardinality,
+	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature1,
+	Entity Type: class org.sbolstandard.core3.entity.VariableFeature
+Document Validation test: sbol3-12202 - The Feature referenced by the variable property of a VariableFeature MUST be contained by the template Component of the CombinatorialDerivation that contains the VariableFeature.,
+	Property: combinatorialDerivations[0].hasVariableFeature[https://synbiohub.org/public/igem/cs1/VariableFeature1].variable,
+	Entity URI: https://synbiohub.org/public/igem/cs1,
+	Entity Type: class org.sbolstandard.core3.entity.CombinatorialDerivation
+--------------------

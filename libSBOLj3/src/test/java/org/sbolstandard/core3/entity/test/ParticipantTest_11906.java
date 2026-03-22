@@ -48,13 +48,13 @@ public class ParticipantTest_11906 extends TestCase {
 		TestUtil.validateDocument(doc, 0, null, null);
         
 		Participation par2= interaction.createParticipation(Arrays.asList(URI.create("http://sbolstandard.prg/nonSboUri")), gfpCDSReference);		
-        TestUtil.validateDocument(doc, 2,"sbol3-11804, sbol3-11906", "ParticipantTest_11906_1");
+        TestUtil.validateDocument(doc, 2,"sbol3-11804, sbol3-11906", "Invalid_1");
         
         par2.setRoles(Arrays.asList(ParticipationRole.Product.getUri(), ParticipationRole.Template.getUri()));
-        TestUtil.validateDocument(doc, 1, "sbol3-11906", "ParticipantTest_11906_2");
+        TestUtil.validateDocument(doc, 1, "sbol3-11906", "Invalid_2");
         
         par2.setRoles(Arrays.asList(URI.create("http://sbolstandard.prg/nonSboUri"), ParticipationRole.Product.getUri(), ParticipationRole.Template.getUri()));
-        TestUtil.validateDocument(doc, 1, "sbol3-11906", "ParticipantTest_11906_3");
+        TestUtil.validateDocument(doc, 1, "sbol3-11906", "Invalid_3");
         
         par2.setRoles(Arrays.asList(URI.create("http://sbolstandard.prg/nonSboUri"), ParticipationRole.Product.getUri()));
         TestUtil.validateDocument(doc, 0,   null, null);

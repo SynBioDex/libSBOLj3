@@ -52,7 +52,7 @@ public class CombinatorialDerivationTest_12109 extends TestCase {
 	    sc_end.addAnnotation(URI.create("http://sbolstandard.org/testproperty"), "testvalue");
 	    sc_end.addRole(URI.create("http://sbolstandard.org/testrole"));
 	    sc_end.setRoleIntegration(RoleIntegration.mergeRoles);	   
-	    TestUtil.validateDocument(doc, 4,"sbol3-12109, sbol3-12114", "CombinatorialDerivationTest_12109");
+	    TestUtil.validateDocument(doc, 4,"sbol3-12109, sbol3-12114", "InvalidRoleIntegrationMergeRoles");
 	    
 	       
 	    

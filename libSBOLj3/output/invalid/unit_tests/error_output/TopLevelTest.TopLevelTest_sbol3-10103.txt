@@ -1,0 +1,4 @@
+Document Validation test: sbol3-10103 - A TopLevel object's URL MUST NOT be included as prefix for any other TopLevel object.,
+	Value: https://sbolstandard.org/attachment3/withprefix,
+	Property: TopLevel[https://sbolstandard.org/attachment3/withprefix].TopLevel[https://sbolstandard.org/attachment3]
+--------------------

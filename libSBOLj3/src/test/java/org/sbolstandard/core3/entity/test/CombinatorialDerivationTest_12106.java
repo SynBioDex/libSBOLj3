@@ -37,10 +37,10 @@ public class CombinatorialDerivationTest_12106 extends TestCase {
 	    Component start=SBOLAPI.createDnaComponent(doc, "BBa_R0040_start", "pTetR_start", "promoter_start", Role.EngineeredRegion, "tccctat");	
 	    SubComponent sc_start=pTetR.createSubComponent(start);	    
 	    	    
-	    TestUtil.validateDocument(doc, 2,"sbol3-12106", "CombinatorialDerivationTest_12106_1");
+	    TestUtil.validateDocument(doc, 2,"sbol3-12106", "Invalid_1");
 		
 	    col.addMember(pTetR);
-	    TestUtil.validateDocument(doc, 2,"sbol3-12106", "CombinatorialDerivationTest_12106_2");
+	    TestUtil.validateDocument(doc, 2,"sbol3-12106", "Invalid_2");
 		
     }
 

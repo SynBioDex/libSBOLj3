@@ -34,7 +34,7 @@ public class PrefixTest_14202 extends TestCase {
 		
 		Resource res=TestUtil.getResource(milli);
 		RDFUtil.setProperty(res, DataModel.Identified.description, "bbb");
-		TestUtil.validateDocument(doc,1, "sbol3-14202", "PrefixTest_14202.PrefixDescription");
+		TestUtil.validateDocument(doc,1, "sbol3-14202", "InvalidPrefixDescription");
 		milli.setComment("bbb");
 		TestUtil.validateDocument(doc,0, null, null);
     }

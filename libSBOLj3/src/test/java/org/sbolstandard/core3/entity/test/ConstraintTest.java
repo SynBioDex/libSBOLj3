@@ -53,52 +53,52 @@ public class ConstraintTest extends TestCase {
     	Feature tempObject=constraint.getObject();
     	
  
-        TestUtil.validateIdentifiedAndDocument(constraint,doc,0);
+        TestUtil.validateIdentifiedAndDocument(constraint,doc,0, null, null);
         TestUtil.validateProperty(constraint, "setRestriction", new Object[] {null}, URI.class);
         URI testURI=null;
 		constraint.setRestriction(testURI);
-		TestUtil.validateIdentifiedAndDocument(constraint,doc,2);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,2, "sbol3-11704", "restrictionNull");
 		
 		TestUtil.validateProperty(constraint, "setObject", new Object[] {null}, Feature.class);
 		constraint.setObject(null);
-		TestUtil.validateIdentifiedAndDocument(constraint,doc,3);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,3, "sbol3-11704", "objectNull");
 		
 		TestUtil.validateProperty(constraint, "setSubject", new Object[] {null}, Feature.class);
 		constraint.setSubject(null);
-		TestUtil.validateIdentifiedAndDocument(constraint,doc,4);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,4, "sbol3-11704", "subjectNull");
 		
 		constraint.setRestriction(tempRestriction);
 		constraint.setSubject(tempSubject);
 		constraint.setObject(tempObject);
-		TestUtil.validateIdentifiedAndDocument(constraint,doc,0);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,0, null, null);
 		
 		//CONSTRAINT_SUBJECT_MUST_REFER_TO_A_FEATURE_OF_THE_PARENT
 		constraint.setSubject(i13504SubComponent);
-		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,1,1);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,1,"sbol3-11701", "subjectNotInParent");
 		constraint.setSubject(tempSubject);
-		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0,0);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0, null, null);
 		
 		//CONSTRAINT_OBJECT_MUST_REFER_TO_A_FEATURE_OF_THE_PARENT
 		constraint.setObject(i13504SubComponent);
-		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,1,1);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,1, "sbol3-11702", "objectNotInParent");
 		
 		//In addition to adding an invalid subject URI, the subject and the object uri cannot be the same. Hence the following line will introduce two errors.
 		//CONSTRAINT_OBJECT_AND_SUBJECT_ARE_NOT_EQUAL
 		constraint.setSubject(i13504SubComponent);
-		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,3,3);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,3, "sbol3-11701,sbol3-11702,sbol3-11703", "subjectAndObjectSame");
 		constraint.setSubject(tempSubject);
 		constraint.setObject(tempObject);
-		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0);
+		TestUtil.validateIdentifiedAndDocument(ilab16_dev1,doc,0, null, null);
 		
 		Resource resource = TestUtil.getResource(constraint);
 		//SBOL_VALID_ENTITY_TYPES - Constraint.subject & object
 		RDFUtil.setProperty(resource, DataModel.Constraint.subject, device.getUri());
-		TestUtil.validateIdentifiedAndDocument(constraint,doc,2);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,2, "sbol3-10111", "subjectInvalid");
 		RDFUtil.setProperty(resource, DataModel.Constraint.object, device.getUri());
-		TestUtil.validateIdentifiedAndDocument(constraint,doc,4);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,4, "sbol3-10111", "objectInvalid");
 		constraint.setSubject(tempSubject);
 		constraint.setObject(tempObject);
-		TestUtil.validateIdentifiedAndDocument(constraint,doc,0);
+		TestUtil.validateIdentifiedAndDocument(constraint,doc,0, null, null);
 		
 		
     }

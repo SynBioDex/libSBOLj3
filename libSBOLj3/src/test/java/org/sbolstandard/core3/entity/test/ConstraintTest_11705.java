@@ -69,7 +69,7 @@ public class ConstraintTest_11705 extends TestCase {
        
         //Error since they are the same
         multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.differentFrom.getUri(), csIPTG_SenderL1, csIPTG_ReceiverL1);
-        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_differentFrom");
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "differentFrom");
      
         
         Component araSenderL2=SBOLAPI.createComponent(doc, "senderAraSubSystem", ComponentType.FunctionalEntity.getUri(), "SenderAraSubSystem", "Sender Ara Sub System", Role.FunctionalCompartment);
@@ -94,7 +94,7 @@ public class ConstraintTest_11705 extends TestCase {
         
         //Error since they are the same
         multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.differentFrom.getUri(), csAra_SenderL1, csAra_ReceiverL1);
-        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_differentFrom");
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "differentFrom_2");
         
         //Error:
         //Change receiver.Ara (ExternallyDefined) --> receiver.Ara (SubComponent). 
@@ -102,7 +102,7 @@ public class ConstraintTest_11705 extends TestCase {
         Component Ara=SBOLAPI.createComponent(doc, "Ara", ComponentType.SimpleChemical.getUri(), "Ara", "Ara", Role.Effector);
         SubComponent scAra_ReceiverL3=araReceiverL3.createSubComponent(Ara);
         csAra_ReceiverL2.setRefersTo(scAra_ReceiverL3);
-        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_differentTypes");
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "differentTypes");
         
        
         senderSubComponent.setOrientation(Orientation.inline);
@@ -111,60 +111,11 @@ public class ConstraintTest_11705 extends TestCase {
         TestUtil.validateDocument(doc, errorNo, null, null);
        
         receiverSubComponent.setOrientation(Orientation.reverseComplement);
-        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "ConstraintTest_11705_orientationMismatch");
+        TestUtil.validateDocument(doc, ++errorNo, "sbol3-11705", "orientationMismatch");
         
         orientationConstraint.setRestriction(OrientationRestriction.oppositeOrientationAs);
         TestUtil.validateDocument(doc, --errorNo,null, null);
-         
-         
-        
-        /*
-        SubComponent scIPTGInMultiCellularSystem=multicellularSystem.createSubComponent(IPTG);
-        
-        ComponentReference subject=multicellularSystem.createComponentReference(scIPTGInMultiCellularSystem, senderSubComponent);
-        SubComponent scIPTGInSenderSystem=senderSystem.createSubComponent(IPTG);        
-        Component senderIPTGSubSystem=SBOLAPI.createComponent(doc, "senderIPTGSubSystem", ComponentType.FunctionalEntity.getUri(), "SenderIPTGSubSystem", "Sender IPTG System", Role.FunctionalCompartment);
-        SubComponent scSenderIPTGSubSystem=SBOLAPI.addSubComponent(senderSystem, senderIPTGSubSystem);
-        ComponentReference cfIPTGSenderSystem= senderSystem.createComponentReference(scIPTGInSenderSystem, scSenderIPTGSubSystem);
-        SubComponent scIPTG_InIPTGSenderSubsystem=SBOLAPI.addSubComponent(senderIPTGSubSystem, IPTG);
-        cfIPTGSenderSystem.setRefersTo(scIPTG_InIPTGSenderSubsystem);     
-        
-        ComponentReference object=multicellularSystem.createComponentReference(scIPTGInMultiCellularSystem, receiverSubComponent);
-        SubComponent scIPTGInReceiverSystem=receiverSystem.createSubComponent(IPTG);        
-        Component receiverIPTGSubSystem=SBOLAPI.createComponent(doc, "receiverIPTGSubSystem", ComponentType.FunctionalEntity.getUri(), "ReceiverIPTGSubSystem", "ReceiverIPTGSubSystem", Role.FunctionalCompartment);
-        SubComponent scReceiverIPTGSubSystem=SBOLAPI.addSubComponent(receiverSystem, receiverIPTGSubSystem);
-        ComponentReference cfIPTGReceiverSystem= receiverSystem.createComponentReference(scIPTGInReceiverSystem, scReceiverIPTGSubSystem);
-        SubComponent scIPTG_InIPTGReceiverSubsystem=SBOLAPI.addSubComponent(receiverIPTGSubSystem, IPTG);
-        cfIPTGReceiverSystem.setRefersTo(scIPTG_InIPTGReceiverSubsystem);
-        
-        //No error
-        multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.verifyIdentical.getUri(), subject, object);
-        TestUtil.validateDocument(doc, 1);
-        
-        //Error since they are the same
-        multicellularSystem.createConstraint(RestrictionType.IdentityRestriction.differentFrom.getUri(), subject, object);
-        TestUtil.validateDocument(doc, 2);
-        */
-        //Component arabinose=SBOLAPI.createComponent(doc, "Arabinose", ComponentType.SimpleChemical.getUri(), "Arabinose", "Arabinose", Role.Effector);
-        /*ExternallyDefined exAraInMultiCellularSystem=multicellularSystem.createExternallyDefined(Arrays.asList(ComponentType.SimpleChemical.getUri()), URI.create("http://uniprot.com/arabinose"));
-        ComponentReference subjectAra=multicellularSystem.createComponentReference(exAraInMultiCellularSystem, senderSubComponent);
-        ExternallyDefined exAraInSenderSystem=senderSystem.createExternallyDefined(Arrays.asList(ComponentType.SimpleChemical.getUri()), URI.create("http://uniprot.com/arabinose"));
-        Component senderAraSubSystem=SBOLAPI.createComponent(doc, "senderAraSubSystem", ComponentType.FunctionalEntity.getUri(), "SenderAraSubSystem", "Sender Arabinose System", Role.FunctionalCompartment);
-        SubComponent scSenderAraSubSystem=SBOLAPI.addSubComponent(senderSystem, senderAraSubSystem);
-        ComponentReference cfAraSenderSystem= senderSystem.createComponentReference(exAraInSenderSystem, scSenderAraSubSystem);
-        ExternallyDefined exAraInSenderSubSystem=senderAraSubSystem.createExternallyDefined(Arrays.asList(ComponentType.SimpleChemical.getUri()), URI.create("http://uniprot.com/arabinose"));
-        
-        cfIPTGSenderSystem.setRefersTo(exAraInSenderSubSystem);
-        */
-        /*
-        ComponentReference object=multicellularSystem.createComponentReference(scIPTGInMultiCellularSystem, receiverSubComponent);
-        SubComponent scIPTGInReceiverSystem=receiverSystem.createSubComponent(IPTG);        
-        Component receiverIPTGSubSystem=SBOLAPI.createComponent(doc, "receiverIPTGSubSystem", ComponentType.FunctionalEntity.getUri(), "ReceiverIPTGSubSystem", "ReceiverIPTGSubSystem", Role.FunctionalCompartment);
-        SubComponent scReceiverIPTGSubSystem=SBOLAPI.addSubComponent(receiverSystem, receiverIPTGSubSystem);
-        ComponentReference cfIPTGReceiverSystem= receiverSystem.createComponentReference(scIPTGInReceiverSystem, scReceiverIPTGSubSystem);
-        SubComponent scIPTG_InIPTGReceiverSubsystem=SBOLAPI.addSubComponent(receiverIPTGSubSystem, IPTG);
-        cfIPTGReceiverSystem.setRefersTo(scIPTG_InIPTGReceiverSubsystem);
-       */
+                 
     }
 
 }

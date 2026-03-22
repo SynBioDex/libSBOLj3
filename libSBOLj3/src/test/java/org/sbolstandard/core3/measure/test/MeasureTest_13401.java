@@ -57,13 +57,13 @@ public class MeasureTest_13401 extends TestCase {
 		
 		TestUtil.validateDocument(doc,0, null, null); 
 		measure.setTypes(Arrays.asList(URI.create("http://nonsbotype")));
-		TestUtil.validateDocument(doc,1,"sbol3-13401", "MeasureTest_13401.Measure.typeInvalid_1");
+		TestUtil.validateDocument(doc,1,"sbol3-13401", "Measure.typeInvalid_1");
 		measure.setTypes(Arrays.asList(URI.create("http://nonsbotype"), URINameSpace.SBO.local("0000196")));
 		TestUtil.validateDocument(doc,0, null, null);
 		measure.setTypes(Arrays.asList(URINameSpace.SBO.local("0000196")));
 		TestUtil.validateDocument(doc,0, null, null);
 		measure.setTypes(Arrays.asList(URINameSpace.SBO.local("0000544")));//metadata representation term
-		TestUtil.validateDocument(doc,1,"sbol3-13401", "MeasureTest_13401.Measure.typeInvalid_2");
+		TestUtil.validateDocument(doc,1,"sbol3-13401", "Measure.typeInvalid_2");
 		
 		
 		

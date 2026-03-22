@@ -141,7 +141,7 @@ public class VariableFeatureTest_12204 extends TestCase {
 		TestUtil.validateDocument(doc, 0, null, null);
 		     
 		varFeatureTer.setVariantDerivations(Arrays.asList(compDerPro));
-		TestUtil.validateDocument(doc, 2, "sbol3-12204", "VariableFeatureTest_12204");// First: compDerPro.varFeatureGen.VariantDerivation = compDerTer, Second: compDerTer.varFeatureTer.VariantDerivation = compDerPro
+		TestUtil.validateDocument(doc, 2, "sbol3-12204", "Invalid");// First: compDerPro.varFeatureGen.VariantDerivation = compDerTer, Second: compDerTer.varFeatureTer.VariantDerivation = compDerPro
 		 
 	}
 }

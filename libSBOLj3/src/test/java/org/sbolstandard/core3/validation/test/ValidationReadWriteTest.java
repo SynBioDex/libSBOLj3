@@ -89,10 +89,10 @@ public class ValidationReadWriteTest extends TestCase {
         
         Optional<Float> temp=measure.getValue();
         measure.setValue(Optional.of(4f));
-        TestUtil.validateIdentifiedAndDocument(measure,doc,  0);  
+        TestUtil.validateIdentifiedAndDocument(measure,doc,  0, null, null);  
         
         measure.setValue(Optional.empty());
-        TestUtil.validateIdentifiedAndDocument(measure, doc, 1);  
+        TestUtil.validateIdentifiedAndDocument(measure, doc, 1,null, "ValidationReadWriteTest.Measure.valueInvalidForUnit");  
       
         TestUtil.validateIdentifiedOnly(doc, CaCl2, 1, null, "ValidationReadWriteTest.Measure.valueInvalidForUnit");  
         measure.setValue(temp);
@@ -103,7 +103,7 @@ public class ValidationReadWriteTest extends TestCase {
         millimole.setUnit(nullUnit);
         millimole.setSymbol(null);
         millimole.setLabel(null);
-        TestUtil.validateIdentifiedAndDocument(millimole,doc, 4);  
+        TestUtil.validateIdentifiedAndDocument(millimole,doc, 4, null, "ValidationReadWriteTest.PrefixedUnit.prefixInvalid_unitInvalid_symbolInvalid_labelInvalid");  
         TestUtil.validateDocument(doc, 4, null,	"ValidationReadWriteTest.PrefixedUnit_1");  
         
         
@@ -112,15 +112,15 @@ public class ValidationReadWriteTest extends TestCase {
         TestUtil.validateDocument(doc,5, null, "ValidationReadWriteTest.PrefixedUnit_2");  
         milliMolePerLiter.setDenominator(nullUnit);
         milliMolePerLiter.setNumerator(nullUnit);
-        TestUtil.validateIdentifiedAndDocument(milliMolePerLiter,doc,2,7);  
+        TestUtil.validateIdentifiedAndDocument(milliMolePerLiter,doc,2,7, null, "ValidationReadWriteTest.UnitDivision_numeratorInvalid_denominatorInvalid");  
         
         m3.setExponent(Optional.empty());
         m3.setBase(nullUnit);
-        TestUtil.validateIdentifiedAndDocument(m3,doc,2,9);  
+        TestUtil.validateIdentifiedAndDocument(m3,doc,2,9, null, "ValidationReadWriteTest.UnitExponentiation_exponentInvalid_baseInvalid");  
         
         um.setTerm1(nullUnit);
         um.setTerm2(nullUnit);
-        TestUtil.validateIdentifiedAndDocument(um,doc,2,11);  
+        TestUtil.validateIdentifiedAndDocument(um,doc,2,11, null, "ValidationReadWriteTest.UnitMultiplication_term1Invalid_term2Invalid");  
         
         
         //Validating the invalid SBOL document will throw exceptions	   

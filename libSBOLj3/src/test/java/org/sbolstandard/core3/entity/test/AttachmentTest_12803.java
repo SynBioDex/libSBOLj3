@@ -27,7 +27,7 @@ public class AttachmentTest_12803 extends TestCase {
         TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);
         
         attachment2.setFormat(URI.create("http://invalidformat.org"));		
-     	TestUtil.validateIdentifiedAndDocument(attachment2,doc,1,"sbol3-12803", "AttachmentTest_12803");
+     	TestUtil.validateIdentifiedAndDocument(attachment2,doc,1,"sbol3-12803", "Attachment_InvalidAttachmentFormat");
      	attachment2.setFormat(ModelLanguage.CellML);		
      	TestUtil.validateIdentifiedAndDocument(attachment2,doc,0, null, null);     	
     }

@@ -43,10 +43,10 @@ public class CombinatorialDerivationTest_12114 extends TestCase {
 	    sc_start.addRole(URI.create("http://sbolstandard.org/testrole"));
 	    sc_start.setRoleIntegration(RoleIntegration.mergeRoles);
 	    
-	    TestUtil.validateDocument(doc, 1, "sbol3-12114", "CombinatorialDerivationTest_12114_scStartRole");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12114", "scStartRole");
 	    sc_start2.addRole(URI.create("http://sbolstandard.org/testrole2"));
 	    sc_start2.setRoleIntegration(RoleIntegration.mergeRoles);
-	    TestUtil.validateDocument(doc, 1, "sbol3-12114", "CombinatorialDerivationTest_12114_scStart2Role_2");
+	    TestUtil.validateDocument(doc, 1, "sbol3-12114", "scStart2Role_2");
 	    
 	    sc_start2.addRole(URI.create("http://sbolstandard.org/testrole"));
 	    TestUtil.validateDocument(doc, 0,null, null);

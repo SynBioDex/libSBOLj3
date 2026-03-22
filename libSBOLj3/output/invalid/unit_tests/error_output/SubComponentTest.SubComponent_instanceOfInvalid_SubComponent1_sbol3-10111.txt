@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
+	Property: instanceOf,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: class org.sbolstandard.core3.entity.SubComponent
+--------------------
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
+	Property: components[0].subComponents[0].instanceOf,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: class org.sbolstandard.core3.entity.SubComponent
+--------------------

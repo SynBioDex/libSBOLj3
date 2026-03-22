@@ -36,16 +36,16 @@ public class ImplementationTest extends TestCase {
         
         Configuration.getInstance().setValidateAfterSettingProperties(false);
         
-        TestUtil.validateIdentifiedAndDocument(impl,doc,0); 
+        TestUtil.validateIdentifiedAndDocument(impl,doc,0, null, null); 
         
         Attachment attachment=doc.createAttachment("test", URI.create("http://attachmentsource.com/attachment"));
     
         Resource resource = TestUtil.getResource(impl);
 		//SBOL_VALID_ENTITY_TYPES - Implementation.built
 		RDFUtil.setProperty(resource, DataModel.Implementation.built, attachment.getUri());
-		TestUtil.validateIdentifiedAndDocument(impl,doc,1);
+		TestUtil.validateIdentifiedAndDocument(impl,doc,1, "sbol3-10111", "implBuiltInvalid");
 		impl.setComponent(TetR_protein.getUri());
-        TestUtil.validateIdentifiedAndDocument(impl,doc,0);
+        TestUtil.validateIdentifiedAndDocument(impl,doc,0, null, null);
 	
 	
     }

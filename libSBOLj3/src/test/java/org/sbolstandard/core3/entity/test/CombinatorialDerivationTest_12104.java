@@ -23,7 +23,7 @@ public class CombinatorialDerivationTest_12104 extends TestCase {
 		
 		Component start=SBOLAPI.createDnaComponent(doc, "BBa_R0040_start", "pTetR_start", "promoter_start", Role.EngineeredRegion, "tccctat");	
 	    pTetR.createSubComponent(start);
-	    TestUtil.validateIdentifiedAndDocument(cd, doc, 0);
+	    TestUtil.validateIdentifiedAndDocument(cd, doc, 0, null, null);
 		
     
     }

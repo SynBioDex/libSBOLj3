@@ -22,7 +22,7 @@ public class SequenceFeatureTest_11201 extends TestCase {
 		Sequence seq= gfp.getSequences().get(0);
 		
 		SequenceFeature feature=gfp.createSequenceFeature(1, 3, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 
 	    feature.createCut(3, seq);
 	    feature.createRange(6, 10, seq);
@@ -31,15 +31,15 @@ public class SequenceFeatureTest_11201 extends TestCase {
 	    feature.createCut(13, seq);
 	    feature.createRange(20, 30, seq);
 	    feature.createRange(40, 60, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,0);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,0, null, null);
 	    
 	    //Overlapping range:
 	    feature.createRange(60, 61, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,1);
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,1,"sbol3-11201", "Overlappingrange");
 	    
 	   feature.createRange(16, 20, seq);
 	    feature.createRange(7, 8, seq);
-	    TestUtil.validateIdentifiedAndDocument(feature,doc,3); 
+	    TestUtil.validateIdentifiedAndDocument(feature,doc,3, "sbol3-11201", "Overlappingrange_2"); 
 	    
     }
 

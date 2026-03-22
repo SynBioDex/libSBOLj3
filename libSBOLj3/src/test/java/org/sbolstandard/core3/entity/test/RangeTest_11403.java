@@ -41,7 +41,7 @@ public class RangeTest_11403 extends TestCase {
 		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);
 		
 		startRange.setEnd(Optional.of(2));
-		TestUtil.validateIdentifiedOnly(doc, device, 1, "sbol3-11403","RangeTest_11403.Range.range.endInvalidForSequence");
+		TestUtil.validateIdentifiedOnly(doc, device, 1, "sbol3-11403","range_endInvalidForSequence");
 		
 		startRange.setEnd(Optional.of(4));
 		TestUtil.validateIdentifiedOnly(doc, device, 0, null, null);

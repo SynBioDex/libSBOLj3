@@ -1,0 +1,10 @@
+Identified Validation test: Association.agent cannot be null,
+	Property: agentURI,
+	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Association1,
+	Entity Type: class org.sbolstandard.core3.entity.provenance.Association
+--------------------
+Document Validation test: Association.agent cannot be null,
+	Property: activities[0].associations[0].agentURI,
+	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Association1,
+	Entity Type: class org.sbolstandard.core3.entity.provenance.Association
+--------------------

@@ -1,0 +1,12 @@
+Identified Validation test: sbol3-12102 - If the strategy property of a CombinatorialDerivation contains the URI http://sbols.org/v3#enumerate, then its hasVariableFeature property MUST NOT contain a VariableFeature with an cardinality property that contains the URI http://sbols.org/v3#zeroOrMore or the URI http://sbols.org/v3#oneOrMore.,
+	Value: http://sbols.org/v3#oneOrMore,
+	Property: hasVariableFeature[https://synbiohub.org/public/igem/cs1/VariableFeature1].cardinality,
+	Entity URI: https://synbiohub.org/public/igem/cs1,
+	Entity Type: class org.sbolstandard.core3.entity.CombinatorialDerivation
+--------------------
+Document Validation test: sbol3-12102 - If the strategy property of a CombinatorialDerivation contains the URI http://sbols.org/v3#enumerate, then its hasVariableFeature property MUST NOT contain a VariableFeature with an cardinality property that contains the URI http://sbols.org/v3#zeroOrMore or the URI http://sbols.org/v3#oneOrMore.,
+	Value: http://sbols.org/v3#oneOrMore,
+	Property: combinatorialDerivations[0].hasVariableFeature[https://synbiohub.org/public/igem/cs1/VariableFeature1].cardinality,
+	Entity URI: https://synbiohub.org/public/igem/cs1,
+	Entity Type: class org.sbolstandard.core3.entity.CombinatorialDerivation
+--------------------

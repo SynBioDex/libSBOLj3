@@ -46,19 +46,19 @@ public class ActivityTest_12901 extends TestCase {
         
         toggleSwitchOptimised.addWasGeneratedBy(activity);
              	
-        TestUtil.validateIdentifiedOnly(doc, activity,1, "sbol3-12901", "ActivityTest_12901.Activity.typeInvalidForSBOLType");  
+        TestUtil.validateIdentifiedOnly(doc, activity,1, "sbol3-12901", "Activity_typeInvalidForSBOLType");  
                
         usage1.setRoles(Arrays.asList(ActivityType.Learn.getUri()));                
-        TestUtil.validateIdentifiedAndDocument(activity,doc,0);  
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0, null, null);  
         
         usage1.setRoles(Arrays.asList(ActivityType.Test.getUri()));     
-        TestUtil.validateDocument(doc,2, "sbol3-12901,sbol3-13001", "ActivityTest_12901.Activity.roleInvalidForSBOLType");
+        TestUtil.validateDocument(doc,2, "sbol3-12901,sbol3-13001", "Activity_roleInvalidForSBOLType");
         
         activity.setTypes(Arrays.asList(URI.create("http://non-dbtl_type.org"))); 
         
-        TestUtil.validateDocument(doc,1, "sbol3-13001", "ActivityTest_12901.Activity.typeInvalidForSBOLType_2");
+        TestUtil.validateDocument(doc,1, "sbol3-13001", "Activity_typeInvalidForSBOLType_2");
         usage1.setRoles(Arrays.asList(URI.create("http://non-dbtl_type.org"))); 
-        TestUtil.validateIdentifiedAndDocument(activity,doc,0);  
+        TestUtil.validateIdentifiedAndDocument(activity,doc,0, null, null);  
         
     }
 
