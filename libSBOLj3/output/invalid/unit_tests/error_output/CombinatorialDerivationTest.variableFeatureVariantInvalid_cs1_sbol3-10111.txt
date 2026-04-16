@@ -1,6 +1,11 @@
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: variableFeatures[0].variant,
+	Property: variableFeatures[0].variantMeasure,
+	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
+	Entity Type: VariableFeature
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
+	Property: variableFeatures[0].variantCollection,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
 	Entity Type: VariableFeature
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
@@ -10,12 +15,7 @@ Identified Validation test: sbol3-10111 - An object's property values MUST have 
 	Entity Type: VariableFeature
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: variableFeatures[0].variantMeasure,
-	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
-	Entity Type: VariableFeature
-Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: variableFeatures[0].variantCollection,
+	Property: variableFeatures[0].variant,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
 	Entity Type: VariableFeature
 --------------------

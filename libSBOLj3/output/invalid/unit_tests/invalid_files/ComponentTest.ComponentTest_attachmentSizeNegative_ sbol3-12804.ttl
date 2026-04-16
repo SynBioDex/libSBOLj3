@@ -9,14 +9,6 @@ PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 PREFIX prov:  <http://www.w3.org/ns/prov#>
 PREFIX sbol:  <http://sbols.org/v3#>
 
-:BBa_R0040_Sequence3  a    sbol:Sequence;
-        sbol:description   "BBa_R0040 sequence";
-        sbol:displayId     "BBa_R0040_Sequence3";
-        sbol:elements      "aaa";
-        sbol:encoding      EDAM:format_1207;
-        sbol:hasNamespace  <../igem>;
-        sbol:name          "Sequence3" .
-
 :attachment1  a            sbol:Attachment;
         sbol:displayId     "attachment1";
         sbol:format        EDAM:format_2585;
@@ -27,7 +19,7 @@ PREFIX sbol:  <http://sbols.org/v3#>
 :BBa_R0040_Sequence2  a    sbol:Sequence;
         sbol:description   "BBa_R0040 sequence";
         sbol:displayId     "BBa_R0040_Sequence2";
-        sbol:elements      "aaaa";
+        sbol:elements      "aaa";
         sbol:encoding      EDAM:format_1207;
         sbol:hasNamespace  <../igem>;
         sbol:name          "Sequence2" .

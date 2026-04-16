@@ -120,13 +120,13 @@ public class ConstraintTest_11706 extends TestCase {
 	    TestUtil.validateIdentifiedOnly(doc, const_1324_sp, 1, "sbol3-11706", "Constraint_const_1324_sp");
 	  
 	    
-	    //Meets -  No Error   
+	    //Meets -  Error   
 	    Constraint const_2446_meets=gfp.createConstraint(SequentialRestriction.meets, feature24, feature46);
-	    TestUtil.validateIdentifiedOnly(doc, const_2446_meets,0, null, null);
+	    TestUtil.validateIdentifiedOnly(doc, const_2446_meets,1, "sbol3-11706", "Constraint_const_24_46_meets");
 	  
-	    //Meets -  Error
+	    //Meets -  No Error
 	    Constraint const_1346_meets=gfp.createConstraint(SequentialRestriction.meets, feature13, feature46);
-	    TestUtil.validateIdentifiedOnly(doc, const_1346_meets,1,"sbol3-11706", "Constraint_const_1346_meets");
+	    TestUtil.validateIdentifiedOnly(doc, const_1346_meets,0,null, null);
 	
 	    //Meets - Error
 	    Constraint const_1324_meets=gfp.createConstraint(SequentialRestriction.meets, feature13, feature24);

@@ -1,13 +1,13 @@
-Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
-	Property: roleIntegration,
+Identified Validation test: SubComponent.isInstanceOf cannot be null.,
+	Property: instanceOfURI,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
 Identified Validation test: Range.end cannot be empty.,
 	Property: locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range
-Identified Validation test: SubComponent.isInstanceOf cannot be null.,
-	Property: instanceOfURI,
+Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
+	Property: roleIntegration,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
 --------------------

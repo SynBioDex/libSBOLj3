@@ -8,12 +8,12 @@ Identified Validation test: sbol3-10111 - An object's property values MUST have 
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
 	Entity Type: ComponentReference
 --------------------
-Document Validation test: ComponentReference.refersTo cannot be null.,
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504_system],
 	Property: components[1].componentReferences[0].refersTo,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
 	Entity Type: ComponentReference
-Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: [https://synbiohub.org/public/igem/i13504_system],
+Document Validation test: ComponentReference.refersTo cannot be null.,
 	Property: components[1].componentReferences[0].refersTo,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
 	Entity Type: ComponentReference

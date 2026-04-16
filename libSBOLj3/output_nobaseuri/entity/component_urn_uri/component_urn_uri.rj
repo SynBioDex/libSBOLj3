@@ -1,8 +1,8 @@
 { 
-  "urn:uuid:71d71541-4282-4bf6-89f2-779814288e52" : { 
+  "urn:uuid:5cc1a915-15e1-469d-91c6-7a4e2f633fef" : { 
     "http://sbols.org/v3#hasNamespace" : [ { 
       "type" : "uri" ,
-      "value" : "urn:uuid:246d7405-19bb-4722-9f98-939165f6ef00"
+      "value" : "urn:uuid:1832db29-1a27-4fee-97da-f910bdf413b3"
     }
      ] ,
     "http://sbols.org/v3#type" : [ { 

@@ -1,9 +1,9 @@
 Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
-	Child Entity Type: Participation,
-	Property: interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
-	Entity URI: https://synbiohub.org/public/igem/protein_production3,
-	Entity Type: Interaction
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Child Entity Type: Interaction,
+	Property: Identified[https://synbiohub.org/public/igem/protein_production3],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
 Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
 	Child Entity Type: Participation,
@@ -11,24 +11,24 @@ Identified Validation test: sbol3-10104 - The URL of any child or nested object 
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
 	Entity Type: Interaction
 Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
-	Child Entity Type: Interaction,
-	Property: Identified[https://synbiohub.org/public/igem/protein_production3],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
 	Child Entity Type: Interaction,
 	Property: Identified[https://synbiohub.org/public/igem/protein_production],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
+Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
+	Child Entity Type: Participation,
+	Property: interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
+	Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Entity Type: Interaction
 --------------------
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
-	Child Entity Type: Participation,
-	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
-	Entity Type: Interaction
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
 	Child Entity Type: Interaction,
@@ -36,15 +36,15 @@ Document Validation test: sbol3-10104 - The URL of any child or nested object MU
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
+	Child Entity Type: Participation,
+	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
+	Entity Type: Interaction
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
 	Entity URI: https://synbiohub.org/public/igem/protein_production3,
 	Entity Type: Interaction
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
 --------------------

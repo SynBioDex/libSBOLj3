@@ -68,7 +68,7 @@ PREFIX sbol:  <http://sbols.org/v3#>
 :BBa_R0040_Sequence2  a    sbol:Sequence;
         sbol:description   "BBa_R0040 sequence";
         sbol:displayId     "BBa_R0040_Sequence2";
-        sbol:elements      "aaaa";
+        sbol:elements      "aaa";
         sbol:encoding      EDAM:format_1207;
         sbol:hasNamespace  <../igem>;
         sbol:name          "Sequence2" .
@@ -105,14 +105,6 @@ PREFIX sbol:  <http://sbols.org/v3#>
         sbol:displayId         "protein_production3";
         sbol:hasParticipation  :inhibitor_participation3;
         sbol:type              SBO:0000169 .
-
-:BBa_R0040_Sequence3  a    sbol:Sequence;
-        sbol:description   "BBa_R0040 sequence";
-        sbol:displayId     "BBa_R0040_Sequence3";
-        sbol:elements      "aaa";
-        sbol:encoding      EDAM:format_1207;
-        sbol:hasNamespace  <../igem>;
-        sbol:name          "Sequence3" .
 
 <BBa_F2620/Interaction2>
         a                      sbol:Interaction;

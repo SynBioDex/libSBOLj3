@@ -2,12 +2,12 @@ Document Validation test: sbol3-12202 - The Feature referenced by the variable p
 	Property: combinatorialDerivations[0].hasVariableFeature[https://synbiohub.org/public/igem/cs1/VariableFeature1].variable,
 	Entity URI: https://synbiohub.org/public/igem/cs1,
 	Entity Type: CombinatorialDerivation
-Document Validation test: VariableFeature.cardinality cannot be null.,
-	Property: combinatorialDerivations[0].variableFeatures[0].cardinality,
-	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature1,
-	Entity Type: VariableFeature
 Document Validation test: VariableFeature.feature cannot be null.,
 	Property: combinatorialDerivations[0].variableFeatures[0].variable,
+	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature1,
+	Entity Type: VariableFeature
+Document Validation test: VariableFeature.cardinality cannot be null.,
+	Property: combinatorialDerivations[0].variableFeatures[0].cardinality,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature1,
 	Entity Type: VariableFeature
 --------------------

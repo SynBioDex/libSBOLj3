@@ -9,21 +9,13 @@ PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
 PREFIX prov:  <http://www.w3.org/ns/prov#>
 PREFIX sbol:  <http://sbols.org/v3#>
 
-:BBa_R0040_Sequence3  a    sbol:Sequence;
+:BBa_R0040_Sequence1  a    sbol:Sequence;
         sbol:description   "BBa_R0040 sequence";
-        sbol:displayId     "BBa_R0040_Sequence3";
-        sbol:elements      "aaa";
-        sbol:encoding      EDAM:format_1207;
+        sbol:displayId     "BBa_R0040_Sequence1";
+        sbol:elements      "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac";
+        sbol:encoding      EDAM:format_1197;
         sbol:hasNamespace  <../igem>;
-        sbol:name          "Sequence3" .
-
-:BBa_R0040_Sequence2  a    sbol:Sequence;
-        sbol:description   "BBa_R0040 sequence";
-        sbol:displayId     "BBa_R0040_Sequence2";
-        sbol:elements      "aaaa";
-        sbol:encoding      EDAM:format_1207;
-        sbol:hasNamespace  <../igem>;
-        sbol:name          "Sequence2" .
+        sbol:name          "Sequence1" .
 
 :BBa_F2620  a              sbol:Component;
         sbol:description   "PoPS Receiver";
@@ -33,13 +25,13 @@ PREFIX sbol:  <http://sbols.org/v3#>
         sbol:role          SO:0000704;
         sbol:type          SBO:0000251 .
 
-:BBa_R0040_Sequence1  a    sbol:Sequence;
+:BBa_R0040_Sequence2  a    sbol:Sequence;
         sbol:description   "BBa_R0040 sequence";
-        sbol:displayId     "BBa_R0040_Sequence1";
-        sbol:elements      "tccctatcagtgatagagattgacatccctatcagtgatagagatactgagcac";
-        sbol:encoding      EDAM:format_1197;
+        sbol:displayId     "BBa_R0040_Sequence2";
+        sbol:elements      "aaa";
+        sbol:encoding      EDAM:format_1207;
         sbol:hasNamespace  <../igem>;
-        sbol:name          "Sequence1" .
+        sbol:name          "Sequence2" .
 
 :BBa_R0040  a              sbol:Component;
         sbol:description   "TetR repressible promoter";

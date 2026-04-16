@@ -600,13 +600,11 @@ public class SBOLAPI {
 				start = 1;
 				end = elements.length();
 			}
-
-			if (orientation == Orientation.inline) {
-				sequence.setElements(sequence.getElements() + elements);
-			} else {
-				//TODO: GMGM
-				throw new SBOLGraphException("Reverse complement sequence addition has not been implemented yet!");
+			//If reverse complement, get the reverse complement of the elements and add to the sequence
+			if (orientation == Orientation.reverseComplement) {
+				elements = Sequence.getReverseComplement(elements);
 			}
+			sequence.setElements(sequence.getElements() + elements);
 			range = subComponent.createRange(start, end, sequence);
 			range.setOrientation(orientation);
 		}
@@ -700,7 +698,7 @@ public class SBOLAPI {
 
 	public static Sequence addSequence(SBOLDocument doc, Component component, Encoding encoding, String elements)
 			throws SBOLGraphException {
-		String localName = createLocalName(DataModel.Sequence.uri, doc.getSequences());
+		String localName = createLocalName(DataModel.Sequence.uri, component.getSequences());
 		Sequence seq = createSequence(doc, URI.create(component.getUri().toString() + "_" + localName), localName,
 				component.getDisplayId() + " sequence", elements, encoding);
 		List<Sequence> sequences = component.getSequences();
@@ -916,8 +914,7 @@ public class SBOLAPI {
 	 * }
 	 */
 
-	public static List<ComponentReference> createComponentReference(Component container, Component parent,
-			Component child) throws SBOLGraphException {
+	public static List<ComponentReference> createComponentReference(Component container, Component parent, Component child) throws SBOLGraphException {
 		List<ComponentReference> componentReferences = null;
 		List<SubComponent> subComponentsInContainer = getSubComponents(container, parent);
 		List<SubComponent> subComponentsInParent = getSubComponents(parent, child);
@@ -932,6 +929,22 @@ public class SBOLAPI {
 					}
 					componentReferences.add(compRef);
 				}
+			}
+		}
+		return componentReferences;
+	}
+
+	public static List<ComponentReference> createComponentReference(Component container, Component parent, ComponentReference child) throws SBOLGraphException {
+		List<ComponentReference> componentReferences = null;
+		List<SubComponent> subComponentsInContainer = getSubComponents(container, parent);
+		
+		if (subComponentsInContainer != null) {
+			for (SubComponent subComponentInContainer : subComponentsInContainer) {
+				ComponentReference compRef = container.createComponentReference(child, subComponentInContainer);
+					if (componentReferences == null) {
+						componentReferences = new ArrayList<ComponentReference>();
+					}
+					componentReferences.add(compRef);				
 			}
 		}
 		return componentReferences;

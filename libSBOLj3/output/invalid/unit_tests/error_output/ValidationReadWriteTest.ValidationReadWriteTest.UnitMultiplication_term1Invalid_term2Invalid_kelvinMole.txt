@@ -1,45 +1,45 @@
+Document Validation test: Unit.symbol cannot be empty.,
+	Property: prefixedUnits[0].symbol,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
 Document Validation test: UnitDivision.numerator cannot be null.,
 	Property: unitDivisions[0].numeratorURI,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
 	Entity Type: UnitDivision
-Document Validation test: UnitMultiplication.term1 cannot be null.,
-	Property: unitMultiplications[0].term1URI,
+Document Validation test: UnitMultiplication.term2 cannot be null.,
+	Property: unitMultiplications[0].term2URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
 	Entity Type: UnitMultiplication
-Document Validation test: PrefixedUnit.unit cannot be null.,
-	Property: prefixedUnits[0].unitURI,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Document Validation test: Unit.label cannot be empty.,
 	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Unit.symbol cannot be empty.,
-	Property: prefixedUnits[0].symbol,
+Document Validation test: UnitDivision.denominator cannot be null.,
+	Property: unitDivisions[0].denominatorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
+Document Validation test: PrefixedUnit.unit cannot be null.,
+	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 Document Validation test: Prefix.factor cannot be null.,
 	Property: SIPrefixes[0].factor,
 	Entity URI: https://sbolstandard.org/examples/milli,
 	Entity Type: SIPrefix
-Document Validation test: UnitExponentiation.exponent cannot be empty.,
-	Property: unitExponentiations[0].exponent,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
-Document Validation test: UnitDivision.denominator cannot be null.,
-	Property: unitDivisions[0].denominatorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
-Document Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefixedUnits[0].prefix,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Document Validation test: UnitExponentiation.base cannot be null.,
 	Property: unitExponentiations[0].baseURI,
 	Entity URI: https://sbolstandard.org/examples/cubicMeter,
 	Entity Type: UnitExponentiation
-Document Validation test: UnitMultiplication.term2 cannot be null.,
-	Property: unitMultiplications[0].term2URI,
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: UnitMultiplication.term1 cannot be null.,
+	Property: unitMultiplications[0].term1URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
 	Entity Type: UnitMultiplication
+Document Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: unitExponentiations[0].exponent,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
 --------------------

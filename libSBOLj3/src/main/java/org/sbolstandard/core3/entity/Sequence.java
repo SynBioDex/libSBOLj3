@@ -186,4 +186,52 @@ public class Sequence extends TopLevel {
 		return DataModel.Sequence.uri;
 	}
 	
+	public static String getReverseComplement(String sequence) {
+        StringBuilder revComp = new StringBuilder();
+        for (int i = sequence.length() - 1; i >= 0; i--) {
+            char base = sequence.charAt(i);
+            switch (base) {
+                //Default bases
+				case 'A': revComp.append('T'); break;
+                case 'T': revComp.append('A'); break;
+                case 'C': revComp.append('G'); break;
+                case 'G': revComp.append('C'); break;
+                case 'U': revComp.append('A'); break; 
+                
+				// Others
+                case 'R': revComp.append('Y'); break;  // AG -> TC
+                case 'Y': revComp.append('R'); break;  // CT -> GA
+                case 'S': revComp.append('S'); break;  // GC -> CG (self)
+                case 'W': revComp.append('W'); break;  // AT -> TA (self)
+                case 'K': revComp.append('M'); break;  // GT -> CA
+                case 'M': revComp.append('K'); break;  // AC -> TG
+                case 'B': revComp.append('V'); break;  // CGT -> GCA
+                case 'D': revComp.append('H'); break;  // AGT -> TCA
+                case 'H': revComp.append('D'); break;  // ACT -> TGA
+                case 'V': revComp.append('B'); break;  // ACG -> TGC
+                case 'N': revComp.append('N'); break;  // any -> any
+                
+				// Lowercase
+                case 'a': revComp.append('t'); break;
+                case 't': revComp.append('a'); break;
+                case 'c': revComp.append('g'); break;
+                case 'g': revComp.append('c'); break;
+                case 'u': revComp.append('a'); break;
+                case 'r': revComp.append('y'); break;
+                case 'y': revComp.append('r'); break;
+                case 's': revComp.append('s'); break;
+                case 'w': revComp.append('w'); break;
+                case 'k': revComp.append('m'); break;
+                case 'm': revComp.append('k'); break;
+                case 'b': revComp.append('v'); break;
+                case 'd': revComp.append('h'); break;
+                case 'h': revComp.append('d'); break;
+                case 'v': revComp.append('b'); break;
+                case 'n': revComp.append('n'); break;
+                // Gap characters and any other, // '-', '.', ...
+                default:  revComp.append(base); break;  
+            }
+        }
+        return revComp.toString();
+}
 }

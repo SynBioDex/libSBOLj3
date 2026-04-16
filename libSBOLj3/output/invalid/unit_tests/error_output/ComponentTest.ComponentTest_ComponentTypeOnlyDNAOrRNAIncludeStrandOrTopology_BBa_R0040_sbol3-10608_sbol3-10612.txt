@@ -9,14 +9,14 @@ Identified Validation test: sbol3-10608 - A Component SHOULD NOT have a type pro
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
 --------------------
-Document Validation test: sbol3-10612 - A role property of a Component SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
-	Value: https://identifiers.org/SO:0000167,
-	Property: components[1].role,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: Component
 Document Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
 	Value: [https://identifiers.org/SO:0000987, https://identifiers.org/GO:0005623],
 	Property: components[1].type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: Component
+Document Validation test: sbol3-10612 - A role property of a Component SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
+	Value: https://identifiers.org/SO:0000167,
+	Property: components[1].role,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
 --------------------

@@ -7,12 +7,12 @@ Identified Validation test: UnitDivision.denominator cannot be null.,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
 	Entity Type: UnitDivision
 --------------------
-Document Validation test: UnitDivision.numerator cannot be null.,
-	Property: unitDivisions[0].numeratorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
 Document Validation test: UnitDivision.denominator cannot be null.,
 	Property: unitDivisions[0].denominatorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
+Document Validation test: UnitDivision.numerator cannot be null.,
+	Property: unitDivisions[0].numeratorURI,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
 	Entity Type: UnitDivision
 --------------------

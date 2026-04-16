@@ -64,6 +64,7 @@ public class ComponentTest extends TestCase {
 		TestUtil.validateIdentifiedAndDocument(pTetR,doc,0, null, null);
 		Configuration.getInstance().setValidateRecommendedRules(true);
 		pTetR.setSequences(tempSequences);
+		pTetRSequence.remove();
 		
 		// COMPONENT_TYPE_SEQUENCE_LENGTH_MATCH
 		SBOLAPI.addSequence(doc, pTetR, Encoding.NucleicAcid, "tttttttttttttttttttttttttttttttttttttttttttttttttttttt");
