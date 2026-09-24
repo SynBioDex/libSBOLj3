@@ -129,12 +129,5 @@ public class LocalSubComponent extends FeatureWithLocation{
 	@Override
 	public List<URI> getAdditionalLocationProperties() {
 		return null;
-	}
-	
-	@Override
-	public List<Identified> getChildren() throws SBOLGraphException {
-		List<Identified> identifieds=super.getChildren();
-		identifieds=addToList(identifieds, this.getLocations());
-		return identifieds;
-	}
+	}	
 }

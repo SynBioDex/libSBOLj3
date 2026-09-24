@@ -15,6 +15,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,11 +34,31 @@ import org.apache.jena.riot.Lang;
 import org.apache.jena.riot.RDFDataMgr;
 import org.apache.jena.riot.RDFFormat;
 import org.sbolstandard.core3.api.SBOLAPI;
+import org.sbolstandard.core3.entity.Attachment;
+import org.sbolstandard.core3.entity.CombinatorialDerivation;
+import org.sbolstandard.core3.entity.Component;
 import org.sbolstandard.core3.entity.EntireSequence;
+import org.sbolstandard.core3.entity.ExperimentalData;
 import org.sbolstandard.core3.entity.Identified;
+import org.sbolstandard.core3.entity.Implementation;
 import org.sbolstandard.core3.entity.Location;
 import org.sbolstandard.core3.entity.SBOLDocument;
+import org.sbolstandard.core3.entity.Sequence;
+import org.sbolstandard.core3.entity.TopLevel;
+import org.sbolstandard.core3.entity.measure.BinaryPrefix;
+import org.sbolstandard.core3.entity.measure.PrefixedUnit;
+import org.sbolstandard.core3.entity.measure.SIPrefix;
+import org.sbolstandard.core3.entity.measure.SingularUnit;
+import org.sbolstandard.core3.entity.measure.UnitDivision;
+import org.sbolstandard.core3.entity.measure.UnitExponentiation;
+import org.sbolstandard.core3.entity.measure.UnitMultiplication;
+import org.sbolstandard.core3.entity.provenance.Activity;
+import org.sbolstandard.core3.entity.provenance.Agent;
+import org.sbolstandard.core3.entity.provenance.Plan;
 import org.sbolstandard.core3.vocabulary.ComponentType;
+import org.sbolstandard.core3.vocabulary.DataModel;
+import org.sbolstandard.core3.vocabulary.MeasureDataModel;
+import org.sbolstandard.core3.vocabulary.ProvenanceDataModel;
 
 
 public class SBOLUtil {
@@ -337,4 +358,57 @@ public class SBOLUtil {
 			}
 			return result;		
 		}
+
+
+	public static Set<URI> getTopLevelResourceTypes(){
+
+			List<URI> types = Arrays.asList(DataModel.Component.uri,
+					DataModel.Sequence.uri,
+					DataModel.Model.uri,
+					DataModel.Implementation.uri,
+					DataModel.ExperimentalData.uri,
+					DataModel.Attachment.uri,
+					DataModel.Collection.uri,
+					DataModel.CombinatorialDerivation.uri,
+					DataModel.TopLevel.uri,
+					ProvenanceDataModel.Agent.uri,
+					ProvenanceDataModel.Plan.uri,
+					ProvenanceDataModel.Activity.uri,
+					MeasureDataModel.Measure.uri,
+					MeasureDataModel.SIPrefix.uri,
+					MeasureDataModel.BinaryPrefix.uri,
+					MeasureDataModel.SingularUnit.uri,
+					MeasureDataModel.UnitMultiplication.uri,
+					MeasureDataModel.UnitDivision.uri,
+					MeasureDataModel.UnitExponentiation.uri,
+					MeasureDataModel.PrefixedUnit.uri
+					);
+			Set<URI> topLevelResourceTypes=new HashSet<URI>(types);			
+		return topLevelResourceTypes;
+	}
+
+	public static Map<Class<? extends TopLevel>, URI> getTopLevelClassURITypeMappings(){
+			Map<Class<? extends TopLevel>, URI> types = new HashMap<>();
+			types.put(Component.class, DataModel.Component.uri);
+			types.put(Sequence.class, DataModel.Sequence.uri);
+			types.put(org.sbolstandard.core3.entity.Model.class, DataModel.Model.uri);
+			types.put(Implementation.class, DataModel.Implementation.uri);
+			types.put(ExperimentalData.class, DataModel.ExperimentalData.uri);
+			types.put(Attachment.class, DataModel.Attachment.uri);
+			types.put(org.sbolstandard.core3.entity.Collection.class, DataModel.Collection.uri);
+			types.put(CombinatorialDerivation.class, DataModel.CombinatorialDerivation.uri);
+			types.put(TopLevel.class, DataModel.TopLevel.uri);
+			types.put(Agent.class, ProvenanceDataModel.Agent.uri);
+			types.put(Plan.class, ProvenanceDataModel.Plan.uri);
+			types.put(Activity.class, ProvenanceDataModel.Activity.uri);
+			types.put(SIPrefix.class, MeasureDataModel.SIPrefix.uri);
+			types.put(BinaryPrefix.class, MeasureDataModel.BinaryPrefix.uri);
+			types.put(SingularUnit.class, MeasureDataModel.SingularUnit.uri);
+			types.put(UnitMultiplication.class, MeasureDataModel.UnitMultiplication.uri);
+			types.put(UnitDivision.class, MeasureDataModel.UnitDivision.uri);
+			types.put(UnitExponentiation.class, MeasureDataModel.UnitExponentiation.uri);
+			types.put(PrefixedUnit.class, MeasureDataModel.PrefixedUnit.uri);
+			return types;
+	}
+	
 }

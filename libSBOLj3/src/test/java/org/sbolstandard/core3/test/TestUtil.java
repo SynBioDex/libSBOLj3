@@ -7,6 +7,9 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.net.URI;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
@@ -24,6 +27,7 @@ import org.sbolstandard.core3.validation.IdentifiedValidator;
 import org.sbolstandard.core3.validation.PropertyValidator;
 import org.sbolstandard.core3.validation.SBOLComparator;
 import org.sbolstandard.core3.validation.SBOLValidator;
+import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.ComponentType;
 
 import static org.junit.Assert.*;
@@ -31,14 +35,64 @@ import static org.junit.Assert.*;
 public class TestUtil {
 
 	public static final String baseOutput="output";
+	public static final boolean createInvalidFiles=true;
+
+	static {
+		try {
+			File unitTestsDir = Paths.get("output", "invalid", "unit_tests").toFile();
+			if (unitTestsDir.exists()) {
+				// Delete all subdirectories
+				File[] subDirs = unitTestsDir.listFiles(File::isDirectory);
+				if (subDirs != null) {
+					for (File subDir : subDirs) {
+						Files.walk(subDir.toPath())
+							.sorted(java.util.Comparator.reverseOrder())
+							.forEach(p -> p.toFile().delete());
+					}
+				}
+				// Delete all files directly in unit_tests/ (e.g. error_output_all.txt)
+				File[] files = unitTestsDir.listFiles(File::isFile);
+				if (files != null) {
+					for (File file : files) {
+						file.delete();
+					}
+				}
+			}
+		} catch (IOException e) {
+			System.err.println("Could not delete output/invalid/unit_tests contents: " + e.getMessage());
+		}
+	}
+
 	public static void serialise(SBOLDocument doc, String directory, String file) throws FileNotFoundException, IOException, SBOLGraphException
 	{
-		File outputDir=new File(baseOutput +  "/" + directory);
+		URI orgBaseURI=doc.getBaseURI();
+		createFiles(doc, baseOutput, directory, file);
+		URI baseURI=null;
+		try{
+			Configuration.getInstance().setSerialiseBaseURI(false);
+			baseURI=doc.getBaseURI();
+			createFiles(doc, baseOutput + "_nobaseuri", directory, file);
+			URI newBaseURI=doc.getBaseURI();
+			String str="";
+		}
+		finally{
+			Configuration.getInstance().setSerialiseBaseURI(true);
+			doc.setBaseURI(baseURI);
+		}
+		
+
+        
+	}
+	
+	private static void createFiles(SBOLDocument doc, String base, String directory, String file) throws IOException, SBOLGraphException
+	{
+        File outputDir=new File(base +  "/" + directory);
         if (!outputDir.exists())
         {
         	outputDir.mkdirs();
         }
-        String filename=String.format("%s/%s/%s", baseOutput,directory, file);
+
+		String filename=String.format("%s/%s/%s", base,directory, file);
         SBOLIO.write(doc, new File(filename + ".ttl"), SBOLFormat.TURTLE);
         SBOLIO.write(doc, new File(filename + ".rdf"),SBOLFormat.RDFXML);
         SBOLIO.write(doc, new File(filename + ".jsonld"), SBOLFormat.JSONLD);
@@ -46,9 +100,8 @@ public class TestUtil {
         SBOLIO.write(doc, new File(filename + ".rj"), RDFFormat.RDFJSON);
         SBOLIO.write(doc, new File(filename + ".nt"), SBOLFormat.NTRIPLES);
         SBOLUtil.sort(new File(filename + ".nt"), new File(filename + "_ordered.nt"), Charset.forName("ASCII"));
-        
+
 	}
-	
 	public static void assertReadWrite(SBOLDocument doc) throws IOException, SBOLGraphException
 	{
 		String output=SBOLIO.write(doc, SBOLFormat.TURTLE);
@@ -755,29 +808,32 @@ public class TestUtil {
 		return output;
 	}
 	
-	public static String validateIdentified(Identified identified, SBOLDocument doc, int numberOfExpectedErrors) throws SBOLGraphException
+	private static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrors) throws SBOLGraphException
 	{	String output="";		
-		output=output + validateIdentified(identified, numberOfExpectedErrors);
+		output=output + validateIdentifiedOnly(identified, numberOfExpectedErrors);
 		output=output + validateDocument(doc, numberOfExpectedErrors);
 		return output;
 	}
 	
-	public static String validateIdentified(Identified identified, SBOLDocument doc, int numberOfExpectedErrorsInIdentified, int numberOfExpectedErrorsInDocument) throws SBOLGraphException
+	public static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrorsInIdentified, int numberOfExpectedErrorsInDocument, String documentErrorCodes, String testName) throws SBOLGraphException, FileNotFoundException, IOException
 	{	 
 		String output="";				
-		output=output + validateIdentified(identified, numberOfExpectedErrorsInIdentified);
-		output=output + validateDocument(doc, numberOfExpectedErrorsInDocument);
-		return output;
+		String output1 = validateIdentifiedOnly(identified, numberOfExpectedErrorsInIdentified);
+		String output2= validateDocument(doc, numberOfExpectedErrorsInDocument);
+		assertErrorCodes(documentErrorCodes, output2);					
+		createInvalidFiles(doc, identified.getDisplayId(), output2, documentErrorCodes, testName);				
+		return output1 + output2;
 	}
 	
-	public static String validateIdentified(Identified identified, SBOLDocument doc, int numberOfExpectedErrorsInIdentified, String errorCodes) throws SBOLGraphException	
+	public static String validateIdentifiedAndDocument(Identified identified, SBOLDocument doc, int numberOfExpectedErrorsInIdentified, String errorCodes, String testName) throws SBOLGraphException, FileNotFoundException, IOException	
 	{
-		String output=validateIdentified(identified, doc, numberOfExpectedErrorsInIdentified);
-		assertErrorCodes(errorCodes, output);		
+		String output=validateIdentifiedAndDocument(identified, doc, numberOfExpectedErrorsInIdentified);
+		assertErrorCodes(errorCodes, output);					
+		createInvalidFiles(doc, identified.getDisplayId(), output, errorCodes, testName);		
 		return output;
 		
 	}
-	public static String validateIdentified(Identified identified,int numberOfExpectedErrors) throws SBOLGraphException
+	private static String validateIdentifiedOnly(Identified identified,int numberOfExpectedErrors) throws SBOLGraphException
 	{	 				
 		boolean isValidateAfterReading=Configuration.getInstance().validateAfterReadingSBOLDocuments();		
 		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);
@@ -792,18 +848,100 @@ public class TestUtil {
 	    return output;
 	}
 	
-	public static String validateIdentified(Identified identified,int numberOfExpectedErrors, String errorCodes) throws SBOLGraphException
-	{
-		String output=validateIdentified(identified, numberOfExpectedErrors);
-		assertErrorCodes(errorCodes, output);		
-		return output;
+	public static String validateIdentifiedOnly(SBOLDocument doc, Identified identified,int numberOfExpectedErrors, String errorCodes, String testName) throws SBOLGraphException, FileNotFoundException, IOException{
+		return validateIdentifiedOnly(doc, identified, numberOfExpectedErrors, errorCodes, testName, true);
+	}
 
+	public static String validateIdentifiedOnly(SBOLDocument doc, Identified identified,int numberOfExpectedErrors, String errorCodes, String testName, boolean log ) throws SBOLGraphException, FileNotFoundException, IOException{
+		String output=validateIdentifiedOnly(identified, numberOfExpectedErrors);		
+		assertErrorCodes(errorCodes, output);			
+
+			/*if (errorCodes.equals("TODOTEST"))
+			{
+				System.out.println(output);
+				String str="";
+			}
+			else{
+				assertErrorCodes(errorCodes, output);			
+			}	*/
+		if (log) {			
+			createInvalidFiles(doc, identified.getDisplayId(), output, errorCodes, testName);
+		}
+		return output;
+	}
+
+	private static void createInvalidFiles(SBOLDocument doc, String entityId, String output, String errorCodes, String testName) throws FileNotFoundException, IOException, SBOLGraphException
+	{
+		if (output!=null && output.length()>0 && testName!=null	&& testName.length()>0 && !output.toLowerCase().contains("no errors.")){
+			String fileName = testName;
+			if (entityId!=null && entityId.length()>0){
+				fileName=fileName + "_" + entityId;
+			}
+			if (errorCodes!=null && errorCodes.length()>0)
+			{
+				fileName=fileName + "_" + errorCodes.replace(",", "_");
+			}	
+			String callingTestClass = Arrays.stream(Thread.currentThread().getStackTrace())
+				.map(StackTraceElement::getClassName)
+				.map(c -> c.substring(c.lastIndexOf('.') + 1))
+				.filter(c -> c.contains("Test") && !c.equals("TestUtil"))
+				.findFirst()
+				.orElse(null);
+			if (callingTestClass==null)
+			{
+				throw new IOException("Could not find the calling test class name in the stack trace. Stack trace:" + Arrays.toString(Thread.currentThread().getStackTrace()));
+			}
+			fileName=callingTestClass + "." + fileName;
+			File file = Paths.get("output", "invalid", "unit_tests", "invalid_files", fileName +  ".ttl").toFile();
+			File fileErrorOutput = Paths.get("output", "invalid", "unit_tests", "error_output", fileName +  ".txt").toFile();
+			File fileErrorOutputAll = Paths.get("output", "invalid", "unit_tests", "error_output_all.txt").toFile();
+						
+			assertTrue("File name starts with the calling test class name: " + callingTestClass,
+				file.getName().toLowerCase().startsWith(callingTestClass.toLowerCase()));
+
+			if (Files.exists(file.toPath())){
+				throw new IOException("The file already exists:" + file.getAbsolutePath());
+			}
+			alwaysWrite(file, doc, SBOLFormat.TURTLE);
+			
+			//Files.createFile(fileErrorOutput.toPath());
+			fileErrorOutput.getParentFile().mkdirs();
+			Files.write(fileErrorOutput.toPath(), output.getBytes());
+
+			fileErrorOutputAll.getParentFile().mkdirs();
+			String message= "**********>>" + System.lineSeparator() + "Test:" + fileName + System.lineSeparator() + output  + "<<**********" + System.lineSeparator() + System.lineSeparator();
+			Files.write(fileErrorOutputAll.toPath(), message.getBytes(), java.nio.file.StandardOpenOption.CREATE, java.nio.file.StandardOpenOption.APPEND);
+
+			if (errorCodes!=null && errorCodes.length()>0){
+				List<String> errorCodeList=Arrays.asList(errorCodes.split(","));	
+				for (String errorCode: errorCodeList){
+					File file2 = Paths.get("output", "invalid", "unit_tests", "error_codes", errorCode, fileName + ".ttl").toFile();
+					alwaysWrite(file2, doc, SBOLFormat.TURTLE);
+				}
+			}
+			
+		}	
 	}
 	
-	public static String validateDocument(SBOLDocument document ,int numberOfExpectedErrors, String errorCodes) throws SBOLGraphException
+	private static void alwaysWrite(File file, SBOLDocument doc, SBOLFormat format) throws SBOLGraphException, IOException{
+			file.getParentFile().mkdirs();
+			boolean isValidateBeforeSaving=false;
+			try{
+				isValidateBeforeSaving=Configuration.getInstance().isValidateBeforeSaving();
+				Configuration.getInstance().setValidateBeforeSaving(false);
+				SBOLIO.write(doc, file, SBOLFormat.TURTLE);
+			}
+			finally
+			{
+				Configuration.getInstance().setValidateBeforeSaving(isValidateBeforeSaving);
+			}
+	} 
+
+	public static String validateDocument(SBOLDocument document ,int numberOfExpectedErrors, String errorCodes, String testName) throws SBOLGraphException, FileNotFoundException, IOException
 	{	 
 		String output=validateDocument(document, numberOfExpectedErrors);		
 		assertErrorCodes(errorCodes, output);
+		createInvalidFiles(document, null, output, errorCodes, testName);		
 		return output;
 	}
 	
@@ -819,7 +957,7 @@ public class TestUtil {
 		}
 	}
 	
-	public static String validateDocument(SBOLDocument document ,int numberOfExpectedErrors) throws SBOLGraphException
+	private static String validateDocument(SBOLDocument document, int numberOfExpectedErrors) throws SBOLGraphException
 	{	 
 		boolean validateAfterSettingPropertiesInitial=Configuration.getInstance().validateAfterReadingSBOLDocuments();
 		Configuration.getInstance().setValidateAfterReadingSBOLDocuments(true);		
@@ -926,14 +1064,33 @@ public class TestUtil {
 		return resource;
 	}
 	
+	public static void printErrorPath(ValidationMessage message) {
+		System.out.println(buildErrorPath(message));
+	}
+
+	private static String buildErrorPath(ValidationMessage message) {
+		if (message == null) {
+			return "";
+		}
+		StringBuilder path = new StringBuilder();
+		path.append(SBOLUtil.toQualifiedString(message.getProperty()));
+		if (message.getChildEntity() != null) {
+			path.append("[").append(message.getChildEntity().getUri()).append("]");
+			if (message.getChildMessage() != null) {
+				path.append(".").append(buildErrorPath(message.getChildMessage()));
+			}
+		}
+		return path.toString();
+	}
+
 	public static <T extends Identified, T2 extends Identified> void testValidEntity(SBOLDocument doc, Identified identified, List<T2> validChildIdentifieds, List<T> invalidChildIdentifieds, URI property) throws SBOLGraphException, Exception
 	{
 		Resource resource = TestUtil.getResource(identified);
 		List<URI> tempURIs=SBOLUtil.getURIs(validChildIdentifieds);
 		RDFUtil.setProperty(resource, property, SBOLUtil.getURIs(invalidChildIdentifieds));
-		TestUtil.validateIdentified(identified,doc,1);
+		TestUtil.validateIdentifiedAndDocument(identified,doc,1);
 		RDFUtil.setProperty(resource, property, tempURIs);
-		TestUtil.validateIdentified(identified,doc,0);
+		TestUtil.validateIdentifiedAndDocument(identified,doc,0);
 	}
 	
 	public static void testValidEntity(SBOLDocument doc, Identified identified, Identified validChildIdentified, Identified invalidChildIdentified, URI property) throws SBOLGraphException, Exception
@@ -941,9 +1098,9 @@ public class TestUtil {
 		Resource resource= TestUtil.getResource(identified);    
 		URI tempURI=validChildIdentified.getUri();
 		RDFUtil.setProperty(resource, property, invalidChildIdentified.getUri());
-		TestUtil.validateIdentified(identified,doc,1);
+		TestUtil.validateIdentifiedAndDocument(identified,doc,1);
 		RDFUtil.setProperty(resource, property, tempURI);
-		TestUtil.validateIdentified(identified,doc,0);
+		TestUtil.validateIdentifiedAndDocument(identified,doc,0);
 	}
 	
 	public static <T extends Identified> void testValidEntity(SBOLDocument doc, Identified identified, Identified validChildIdentified, List<T> invalidChildIdentifieds, URI property) throws SBOLGraphException, Exception
@@ -954,9 +1111,9 @@ public class TestUtil {
 		URI tempURI=validChildIdentified.getUri();
 		
 		RDFUtil.setProperty(resource, property, SBOLUtil.getURIs(invalidChildIdentifieds));
-		TestUtil.validateIdentified(identified,doc,1);
+		TestUtil.validateIdentifiedAndDocument(identified,doc,1);
 		RDFUtil.setProperty(resource, property, tempURI);
-		TestUtil.validateIdentified(identified,doc,0);
+		TestUtil.validateIdentifiedAndDocument(identified,doc,0);
 		//Configuration.getInstance().setValidateAfterSettingProperties(isValidateAfterSettingPropertiesInitial);
 	}
 }

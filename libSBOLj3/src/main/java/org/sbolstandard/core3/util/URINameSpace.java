@@ -54,6 +54,16 @@ public class URINameSpace {
 	{
 		return URI.create(uri.toString() + name);
 	}
+
+	public  String extractLocal(URI fullUri){
+		String uriString = fullUri.toString();
+		if (uriString.startsWith(uri.toString())) {
+			return uriString.substring(uri.toString().length());
+		}
+		return uriString;
+	}
+
+
 	
 	
 	

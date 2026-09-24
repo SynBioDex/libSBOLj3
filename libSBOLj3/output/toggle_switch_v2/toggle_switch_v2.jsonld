@@ -33,7 +33,7 @@
                 "@id": "https://sbolstandard.org/examples/toggle_switch/ComponentReference1"
             },
             "sbol:restriction": {
-                "@id": "sbol:verifyIdentical"
+                "@id": "sbol:replaces"
             },
             "sbol:object": {
                 "@id": "https://sbolstandard.org/examples/toggle_switch/SubComponent1"
@@ -596,7 +596,7 @@
                 "@id": "https://sbolstandard.org/examples/toggle_switch/ComponentReference3"
             },
             "sbol:restriction": {
-                "@id": "sbol:verifyIdentical"
+                "@id": "sbol:replaces"
             },
             "sbol:object": {
                 "@id": "https://sbolstandard.org/examples/toggle_switch/SubComponent2"
@@ -860,7 +860,7 @@
                 "@id": "https://sbolstandard.org/examples/toggle_switch/ComponentReference4"
             },
             "sbol:restriction": {
-                "@id": "sbol:verifyIdentical"
+                "@id": "sbol:replaces"
             },
             "sbol:object": {
                 "@id": "https://sbolstandard.org/examples/toggle_switch/SubComponent2"
@@ -885,7 +885,7 @@
                 "@id": "https://sbolstandard.org/examples/toggle_switch/ComponentReference2"
             },
             "sbol:restriction": {
-                "@id": "sbol:verifyIdentical"
+                "@id": "sbol:replaces"
             },
             "sbol:object": {
                 "@id": "https://sbolstandard.org/examples/toggle_switch/SubComponent1"

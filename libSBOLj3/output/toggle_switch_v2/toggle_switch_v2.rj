@@ -323,7 +323,7 @@
      ] ,
     "http://sbols.org/v3#restriction" : [ { 
       "type" : "uri" ,
-      "value" : "http://sbols.org/v3#verifyIdentical"
+      "value" : "http://sbols.org/v3#replaces"
     }
      ] ,
     "http://sbols.org/v3#object" : [ { 
@@ -351,7 +351,7 @@
      ] ,
     "http://sbols.org/v3#restriction" : [ { 
       "type" : "uri" ,
-      "value" : "http://sbols.org/v3#verifyIdentical"
+      "value" : "http://sbols.org/v3#replaces"
     }
      ] ,
     "http://sbols.org/v3#object" : [ { 
@@ -458,7 +458,7 @@
      ] ,
     "http://sbols.org/v3#restriction" : [ { 
       "type" : "uri" ,
-      "value" : "http://sbols.org/v3#verifyIdentical"
+      "value" : "http://sbols.org/v3#replaces"
     }
      ] ,
     "http://sbols.org/v3#object" : [ { 
@@ -992,7 +992,7 @@
      ] ,
     "http://sbols.org/v3#restriction" : [ { 
       "type" : "uri" ,
-      "value" : "http://sbols.org/v3#verifyIdentical"
+      "value" : "http://sbols.org/v3#replaces"
     }
      ] ,
     "http://sbols.org/v3#object" : [ { 

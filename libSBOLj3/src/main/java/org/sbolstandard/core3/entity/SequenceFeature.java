@@ -77,12 +77,6 @@ public class SequenceFeature extends FeatureWithLocation{
 	}
 	
 	
-	@Override
-	public List<Identified> getChildren() throws SBOLGraphException {
-		List<Identified> identifieds=super.getChildren();
-		identifieds=addToList(identifieds, this.getLocations());
-		return identifieds;
-	}
 	
 	@Override
 	public List<ValidationMessage> getValidationMessages() throws SBOLGraphException {

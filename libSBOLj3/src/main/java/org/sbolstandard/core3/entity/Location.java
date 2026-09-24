@@ -1,8 +1,10 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalInt;
 
@@ -300,6 +302,19 @@ public abstract class  Location extends Identified {
 		return Pair.of(locStart, locEnd);
 	}
 
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Location.sequence, Arrays.asList(getSequence()));
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, DataModel.Location.sequence, Arrays.asList(getSequenceURI()));
+		return identifieds;
+	}
 /*	
 	public static class LocationFactory
 	{
