@@ -51,36 +51,6 @@ public class SBOLAPI {
 		return createInteraction(interactionTypes, parent, (List<Feature>)(List<?>)features1, participant1Roles, (List<Feature>)(List<?>)features2, participant2Roles);
 	}
 
-
-	public static List<Interaction> createInteractionFromFeatures(List<URI> interactionTypes, Component parent,
-			Component participant1, List<URI> participant1Roles, Component participant2, List<URI> participant2Roles)
-			throws SBOLGraphException {
-		List<SubComponent> features1 = getOrCreateSubComponents(parent, participant1);
-		List<SubComponent> features2 = getOrCreateSubComponents(parent, participant2);
-		return createInteraction(interactionTypes, parent, (List<Feature>)(List<?>)features1, participant1Roles, (List<Feature>)(List<?>)features2, participant2Roles);
-	}
-
-	/*
-		DEL
-		public static List<Interaction> createInteraction(List<URI> interactionTypes, Component parent,
-			Component participant1, List<URI> participant1Roles, Component participant2, List<URI> participant2Roles)
-			throws SBOLGraphException {
-		List<Interaction> interactions = new ArrayList<Interaction>();
-		List<SubComponent> features1 = getOrCreateSubComponents(parent, participant1);
-		List<SubComponent> features2 = getOrCreateSubComponents(parent, participant2);
-		if (features1 != null && features2 != null) {
-			for (Feature feature1 : features1) {
-				for (Feature feature2 : features2) {
-					Interaction interaction = createInteraction(interactionTypes, parent, feature1, participant1Roles,
-							feature2, participant2Roles);
-					interactions.add(interaction);
-				}
-			}
-		}
-		return interactions;
-	}
-	*/
-
 	public static List<Interaction> createInteraction(List<URI> interactionTypes, Component parent, List<Feature> participant1Features,
 			 List<URI> participant1Roles, List<Feature> participant2Features, List<URI> participant2Roles)
 			throws SBOLGraphException {
@@ -97,8 +67,35 @@ public class SBOLAPI {
 	}
 
 	
-	//A + B --> C + D + E
-	/* 
+
+
+	/**
+	 * Pairs a reaction-interaction participant (a {@link Component} or, in the
+	 * feature-based overloads, a {@code List<Feature>} of candidate features for one
+	 * participant) with the participation roles that apply to it. Used by
+	 * {@link #createReactionInteraction} and {@link #createReactionInteractionFromFeatures} so
+	 * that each source/target/modifier can carry its own roles instead of one role list being
+	 * applied to every entry in the list.
+	 */
+	public static record ParticipantRoles<T>(T participant, List<URI> roles) {
+	}
+
+	private static <T> List<ParticipantRoles<T>> withRole(List<T> participants, URI role) {
+		List<ParticipantRoles<T>> result = new ArrayList<>();
+		if (participants != null) {
+			for (T participant : participants) {
+				result.add(new ParticipantRoles<>(participant, Arrays.asList(role)));
+			}
+		}
+		return result;
+	}
+
+	// A + B --> C + D + E
+	// where A, B, C, D, E are components and A1/A2, B1/B2, … are their subcomponents.
+	// One interaction is created per combination of (one subcomponent per source) x
+	// (one subcomponent per target), with all participants included in each interaction.
+	// Each source/target carries its own participation roles.
+	/* E.g.: A + B --> C + D + E 
 	A1,A2, B1, B2 --> C1, D1, D2, E1, E2, E3
 	A1 + B1 --> C1 + D1 + E1
 	A1 + B1 --> C1 + D1 + E2
@@ -125,137 +122,86 @@ public class SBOLAPI {
 	A2 + B2 --> C1 + D2 + E2
 	A2 + B2 --> C1 + D2 + E3	
 	*/
-
-	// A + B --> C + D + E [mod M]
-	// where A, B, C, D, E, M are components and A1/A2, B1/B2, … are their subcomponents.
-	// One interaction is created per combination of (one subcomponent per source) x
-	// (one subcomponent per target) x (one subcomponent per modifier),
-	// with all participants included in each interaction. Modifiers may be null.
-	public static List<Interaction> createReactionInteraction(Component parent, List<Component> sources, List<URI> sourceParticipantRoles, List<Component> targets, List<URI> targetParticipantRoles, List<Component> modifiers, List<URI> modifierParticipantRoles, List<URI> interactionTypes) throws SBOLGraphException {
-		List<Interaction> interactions = new ArrayList<Interaction>();
-
-		// Collect the subcomponent list for each source component
-		List<List<SubComponent>> sourceFeatureSets = new ArrayList<>();
-		for (Component source : sources) {
-			List<SubComponent> features = getOrCreateSubComponents(parent, source);
-			if (features == null || features.isEmpty()) return interactions;
-			sourceFeatureSets.add(features);
-		}
-
-		// Collect the subcomponent list for each target component
-		List<List<SubComponent>> targetFeatureSets = new ArrayList<>();
-		for (Component target : targets) {
-			List<SubComponent> features = getOrCreateSubComponents(parent, target);
-			if (features == null || features.isEmpty()) return interactions;
-			targetFeatureSets.add(features);
-		}
-
-		// Collect the subcomponent list for each modifier component (optional)
-		List<List<SubComponent>> modifierFeatureSets = new ArrayList<>();
-		if (modifiers != null) {
-			for (Component modifier : modifiers) {
-				List<SubComponent> features = getOrCreateSubComponents(parent, modifier);
-				if (features == null || features.isEmpty()) return interactions;
-				modifierFeatureSets.add(features);
-			}
-		}
-		
-		List<List<SubComponent>> modifierCombos = modifierFeatureSets.isEmpty()
-				? List.of(List.of())
-				: cartesianProduct(modifierFeatureSets);
-
-		// Enumerate every combination of (one subcomponent per source),
-		// (one subcomponent per target), and (one subcomponent per modifier)
-		for (List<SubComponent> sourceCombo : cartesianProduct(sourceFeatureSets)) {
-			for (List<SubComponent> targetCombo : cartesianProduct(targetFeatureSets)) {				
-				for (List<SubComponent> modifierCombo : modifierCombos) {
-					Interaction interaction = parent.createInteraction(interactionTypes);
-					for (SubComponent sf : sourceCombo) {
-						createParticipation(interaction, sourceParticipantRoles, sf);
-					}
-					for (SubComponent tf : targetCombo) {
-						createParticipation(interaction, targetParticipantRoles, tf);
-					}
-					for (SubComponent mf : modifierCombo) {
-						createParticipation(interaction, modifierParticipantRoles, mf);
-					}
-					interactions.add(interaction);
-				}
-			}
-		}
-		return interactions;
+	public static List<Interaction> createReactionInteraction(Component parent, List<ParticipantRoles<Component>> sources, List<ParticipantRoles<Component>> targets, List<URI> interactionTypes) throws SBOLGraphException {
+		return createReactionInteractionFromFeatures(parent, toFeatureParticipants(parent, sources), toFeatureParticipants(parent, targets), interactionTypes);
 	}
 
+	private static List<ParticipantRoles<List<Feature>>> toFeatureParticipants(Component parent, List<ParticipantRoles<Component>> participants) throws SBOLGraphException {
+		List<ParticipantRoles<List<Feature>>> result = new ArrayList<>();
+		for (ParticipantRoles<Component> participant : participants) {
+			List<SubComponent> subComponents = getOrCreateSubComponents(parent, participant.participant());
+			result.add(new ParticipantRoles<>((List<Feature>)(List<?>)subComponents, participant.roles()));
+		}
+		return result;
+	}
 
-		public static List<Interaction> createReactionInteractionFromFeatures(Component parent, List<List<Feature>> sourceFeatureSets, List<URI> sourceParticipantRoles, List<List<Feature>> targetFeatureSets, List<URI> targetParticipantRoles, List<List<Feature>> modifierFeatureSets, List<URI> modifierParticipantRoles, List<URI> interactionTypes) throws SBOLGraphException {
+	public static List<Interaction> createReactionInteractionFromFeatures(Component parent, List<ParticipantRoles<List<Feature>>> sources, List<ParticipantRoles<List<Feature>>> targets, List<URI> interactionTypes) throws SBOLGraphException {
 		List<Interaction> interactions = new ArrayList<Interaction>();
 
-		List<List<Feature>> modifierCombos = modifierFeatureSets == null || modifierFeatureSets.isEmpty()
-				? List.of(List.of())
-				: cartesianProduct(modifierFeatureSets);
+		List<List<Feature>> sourceFeatureSets = new ArrayList<>();
+		List<List<URI>> sourceRoleSets = new ArrayList<>();
+		for (ParticipantRoles<List<Feature>> source : sources) {
+			sourceFeatureSets.add(source.participant());
+			sourceRoleSets.add(source.roles());
+		}
+
+		List<List<Feature>> targetFeatureSets = new ArrayList<>();
+		List<List<URI>> targetRoleSets = new ArrayList<>();
+		for (ParticipantRoles<List<Feature>> target : targets) {
+			targetFeatureSets.add(target.participant());
+			targetRoleSets.add(target.roles());
+		}
 
 		// Enumerate every combination of (one feature per source),
-		// (one feature per target), and (one feature per modifier)
+		// (one feature per target), and (one feature per modifier).
+		// cartesianProduct() preserves the input list order, so combo.get(i) always
+		// corresponds to the i-th source/target/modifier and its role set.
 		for (List<Feature> sourceCombo : cartesianProduct(sourceFeatureSets)) {
-			for (List<Feature> targetCombo : cartesianProduct(targetFeatureSets)) {				
-				for (List<Feature> modifierCombo : modifierCombos) {
+			for (List<Feature> targetCombo : cartesianProduct(targetFeatureSets)) {
 					Interaction interaction = parent.createInteraction(interactionTypes);
-					for (Feature sf : sourceCombo) {
-						createParticipation(interaction, sourceParticipantRoles, sf);
+					for (int i = 0; i < sourceCombo.size(); i++) {
+						createParticipation(interaction, sourceRoleSets.get(i), sourceCombo.get(i));
 					}
-					for (Feature tf : targetCombo) {
-						createParticipation(interaction, targetParticipantRoles, tf);
+					for (int i = 0; i < targetCombo.size(); i++) {
+						createParticipation(interaction, targetRoleSets.get(i), targetCombo.get(i));
 					}
-					for (Feature mf : modifierCombo) {
-						createParticipation(interaction, modifierParticipantRoles, mf);
-					}
-					interactions.add(interaction);
-				}
+					interactions.add(interaction);				
 			}
 		}
 		return interactions;
 	}
-
-	public static List<Interaction> createReactionInteraction(Component parent, List<Component> sources, List<URI> sourceParticipantRoles, List<Component> targets, List<URI> targetParticipantRoles, List<URI> interactionTypes) throws SBOLGraphException {
-		return createReactionInteraction(parent, sources, sourceParticipantRoles, targets, targetParticipantRoles, null, null, interactionTypes);
-	}
-
-	public static List<Interaction> createReactionInteractionFromFeatures(Component parent, List<List<Feature>> sources, List<URI> sourceParticipantRoles, List<List<Feature>> targets, List<URI> targetParticipantRoles, List<URI> interactionTypes) throws SBOLGraphException {
-		return createReactionInteractionFromFeatures(parent, sources, sourceParticipantRoles, targets, targetParticipantRoles, null, null, interactionTypes);
-	}
-
-
+		
 	public static List<Interaction> createInhibitionInteraction(Component parent, Component source, Component target) throws SBOLGraphException {		
 			return createInteraction(Arrays.asList(InteractionType.Inhibition.getUri()), parent,
 				source, Arrays.asList(ParticipationRole.Inhibitor.getUri()),
 				target, Arrays.asList(ParticipationRole.Inhibited.getUri()));
 	}	
 
-	public static List<Interaction> createInhibitionInteraction(Component parent, List<Feature> source, List<Feature> target) throws SBOLGraphException {		
+	public static List<Interaction> createInhibitionInteraction(Component parent, List<Feature> source, List<Feature> target) throws SBOLGraphException {
 			return createInteraction(Arrays.asList(InteractionType.Inhibition.getUri()), parent,
 				source, Arrays.asList(ParticipationRole.Inhibitor.getUri()),
 				target, Arrays.asList(ParticipationRole.Inhibited.getUri()));
 	}
-
+		
 	public static List<Interaction> createStimulationInteraction(Component parent, Component source, Component target) throws SBOLGraphException {		
 			return createInteraction(Arrays.asList(InteractionType.Stimulation.getUri()), parent,
 				source, Arrays.asList(ParticipationRole.Stimulator.getUri()),
 				target, Arrays.asList(ParticipationRole.Stimulated.getUri()));
 	}
 
-	public static List<Interaction> createStimulationInteraction(Component parent, List<Feature> source, List<Feature> target) throws SBOLGraphException {		
+	public static List<Interaction> createStimulationInteraction(Component parent, List<Feature> source, List<Feature> target) throws SBOLGraphException {
 			return createInteraction(Arrays.asList(InteractionType.Stimulation.getUri()), parent,
 				source, Arrays.asList(ParticipationRole.Stimulator.getUri()),
 				target, Arrays.asList(ParticipationRole.Stimulated.getUri()));
 	}
-
+	
 	public static List<Interaction> createControlInteraction(Component parent, Component source, Component target) throws SBOLGraphException {		
 			return createInteraction(Arrays.asList(InteractionType.Control.getUri()), parent,
 				source, Arrays.asList(ParticipationRole.Modifier.getUri()),
 				target, Arrays.asList(ParticipationRole.Modified.getUri()));
 	}
 
-	public static List<Interaction> createControlInteraction(Component parent, List<Feature> source, List<Feature> target) throws SBOLGraphException {		
+	public static List<Interaction> createControlInteraction(Component parent, List<Feature> source, List<Feature> target) throws SBOLGraphException {
 			return createInteraction(Arrays.asList(InteractionType.Control.getUri()), parent,
 				source, Arrays.asList(ParticipationRole.Modifier.getUri()),
 				target, Arrays.asList(ParticipationRole.Modified.getUri()));
@@ -267,7 +213,7 @@ public class SBOLAPI {
 				target, Arrays.asList(ParticipationRole.Product.getUri()));
 	}
 
-	public static List<Interaction> createGeneticProductionInteraction(Component parent, List<Feature> sourceFeatures, List<Feature> targetFeatures) throws SBOLGraphException {		
+	public static List<Interaction> createGeneticProductionInteraction(Component parent, List<Feature> sourceFeatures, List<Feature> targetFeatures) throws SBOLGraphException {
 			return createInteraction(Arrays.asList(InteractionType.GeneticProduction.getUri()), parent,
 				sourceFeatures, Arrays.asList(ParticipationRole.Template.getUri()),
 				targetFeatures, Arrays.asList(ParticipationRole.Product.getUri()));
@@ -286,27 +232,25 @@ public class SBOLAPI {
 				createParticipation(interaction, Arrays.asList(ParticipationRole.Reactant.getUri()), feature);
 				interactions.add(interaction);
 			}
-		}						
+		}
 		return interactions;
 	}
 
-	public static List<Interaction> createBiochemicalReactionInteraction(Component parent, List<Component> sources, List<Component> targets) throws SBOLGraphException {		
-			return createReactionInteraction(parent, sources, Arrays.asList(ParticipationRole.Reactant.getUri()), targets, Arrays.asList(ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.BiochemicalReaction.getUri()));
+	public static List<Interaction> createBiochemicalReactionInteraction(Component parent, List<Component> sources, List<Component> targets) throws SBOLGraphException {
+			return createReactionInteraction(parent, withRole(sources, ParticipationRole.Reactant.getUri()), withRole(targets, ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.BiochemicalReaction.getUri()));
 	}
 
-	public static List<Interaction> createBiochemicalReactionInteractionFromFeatures(Component parent, List<List<Feature>> sources, List<List<Feature>> targets) throws SBOLGraphException {		
-			return createReactionInteractionFromFeatures(parent, sources, Arrays.asList(ParticipationRole.Reactant.getUri()), targets, Arrays.asList(ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.BiochemicalReaction.getUri()));
+	public static List<Interaction> createBiochemicalReactionInteractionFromFeatures(Component parent, List<List<Feature>> sources, List<List<Feature>> targets) throws SBOLGraphException {
+			return createReactionInteractionFromFeatures(parent, withRole(sources, ParticipationRole.Reactant.getUri()), withRole(targets, ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.BiochemicalReaction.getUri()));
 	}
 
-	public static List<Interaction> createNonCovalentBindingInteraction(Component parent, List<Component> sources, List<Component> targets) throws SBOLGraphException {		
-			return createReactionInteraction(parent, sources, Arrays.asList(ParticipationRole.Reactant.getUri()), targets, Arrays.asList(ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.NonCovalentBinding.getUri()));
+	public static List<Interaction> createNonCovalentBindingInteraction(Component parent, List<Component> sources, List<Component> targets) throws SBOLGraphException {
+			return createReactionInteraction(parent, withRole(sources, ParticipationRole.Reactant.getUri()), withRole(targets, ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.NonCovalentBinding.getUri()));
 	}
 
-	public static List<Interaction> createNonCovalentBindingInteractionFromFeatures(Component parent, List<List<Feature>> sources, List<List<Feature>> targets) throws SBOLGraphException {		
-			return createReactionInteractionFromFeatures(parent, sources, Arrays.asList(ParticipationRole.Reactant.getUri()), targets, Arrays.asList(ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.NonCovalentBinding.getUri()));
+	public static List<Interaction> createNonCovalentBindingInteractionFromFeatures(Component parent, List<List<Feature>> sources, List<List<Feature>> targets) throws SBOLGraphException {
+			return createReactionInteractionFromFeatures(parent, withRole(sources, ParticipationRole.Reactant.getUri()), withRole(targets, ParticipationRole.Product.getUri()), Arrays.asList(InteractionType.NonCovalentBinding.getUri()));
 	}
-
-
 
 	private static <T> List<List<T>> cartesianProduct(List<List<T>> lists) {
 		List<List<T>> result = new ArrayList<>();
