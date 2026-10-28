@@ -1,11 +1,14 @@
 package org.sbolstandard.core3.entity.measure;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.entity.ControlledIdentified;
+import org.sbolstandard.core3.entity.Identified;
 import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
@@ -15,6 +18,8 @@ import org.sbolstandard.core3.validation.PropertyValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.DataModel;
 import org.sbolstandard.core3.vocabulary.MeasureDataModel;
+import org.sbolstandard.core3.vocabulary.ProvenanceDataModel;
+
 import jakarta.validation.constraints.NotNull;
 
 /**
@@ -248,5 +253,19 @@ public class Measure extends ControlledIdentified{
 		
 		return result;
     }
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, MeasureDataModel.Measure.unit, Arrays.asList(getUnit()));
+		return identifieds;
+	}
+	
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, MeasureDataModel.Measure.unit, Arrays.asList(getUnitURI()));
+		return identifieds;
+	}
     
 }

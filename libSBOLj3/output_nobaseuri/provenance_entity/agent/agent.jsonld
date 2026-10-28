@@ -1,0 +1,40 @@
+{
+    "@graph": [
+        {
+            "@id": "https://sbolstandard.org/examples/toggle_switch",
+            "sbol:description": "Toggle Switch genetic circuit",
+            "sbol:name": "Toggle Switch",
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples"
+            },
+            "sbol:type": {
+                "@id": "SBO:0000241"
+            },
+            "sbol:displayId": "toggle_switch",
+            "@type": "sbol:Component"
+        },
+        {
+            "@id": "https://sbolstandard.org/examples/CodonOptimiserSoftware",
+            "sbol:description": "Used to optimise bacterial DNA sequences.",
+            "sbol:name": "Codon Optimiser Software",
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples"
+            },
+            "@type": [
+                "sbol:TopLevel",
+                "prov:Agent"
+            ],
+            "sbol:displayId": "CodonOptimiserSoftware"
+        }
+    ],
+    "@context": {
+        "SBO": "https://identifiers.org/SBO:",
+        "CHEBI": "https://identifiers.org/CHEBI:",
+        "GO": "https://identifiers.org/GO:",
+        "sbol": "http://sbols.org/v3#",
+        "EDAM": "https://identifiers.org/edam:",
+        "SO": "https://identifiers.org/SO:",
+        "prov": "http://www.w3.org/ns/prov#",
+        "om": "http://www.ontology-of-units-of-measure.org/resource/om-2/"
+    }
+}

@@ -257,7 +257,7 @@ public class RestrictionType {
 		 */
 		public static boolean checkMeets(Pair<Integer, Integer> subject, Pair<Integer, Integer> object)
 		{
-			return subject.getRight() == object.getLeft();
+			return (subject.getRight() + 1) == object.getLeft();
 		}
 		
 		/**

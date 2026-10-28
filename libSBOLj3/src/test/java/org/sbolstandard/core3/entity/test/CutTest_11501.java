@@ -29,30 +29,27 @@ public class CutTest_11501 extends TestCase {
 		
 		
     	Cut cut=(Cut)feature.getLocations().get(0);
-    	TestUtil.validateIdentified(cut,doc,0);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,0, null, null);
     	
     	String elements=sequence.getElements();
     	cut.setAt(Optional.of(elements.length()));
-    	TestUtil.validateIdentified(cut,doc,0);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,0, null, null);
     	
     	cut.setAt(Optional.of(elements.length()+1));
-    	TestUtil.validateIdentified(cut,doc,1);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,1, "sbol3-11501", "Cut_at_more_than_length");
     	
     	sequence.setElements(null);
-    	TestUtil.validateIdentified(cut,0);
+    	TestUtil.validateIdentifiedOnly(doc, cut,0,null, null);
 		
 		boolean isCompleteOriginal=Configuration.getInstance().isCompleteDocument();		
     	Configuration.getInstance().setCompleteDocument(true);
-    	TestUtil.validateIdentified(cut,1, "sbol3-11501");
+    	TestUtil.validateIdentifiedOnly(doc, cut,1, "sbol3-11501", "Cut_no_sequence_complete_document");
     	
     	
     	sequence.setElements(na);
     	cut.setAt(Optional.of(elements.length()-1));
-    	TestUtil.validateIdentified(cut,doc,0);
+    	TestUtil.validateIdentifiedAndDocument(cut,doc,0, null, null);
 		Configuration.getInstance().setCompleteDocument(isCompleteOriginal);
-    	
-    	
-    	
     	
     }
 }

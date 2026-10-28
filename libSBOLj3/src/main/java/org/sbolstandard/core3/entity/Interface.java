@@ -2,6 +2,8 @@ package org.sbolstandard.core3.entity;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.util.RDFUtil;
@@ -67,4 +69,14 @@ public class Interface extends Identified{
 		validationMessages= IdentifiedValidator.assertExists(this, DataModel.Interface.nondirectional, this.resource, this.getNonDirectionals(), validationMessages);
 		return validationMessages;
 	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds = super.getReferencedChildEntitiesWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Interface.input, getInputs());
+		identifieds = addToMap(identifieds, DataModel.Interface.output, getOutputs());
+		identifieds = addToMap(identifieds, DataModel.Interface.nondirectional, getNonDirectionals());
+		return identifieds;
+	}
+
 }

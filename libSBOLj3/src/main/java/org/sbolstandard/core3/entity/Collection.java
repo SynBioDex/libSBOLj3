@@ -1,7 +1,10 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.util.RDFUtil;
@@ -25,6 +28,14 @@ public class Collection extends TopLevel{
 
 	public List<URI> getMembers() throws SBOLGraphException {
 		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.Collection.member);	
+	}
+
+	public List<TopLevel> getMemberTopLevels() throws SBOLGraphException {
+		Map<Class<? extends TopLevel>, URI> topLevelClassURITypeMappings = SBOLUtil.getTopLevelClassURITypeMappings();
+		Map<URI, List<? extends TopLevel>> memberTopLevels = this.getConnectedEntitiesWithThePropertyHavingType(topLevelClassURITypeMappings, DataModel.Collection.member);		
+		List<TopLevel> topLevels = new ArrayList<>();
+		memberTopLevels.values().forEach(topLevels::addAll);
+		return topLevels;
 	}
 
 	public void setMembers(List<URI> members) {
@@ -62,8 +73,25 @@ public class Collection extends TopLevel{
 	 */
 	
 	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Collection.member, this.getMemberTopLevels());
+		//identifieds.putAll(getConnectedEntitiesHavingTypeProperty(TopLevel.class, DataModel.Collection.member));
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, DataModel.Collection.member, this.getMembers());
+		return identifieds;
+	}
+
+	@Override
 	public URI getResourceType() {
 		return DataModel.Collection.uri;
 	}
+	
+
 	
 }

@@ -1,10 +1,14 @@
 package org.sbolstandard.core3.entity.provenance;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
 import org.sbolstandard.core3.entity.ControlledIdentified;
+import org.sbolstandard.core3.entity.Identified;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.util.SBOLUtil;
@@ -178,5 +182,21 @@ public class Association extends ControlledIdentified{
 			validationMessages= IdentifiedValidator.assertEquals(this, ProvenanceDataModel.Association.plan, this.resource, plan, validationMessages);
 		}*/
 		return validationMessages;
+	}
+		
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedTopLevelsWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds=super.getReferencedTopLevelsWithEdgeURIs();
+		identifieds = addToMap(identifieds, ProvenanceDataModel.Association.agent, Arrays.asList(getAgent()));
+		identifieds = addToMap(identifieds, ProvenanceDataModel.Association.plan, Arrays.asList(getPlan()));		
+		return identifieds;
+	}
+
+	@Override
+	public Map<URI, List<URI>> getReferencedTopLevelURIsWithEdgeURIs() throws SBOLGraphException{
+		Map<URI, List<URI>> identifieds=super.getReferencedTopLevelURIsWithEdgeURIs();			
+		identifieds = addToURIMap(identifieds, ProvenanceDataModel.Association.agent, Arrays.asList(getAgentURI()));
+		identifieds = addToURIMap(identifieds, ProvenanceDataModel.Association.plan, Arrays.asList(getPlanURI()));
+		return identifieds;
 	}
 }

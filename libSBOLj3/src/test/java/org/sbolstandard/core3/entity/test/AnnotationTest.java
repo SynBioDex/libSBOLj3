@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.xml.namespace.QName;
 
@@ -92,6 +94,19 @@ public class AnnotationTest extends TestCase {
         
         part.addAnnotation(igem.local("belongsTo"), igemInf5);
         part.addAnnotation(igem.local("belongsTo"), igemInf4);
+		Map<URI, List<? extends Identified>> referencedTopLevels=part.getReferencedTopLevelsWithEdgeURIs();
+		for (Entry<URI, List<? extends Identified>> entry: referencedTopLevels.entrySet())
+		{
+			System.out.println("Property: " + entry.getKey());
+			for (Identified identified: entry.getValue())
+			{
+				System.out.println("  Referenced Top Level: " + identified.getDisplayId());
+			}
+		}
+		//System.out.println("Referenced Top Level 1: " + referencedTopLevels.entrget(0).getDisplayId());
+		//System.out.println("Referenced Top Level 2: " + referencedTopLevels.get(1).getDisplayId());
+		//Assert.assertTrue(referencedTopLevels!=null && referencedTopLevels.size()==2);
+		
         
         TestUtil.serialise(doc, "entity/annotation", "annotation");
    

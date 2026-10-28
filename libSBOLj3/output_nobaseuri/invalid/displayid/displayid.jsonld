@@ -1,0 +1,46 @@
+{
+    "@graph": [
+        {
+            "@id": "https://sbolstandard.org/examples/rbs",
+            "sbol:role": {
+                "@id": "SO:0000139"
+            },
+            "sbol:description": "RBS (Elowitz 1999)",
+            "sbol:displayId": "B0034 rbs",
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples"
+            },
+            "sbol:type": {
+                "@id": "SBO:0000251"
+            },
+            "sbol:name": "B0034",
+            "@type": "sbol:Component"
+        },
+        {
+            "@id": "https://sbolstandard.org/examples/TetR_protein",
+            "sbol:hasNamespace": {
+                "@id": "https://sbolstandard.org/examples/"
+            },
+            "sbol:description": "TetR protein",
+            "sbol:name": "TetR",
+            "sbol:displayId": "1TetR",
+            "sbol:type": {
+                "@id": "SBO:0000252"
+            },
+            "sbol:role": {
+                "@id": "GO:0003700"
+            },
+            "@type": "sbol:Component"
+        }
+    ],
+    "@context": {
+        "SBO": "https://identifiers.org/SBO:",
+        "CHEBI": "https://identifiers.org/CHEBI:",
+        "GO": "https://identifiers.org/GO:",
+        "sbol": "http://sbols.org/v3#",
+        "EDAM": "https://identifiers.org/edam:",
+        "SO": "https://identifiers.org/SO:",
+        "prov": "http://www.w3.org/ns/prov#",
+        "om": "http://www.ontology-of-units-of-measure.org/resource/om-2/"
+    }
+}

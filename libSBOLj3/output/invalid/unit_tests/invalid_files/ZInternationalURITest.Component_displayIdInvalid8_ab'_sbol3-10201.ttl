@@ -1,0 +1,146 @@
+BASE   <https://synbiohub.org>
+PREFIX :      <https://synbiohub.org>
+PREFIX CHEBI: <https://identifiers.org/CHEBI:>
+PREFIX EDAM:  <https://identifiers.org/edam:>
+PREFIX GO:    <https://identifiers.org/GO:>
+PREFIX SBO:   <https://identifiers.org/SBO:>
+PREFIX SO:    <https://identifiers.org/SO:>
+PREFIX om:    <http://www.ontology-of-units-of-measure.org/resource/om-2/>
+PREFIX prov:  <http://www.w3.org/ns/prov#>
+PREFIX sbol:  <http://sbols.org/v3#>
+
+</ab'>  a                  sbol:Component;
+        sbol:displayId     "ab'";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</清华大学>  a                 sbol:Component;
+        sbol:displayId     "清华大学";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</abb>  a                  sbol:Component;
+        sbol:displayId     "abb";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZÉÈÀÙÇÂÊÎÔÛËÏ>
+        a                  sbol:Component;
+        sbol:displayId     "ABCDEFGHIJKLMNOPQRSTUVWXYZABCDEFGHIJKLMNOPQRSTUVWXYZÉÈÀÙÇÂÊÎÔÛËÏ";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</£päypal>  a              sbol:Component;
+        sbol:displayId     "£päypal";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ab?>  a       sbol:Component .
+
+</abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZéèàùçâêîôûëï>
+        a                  sbol:Component;
+        sbol:displayId     "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZéèàùçâêîôûëï";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ab#>  a       sbol:Component .
+
+</ab_12>  a                sbol:Component;
+        sbol:displayId     "ab_12";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ab1-AB>  a               sbol:Component;
+        sbol:displayId     "ab1-AB";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ABCDEFGHIJKLMNOPRSTUVXYZÇĞÖIŞÜ>
+        a                  sbol:Component;
+        sbol:displayId     "ABCDEFGHIJKLMNOPRSTUVXYZÇĞÖIŞÜ";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</abcdefghijklmnoprstuvxyzçğöışü>
+        a                  sbol:Component;
+        sbol:displayId     "abcdefghijklmnoprstuvxyzçğöışü";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</1abb>  a                 sbol:Component;
+        sbol:displayId     "1abb";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</abcö>  a                 sbol:Component;
+        sbol:displayId     "abcö";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ>
+        a                  sbol:Component;
+        sbol:displayId     "АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜäëïöüiçÇßØøÅåÆæÞþÐð>
+        a                  sbol:Component;
+        sbol:displayId     "ÀÈÌÒÙàèìòùÁÉÍÓÚÝáéíóúýÂÊÎÔÛâêîôûÃÑÕãñõÄËÏÖÜäëïöüiçÇßØøÅåÆæÞþÐð";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</_test>  a                sbol:Component;
+        sbol:displayId     "_test";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ab.>  a                  sbol:Component;
+        sbol:displayId     "ab.";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</ab1_AB123>  a            sbol:Component;
+        sbol:displayId     "ab1_AB123";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</_ab>  a                  sbol:Component;
+        sbol:displayId     "_ab";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</päypal>  a               sbol:Component;
+        sbol:displayId     "päypal";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</päypal1>  a              sbol:Component;
+        sbol:displayId     "päypal1";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .
+
+</1päypal>  a              sbol:Component;
+        sbol:displayId     "1päypal";
+        sbol:hasNamespace  :;
+        sbol:role          SO:0000167;
+        sbol:type          SBO:0000251 .

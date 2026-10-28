@@ -1,7 +1,9 @@
 package org.sbolstandard.core3.entity;
 
 import java.net.URI;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import org.apache.jena.rdf.model.Model;
 import org.apache.jena.rdf.model.Resource;
@@ -9,7 +11,9 @@ import org.sbolstandard.core3.util.Configuration;
 import org.sbolstandard.core3.util.RDFUtil;
 import org.sbolstandard.core3.util.SBOLGraphException;
 import org.sbolstandard.core3.util.SBOLUtil;
+import org.sbolstandard.core3.util.URINameSpace;
 import org.sbolstandard.core3.validation.IdentifiedValidator;
+import org.sbolstandard.core3.validation.PropertyName;
 import org.sbolstandard.core3.validation.PropertyValidator;
 import org.sbolstandard.core3.validation.ValidationMessage;
 import org.sbolstandard.core3.vocabulary.DataModel;
@@ -43,12 +47,13 @@ public class Participation extends Identified{
 		return validationMessages;
 	}
 	
-	@NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}")
+	@NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") 
+	@PropertyName("roleAA")
 	public List<URI> getRoles() {
 		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.role);
 	}
 	
-	public void setRoles(@NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") List<URI> roles) throws SBOLGraphException {
+	public void setRoles(@PropertyName("roleZZ")  @NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") List<URI> roles) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setRoles", new Object[] {roles}, List.class);
 		RDFUtil.setProperty(resource, DataModel.role, roles);
 	}
@@ -66,8 +71,18 @@ public class Participation extends Identified{
 		return IdentifiedValidator.getValidator().getPropertyAsURI(this.resource, DataModel.Participation.higherOrderParticipant);	
 	}
 
-	public void setHigherOrderParticipant(URI higherOrderParticipant) {
-		RDFUtil.setProperty(resource, DataModel.Participation.higherOrderParticipant, higherOrderParticipant);
+	public Interaction getHigherOrderParticipantInteraction() throws SBOLGraphException {
+		return contsructIdentified(DataModel.Participation.higherOrderParticipant, Interaction.class, DataModel.Interaction.uri);
+		//return constructIdentified(DataModel.Participation.higherOrderParticipant, DataModel.Interaction.uri, Interaction.class);
+	}
+
+
+	public void setHigherOrderParticipant(URI higherOrderParticipantURI) {
+		RDFUtil.setProperty(resource, DataModel.Participation.higherOrderParticipant, higherOrderParticipantURI);
+	}
+
+	public void setHigherOrderParticipant(Interaction higherOrderParticipant) {		
+		setHigherOrderParticipant(SBOLUtil.toURI(higherOrderParticipant));
 	}
 	
 	@Override
@@ -103,6 +118,14 @@ public class Participation extends Identified{
 			}
 		}
 		return validationMessages;
+	}
+
+	@Override
+	public Map<URI, List<? extends Identified>> getReferencedChildEntitiesWithEdgeURIs() throws SBOLGraphException {
+		Map<URI, List<? extends Identified>> identifieds = super.getReferencedChildEntitiesWithEdgeURIs();
+		identifieds = addToMap(identifieds, DataModel.Participation.participant, Arrays.asList(getParticipant()));
+		identifieds = addToMap(identifieds, DataModel.Participation.higherOrderParticipant, Arrays.asList(getHigherOrderParticipantInteraction()));
+		return identifieds;
 	}
 	
 }
