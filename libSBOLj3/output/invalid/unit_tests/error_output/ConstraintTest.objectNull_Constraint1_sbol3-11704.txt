@@ -2,12 +2,12 @@ Identified Validation test: sbol3-11704 - The value of the restriction property 
 	Property: restriction,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Identified Validation test: Constraint.object cannot be null.,
-	Property: object,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
-	Entity Type: Constraint
 Identified Validation test: Constraint.restriction cannot be null.,
 	Property: restriction,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: Constraint
+Identified Validation test: Constraint.object cannot be null.,
+	Property: object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 --------------------

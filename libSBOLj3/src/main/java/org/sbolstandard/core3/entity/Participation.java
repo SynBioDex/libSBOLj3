@@ -53,7 +53,7 @@ public class Participation extends Identified{
 		return RDFUtil.getPropertiesAsURIs(this.resource, DataModel.role);
 	}
 	
-	public void setRoles(@PropertyName("roleZZ")  @NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") List<URI> roles) throws SBOLGraphException {
+	public void setRoles(@PropertyName("role")  @NotEmpty(message = "{PARTICIPANT_ROLES_NOT_EMPTY}") List<URI> roles) throws SBOLGraphException {
 		PropertyValidator.getValidator().validate(this, "setRoles", new Object[] {roles}, List.class);
 		RDFUtil.setProperty(resource, DataModel.role, roles);
 	}

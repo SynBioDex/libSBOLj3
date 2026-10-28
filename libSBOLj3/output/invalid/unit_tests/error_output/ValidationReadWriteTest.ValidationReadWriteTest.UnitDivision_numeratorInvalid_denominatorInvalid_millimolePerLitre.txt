@@ -2,14 +2,6 @@ Document Validation test: Unit.symbol cannot be empty.,
 	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: UnitDivision.numerator cannot be null.,
-	Property: unitDivisions[0].numeratorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Document Validation test: UnitDivision.denominator cannot be null.,
 	Property: unitDivisions[0].denominatorURI,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
@@ -18,6 +10,14 @@ Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: UnitDivision.numerator cannot be null.,
+	Property: unitDivisions[0].numeratorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
 Document Validation test: Prefix.factor cannot be null.,
 	Property: SIPrefixes[0].factor,
 	Entity URI: https://sbolstandard.org/examples/milli,
