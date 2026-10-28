@@ -1,22 +1,22 @@
 **********>>
 Test:SubComponentTest.SubComponent_instanceOfNull_SubComponent1
-Identified Validation test: SubComponent.isInstanceOf cannot be null.,
-	Property: instanceOfURI,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
-	Entity Type: SubComponent
 Identified Validation test: Range.end cannot be empty.,
 	Property: locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range
---------------------
-Document Validation test: SubComponent.isInstanceOf cannot be null.,
-	Property: components[0].subComponents[0].instanceOfURI,
+Identified Validation test: SubComponent.isInstanceOf cannot be null.,
+	Property: instanceOfURI,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
+--------------------
 Document Validation test: Range.end cannot be empty.,
 	Property: components[0].subComponents[0].locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range
+Document Validation test: SubComponent.isInstanceOf cannot be null.,
+	Property: components[0].subComponents[0].instanceOfURI,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
 --------------------
 <<**********
 
@@ -31,14 +31,14 @@ Identified Validation test: Range.end cannot be empty.,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range
 --------------------
-Document Validation test: SubComponent.isInstanceOf cannot be null.,
-	Property: components[0].subComponents[0].instanceOfURI,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
-	Entity Type: SubComponent
 Document Validation test: Range.end cannot be empty.,
 	Property: components[0].subComponents[0].locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range
+Document Validation test: SubComponent.isInstanceOf cannot be null.,
+	Property: components[0].subComponents[0].instanceOfURI,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
 --------------------
 <<**********
 
@@ -66,19 +66,23 @@ Document Validation test: SubComponent.isInstanceOf cannot be null.,
 
 **********>>
 Test:SubComponentTest.SubComponent_roleIntegrationNullRolesNotNull_SubComponent1_sbol3-10802
-Identified Validation test: SubComponent.isInstanceOf cannot be null.,
-	Property: instanceOfURI,
+Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
+	Property: roleIntegration,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
 Identified Validation test: Range.end cannot be empty.,
 	Property: locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range
-Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
-	Property: roleIntegration,
+Identified Validation test: SubComponent.isInstanceOf cannot be null.,
+	Property: instanceOfURI,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
 --------------------
+Document Validation test: Range.end cannot be empty.,
+	Property: components[0].subComponents[0].locations[0].end,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
+	Entity Type: Range
 Document Validation test: SubComponent.isInstanceOf cannot be null.,
 	Property: components[0].subComponents[0].instanceOfURI,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
@@ -87,10 +91,6 @@ Document Validation test: sbol3-10802 - The roleIntegration property of a SubCom
 	Property: components[0].subComponents[0].roleIntegration,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
-Document Validation test: Range.end cannot be empty.,
-	Property: components[0].subComponents[0].locations[0].end,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
-	Entity Type: Range
 --------------------
 <<**********
 
@@ -100,25 +100,20 @@ Identified Validation test: sbol3-10802 - The roleIntegration property of a SubC
 	Property: subComponents[0].roleIntegration,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
-Identified Validation test: Range.end cannot be empty.,
-	Property: subComponents[0].locations[0].end,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
-	Entity Type: Range
 Identified Validation test: sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence. ADDITIONAL INFORMATION: Sequence length:80, Calculated location length:0, Sequence: https://synbiohub.org/public/igem/B0015_Sequence1,
 	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
 	Property: subComponents[0].hasLocation,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
+Identified Validation test: Range.end cannot be empty.,
+	Property: subComponents[0].locations[0].end,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
+	Entity Type: Range
 --------------------
 <<**********
 
 **********>>
 Test:SubComponentTest.SubComponent_instanceOfInvalid2_i13504_sbol3-10802_sbol3-10803_sbol3-10804_sbol3-10807
-Identified Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
-	Value: https://synbiohub.org/public/igem/i13504,
-	Property: hasFeature[https://synbiohub.org/public/igem/i13504/SubComponent1].instanceOf,
-	Entity URI: https://synbiohub.org/public/igem/i13504,
-	Entity Type: Component
 Identified Validation test: Range.end cannot be empty.,
 	Property: subComponents[0].locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
@@ -129,13 +124,18 @@ Identified Validation test: sbol3-10804 - SubComponent objects MUST NOT form cir
 	Property: hasFeature[https://synbiohub.org/public/igem/i13504/SubComponent1].instanceOf[https://synbiohub.org/public/igem/i13504],
 	Entity URI: https://synbiohub.org/public/igem/i13504,
 	Entity Type: Component
+Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
+	Property: subComponents[0].roleIntegration,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
+Identified Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
+	Value: https://synbiohub.org/public/igem/i13504,
+	Property: hasFeature[https://synbiohub.org/public/igem/i13504/SubComponent1].instanceOf,
+	Entity URI: https://synbiohub.org/public/igem/i13504,
+	Entity Type: Component
 Identified Validation test: sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence. ADDITIONAL INFORMATION: Sequence length:80, Calculated location length:0, Sequence: https://synbiohub.org/public/igem/i13504_Sequence1,
 	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
 	Property: subComponents[0].hasLocation,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
-	Entity Type: SubComponent
-Identified Validation test: sbol3-10802 - The roleIntegration property of a SubComponent is REQUIRED if the SubComponent has one or more role properties.,
-	Property: subComponents[0].roleIntegration,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
 --------------------
@@ -239,27 +239,27 @@ Identified Validation test: sbol3-10201 - The displayId property, if specified, 
 
 **********>>
 Test:ParticipantTest.Participation.rolesNull_Participation1_sbol3-11804
-Document Validation test: Participation.roles cannot be empty.,
-	Property: roleAA,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
-	Entity Type: Participation
 Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
 	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
 	Entity Type: Interaction
+Document Validation test: Participation.roles cannot be empty.,
+	Property: roleAA,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
+	Entity Type: Participation
 --------------------
 <<**********
 
 **********>>
 Test:ParticipantTest.Participation.rolesEmpty_Participation1_sbol3-11804
-Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
-	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: Interaction
 Document Validation test: Participation.roles cannot be empty.,
 	Property: roleAA,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
 	Entity Type: Participation
+Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
+	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: Interaction
 --------------------
 <<**********
 
@@ -282,19 +282,23 @@ Document Validation test: Participation.roles cannot be empty.,
 
 **********>>
 Test:ParticipantTest.higherOrderParticipant_Participation1_sbol3-11804
-Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
-	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: Interaction
 Document Validation test: Participation.roles cannot be empty.,
 	Property: roleAA,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
 	Entity Type: Participation
+Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
+	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: Interaction
 --------------------
 <<**********
 
 **********>>
 Test:ParticipantTest.higherOrderParticipant_2_Participation1_sbol3-11804_sbol3-11901
+Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
+	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: Interaction
 Document Validation test: Participation.roles cannot be empty.,
 	Property: roleAA,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
@@ -303,10 +307,6 @@ Document Validation test: sbol3-11901 - A Participation MUST contain precisely o
 	Property: components[2].interactions[0].participations[1].participant,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1,
 	Entity Type: Participation
-Document Validation test: sbol3-11804 - If the hasParticipation properties of an Interaction refer to one or more Participation objects, and one of the type properties of this Interaction comes from Table 11, then the Participation objects SHOULD have a role from the set of role properties that is cross listed with this type in Table 12.,
-	Property: components[2].interactions[0].hasParticipation[https://sbolstandard.org/examples/i13504_system/Interaction1/Participation1].role,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: Interaction
 --------------------
 <<**********
 
@@ -424,14 +424,14 @@ Document Validation test: sbol3-11011 - A role property of a LocalSubComponent S
 
 **********>>
 Test:LocalSubComponentTest.11012_2_sbol3-11008_sbol3-11011
-Document Validation test: sbol3-11011 - A role property of a LocalSubComponent SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
-	Value: https://identifiers.org/SO:0000316,
-	Property: components[0].localSubComponents[0].role,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
-	Entity Type: LocalSubComponent
 Document Validation test: sbol3-11008 - A LocalSubComponent SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
 	Value: [https://identifiers.org/GO:0005623, https://identifiers.org/SO:0000987],
 	Property: components[0].localSubComponents[0].type,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
+	Entity Type: LocalSubComponent
+Document Validation test: sbol3-11011 - A role property of a LocalSubComponent SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
+	Value: https://identifiers.org/SO:0000316,
+	Property: components[0].localSubComponents[0].role,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
 	Entity Type: LocalSubComponent
 --------------------
@@ -439,14 +439,14 @@ Document Validation test: sbol3-11008 - A LocalSubComponent SHOULD NOT have a ty
 
 **********>>
 Test:LocalSubComponentTest.11012_3_sbol3-11008_sbol3-11011
-Document Validation test: sbol3-11008 - A LocalSubComponent SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
-	Value: [https://identifiers.org/SO:0000988, https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252],
-	Property: components[0].localSubComponents[0].type,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
-	Entity Type: LocalSubComponent
 Document Validation test: sbol3-11011 - A role property of a LocalSubComponent SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
 	Value: https://identifiers.org/SO:0000316,
 	Property: components[0].localSubComponents[0].role,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
+	Entity Type: LocalSubComponent
+Document Validation test: sbol3-11008 - A LocalSubComponent SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
+	Value: [https://identifiers.org/SO:0000988, https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252],
+	Property: components[0].localSubComponents[0].type,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/LocalSubComponent1,
 	Entity Type: LocalSubComponent
 --------------------
@@ -544,10 +544,6 @@ Document Validation test: Location.sequence cannot be null.,
 
 **********>>
 Test:CutTest.cut_sequence_nullValue_sbol3-11501_sbol3-11302
-Document Validation test: Location.sequence cannot be null.,
-	Property: components[0].sequenceFeatures[0].locations[0].sequenceURI,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1/Cut1,
-	Entity Type: Cut
 Document Validation test: sbol3-11501 - The value of the at property of a Cut MUST be greater than or equal to zero and less than or equal to the length of the elements value of the Sequence referred to by its hasSequence property.,
 	Value: 5,
 	Property: components[0].sequenceFeatures[0].locations[0].at,
@@ -557,6 +553,10 @@ Document Validation test: sbol3-11302 - For every Location that is not an Entire
 	Property: components[0].hasFeature[https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1].hasLocation[https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1/Cut1].hasSequence,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
+Document Validation test: Location.sequence cannot be null.,
+	Property: components[0].sequenceFeatures[0].locations[0].sequenceURI,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040/SequenceFeature1/Cut1,
+	Entity Type: Cut
 --------------------
 <<**********
 
@@ -667,13 +667,13 @@ Identified Validation test: sbol3-10616 - If a hasSequence property of a Compone
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
 --------------------
-Document Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
-	Value: Protein,
+Document Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
+	Value: [https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252, https://identifiers.org/SO:0000988],
 	Property: components[1].type,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
-Document Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
-	Value: [https://identifiers.org/SO:0000987, https://identifiers.org/SBO:0000252, https://identifiers.org/SO:0000988],
+Document Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
+	Value: Protein,
 	Property: components[1].type,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
@@ -719,14 +719,14 @@ Document Validation test: sbol3-10607 - If the type property of a Component cont
 
 **********>>
 Test:ComponentTest.ComponentTest_ComponentTypeOnlyDNAOrRNAIncludeStrandOrTopology_5_BBa_R0040_sbol3-10608_sbol3-10612_sbol3-10616
-Identified Validation test: sbol3-10612 - A role property of a Component SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
-	Value: https://identifiers.org/SO:0000167,
-	Property: role,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: Component
 Identified Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
 	Value: [https://identifiers.org/SO:0000985, https://identifiers.org/SBO:0000252],
 	Property: type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: Component
+Identified Validation test: sbol3-10612 - A role property of a Component SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
+	Value: https://identifiers.org/SO:0000167,
+	Property: role,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
 Identified Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
@@ -735,6 +735,11 @@ Identified Validation test: sbol3-10616 - If a hasSequence property of a Compone
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
 --------------------
+Document Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
+	Value: [https://identifiers.org/SO:0000985, https://identifiers.org/SBO:0000252],
+	Property: components[1].type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: Component
 Document Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
 	Value: Protein,
 	Property: components[1].type,
@@ -743,11 +748,6 @@ Document Validation test: sbol3-10616 - If a hasSequence property of a Component
 Document Validation test: sbol3-10612 - A role property of a Component SHOULD NOT contain a URI that refers to a term from the sequence feature branch of the SO unless its type property contains the DNA or RNA type URI listed in Table 2.,
 	Value: https://identifiers.org/SO:0000167,
 	Property: components[1].role,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: Component
-Document Validation test: sbol3-10608 - A Component SHOULD NOT have a type property that refers to a term from the topology attribute or strand attribute branches of the SO unless it also has a type property with the DNA or RNA type URI listed in Table 2.,
-	Value: [https://identifiers.org/SO:0000985, https://identifiers.org/SBO:0000252],
-	Property: components[1].type,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
 --------------------
@@ -772,12 +772,12 @@ Document Validation test: sbol3-10111 - An object's property values MUST have th
 **********>>
 Test:ComponentTest.ComponentTest_sequenceInvalid_2_BBa_R0040_sbol3-10111
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: https://synbiohub.org/public/igem/BBa_R0040,
+	Value: https://synbiohub.org/public/igem/BBa_F2620,
 	Property: hasSequence,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: https://synbiohub.org/public/igem/BBa_F2620,
+	Value: https://synbiohub.org/public/igem/BBa_R0040,
 	Property: hasSequence,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
 	Entity Type: Component
@@ -914,15 +914,6 @@ Document Validation test: sbol3-10501 - If the elements property is set, then th
 **********>>
 Test:ComponentTest.ComponentTest.MultipleInconsistentComponentTypes_BBa_R0040_sbol3-10501_sbol3-10601_sbol3-10616
 Document Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
-	Value: Protein,
-	Property: components[1].type,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: Component
-Document Validation test: sbol3-10601 - The set of type properties of a Component MUST NOT have more than one URI from Table 2.,
-	Property: components[1].type,
-	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
-	Entity Type: Component
-Document Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
 	Value: DNA,
 	Property: components[1].type,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
@@ -931,6 +922,15 @@ Document Validation test: sbol3-10501 - If the elements property is set, then th
 	Property: sequences[0].encoding,
 	Entity URI: https://synbiohub.org/public/igem/BBa_R0040_Sequence1,
 	Entity Type: Sequence
+Document Validation test: sbol3-10601 - The set of type properties of a Component MUST NOT have more than one URI from Table 2.,
+	Property: components[1].type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: Component
+Document Validation test: sbol3-10616 - If a hasSequence property of a Component refers to a Sequence object, and one of the type properties of this Component comes from Table 2, then one of the Sequence objects MUST have the encoding that is cross-listed with this type in Table 1.,
+	Value: Protein,
+	Property: components[1].type,
+	Entity URI: https://synbiohub.org/public/igem/BBa_R0040,
+	Entity Type: Component
 --------------------
 <<**********
 
@@ -968,17 +968,17 @@ Identified Validation test: sbol3-10104 - The URL of any child or nested object 
 	Entity Type: Interaction
 --------------------
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
 	Entity Type: Interaction
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
 --------------------
 <<**********
 
@@ -991,17 +991,17 @@ Identified Validation test: sbol3-10104 - The URL of any child or nested object 
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
 Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
-	Child Entity Type: Participation,
-	Property: interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
-	Entity Type: Interaction
-Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
 	Child Entity Type: Interaction,
 	Property: Identified[https://synbiohub.org/public/igem/protein_production],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
+Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
+	Child Entity Type: Participation,
+	Property: interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
+	Entity Type: Interaction
 Identified Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
 	Child Entity Type: Participation,
@@ -1010,58 +1010,58 @@ Identified Validation test: sbol3-10104 - The URL of any child or nested object 
 	Entity Type: Interaction
 --------------------
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
 	Entity Type: Interaction
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
 	Entity URI: https://synbiohub.org/public/igem/protein_production3,
 	Entity Type: Interaction
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
 --------------------
 <<**********
 
 **********>>
 Test:ComponentTest.ComponentTest.InvalidURIsInSubComponents_TetR_sbol3-10104
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
 	Entity Type: Interaction
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
-	Child Entity Type: Participation,
-	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
-	Entity URI: https://synbiohub.org/public/igem/protein_production3,
-	Entity Type: Interaction
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
 	Child Entity Type: Interaction,
 	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
+	Child Entity Type: Participation,
+	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
+	Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Entity Type: Interaction
 --------------------
 <<**********
 
@@ -1074,6 +1074,12 @@ Document Validation test: sbol3-10104 - The URL of any child or nested object MU
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
+	Child Entity Type: Participation,
+	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
+	Entity Type: Interaction
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
@@ -1085,39 +1091,32 @@ Document Validation test: sbol3-10104 - The URL of any child or nested object MU
 	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
-	Child Entity Type: Participation,
-	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
-	Entity Type: Interaction
 --------------------
 <<**********
 
 **********>>
 Test:ComponentTest.ComponentTest.InvalidURIsInSubComponents_3_TetR_sbol3-10104_sbol3-10803
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
-	Child Entity Type: Participation,
-	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
-	Entity Type: Interaction
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
 	Entity URI: https://synbiohub.org/public/igem/protein_production3,
 	Entity Type: Interaction
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
+	Child Entity Type: Participation,
+	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
+	Entity Type: Interaction
+Document Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
+	Value: https://synbiohub.org/public/igem/TetR,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf,
+	Entity URI: https://synbiohub.org/public/igem/TetR,
+	Entity Type: Component
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
 	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
 Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
@@ -1126,10 +1125,11 @@ Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circu
 	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf[https://synbiohub.org/public/igem/TetR],
 	Entity URI: https://synbiohub.org/public/igem/TetR,
 	Entity Type: Component
-Document Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
-	Value: https://synbiohub.org/public/igem/TetR,
-	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf,
-	Entity URI: https://synbiohub.org/public/igem/TetR,
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
 --------------------
 <<**********
@@ -1143,24 +1143,6 @@ Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circu
 	Entity URI: https://synbiohub.org/public/igem/TetR_binding,
 	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
-Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
-	Child Entity URI: https://synbiohub.org/public/igem/TetR,
-	Child Entity Type: Component,
-	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf[https://synbiohub.org/public/igem/TetR],
-	Entity URI: https://synbiohub.org/public/igem/TetR,
-	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation3,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
@@ -1172,16 +1154,34 @@ Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circu
 	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR_binding/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR],
 	Entity URI: https://synbiohub.org/public/igem/TetR,
 	Entity Type: Component
+Document Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
+	Value: https://synbiohub.org/public/igem/TetR,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf,
+	Entity URI: https://synbiohub.org/public/igem/TetR,
+	Entity Type: Component
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
+Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
+	Child Entity URI: https://synbiohub.org/public/igem/TetR,
+	Child Entity Type: Component,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf[https://synbiohub.org/public/igem/TetR],
+	Entity URI: https://synbiohub.org/public/igem/TetR,
+	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
 	Child Entity Type: Participation,
 	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
 	Entity Type: Interaction
-Document Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
-	Value: https://synbiohub.org/public/igem/TetR,
-	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf,
-	Entity URI: https://synbiohub.org/public/igem/TetR,
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
 --------------------
 <<**********
@@ -1205,17 +1205,40 @@ Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circu
 	Property: components[3].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR_binding],
 	Entity URI: https://synbiohub.org/public/igem/TetR_binding,
 	Entity Type: Component
+Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
+	Child Entity URI: https://synbiohub.org/public/igem/TetR_binding,
+	Child Entity Type: Component,
+	Property: components[0].hasFeature[https://synbiohub.org/public/igem/TetR_binding/SubComponent2].instanceOf[https://synbiohub.org/public/igem/BBa_F2620],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Entity Type: Component
+Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
+	Child Entity URI: https://synbiohub.org/public/igem/TetR_binding,
+	Child Entity Type: Component,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR_binding/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR],
+	Entity URI: https://synbiohub.org/public/igem/TetR,
+	Entity Type: Component
+Document Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
+	Value: https://synbiohub.org/public/igem/TetR,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf,
+	Entity URI: https://synbiohub.org/public/igem/TetR,
+	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/protein_production,
 	Child Entity Type: Interaction,
 	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
-Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
-	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
-	Child Entity Type: Interaction,
-	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
+	Child Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Child Entity Type: Component,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/BBa_F2620/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR],
+	Entity URI: https://synbiohub.org/public/igem/TetR,
+	Entity Type: Component
+Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
+	Child Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
+	Child Entity Type: Component,
+	Property: components[2].hasFeature[https://synbiohub.org/public/igem/BBa_F2620/SubComponent2].instanceOf[https://synbiohub.org/public/igem/TetR],
+	Entity URI: https://synbiohub.org/public/igem/TetR,
 	Entity Type: Component
 Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
 	Child Entity URI: https://synbiohub.org/public/igem/inhibitor_participation,
@@ -1223,12 +1246,6 @@ Document Validation test: sbol3-10104 - The URL of any child or nested object MU
 	Property: components[0].interactions[1].Identified[https://synbiohub.org/public/igem/inhibitor_participation],
 	Entity URI: https://synbiohub.org/public/igem/BBa_F2620/Interaction2,
 	Entity Type: Interaction
-Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
-	Child Entity URI: https://synbiohub.org/public/igem/TetR_binding,
-	Child Entity Type: Component,
-	Property: components[0].hasFeature[https://synbiohub.org/public/igem/TetR_binding/SubComponent2].instanceOf[https://synbiohub.org/public/igem/BBa_F2620],
-	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Entity Type: Component
 Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
 	Child Entity URI: https://synbiohub.org/public/igem/TetR,
 	Child Entity Type: Component,
@@ -1241,28 +1258,11 @@ Document Validation test: sbol3-10104 - The URL of any child or nested object MU
 	Property: components[0].interactions[0].Identified[https://synbiohub.org/public/igem/inhibitor_participation3],
 	Entity URI: https://synbiohub.org/public/igem/protein_production3,
 	Entity Type: Interaction
-Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
-	Child Entity URI: https://synbiohub.org/public/igem/TetR_binding,
-	Child Entity Type: Component,
-	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR_binding/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR],
-	Entity URI: https://synbiohub.org/public/igem/TetR,
-	Entity Type: Component
-Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
-	Child Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Child Entity Type: Component,
-	Property: components[2].hasFeature[https://synbiohub.org/public/igem/BBa_F2620/SubComponent1].instanceOf[https://synbiohub.org/public/igem/TetR],
-	Entity URI: https://synbiohub.org/public/igem/TetR,
-	Entity Type: Component
-Document Validation test: sbol3-10803 - The instanceOf property of a SubComponent MUST NOT refer to the same Component as the one that contains the SubComponent.,
-	Value: https://synbiohub.org/public/igem/TetR,
-	Property: components[2].hasFeature[https://synbiohub.org/public/igem/TetR/SubComponent2].instanceOf,
-	Entity URI: https://synbiohub.org/public/igem/TetR,
-	Entity Type: Component
-Document Validation test: sbol3-10804 - SubComponent objects MUST NOT form circular reference chains via their instanceOf properties and the Component objects that contain them,
-	Child Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
-	Child Entity Type: Component,
-	Property: components[2].hasFeature[https://synbiohub.org/public/igem/BBa_F2620/SubComponent2].instanceOf[https://synbiohub.org/public/igem/TetR],
-	Entity URI: https://synbiohub.org/public/igem/TetR,
+Document Validation test: sbol3-10104 - The URL of any child or nested object MUST use the following pattern:[parent]/[displayId], where parent is the URL of its parent object. Multiple layers of child objects are allowed, using the same [parent]/[displayId] pattern recursively.,
+	Child Entity URI: https://synbiohub.org/public/igem/protein_production3,
+	Child Entity Type: Interaction,
+	Property: components[0].Identified[https://synbiohub.org/public/igem/protein_production3],
+	Entity URI: https://synbiohub.org/public/igem/BBa_F2620,
 	Entity Type: Component
 --------------------
 <<**********
@@ -1379,15 +1379,15 @@ Document Validation test: sbol3-10111 - An object's property values MUST have th
 
 **********>>
 Test:RangeTest.rangeStartAndEndEmpty_Range1_sbol3-10807
-Document Validation test: Range.end cannot be empty.,
-	Property: components[0].subComponents[0].locations[0].end,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
-	Entity Type: Range
 Document Validation test: sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence. ADDITIONAL INFORMATION: Sequence length:80, Calculated location length:0, Sequence: https://synbiohub.org/public/igem/B0015_Sequence1,
 	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
 	Property: components[0].subComponents[0].hasLocation,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
 	Entity Type: SubComponent
+Document Validation test: Range.end cannot be empty.,
+	Property: components[0].subComponents[0].locations[0].end,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
+	Entity Type: Range
 Document Validation test: Range.start cannot be empty.,
 	Property: components[0].subComponents[0].locations[0].start,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
@@ -1397,16 +1397,16 @@ Document Validation test: Range.start cannot be empty.,
 
 **********>>
 Test:RangeTest.rangeStartAndEndNegative_Range1_sbol3-10807
-Document Validation test: sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence. ADDITIONAL INFORMATION: Sequence length:80, Calculated location length:1, Sequence: https://synbiohub.org/public/igem/B0015_Sequence1,
-	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
-	Property: components[0].subComponents[0].hasLocation,
-	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
-	Entity Type: SubComponent
 Document Validation test: Range.start must be bigger than zero.,
 	Property: components[0].subComponents[0].locations[0].start,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
 	Entity Type: Range,
 	Value: -1
+Document Validation test: sbol3-10807 - If a SubComponent object has at least one hasLocation and zero sourceLocation properties, and the Component linked by its instanceOf has precisely one hasSequence property whose Sequence has a value for its elements property, then the sum of the lengths of the Location objects referred to by the hasLocation properties MUST equal the length of the elements value of the Sequence. ADDITIONAL INFORMATION: Sequence length:80, Calculated location length:1, Sequence: https://synbiohub.org/public/igem/B0015_Sequence1,
+	Value: [https://synbiohub.org/public/igem/i13504/SubComponent1/Range1],
+	Property: components[0].subComponents[0].hasLocation,
+	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1,
+	Entity Type: SubComponent
 Document Validation test: Range.end must be bigger than zero.,
 	Property: components[0].subComponents[0].locations[0].end,
 	Entity URI: https://synbiohub.org/public/igem/i13504/SubComponent1/Range1,
@@ -1519,12 +1519,12 @@ Document Validation test: sbol3-10904 - If the refersTo property of a ComponentR
 
 **********>>
 Test:ComponentReferenceTest.ComponentReference.inChildOf.nullValue_ComponentReference1_sbol3-10111
-Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: [http://invalidcomponentreference.org],
+Identified Validation test: ComponentReference.inChildOf cannot be null.,
 	Property: inChildOf,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
 	Entity Type: ComponentReference
-Identified Validation test: ComponentReference.inChildOf cannot be null.,
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [http://invalidcomponentreference.org],
 	Property: inChildOf,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/ComponentReference1,
 	Entity Type: ComponentReference
@@ -1542,11 +1542,11 @@ Identified Validation test: Constraint.restriction cannot be null.,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 --------------------
-Document Validation test: sbol3-11704 - The value of the restriction property of a Constraint SHOULD be drawn from Table 8, Table 9, or Table 10.,
+Document Validation test: Constraint.restriction cannot be null.,
 	Property: components[2].constraints[0].restriction,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Document Validation test: Constraint.restriction cannot be null.,
+Document Validation test: sbol3-11704 - The value of the restriction property of a Constraint SHOULD be drawn from Table 8, Table 9, or Table 10.,
 	Property: components[2].constraints[0].restriction,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
@@ -1559,12 +1559,12 @@ Identified Validation test: sbol3-11704 - The value of the restriction property 
 	Property: restriction,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Identified Validation test: Constraint.object cannot be null.,
-	Property: object,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
-	Entity Type: Constraint
 Identified Validation test: Constraint.restriction cannot be null.,
 	Property: restriction,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: Constraint
+Identified Validation test: Constraint.object cannot be null.,
+	Property: object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 --------------------
@@ -1589,29 +1589,29 @@ Identified Validation test: sbol3-11704 - The value of the restriction property 
 	Property: restriction,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Identified Validation test: Constraint.subject cannot be null.,
-	Property: subject,
+Identified Validation test: Constraint.restriction cannot be null.,
+	Property: restriction,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 Identified Validation test: Constraint.object cannot be null.,
 	Property: object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Identified Validation test: Constraint.restriction cannot be null.,
-	Property: restriction,
+Identified Validation test: Constraint.subject cannot be null.,
+	Property: subject,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 --------------------
+Document Validation test: sbol3-11704 - The value of the restriction property of a Constraint SHOULD be drawn from Table 8, Table 9, or Table 10.,
+	Property: components[2].constraints[0].restriction,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: Constraint
 Document Validation test: Constraint.subject cannot be null.,
 	Property: components[2].constraints[0].subject,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 Document Validation test: Constraint.object cannot be null.,
 	Property: components[2].constraints[0].object,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
-	Entity Type: Constraint
-Document Validation test: sbol3-11704 - The value of the restriction property of a Constraint SHOULD be drawn from Table 8, Table 9, or Table 10.,
-	Property: components[2].constraints[0].restriction,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 Document Validation test: Constraint.restriction cannot be null.,
@@ -1659,12 +1659,6 @@ Document Validation test: sbol3-11702 - The Feature referenced by the object pro
 
 **********>>
 Test:ConstraintTest.subjectAndObjectSame_interlab16device1_sbol3-11701_sbol3-11702_sbol3-11703
-Identified Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
-	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
-	Child Entity Type: SubComponent,
-	Property: hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
-	Entity Type: Component
 Identified Validation test: sbol3-11702 - The Feature referenced by the object property of a Constraint MUST be contained by the Component that contains the Constraint.,
 	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
 	Child Entity Type: SubComponent,
@@ -1675,7 +1669,19 @@ Identified Validation test: sbol3-11703 - The object property of a Constraint MU
 	Property: constraints[0].object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
+Identified Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
+	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
+	Child Entity Type: SubComponent,
+	Property: hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
+	Entity Type: Component
 --------------------
+Document Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
+	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
+	Child Entity Type: SubComponent,
+	Property: components[2].hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
+	Entity Type: Component
 Document Validation test: sbol3-11702 - The Feature referenced by the object property of a Constraint MUST be contained by the Component that contains the Constraint.,
 	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
 	Child Entity Type: SubComponent,
@@ -1686,23 +1692,17 @@ Document Validation test: sbol3-11703 - The object property of a Constraint MUST
 	Property: components[2].constraints[0].object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Document Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
-	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
-	Child Entity Type: SubComponent,
-	Property: components[2].hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
-	Entity Type: Component
 --------------------
 <<**********
 
 **********>>
 Test:ConstraintTest.subjectInvalid_Constraint1_sbol3-10111
-Identified Validation test: Constraint.subject cannot be null.,
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504],
 	Property: subject,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: [https://synbiohub.org/public/igem/i13504],
+Identified Validation test: Constraint.subject cannot be null.,
 	Property: subject,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
@@ -1726,10 +1726,6 @@ Identified Validation test: sbol3-10111 - An object's property values MUST have 
 	Property: object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Identified Validation test: Constraint.subject cannot be null.,
-	Property: subject,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
-	Entity Type: Constraint
 Identified Validation test: Constraint.object cannot be null.,
 	Property: object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
@@ -1739,16 +1735,11 @@ Identified Validation test: sbol3-10111 - An object's property values MUST have 
 	Property: subject,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
+Identified Validation test: Constraint.subject cannot be null.,
+	Property: subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: Constraint
 --------------------
-Document Validation test: Constraint.object cannot be null.,
-	Property: components[2].constraints[0].object,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
-	Entity Type: Constraint
-Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: [https://synbiohub.org/public/igem/i13504],
-	Property: components[2].constraints[0].object,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
-	Entity Type: Constraint
 Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: [https://synbiohub.org/public/igem/i13504],
 	Property: components[2].constraints[0].subject,
@@ -1756,6 +1747,15 @@ Document Validation test: sbol3-10111 - An object's property values MUST have th
 	Entity Type: Constraint
 Document Validation test: Constraint.subject cannot be null.,
 	Property: components[2].constraints[0].subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: Constraint
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/i13504],
+	Property: components[2].constraints[0].object,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
+	Entity Type: Constraint
+Document Validation test: Constraint.object cannot be null.,
+	Property: components[2].constraints[0].object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
 --------------------
@@ -2006,7 +2006,7 @@ Document Validation test: sbol3-12103 - A CombinatorialDerivation MUST NOT conta
 Test:CombinatorialDerivationTest.variableFeatureVariantInvalid_cs1_sbol3-10111
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: variableFeatures[0].variantMeasure,
+	Property: variableFeatures[0].variantDerivation,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
 	Entity Type: VariableFeature
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
@@ -2016,7 +2016,7 @@ Identified Validation test: sbol3-10111 - An object's property values MUST have 
 	Entity Type: VariableFeature
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: variableFeatures[0].variantDerivation,
+	Property: variableFeatures[0].variantMeasure,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
 	Entity Type: VariableFeature
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
@@ -2027,12 +2027,7 @@ Identified Validation test: sbol3-10111 - An object's property values MUST have 
 --------------------
 Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: combinatorialDerivations[0].variableFeatures[0].variant,
-	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
-	Entity Type: VariableFeature
-Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: combinatorialDerivations[0].variableFeatures[0].variantDerivation,
+	Property: combinatorialDerivations[0].variableFeatures[0].variantCollection,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
 	Entity Type: VariableFeature
 Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
@@ -2042,7 +2037,12 @@ Document Validation test: sbol3-10111 - An object's property values MUST have th
 	Entity Type: VariableFeature
 Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
-	Property: combinatorialDerivations[0].variableFeatures[0].variantCollection,
+	Property: combinatorialDerivations[0].variableFeatures[0].variantDerivation,
+	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
+	Entity Type: VariableFeature
+Document Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: [https://synbiohub.org/public/igem/BBa_R0040/SubComponent2],
+	Property: combinatorialDerivations[0].variableFeatures[0].variant,
 	Entity URI: https://synbiohub.org/public/igem/cs1/VariableFeature3,
 	Entity Type: VariableFeature
 --------------------
@@ -2132,9 +2132,9 @@ Identified Validation test: sbol3-12002 - The Feature referenced by the output p
 	Entity URI: https://sbolstandard.org/examples/LacI_producer,
 	Entity Type: Component
 --------------------
-Document Validation test: sbol3-12002 - The Feature referenced by the output property of an Interface MUST be contained by the Component that contains the Interface.,
+Document Validation test: sbol3-12001 - The Feature referenced by the input property of an Interface MUST be contained by the Component that contains the Interface.,
 	Value: https://sbolstandard.org/examples/LacI_producer/SubComponent2,
-	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].output,
+	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].input,
 	Entity URI: https://sbolstandard.org/examples/LacI_producer,
 	Entity Type: Component
 Document Validation test: sbol3-12003 - The Feature referenced by the nondirectional property of an Interface MUST be contained by the Component that contains the Interface.,
@@ -2142,9 +2142,9 @@ Document Validation test: sbol3-12003 - The Feature referenced by the nondirecti
 	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].nondirectional,
 	Entity URI: https://sbolstandard.org/examples/LacI_producer,
 	Entity Type: Component
-Document Validation test: sbol3-12001 - The Feature referenced by the input property of an Interface MUST be contained by the Component that contains the Interface.,
+Document Validation test: sbol3-12002 - The Feature referenced by the output property of an Interface MUST be contained by the Component that contains the Interface.,
 	Value: https://sbolstandard.org/examples/LacI_producer/SubComponent2,
-	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].input,
+	Property: components[2].hasInterface[https://sbolstandard.org/examples/LacI_producer/Interface1].output,
 	Entity URI: https://sbolstandard.org/examples/LacI_producer,
 	Entity Type: Component
 --------------------
@@ -2154,17 +2154,17 @@ Document Validation test: sbol3-12001 - The Feature referenced by the input prop
 Test:InterfaceTest.interfaceInputInvalid_2_Interface1_sbol3-10111
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: https://sbolstandard.org/examples/aTC,
-	Property: input,
-	Entity URI: https://sbolstandard.org/examples/LacI_producer/Interface1,
-	Entity Type: Interface
-Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
-	Value: https://sbolstandard.org/examples/aTC,
 	Property: nondirectional,
 	Entity URI: https://sbolstandard.org/examples/LacI_producer/Interface1,
 	Entity Type: Interface
 Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
 	Value: https://sbolstandard.org/examples/aTC,
 	Property: output,
+	Entity URI: https://sbolstandard.org/examples/LacI_producer/Interface1,
+	Entity Type: Interface
+Identified Validation test: sbol3-10111 - An object's property values MUST have the type listed for the object type and property in Table 23.,
+	Value: https://sbolstandard.org/examples/aTC,
+	Property: input,
 	Entity URI: https://sbolstandard.org/examples/LacI_producer/Interface1,
 	Entity Type: Interface
 --------------------
@@ -2204,21 +2204,21 @@ Document Validation test: sbol3-10111 - An object's property values MUST have th
 
 **********>>
 Test:InteractionTest.interactionTypesInvalid_Interaction1_sbol3-11803
-Identified Validation test: sbol3-11803 - Exactly one type property of an Interaction SHOULD refer to a term from the occurring entity relationship branch of the SBO.,
-	Property: type,
-	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
-	Entity Type: Interaction
 Identified Validation test: Interaction.types cannot be empty.,
 	Property: types,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
 	Entity Type: Interaction
---------------------
-Document Validation test: Interaction.types cannot be empty.,
-	Property: components[0].interactions[0].types,
+Identified Validation test: sbol3-11803 - Exactly one type property of an Interaction SHOULD refer to a term from the occurring entity relationship branch of the SBO.,
+	Property: type,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
 	Entity Type: Interaction
+--------------------
 Document Validation test: sbol3-11803 - Exactly one type property of an Interaction SHOULD refer to a term from the occurring entity relationship branch of the SBO.,
 	Property: components[0].interactions[0].type,
+	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
+	Entity Type: Interaction
+Document Validation test: Interaction.types cannot be empty.,
+	Property: components[0].interactions[0].types,
 	Entity URI: https://sbolstandard.org/examples/i13504_system/Interaction1,
 	Entity Type: Interaction
 --------------------
@@ -2354,12 +2354,12 @@ Identified Validation test: ExternallyDefined.definition cannot be null.,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
 	Entity Type: ExternallyDefined
 --------------------
-Document Validation test: ExternallyDefined.definition cannot be null.,
-	Property: components[0].externallyDefineds[1].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: ExternallyDefined
 Document Validation test: ExternallyDefined.type cannot be empty.,
 	Property: components[0].externallyDefineds[1].types,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+Document Validation test: ExternallyDefined.definition cannot be null.,
+	Property: components[0].externallyDefineds[1].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
 	Entity Type: ExternallyDefined
 --------------------
@@ -2372,12 +2372,12 @@ Document Validation test: ExternallyDefined.type cannot be empty.,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
 	Entity Type: ExternallyDefined
 Document Validation test: ExternallyDefined.definition cannot be null.,
-	Property: components[0].externallyDefineds[0].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
-	Entity Type: ExternallyDefined
-Document Validation test: ExternallyDefined.definition cannot be null.,
 	Property: components[0].externallyDefineds[1].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+Document Validation test: ExternallyDefined.definition cannot be null.,
+	Property: components[0].externallyDefineds[0].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
 	Entity Type: ExternallyDefined
 --------------------
 <<**********
@@ -2388,10 +2388,6 @@ Identified Validation test: ExternallyDefined.definition cannot be null.,
 	Property: externallyDefineds[0].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
 	Entity Type: ExternallyDefined
-Identified Validation test: ExternallyDefined.type cannot be empty.,
-	Property: externallyDefineds[1].types,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: ExternallyDefined
 Identified Validation test: ExternallyDefined.definition cannot be null.,
 	Property: externallyDefineds[1].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
@@ -2400,36 +2396,6 @@ Identified Validation test: sbol3-11101 - A ExternallyDefined MUST NOT have more
 	Property: externallyDefineds[0].type,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
 	Entity Type: ExternallyDefined
---------------------
-Document Validation test: sbol3-11101 - A ExternallyDefined MUST NOT have more than one URI from Table 2.,
-	Property: components[0].externallyDefineds[0].type,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
-	Entity Type: ExternallyDefined
-Document Validation test: ExternallyDefined.definition cannot be null.,
-	Property: components[0].externallyDefineds[1].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: ExternallyDefined
-Document Validation test: ExternallyDefined.type cannot be empty.,
-	Property: components[0].externallyDefineds[1].types,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: ExternallyDefined
-Document Validation test: ExternallyDefined.definition cannot be null.,
-	Property: components[0].externallyDefineds[0].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
-	Entity Type: ExternallyDefined
---------------------
-<<**********
-
-**********>>
-Test:ExternallyDefinedTest.exDefined2_invalidType_interlab16device1
-Identified Validation test: ExternallyDefined.definition cannot be null.,
-	Property: externallyDefineds[1].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: ExternallyDefined
-Identified Validation test: ExternallyDefined.definition cannot be null.,
-	Property: externallyDefineds[0].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
-	Entity Type: ExternallyDefined
 Identified Validation test: ExternallyDefined.type cannot be empty.,
 	Property: externallyDefineds[1].types,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
@@ -2439,12 +2405,46 @@ Document Validation test: ExternallyDefined.definition cannot be null.,
 	Property: components[0].externallyDefineds[0].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
 	Entity Type: ExternallyDefined
+Document Validation test: sbol3-11101 - A ExternallyDefined MUST NOT have more than one URI from Table 2.,
+	Property: components[0].externallyDefineds[0].type,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
+	Entity Type: ExternallyDefined
 Document Validation test: ExternallyDefined.type cannot be empty.,
 	Property: components[0].externallyDefineds[1].types,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
 	Entity Type: ExternallyDefined
 Document Validation test: ExternallyDefined.definition cannot be null.,
 	Property: components[0].externallyDefineds[1].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+--------------------
+<<**********
+
+**********>>
+Test:ExternallyDefinedTest.exDefined2_invalidType_interlab16device1
+Identified Validation test: ExternallyDefined.type cannot be empty.,
+	Property: externallyDefineds[1].types,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+Identified Validation test: ExternallyDefined.definition cannot be null.,
+	Property: externallyDefineds[1].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+Identified Validation test: ExternallyDefined.definition cannot be null.,
+	Property: externallyDefineds[0].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
+	Entity Type: ExternallyDefined
+--------------------
+Document Validation test: ExternallyDefined.definition cannot be null.,
+	Property: components[0].externallyDefineds[0].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
+	Entity Type: ExternallyDefined
+Document Validation test: ExternallyDefined.definition cannot be null.,
+	Property: components[0].externallyDefineds[1].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+Document Validation test: ExternallyDefined.type cannot be empty.,
+	Property: components[0].externallyDefineds[1].types,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
 	Entity Type: ExternallyDefined
 --------------------
@@ -2452,13 +2452,13 @@ Document Validation test: ExternallyDefined.definition cannot be null.,
 
 **********>>
 Test:ExternallyDefinedTest.exDefined2_invalidType_2_interlab16device1
-Identified Validation test: ExternallyDefined.definition cannot be null.,
-	Property: externallyDefineds[0].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
-	Entity Type: ExternallyDefined
 Identified Validation test: ExternallyDefined.type cannot be empty.,
 	Property: externallyDefineds[1].types,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+Identified Validation test: ExternallyDefined.definition cannot be null.,
+	Property: externallyDefineds[0].definition,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
 	Entity Type: ExternallyDefined
 Identified Validation test: ExternallyDefined.definition cannot be null.,
 	Property: externallyDefineds[1].definition,
@@ -2466,15 +2466,15 @@ Identified Validation test: ExternallyDefined.definition cannot be null.,
 	Entity Type: ExternallyDefined
 --------------------
 Document Validation test: ExternallyDefined.definition cannot be null.,
-	Property: components[0].externallyDefineds[1].definition,
-	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
-	Entity Type: ExternallyDefined
-Document Validation test: ExternallyDefined.definition cannot be null.,
 	Property: components[0].externallyDefineds[0].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined2,
 	Entity Type: ExternallyDefined
 Document Validation test: ExternallyDefined.type cannot be empty.,
 	Property: components[0].externallyDefineds[1].types,
+	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
+	Entity Type: ExternallyDefined
+Document Validation test: ExternallyDefined.definition cannot be null.,
+	Property: components[0].externallyDefineds[1].definition,
 	Entity URI: https://sbolstandard.org/examples/interlab16device1/ExternallyDefined1,
 	Entity Type: ExternallyDefined
 --------------------
@@ -2496,14 +2496,14 @@ Document Validation test: Association.agent cannot be null,
 
 **********>>
 Test:ActivityTest.UsageEntityMissing_Usage1
-Document Validation test: Usage.entity cannot be null.,
-	Property: activities[0].usages[0].entityURI,
-	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Usage1,
-	Entity Type: Usage
 Document Validation test: Association.agent cannot be null,
 	Property: activities[0].associations[0].agentURI,
 	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Association1,
 	Entity Type: Association
+Document Validation test: Usage.entity cannot be null.,
+	Property: activities[0].usages[0].entityURI,
+	Entity URI: https://sbolstandard.org/examples/codon_optimization_activity/Usage1,
+	Entity Type: Usage
 --------------------
 <<**********
 
@@ -2577,20 +2577,20 @@ Identified Validation test: Unit.symbol cannot be empty.,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 --------------------
-Document Validation test: PrefixedUnit.unit cannot be null.,
-	Property: prefixedUnits[0].unitURI,
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Unit.symbol cannot be empty.,
-	Property: prefixedUnits[0].symbol,
+Document Validation test: PrefixedUnit.unit cannot be null.,
+	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 Document Validation test: Unit.label cannot be empty.,
 	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefixedUnits[0].prefix,
+Document Validation test: Unit.symbol cannot be empty.,
+	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 --------------------
@@ -2598,20 +2598,20 @@ Document Validation test: PrefixedUnit.prefix cannot be null.,
 
 **********>>
 Test:MeasureTest.PrefixedUnit_prefixInvalid_unitInvalid_symbolInvalid_labelInvalid_2
-Document Validation test: PrefixedUnit.unit cannot be null.,
-	Property: prefixedUnits[0].unitURI,
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Unit.symbol cannot be empty.,
-	Property: prefixedUnits[0].symbol,
+Document Validation test: PrefixedUnit.unit cannot be null.,
+	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 Document Validation test: Unit.label cannot be empty.,
 	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefixedUnits[0].prefix,
+Document Validation test: Unit.symbol cannot be empty.,
+	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 --------------------
@@ -2638,6 +2638,15 @@ Identified Validation test: Unit.label cannot be empty.,
 	Entity Type: PrefixedUnit,
 	Value: 
 --------------------
+Document Validation test: Unit.symbol cannot be empty.,
+	Property: prefixedUnits[0].symbol,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit,
+	Value: 
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
 Document Validation test: Unit.label cannot be empty.,
 	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
@@ -2647,15 +2656,6 @@ Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefixedUnits[0].prefix,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
-Document Validation test: Unit.symbol cannot be empty.,
-	Property: prefixedUnits[0].symbol,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit,
-	Value: 
 --------------------
 <<**********
 
@@ -2688,12 +2688,12 @@ Identified Validation test: UnitDivision.denominator cannot be null.,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
 	Entity Type: UnitDivision
 --------------------
-Document Validation test: UnitDivision.denominator cannot be null.,
-	Property: unitDivisions[0].denominatorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
 Document Validation test: UnitDivision.numerator cannot be null.,
 	Property: unitDivisions[0].numeratorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
+Document Validation test: UnitDivision.denominator cannot be null.,
+	Property: unitDivisions[0].denominatorURI,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
 	Entity Type: UnitDivision
 --------------------
@@ -2701,12 +2701,12 @@ Document Validation test: UnitDivision.numerator cannot be null.,
 
 **********>>
 Test:MeasureTest.Measure_exponentInvalidForUnit_cubicMeter
-Identified Validation test: UnitExponentiation.exponent cannot be empty.,
-	Property: exponent,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
 Identified Validation test: UnitExponentiation.base cannot be null.,
 	Property: baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
+Identified Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: exponent,
 	Entity URI: https://sbolstandard.org/examples/cubicMeter,
 	Entity Type: UnitExponentiation
 --------------------
@@ -2723,12 +2723,12 @@ Document Validation test: UnitExponentiation.exponent cannot be empty.,
 
 **********>>
 Test:MeasureTest.Measure_exponentInvalidForUnit_2_cubicMeter
-Identified Validation test: UnitExponentiation.exponent cannot be empty.,
-	Property: exponent,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
 Identified Validation test: UnitExponentiation.base cannot be null.,
 	Property: baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
+Identified Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: exponent,
 	Entity URI: https://sbolstandard.org/examples/cubicMeter,
 	Entity Type: UnitExponentiation
 --------------------
@@ -2781,14 +2781,6 @@ Identified Validation test: Measure.value cannot be null.,
 
 **********>>
 Test:ValidationReadWriteTest.ValidationReadWriteTest.PrefixedUnit.prefixInvalid_unitInvalid_symbolInvalid_labelInvalid_millimole
-Identified Validation test: PrefixedUnit.unit cannot be null.,
-	Property: unitURI,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
-Identified Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefix,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Identified Validation test: Unit.symbol cannot be empty.,
 	Property: symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
@@ -2797,17 +2789,25 @@ Identified Validation test: Unit.label cannot be empty.,
 	Property: label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
+Identified Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefix,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Identified Validation test: PrefixedUnit.unit cannot be null.,
+	Property: unitURI,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
 --------------------
 Document Validation test: Unit.symbol cannot be empty.,
 	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 Document Validation test: PrefixedUnit.prefix cannot be null.,
@@ -2823,12 +2823,12 @@ Document Validation test: Unit.symbol cannot be empty.,
 	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 Document Validation test: PrefixedUnit.prefix cannot be null.,
@@ -2853,12 +2853,12 @@ Document Validation test: Unit.symbol cannot be empty.,
 	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 Document Validation test: Prefix.factor cannot be null.,
@@ -2878,14 +2878,6 @@ Document Validation test: Unit.symbol cannot be empty.,
 	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: UnitDivision.numerator cannot be null.,
-	Property: unitDivisions[0].numeratorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
 Document Validation test: UnitDivision.denominator cannot be null.,
 	Property: unitDivisions[0].denominatorURI,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
@@ -2894,6 +2886,14 @@ Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: UnitDivision.numerator cannot be null.,
+	Property: unitDivisions[0].numeratorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
 Document Validation test: Prefix.factor cannot be null.,
 	Property: SIPrefixes[0].factor,
 	Entity URI: https://sbolstandard.org/examples/milli,
@@ -2911,14 +2911,14 @@ Document Validation test: Unit.symbol cannot be empty.,
 	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: UnitDivision.numerator cannot be null.,
-	Property: unitDivisions[0].numeratorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
+Document Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: unitExponentiations[0].exponent,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
+Document Validation test: UnitExponentiation.base cannot be null.,
+	Property: unitExponentiations[0].baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
 Document Validation test: UnitDivision.denominator cannot be null.,
 	Property: unitDivisions[0].denominatorURI,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
@@ -2927,22 +2927,22 @@ Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: UnitDivision.numerator cannot be null.,
+	Property: unitDivisions[0].numeratorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
 Document Validation test: Prefix.factor cannot be null.,
 	Property: SIPrefixes[0].factor,
 	Entity URI: https://sbolstandard.org/examples/milli,
 	Entity Type: SIPrefix
-Document Validation test: UnitExponentiation.base cannot be null.,
-	Property: unitExponentiations[0].baseURI,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
 Document Validation test: PrefixedUnit.prefix cannot be null.,
 	Property: prefixedUnits[0].prefix,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: UnitExponentiation.exponent cannot be empty.,
-	Property: unitExponentiations[0].exponent,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
 --------------------
 <<**********
 
@@ -2952,18 +2952,14 @@ Document Validation test: Unit.symbol cannot be empty.,
 	Property: prefixedUnits[0].symbol,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: UnitDivision.numerator cannot be null.,
-	Property: unitDivisions[0].numeratorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
-Document Validation test: UnitMultiplication.term2 cannot be null.,
-	Property: unitMultiplications[0].term2URI,
-	Entity URI: https://sbolstandard.org/examples/kelvinMole,
-	Entity Type: UnitMultiplication
-Document Validation test: Unit.label cannot be empty.,
-	Property: prefixedUnits[0].label,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
+Document Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: unitExponentiations[0].exponent,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
+Document Validation test: UnitExponentiation.base cannot be null.,
+	Property: unitExponentiations[0].baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
 Document Validation test: UnitDivision.denominator cannot be null.,
 	Property: unitDivisions[0].denominatorURI,
 	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
@@ -2972,75 +2968,79 @@ Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Prefix.factor cannot be null.,
-	Property: SIPrefixes[0].factor,
-	Entity URI: https://sbolstandard.org/examples/milli,
-	Entity Type: SIPrefix
-Document Validation test: UnitExponentiation.base cannot be null.,
-	Property: unitExponentiations[0].baseURI,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
-Document Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefixedUnits[0].prefix,
+Document Validation test: Unit.label cannot be empty.,
+	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
 Document Validation test: UnitMultiplication.term1 cannot be null.,
 	Property: unitMultiplications[0].term1URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
 	Entity Type: UnitMultiplication
-Document Validation test: UnitExponentiation.exponent cannot be empty.,
-	Property: unitExponentiations[0].exponent,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
+Document Validation test: UnitDivision.numerator cannot be null.,
+	Property: unitDivisions[0].numeratorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
+Document Validation test: UnitMultiplication.term2 cannot be null.,
+	Property: unitMultiplications[0].term2URI,
+	Entity URI: https://sbolstandard.org/examples/kelvinMole,
+	Entity Type: UnitMultiplication
+Document Validation test: Prefix.factor cannot be null.,
+	Property: SIPrefixes[0].factor,
+	Entity URI: https://sbolstandard.org/examples/milli,
+	Entity Type: SIPrefix
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
 --------------------
 <<**********
 
 **********>>
 Test:ValidationReadWriteTest.ValidationReadWriteTest_4
-Document Validation test: UnitDivision.numerator cannot be null.,
-	Property: unitDivisions[0].numeratorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
-Document Validation test: PrefixedUnit.prefix cannot be null.,
-	Property: prefixedUnits[0].prefix,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
-Document Validation test: UnitExponentiation.exponent cannot be empty.,
-	Property: unitExponentiations[0].exponent,
-	Entity URI: https://sbolstandard.org/examples/cubicMeter,
-	Entity Type: UnitExponentiation
-Document Validation test: UnitMultiplication.term2 cannot be null.,
-	Property: unitMultiplications[0].term2URI,
-	Entity URI: https://sbolstandard.org/examples/kelvinMole,
-	Entity Type: UnitMultiplication
-Document Validation test: UnitDivision.denominator cannot be null.,
-	Property: unitDivisions[0].denominatorURI,
-	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
-	Entity Type: UnitDivision
 Document Validation test: Prefix.factor cannot be null.,
 	Property: SIPrefixes[0].factor,
 	Entity URI: https://sbolstandard.org/examples/milli,
 	Entity Type: SIPrefix
-Document Validation test: UnitExponentiation.base cannot be null.,
-	Property: unitExponentiations[0].baseURI,
+Document Validation test: UnitDivision.denominator cannot be null.,
+	Property: unitDivisions[0].denominatorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
+Document Validation test: UnitExponentiation.exponent cannot be empty.,
+	Property: unitExponentiations[0].exponent,
 	Entity URI: https://sbolstandard.org/examples/cubicMeter,
 	Entity Type: UnitExponentiation
-Document Validation test: UnitMultiplication.term1 cannot be null.,
-	Property: unitMultiplications[0].term1URI,
+Document Validation test: Unit.symbol cannot be empty.,
+	Property: prefixedUnits[0].symbol,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
+Document Validation test: UnitDivision.numerator cannot be null.,
+	Property: unitDivisions[0].numeratorURI,
+	Entity URI: https://sbolstandard.org/examples/millimolePerLitre,
+	Entity Type: UnitDivision
+Document Validation test: UnitMultiplication.term2 cannot be null.,
+	Property: unitMultiplications[0].term2URI,
 	Entity URI: https://sbolstandard.org/examples/kelvinMole,
 	Entity Type: UnitMultiplication
 Document Validation test: Unit.label cannot be empty.,
 	Property: prefixedUnits[0].label,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
+Document Validation test: PrefixedUnit.prefix cannot be null.,
+	Property: prefixedUnits[0].prefix,
+	Entity URI: https://sbolstandard.org/examples/millimole,
+	Entity Type: PrefixedUnit
 Document Validation test: PrefixedUnit.unit cannot be null.,
 	Property: prefixedUnits[0].unitURI,
 	Entity URI: https://sbolstandard.org/examples/millimole,
 	Entity Type: PrefixedUnit
-Document Validation test: Unit.symbol cannot be empty.,
-	Property: prefixedUnits[0].symbol,
-	Entity URI: https://sbolstandard.org/examples/millimole,
-	Entity Type: PrefixedUnit
+Document Validation test: UnitMultiplication.term1 cannot be null.,
+	Property: unitMultiplications[0].term1URI,
+	Entity URI: https://sbolstandard.org/examples/kelvinMole,
+	Entity Type: UnitMultiplication
+Document Validation test: UnitExponentiation.base cannot be null.,
+	Property: unitExponentiations[0].baseURI,
+	Entity URI: https://sbolstandard.org/examples/cubicMeter,
+	Entity Type: UnitExponentiation
 --------------------
 <<**********
 

@@ -1,9 +1,3 @@
-Identified Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
-	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
-	Child Entity Type: SubComponent,
-	Property: hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
-	Entity Type: Component
 Identified Validation test: sbol3-11702 - The Feature referenced by the object property of a Constraint MUST be contained by the Component that contains the Constraint.,
 	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
 	Child Entity Type: SubComponent,
@@ -14,7 +8,19 @@ Identified Validation test: sbol3-11703 - The object property of a Constraint MU
 	Property: constraints[0].object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
+Identified Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
+	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
+	Child Entity Type: SubComponent,
+	Property: hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
+	Entity Type: Component
 --------------------
+Document Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
+	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
+	Child Entity Type: SubComponent,
+	Property: components[2].hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
+	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
+	Entity Type: Component
 Document Validation test: sbol3-11702 - The Feature referenced by the object property of a Constraint MUST be contained by the Component that contains the Constraint.,
 	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
 	Child Entity Type: SubComponent,
@@ -25,10 +31,4 @@ Document Validation test: sbol3-11703 - The object property of a Constraint MUST
 	Property: components[2].constraints[0].object,
 	Entity URI: https://synbiohub.org/public/igem/interlab16device1/Constraint1,
 	Entity Type: Constraint
-Document Validation test: sbol3-11701 - The Feature referenced by the subject property of a Constraint MUST be contained by the Component that contains the Constraint.,
-	Child Entity URI: https://synbiohub.org/public/igem/i13504_system/SubComponent1,
-	Child Entity Type: SubComponent,
-	Property: components[2].hasConstraint[https://synbiohub.org/public/igem/interlab16device1/Constraint1].subject,
-	Entity URI: https://synbiohub.org/public/igem/interlab16device1,
-	Entity Type: Component
 --------------------
